@@ -1,11 +1,11 @@
 {
   "name": "eth-lightwallet",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "A lightweight ethereum javascript wallet.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ConsenSys/eth-lightwallet.git"
+    "url": "https://github.com/ownesthq/eth-lightwallet.git"
   },
   "scripts": {
     "build-js": "browserify index.js --s lightwallet -g [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] | uglifyjs -c > dist/lightwallet.min.js",
@@ -57,34 +57,38 @@
     {
       "name": "Slava Matvienco",
       "email": "slava.matvienco@gmail.com"
+    },
+    {
+      "name": "Valentin Commenge",
+      "email": "valentin@ownest.io"
     }
   ],
   "license": "MIT",
   "dependencies": {
-    "bitcore-lib": "8.1.1",
-    "bitcore-mnemonic": "8.1.1",
-    "crypto-js": "3.1.8",
-    "elliptic": "6.4.1",
-    "ethereumjs-tx": "1.3.7",
-    "ethereumjs-util": "6.1.0",
-    "rlp": "2.2.3",
+    "bitcore-lib": "8.25.8",
+    "bitcore-mnemonic": "8.25.8",
+    "crypto-js": "4.0.0",
+    "elliptic": "6.5.4",
+    "ethereumjs-tx": "2.1.2",
+    "ethereumjs-util": "7.0.10",
+    "rlp": "2.2.6",
     "scrypt-async": "2.0.1",
-    "tweetnacl": "1.0.1",
-    "tweetnacl-util": "0.15.0",
-    "web3": "0.20.7"
+    "tweetnacl": "1.0.3",
+    "tweetnacl-util": "0.15.1",
+    "web3": "1.3.5"
   },
   "devDependencies": {
-    "@babel/core": "7.4.0",
-    "@babel/preset-env": "7.4.2",
-    "@babel/preset-react": "7.0.0",
-    "async": "2.6.2",
+    "@babel/core": "7.14.0",
+    "@babel/preset-env": "7.14.0",
+    "@babel/preset-react": "7.13.13",
+    "async": "3.2.0",
     "babelify": "10.0.0",
-    "bluebird": "3.5.3",
-    "browserify": "16.2.3",
-    "chai": "4.2.0",
-    "hooked-web3-provider": "christianlundkvist/hooked-web3-provider#updates_web3_14",
+    "bluebird": "3.7.2",
+    "browserify": "17.0.0",
+    "chai": "4.3.4",
+    "hooked-web3-provider": "christianlundkvist/hooked-web3-provider#d5ed993b",
     "istanbul": "0.4.5",
-    "mocha": "6.0.2",
-    "uglify-js": "3.5.2"
+    "mocha": "^8.3.2",
+    "uglify-js": "3.13.5"
   }
 }
