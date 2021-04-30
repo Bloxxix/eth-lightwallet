@@ -1,11 +1,14 @@
 {
-  "name": "eth-lightwallet",
+  "name": "@ownesthq/eth-lightwallet",
   "version": "5.0.0",
   "description": "A lightweight ethereum javascript wallet.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ownesthq/eth-lightwallet.git"
+    "url": "git://github.com:ownesthq/eth-lightwallet.git"
+  },
+  "publishConfig": {
+    "@ownesthq:registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "build-js": "browserify index.js --s lightwallet -g [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] | uglifyjs -c > dist/lightwallet.min.js",
