@@ -3,3 +3,5 @@ declare var encryption: any;
 declare var signing: any;
 declare var keystore: any;
 declare var upgrade: any;
+
+declare module '@ownesthq/eth-lightwallet';
