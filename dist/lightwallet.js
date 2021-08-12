@@ -26,6 +26,8 @@ module.exports = {
 (function (Buffer){(function (){
 "use strict";
 
+var _excluded = ["alg"];
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -108,7 +110,7 @@ function multiEncryptString(keystore, pwDerivedKey, msg, myAddress, theirPubKeyA
   var encryptedSymKey = theirPubKeyArray.map(function (theirPubKey) {
     var _asymEncryptRaw = asymEncryptRaw(keystore, pwDerivedKey, symEncryptionKey, myAddress, theirPubKey),
         alg = _asymEncryptRaw.alg,
-        props = _objectWithoutProperties(_asymEncryptRaw, ["alg"]);
+        props = _objectWithoutProperties(_asymEncryptRaw, _excluded);
 
     return _objectSpread({}, props);
   });
@@ -169,9 +171,11 @@ module.exports = {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./assert":2,"buffer":173,"tweetnacl":394,"tweetnacl-util":393}],4:[function(require,module,exports){
+},{"./assert":2,"buffer":174,"tweetnacl":396,"tweetnacl-util":395}],4:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
+
+var _excluded = ["gas"];
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -348,7 +352,7 @@ KeyStore.prototype.signTransaction = function (txParams, callback) {
   var _this = this;
 
   var gas = txParams.gas,
-      params = _objectWithoutProperties(txParams, ["gas"]);
+      params = _objectWithoutProperties(txParams, _excluded);
 
   var txObj = _objectSpread(_objectSpread({}, params), {}, {
     gasLimit: gas
@@ -625,7 +629,7 @@ KeyStore.DEFAULT_SALT = 'lightwalletSalt';
 module.exports = KeyStore;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./assert":2,"./encryption":3,"./signing":5,"./txutils":6,"bitcore-lib":75,"bitcore-mnemonic":124,"buffer":173,"crypto-js":189,"elliptic":225,"ethereumjs-util":288,"scrypt-async":376,"tweetnacl":394,"tweetnacl-util":393}],5:[function(require,module,exports){
+},{"./assert":2,"./encryption":3,"./signing":5,"./txutils":6,"bitcore-lib":76,"bitcore-mnemonic":125,"buffer":174,"crypto-js":191,"elliptic":227,"ethereumjs-util":290,"scrypt-async":378,"tweetnacl":396,"tweetnacl-util":395}],5:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -688,7 +692,7 @@ module.exports = {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./assert":2,"buffer":173,"ethereumjs-tx":269,"ethereumjs-util":288}],6:[function(require,module,exports){
+},{"./assert":2,"buffer":174,"ethereumjs-tx":271,"ethereumjs-util":290}],6:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -796,7 +800,7 @@ module.exports = {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":173,"crypto-js":189,"ethereumjs-tx":269,"ethereumjs-util":288,"rlp":373,"web3-eth-abi":401}],7:[function(require,module,exports){
+},{"buffer":174,"crypto-js":191,"ethereumjs-tx":271,"ethereumjs-util":290,"rlp":375,"web3-eth-abi":402}],7:[function(require,module,exports){
 "use strict";
 
 var CryptoJS = require('crypto-js');
@@ -933,7 +937,7 @@ module.exports = {
   upgradeOldSerialized: upgradeOldSerialized
 };
 
-},{"./keystore":4,"crypto-js":189}],8:[function(require,module,exports){
+},{"./keystore":4,"crypto-js":191}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -983,9 +987,7 @@ var fragments_1 = require("./fragments");
 var paramTypeBytes = new RegExp(/^bytes([0-9]*)$/);
 var paramTypeNumber = new RegExp(/^(u?int)([0-9]*)$/);
 
-var AbiCoder =
-/** @class */
-function () {
+var AbiCoder = function () {
   function AbiCoder(coerceFunc) {
     var _newTarget = this.constructor;
     logger.checkNew(_newTarget, AbiCoder);
@@ -1104,7 +1106,7 @@ function () {
 exports.AbiCoder = AbiCoder;
 exports.defaultAbiCoder = new AbiCoder();
 
-},{"./_version":8,"./coders/abstract-coder":10,"./coders/address":11,"./coders/array":13,"./coders/boolean":14,"./coders/bytes":15,"./coders/fixed-bytes":16,"./coders/null":17,"./coders/number":18,"./coders/string":19,"./coders/tuple":20,"./fragments":21,"@ethersproject/bytes":31,"@ethersproject/logger":45,"@ethersproject/properties":47}],10:[function(require,module,exports){
+},{"./_version":8,"./coders/abstract-coder":10,"./coders/address":11,"./coders/array":13,"./coders/boolean":14,"./coders/bytes":15,"./coders/fixed-bytes":16,"./coders/null":17,"./coders/number":18,"./coders/string":19,"./coders/tuple":20,"./fragments":21,"@ethersproject/bytes":32,"@ethersproject/logger":46,"@ethersproject/properties":48}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1153,9 +1155,7 @@ function checkResultErrors(result) {
 
 exports.checkResultErrors = checkResultErrors;
 
-var Coder =
-/** @class */
-function () {
+var Coder = function () {
   function Coder(name, type, localName, dynamic) {
     // @TODO: defineReadOnly these
     this.name = name;
@@ -1173,9 +1173,7 @@ function () {
 
 exports.Coder = Coder;
 
-var Writer =
-/** @class */
-function () {
+var Writer = function () {
   function Writer(wordSize) {
     properties_1.defineReadOnly(this, "wordSize", wordSize || 32);
     this._data = [];
@@ -1261,9 +1259,7 @@ function () {
 
 exports.Writer = Writer;
 
-var Reader =
-/** @class */
-function () {
+var Reader = function () {
   function Reader(data, wordSize, coerceFunc, allowLoose) {
     properties_1.defineReadOnly(this, "_data", bytes_1.arrayify(data));
     properties_1.defineReadOnly(this, "wordSize", wordSize || 32);
@@ -1343,7 +1339,7 @@ function () {
 
 exports.Reader = Reader;
 
-},{"../_version":8,"@ethersproject/bignumber":29,"@ethersproject/bytes":31,"@ethersproject/logger":45,"@ethersproject/properties":47}],11:[function(require,module,exports){
+},{"../_version":8,"@ethersproject/bignumber":29,"@ethersproject/bytes":32,"@ethersproject/logger":46,"@ethersproject/properties":48}],11:[function(require,module,exports){
 "use strict";
 
 var __extends = void 0 && (void 0).__extends || function () {
@@ -1382,9 +1378,7 @@ var bytes_1 = require("@ethersproject/bytes");
 
 var abstract_coder_1 = require("./abstract-coder");
 
-var AddressCoder =
-/** @class */
-function (_super) {
+var AddressCoder = function (_super) {
   __extends(AddressCoder, _super);
 
   function AddressCoder(localName) {
@@ -1410,7 +1404,7 @@ function (_super) {
 
 exports.AddressCoder = AddressCoder;
 
-},{"./abstract-coder":10,"@ethersproject/address":25,"@ethersproject/bytes":31}],12:[function(require,module,exports){
+},{"./abstract-coder":10,"@ethersproject/address":25,"@ethersproject/bytes":32}],12:[function(require,module,exports){
 "use strict";
 
 var __extends = void 0 && (void 0).__extends || function () {
@@ -1446,9 +1440,7 @@ Object.defineProperty(exports, "__esModule", {
 var abstract_coder_1 = require("./abstract-coder"); // Clones the functionality of an existing Coder, but without a localName
 
 
-var AnonymousCoder =
-/** @class */
-function (_super) {
+var AnonymousCoder = function (_super) {
   __extends(AnonymousCoder, _super);
 
   function AnonymousCoder(coder) {
@@ -1692,9 +1684,7 @@ function unpack(reader, coders) {
 
 exports.unpack = unpack;
 
-var ArrayCoder =
-/** @class */
-function (_super) {
+var ArrayCoder = function (_super) {
   __extends(ArrayCoder, _super);
 
   function ArrayCoder(coder, length, localName) {
@@ -1751,7 +1741,7 @@ function (_super) {
 
 exports.ArrayCoder = ArrayCoder;
 
-},{"../_version":8,"./abstract-coder":10,"./anonymous":12,"@ethersproject/logger":45}],14:[function(require,module,exports){
+},{"../_version":8,"./abstract-coder":10,"./anonymous":12,"@ethersproject/logger":46}],14:[function(require,module,exports){
 "use strict";
 
 var __extends = void 0 && (void 0).__extends || function () {
@@ -1786,9 +1776,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var abstract_coder_1 = require("./abstract-coder");
 
-var BooleanCoder =
-/** @class */
-function (_super) {
+var BooleanCoder = function (_super) {
   __extends(BooleanCoder, _super);
 
   function BooleanCoder(localName) {
@@ -1845,9 +1833,7 @@ var bytes_1 = require("@ethersproject/bytes");
 
 var abstract_coder_1 = require("./abstract-coder");
 
-var DynamicBytesCoder =
-/** @class */
-function (_super) {
+var DynamicBytesCoder = function (_super) {
   __extends(DynamicBytesCoder, _super);
 
   function DynamicBytesCoder(type, localName) {
@@ -1870,9 +1856,7 @@ function (_super) {
 
 exports.DynamicBytesCoder = DynamicBytesCoder;
 
-var BytesCoder =
-/** @class */
-function (_super) {
+var BytesCoder = function (_super) {
   __extends(BytesCoder, _super);
 
   function BytesCoder(localName) {
@@ -1888,7 +1872,7 @@ function (_super) {
 
 exports.BytesCoder = BytesCoder;
 
-},{"./abstract-coder":10,"@ethersproject/bytes":31}],16:[function(require,module,exports){
+},{"./abstract-coder":10,"@ethersproject/bytes":32}],16:[function(require,module,exports){
 "use strict";
 
 var __extends = void 0 && (void 0).__extends || function () {
@@ -1926,9 +1910,7 @@ var bytes_1 = require("@ethersproject/bytes");
 var abstract_coder_1 = require("./abstract-coder"); // @TODO: Merge this with bytes
 
 
-var FixedBytesCoder =
-/** @class */
-function (_super) {
+var FixedBytesCoder = function (_super) {
   __extends(FixedBytesCoder, _super);
 
   function FixedBytesCoder(size, localName) {
@@ -1959,7 +1941,7 @@ function (_super) {
 
 exports.FixedBytesCoder = FixedBytesCoder;
 
-},{"./abstract-coder":10,"@ethersproject/bytes":31}],17:[function(require,module,exports){
+},{"./abstract-coder":10,"@ethersproject/bytes":32}],17:[function(require,module,exports){
 "use strict";
 
 var __extends = void 0 && (void 0).__extends || function () {
@@ -1994,9 +1976,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var abstract_coder_1 = require("./abstract-coder");
 
-var NullCoder =
-/** @class */
-function (_super) {
+var NullCoder = function (_super) {
   __extends(NullCoder, _super);
 
   function NullCoder(localName) {
@@ -2060,9 +2040,7 @@ var constants_1 = require("@ethersproject/constants");
 
 var abstract_coder_1 = require("./abstract-coder");
 
-var NumberCoder =
-/** @class */
-function (_super) {
+var NumberCoder = function (_super) {
   __extends(NumberCoder, _super);
 
   function NumberCoder(size, signed, localName) {
@@ -2114,7 +2092,7 @@ function (_super) {
 
 exports.NumberCoder = NumberCoder;
 
-},{"./abstract-coder":10,"@ethersproject/bignumber":29,"@ethersproject/constants":35}],19:[function(require,module,exports){
+},{"./abstract-coder":10,"@ethersproject/bignumber":29,"@ethersproject/constants":36}],19:[function(require,module,exports){
 "use strict";
 
 var __extends = void 0 && (void 0).__extends || function () {
@@ -2151,9 +2129,7 @@ var strings_1 = require("@ethersproject/strings");
 
 var bytes_1 = require("./bytes");
 
-var StringCoder =
-/** @class */
-function (_super) {
+var StringCoder = function (_super) {
   __extends(StringCoder, _super);
 
   function StringCoder(localName) {
@@ -2173,7 +2149,7 @@ function (_super) {
 
 exports.StringCoder = StringCoder;
 
-},{"./bytes":15,"@ethersproject/strings":53}],20:[function(require,module,exports){
+},{"./bytes":15,"@ethersproject/strings":54}],20:[function(require,module,exports){
 "use strict";
 
 var __extends = void 0 && (void 0).__extends || function () {
@@ -2210,9 +2186,7 @@ var abstract_coder_1 = require("./abstract-coder");
 
 var array_1 = require("./array");
 
-var TupleCoder =
-/** @class */
-function (_super) {
+var TupleCoder = function (_super) {
   __extends(TupleCoder, _super);
 
   function TupleCoder(coders, localName) {
@@ -2547,9 +2521,7 @@ exports.FormatTypes = Object.freeze({
 });
 var paramTypeArray = new RegExp(/^(.*)\[([0-9]*)\]$/);
 
-var ParamType =
-/** @class */
-function () {
+var ParamType = function () {
   function ParamType(constructorGuard, params) {
     if (constructorGuard !== _constructorGuard) {
       logger.throwError("use fromString", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
@@ -2695,9 +2667,7 @@ function parseParams(value, allowIndex) {
   });
 }
 
-var Fragment =
-/** @class */
-function () {
+var Fragment = function () {
   function Fragment(constructorGuard, params) {
     if (constructorGuard !== _constructorGuard) {
       logger.throwError("use a static from method", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
@@ -2772,9 +2742,7 @@ function () {
 
 exports.Fragment = Fragment;
 
-var EventFragment =
-/** @class */
-function (_super) {
+var EventFragment = function (_super) {
   __extends(EventFragment, _super);
 
   function EventFragment() {
@@ -3000,9 +2968,7 @@ function verifyState(value) {
   return result;
 }
 
-var ConstructorFragment =
-/** @class */
-function (_super) {
+var ConstructorFragment = function (_super) {
   __extends(ConstructorFragment, _super);
 
   function ConstructorFragment() {
@@ -3106,9 +3072,7 @@ function (_super) {
 
 exports.ConstructorFragment = ConstructorFragment;
 
-var FunctionFragment =
-/** @class */
-function (_super) {
+var FunctionFragment = function (_super) {
   __extends(FunctionFragment, _super);
 
   function FunctionFragment() {
@@ -3316,7 +3280,7 @@ function splitNesting(value) {
   return result;
 }
 
-},{"./_version":8,"@ethersproject/bignumber":29,"@ethersproject/logger":45,"@ethersproject/properties":47}],22:[function(require,module,exports){
+},{"./_version":8,"@ethersproject/bignumber":29,"@ethersproject/logger":46,"@ethersproject/properties":48}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3404,9 +3368,7 @@ var _version_1 = require("./_version");
 
 var logger = new logger_1.Logger(_version_1.version);
 
-var LogDescription =
-/** @class */
-function (_super) {
+var LogDescription = function (_super) {
   __extends(LogDescription, _super);
 
   function LogDescription() {
@@ -3418,9 +3380,7 @@ function (_super) {
 
 exports.LogDescription = LogDescription;
 
-var TransactionDescription =
-/** @class */
-function (_super) {
+var TransactionDescription = function (_super) {
   __extends(TransactionDescription, _super);
 
   function TransactionDescription() {
@@ -3432,9 +3392,7 @@ function (_super) {
 
 exports.TransactionDescription = TransactionDescription;
 
-var Indexed =
-/** @class */
-function (_super) {
+var Indexed = function (_super) {
   __extends(Indexed, _super);
 
   function Indexed() {
@@ -3470,9 +3428,7 @@ function checkNames(fragment: Fragment, type: "input" | "output", params: Array<
 */
 
 
-var Interface =
-/** @class */
-function () {
+var Interface = function () {
   function Interface(fragments) {
     var _newTarget = this.constructor;
 
@@ -4048,14 +4004,14 @@ function () {
 
 exports.Interface = Interface;
 
-},{"./_version":8,"./abi-coder":9,"./coders/abstract-coder":10,"./fragments":21,"@ethersproject/address":25,"@ethersproject/bignumber":29,"@ethersproject/bytes":31,"@ethersproject/hash":39,"@ethersproject/keccak256":43,"@ethersproject/logger":45,"@ethersproject/properties":47}],24:[function(require,module,exports){
+},{"./_version":8,"./abi-coder":9,"./coders/abstract-coder":10,"./fragments":21,"@ethersproject/address":25,"@ethersproject/bignumber":29,"@ethersproject/bytes":32,"@ethersproject/hash":40,"@ethersproject/keccak256":44,"@ethersproject/logger":46,"@ethersproject/properties":48}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.version = void 0;
-exports.version = "address/5.1.0";
+exports.version = "address/5.4.0";
 
 },{}],25:[function(require,module,exports){
 "use strict";
@@ -4249,14 +4205,14 @@ function getCreate2Address(from, salt, initCodeHash) {
 
 exports.getCreate2Address = getCreate2Address;
 
-},{"./_version":24,"@ethersproject/bignumber":29,"@ethersproject/bytes":31,"@ethersproject/keccak256":43,"@ethersproject/logger":45,"@ethersproject/rlp":49}],26:[function(require,module,exports){
+},{"./_version":24,"@ethersproject/bignumber":29,"@ethersproject/bytes":32,"@ethersproject/keccak256":44,"@ethersproject/logger":46,"@ethersproject/rlp":50}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.version = void 0;
-exports.version = "bignumber/5.1.1";
+exports.version = "bignumber/5.4.1";
 
 },{}],27:[function(require,module,exports){
 "use strict";
@@ -4301,9 +4257,7 @@ exports.isBigNumberish = isBigNumberish; // Only warn about passing 10 into radi
 
 var _warnedToStringRadix = false;
 
-var BigNumber =
-/** @class */
-function () {
+var BigNumber = function () {
   function BigNumber(constructorGuard, hex) {
     var _newTarget = this.constructor;
     logger.checkNew(_newTarget, BigNumber);
@@ -4672,7 +4626,7 @@ function _base16To36(value) {
 
 exports._base16To36 = _base16To36;
 
-},{"./_version":26,"@ethersproject/bytes":31,"@ethersproject/logger":45,"bn.js":136}],28:[function(require,module,exports){
+},{"./_version":26,"@ethersproject/bytes":32,"@ethersproject/logger":46,"bn.js":30}],28:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -4754,7 +4708,12 @@ function formatFixed(value, decimals) {
 
   fraction = fraction.match(/^([0-9]*[1-9]|0)(0*)/)[1];
   var whole = value.div(multiplier).toString();
-  value = whole + "." + fraction;
+
+  if (multiplier.length === 1) {
+    value = whole;
+  } else {
+    value = whole + "." + fraction;
+  }
 
   if (negative) {
     value = "-" + value;
@@ -4774,10 +4733,6 @@ function parseFixed(value, decimals) {
 
   if (typeof value !== "string" || !value.match(/^-?[0-9.,]+$/)) {
     logger.throwArgumentError("invalid decimal value", "value", value);
-  }
-
-  if (multiplier.length - 1 === 0) {
-    return bignumber_1.BigNumber.from(value);
   } // Is it negative?
 
 
@@ -4807,13 +4762,18 @@ function parseFixed(value, decimals) {
 
   if (!fraction) {
     fraction = "0";
-  } // Prevent underflow
+  } // Get significant digits to check truncation for underflow
 
 
-  if (fraction.length > multiplier.length - 1) {
-    throwFault("fractional component exceeds decimals", "underflow", "parseFixed");
+  {
+    var sigFraction = fraction.replace(/^([0-9]*?)(0*)$/, function (all, sig, zeros) {
+      return sig;
+    });
+
+    if (sigFraction.length > multiplier.length - 1) {
+      throwFault("fractional component exceeds decimals", "underflow", "parseFixed");
+    }
   } // Fully pad the string with zeros to get to wei
-
 
   while (fraction.length < multiplier.length - 1) {
     fraction += "0";
@@ -4832,9 +4792,7 @@ function parseFixed(value, decimals) {
 
 exports.parseFixed = parseFixed;
 
-var FixedFormat =
-/** @class */
-function () {
+var FixedFormat = function () {
   function FixedFormat(constructorGuard, signed, width, decimals) {
     if (constructorGuard !== _constructorGuard) {
       logger.throwError("cannot use FixedFormat constructor; use FixedFormat.from", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
@@ -4855,6 +4813,10 @@ function () {
       return value;
     }
 
+    if (typeof value === "number") {
+      value = "fixed128x" + value;
+    }
+
     var signed = true;
     var width = 128;
     var decimals = 18;
@@ -4863,7 +4825,7 @@ function () {
       if (value === "fixed") {// defaults...
       } else if (value === "ufixed") {
         signed = false;
-      } else if (value != null) {
+      } else {
         var match = value.match(/^(u?)fixed([0-9]+)x([0-9]+)$/);
 
         if (!match) {
@@ -4908,9 +4870,7 @@ function () {
 
 exports.FixedFormat = FixedFormat;
 
-var FixedNumber =
-/** @class */
-function () {
+var FixedNumber = function () {
   function FixedNumber(constructorGuard, hex, value, format) {
     var _newTarget = this.constructor;
     logger.checkNew(_newTarget, FixedNumber);
@@ -4968,11 +4928,16 @@ function () {
 
   FixedNumber.prototype.floor = function () {
     var comps = this.toString().split(".");
+
+    if (comps.length === 1) {
+      comps.push("0");
+    }
+
     var result = FixedNumber.from(comps[0], this.format);
     var hasFraction = !comps[1].match(/^(0*)$/);
 
     if (this.isNegative() && hasFraction) {
-      result = result.subUnsafe(ONE);
+      result = result.subUnsafe(ONE.toFormat(result.format));
     }
 
     return result;
@@ -4980,11 +4945,16 @@ function () {
 
   FixedNumber.prototype.ceiling = function () {
     var comps = this.toString().split(".");
+
+    if (comps.length === 1) {
+      comps.push("0");
+    }
+
     var result = FixedNumber.from(comps[0], this.format);
     var hasFraction = !comps[1].match(/^(0*)$/);
 
     if (!this.isNegative() && hasFraction) {
-      result = result.addUnsafe(ONE);
+      result = result.addUnsafe(ONE.toFormat(result.format));
     }
 
     return result;
@@ -4999,6 +4969,10 @@ function () {
 
     var comps = this.toString().split(".");
 
+    if (comps.length === 1) {
+      comps.push("0");
+    }
+
     if (decimals < 0 || decimals > 80 || decimals % 1) {
       logger.throwArgumentError("invalid decimal count", "decimals", decimals);
     }
@@ -5007,12 +4981,13 @@ function () {
       return this;
     }
 
-    var factor = FixedNumber.from("1" + zeros.substring(0, decimals));
-    return this.mulUnsafe(factor).addUnsafe(BUMP).floor().divUnsafe(factor);
+    var factor = FixedNumber.from("1" + zeros.substring(0, decimals), this.format);
+    var bump = BUMP.toFormat(this.format);
+    return this.mulUnsafe(factor).addUnsafe(bump).floor().divUnsafe(factor);
   };
 
   FixedNumber.prototype.isZero = function () {
-    return this._value === "0.0";
+    return this._value === "0.0" || this._value === "0";
   };
 
   FixedNumber.prototype.isNegative = function () {
@@ -5141,7 +5116,7 @@ exports.FixedNumber = FixedNumber;
 var ONE = FixedNumber.from(1);
 var BUMP = FixedNumber.from("0.5");
 
-},{"./_version":26,"./bignumber":27,"@ethersproject/bytes":31,"@ethersproject/logger":45}],29:[function(require,module,exports){
+},{"./_version":26,"./bignumber":27,"@ethersproject/bytes":32,"@ethersproject/logger":46}],29:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5203,13 +5178,3499 @@ Object.defineProperty(exports, "_base36To16", {
 },{"./bignumber":27,"./fixednumber":28}],30:[function(require,module,exports){
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+(function (module, exports) {
+  'use strict'; // Utils
+
+  function assert(val, msg) {
+    if (!val) throw new Error(msg || 'Assertion failed');
+  } // Could use `inherits` module, but don't want to move from single file
+  // architecture yet.
+
+
+  function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor;
+
+    var TempCtor = function TempCtor() {};
+
+    TempCtor.prototype = superCtor.prototype;
+    ctor.prototype = new TempCtor();
+    ctor.prototype.constructor = ctor;
+  } // BN
+
+
+  function BN(number, base, endian) {
+    if (BN.isBN(number)) {
+      return number;
+    }
+
+    this.negative = 0;
+    this.words = null;
+    this.length = 0; // Reduction context
+
+    this.red = null;
+
+    if (number !== null) {
+      if (base === 'le' || base === 'be') {
+        endian = base;
+        base = 10;
+      }
+
+      this._init(number || 0, base || 10, endian || 'be');
+    }
+  }
+
+  if (_typeof(module) === 'object') {
+    module.exports = BN;
+  } else {
+    exports.BN = BN;
+  }
+
+  BN.BN = BN;
+  BN.wordSize = 26;
+  var Buffer;
+
+  try {
+    if (typeof window !== 'undefined' && typeof window.Buffer !== 'undefined') {
+      Buffer = window.Buffer;
+    } else {
+      Buffer = require('buffer').Buffer;
+    }
+  } catch (e) {}
+
+  BN.isBN = function isBN(num) {
+    if (num instanceof BN) {
+      return true;
+    }
+
+    return num !== null && _typeof(num) === 'object' && num.constructor.wordSize === BN.wordSize && Array.isArray(num.words);
+  };
+
+  BN.max = function max(left, right) {
+    if (left.cmp(right) > 0) return left;
+    return right;
+  };
+
+  BN.min = function min(left, right) {
+    if (left.cmp(right) < 0) return left;
+    return right;
+  };
+
+  BN.prototype._init = function init(number, base, endian) {
+    if (typeof number === 'number') {
+      return this._initNumber(number, base, endian);
+    }
+
+    if (_typeof(number) === 'object') {
+      return this._initArray(number, base, endian);
+    }
+
+    if (base === 'hex') {
+      base = 16;
+    }
+
+    assert(base === (base | 0) && base >= 2 && base <= 36);
+    number = number.toString().replace(/\s+/g, '');
+    var start = 0;
+
+    if (number[0] === '-') {
+      start++;
+      this.negative = 1;
+    }
+
+    if (start < number.length) {
+      if (base === 16) {
+        this._parseHex(number, start, endian);
+      } else {
+        this._parseBase(number, base, start);
+
+        if (endian === 'le') {
+          this._initArray(this.toArray(), base, endian);
+        }
+      }
+    }
+  };
+
+  BN.prototype._initNumber = function _initNumber(number, base, endian) {
+    if (number < 0) {
+      this.negative = 1;
+      number = -number;
+    }
+
+    if (number < 0x4000000) {
+      this.words = [number & 0x3ffffff];
+      this.length = 1;
+    } else if (number < 0x10000000000000) {
+      this.words = [number & 0x3ffffff, number / 0x4000000 & 0x3ffffff];
+      this.length = 2;
+    } else {
+      assert(number < 0x20000000000000); // 2 ^ 53 (unsafe)
+
+      this.words = [number & 0x3ffffff, number / 0x4000000 & 0x3ffffff, 1];
+      this.length = 3;
+    }
+
+    if (endian !== 'le') return; // Reverse the bytes
+
+    this._initArray(this.toArray(), base, endian);
+  };
+
+  BN.prototype._initArray = function _initArray(number, base, endian) {
+    // Perhaps a Uint8Array
+    assert(typeof number.length === 'number');
+
+    if (number.length <= 0) {
+      this.words = [0];
+      this.length = 1;
+      return this;
+    }
+
+    this.length = Math.ceil(number.length / 3);
+    this.words = new Array(this.length);
+
+    for (var i = 0; i < this.length; i++) {
+      this.words[i] = 0;
+    }
+
+    var j, w;
+    var off = 0;
+
+    if (endian === 'be') {
+      for (i = number.length - 1, j = 0; i >= 0; i -= 3) {
+        w = number[i] | number[i - 1] << 8 | number[i - 2] << 16;
+        this.words[j] |= w << off & 0x3ffffff;
+        this.words[j + 1] = w >>> 26 - off & 0x3ffffff;
+        off += 24;
+
+        if (off >= 26) {
+          off -= 26;
+          j++;
+        }
+      }
+    } else if (endian === 'le') {
+      for (i = 0, j = 0; i < number.length; i += 3) {
+        w = number[i] | number[i + 1] << 8 | number[i + 2] << 16;
+        this.words[j] |= w << off & 0x3ffffff;
+        this.words[j + 1] = w >>> 26 - off & 0x3ffffff;
+        off += 24;
+
+        if (off >= 26) {
+          off -= 26;
+          j++;
+        }
+      }
+    }
+
+    return this.strip();
+  };
+
+  function parseHex4Bits(string, index) {
+    var c = string.charCodeAt(index); // 'A' - 'F'
+
+    if (c >= 65 && c <= 70) {
+      return c - 55; // 'a' - 'f'
+    } else if (c >= 97 && c <= 102) {
+      return c - 87; // '0' - '9'
+    } else {
+      return c - 48 & 0xf;
+    }
+  }
+
+  function parseHexByte(string, lowerBound, index) {
+    var r = parseHex4Bits(string, index);
+
+    if (index - 1 >= lowerBound) {
+      r |= parseHex4Bits(string, index - 1) << 4;
+    }
+
+    return r;
+  }
+
+  BN.prototype._parseHex = function _parseHex(number, start, endian) {
+    // Create possibly bigger array to ensure that it fits the number
+    this.length = Math.ceil((number.length - start) / 6);
+    this.words = new Array(this.length);
+
+    for (var i = 0; i < this.length; i++) {
+      this.words[i] = 0;
+    } // 24-bits chunks
+
+
+    var off = 0;
+    var j = 0;
+    var w;
+
+    if (endian === 'be') {
+      for (i = number.length - 1; i >= start; i -= 2) {
+        w = parseHexByte(number, start, i) << off;
+        this.words[j] |= w & 0x3ffffff;
+
+        if (off >= 18) {
+          off -= 18;
+          j += 1;
+          this.words[j] |= w >>> 26;
+        } else {
+          off += 8;
+        }
+      }
+    } else {
+      var parseLength = number.length - start;
+
+      for (i = parseLength % 2 === 0 ? start + 1 : start; i < number.length; i += 2) {
+        w = parseHexByte(number, start, i) << off;
+        this.words[j] |= w & 0x3ffffff;
+
+        if (off >= 18) {
+          off -= 18;
+          j += 1;
+          this.words[j] |= w >>> 26;
+        } else {
+          off += 8;
+        }
+      }
+    }
+
+    this.strip();
+  };
+
+  function parseBase(str, start, end, mul) {
+    var r = 0;
+    var len = Math.min(str.length, end);
+
+    for (var i = start; i < len; i++) {
+      var c = str.charCodeAt(i) - 48;
+      r *= mul; // 'a'
+
+      if (c >= 49) {
+        r += c - 49 + 0xa; // 'A'
+      } else if (c >= 17) {
+        r += c - 17 + 0xa; // '0' - '9'
+      } else {
+        r += c;
+      }
+    }
+
+    return r;
+  }
+
+  BN.prototype._parseBase = function _parseBase(number, base, start) {
+    // Initialize as zero
+    this.words = [0];
+    this.length = 1; // Find length of limb in base
+
+    for (var limbLen = 0, limbPow = 1; limbPow <= 0x3ffffff; limbPow *= base) {
+      limbLen++;
+    }
+
+    limbLen--;
+    limbPow = limbPow / base | 0;
+    var total = number.length - start;
+    var mod = total % limbLen;
+    var end = Math.min(total, total - mod) + start;
+    var word = 0;
+
+    for (var i = start; i < end; i += limbLen) {
+      word = parseBase(number, i, i + limbLen, base);
+      this.imuln(limbPow);
+
+      if (this.words[0] + word < 0x4000000) {
+        this.words[0] += word;
+      } else {
+        this._iaddn(word);
+      }
+    }
+
+    if (mod !== 0) {
+      var pow = 1;
+      word = parseBase(number, i, number.length, base);
+
+      for (i = 0; i < mod; i++) {
+        pow *= base;
+      }
+
+      this.imuln(pow);
+
+      if (this.words[0] + word < 0x4000000) {
+        this.words[0] += word;
+      } else {
+        this._iaddn(word);
+      }
+    }
+
+    this.strip();
+  };
+
+  BN.prototype.copy = function copy(dest) {
+    dest.words = new Array(this.length);
+
+    for (var i = 0; i < this.length; i++) {
+      dest.words[i] = this.words[i];
+    }
+
+    dest.length = this.length;
+    dest.negative = this.negative;
+    dest.red = this.red;
+  };
+
+  BN.prototype.clone = function clone() {
+    var r = new BN(null);
+    this.copy(r);
+    return r;
+  };
+
+  BN.prototype._expand = function _expand(size) {
+    while (this.length < size) {
+      this.words[this.length++] = 0;
+    }
+
+    return this;
+  }; // Remove leading `0` from `this`
+
+
+  BN.prototype.strip = function strip() {
+    while (this.length > 1 && this.words[this.length - 1] === 0) {
+      this.length--;
+    }
+
+    return this._normSign();
+  };
+
+  BN.prototype._normSign = function _normSign() {
+    // -0 = 0
+    if (this.length === 1 && this.words[0] === 0) {
+      this.negative = 0;
+    }
+
+    return this;
+  };
+
+  BN.prototype.inspect = function inspect() {
+    return (this.red ? '<BN-R: ' : '<BN: ') + this.toString(16) + '>';
+  };
+  /*
+   var zeros = [];
+  var groupSizes = [];
+  var groupBases = [];
+   var s = '';
+  var i = -1;
+  while (++i < BN.wordSize) {
+    zeros[i] = s;
+    s += '0';
+  }
+  groupSizes[0] = 0;
+  groupSizes[1] = 0;
+  groupBases[0] = 0;
+  groupBases[1] = 0;
+  var base = 2 - 1;
+  while (++base < 36 + 1) {
+    var groupSize = 0;
+    var groupBase = 1;
+    while (groupBase < (1 << BN.wordSize) / base) {
+      groupBase *= base;
+      groupSize += 1;
+    }
+    groupSizes[base] = groupSize;
+    groupBases[base] = groupBase;
+  }
+   */
+
+
+  var zeros = ['', '0', '00', '000', '0000', '00000', '000000', '0000000', '00000000', '000000000', '0000000000', '00000000000', '000000000000', '0000000000000', '00000000000000', '000000000000000', '0000000000000000', '00000000000000000', '000000000000000000', '0000000000000000000', '00000000000000000000', '000000000000000000000', '0000000000000000000000', '00000000000000000000000', '000000000000000000000000', '0000000000000000000000000'];
+  var groupSizes = [0, 0, 25, 16, 12, 11, 10, 9, 8, 8, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5];
+  var groupBases = [0, 0, 33554432, 43046721, 16777216, 48828125, 60466176, 40353607, 16777216, 43046721, 10000000, 19487171, 35831808, 62748517, 7529536, 11390625, 16777216, 24137569, 34012224, 47045881, 64000000, 4084101, 5153632, 6436343, 7962624, 9765625, 11881376, 14348907, 17210368, 20511149, 24300000, 28629151, 33554432, 39135393, 45435424, 52521875, 60466176];
+
+  BN.prototype.toString = function toString(base, padding) {
+    base = base || 10;
+    padding = padding | 0 || 1;
+    var out;
+
+    if (base === 16 || base === 'hex') {
+      out = '';
+      var off = 0;
+      var carry = 0;
+
+      for (var i = 0; i < this.length; i++) {
+        var w = this.words[i];
+        var word = ((w << off | carry) & 0xffffff).toString(16);
+        carry = w >>> 24 - off & 0xffffff;
+
+        if (carry !== 0 || i !== this.length - 1) {
+          out = zeros[6 - word.length] + word + out;
+        } else {
+          out = word + out;
+        }
+
+        off += 2;
+
+        if (off >= 26) {
+          off -= 26;
+          i--;
+        }
+      }
+
+      if (carry !== 0) {
+        out = carry.toString(16) + out;
+      }
+
+      while (out.length % padding !== 0) {
+        out = '0' + out;
+      }
+
+      if (this.negative !== 0) {
+        out = '-' + out;
+      }
+
+      return out;
+    }
+
+    if (base === (base | 0) && base >= 2 && base <= 36) {
+      // var groupSize = Math.floor(BN.wordSize * Math.LN2 / Math.log(base));
+      var groupSize = groupSizes[base]; // var groupBase = Math.pow(base, groupSize);
+
+      var groupBase = groupBases[base];
+      out = '';
+      var c = this.clone();
+      c.negative = 0;
+
+      while (!c.isZero()) {
+        var r = c.modn(groupBase).toString(base);
+        c = c.idivn(groupBase);
+
+        if (!c.isZero()) {
+          out = zeros[groupSize - r.length] + r + out;
+        } else {
+          out = r + out;
+        }
+      }
+
+      if (this.isZero()) {
+        out = '0' + out;
+      }
+
+      while (out.length % padding !== 0) {
+        out = '0' + out;
+      }
+
+      if (this.negative !== 0) {
+        out = '-' + out;
+      }
+
+      return out;
+    }
+
+    assert(false, 'Base should be between 2 and 36');
+  };
+
+  BN.prototype.toNumber = function toNumber() {
+    var ret = this.words[0];
+
+    if (this.length === 2) {
+      ret += this.words[1] * 0x4000000;
+    } else if (this.length === 3 && this.words[2] === 0x01) {
+      // NOTE: at this stage it is known that the top bit is set
+      ret += 0x10000000000000 + this.words[1] * 0x4000000;
+    } else if (this.length > 2) {
+      assert(false, 'Number can only safely store up to 53 bits');
+    }
+
+    return this.negative !== 0 ? -ret : ret;
+  };
+
+  BN.prototype.toJSON = function toJSON() {
+    return this.toString(16);
+  };
+
+  BN.prototype.toBuffer = function toBuffer(endian, length) {
+    assert(typeof Buffer !== 'undefined');
+    return this.toArrayLike(Buffer, endian, length);
+  };
+
+  BN.prototype.toArray = function toArray(endian, length) {
+    return this.toArrayLike(Array, endian, length);
+  };
+
+  BN.prototype.toArrayLike = function toArrayLike(ArrayType, endian, length) {
+    var byteLength = this.byteLength();
+    var reqLength = length || Math.max(1, byteLength);
+    assert(byteLength <= reqLength, 'byte array longer than desired length');
+    assert(reqLength > 0, 'Requested array length <= 0');
+    this.strip();
+    var littleEndian = endian === 'le';
+    var res = new ArrayType(reqLength);
+    var b, i;
+    var q = this.clone();
+
+    if (!littleEndian) {
+      // Assume big-endian
+      for (i = 0; i < reqLength - byteLength; i++) {
+        res[i] = 0;
+      }
+
+      for (i = 0; !q.isZero(); i++) {
+        b = q.andln(0xff);
+        q.iushrn(8);
+        res[reqLength - i - 1] = b;
+      }
+    } else {
+      for (i = 0; !q.isZero(); i++) {
+        b = q.andln(0xff);
+        q.iushrn(8);
+        res[i] = b;
+      }
+
+      for (; i < reqLength; i++) {
+        res[i] = 0;
+      }
+    }
+
+    return res;
+  };
+
+  if (Math.clz32) {
+    BN.prototype._countBits = function _countBits(w) {
+      return 32 - Math.clz32(w);
+    };
+  } else {
+    BN.prototype._countBits = function _countBits(w) {
+      var t = w;
+      var r = 0;
+
+      if (t >= 0x1000) {
+        r += 13;
+        t >>>= 13;
+      }
+
+      if (t >= 0x40) {
+        r += 7;
+        t >>>= 7;
+      }
+
+      if (t >= 0x8) {
+        r += 4;
+        t >>>= 4;
+      }
+
+      if (t >= 0x02) {
+        r += 2;
+        t >>>= 2;
+      }
+
+      return r + t;
+    };
+  }
+
+  BN.prototype._zeroBits = function _zeroBits(w) {
+    // Short-cut
+    if (w === 0) return 26;
+    var t = w;
+    var r = 0;
+
+    if ((t & 0x1fff) === 0) {
+      r += 13;
+      t >>>= 13;
+    }
+
+    if ((t & 0x7f) === 0) {
+      r += 7;
+      t >>>= 7;
+    }
+
+    if ((t & 0xf) === 0) {
+      r += 4;
+      t >>>= 4;
+    }
+
+    if ((t & 0x3) === 0) {
+      r += 2;
+      t >>>= 2;
+    }
+
+    if ((t & 0x1) === 0) {
+      r++;
+    }
+
+    return r;
+  }; // Return number of used bits in a BN
+
+
+  BN.prototype.bitLength = function bitLength() {
+    var w = this.words[this.length - 1];
+
+    var hi = this._countBits(w);
+
+    return (this.length - 1) * 26 + hi;
+  };
+
+  function toBitArray(num) {
+    var w = new Array(num.bitLength());
+
+    for (var bit = 0; bit < w.length; bit++) {
+      var off = bit / 26 | 0;
+      var wbit = bit % 26;
+      w[bit] = (num.words[off] & 1 << wbit) >>> wbit;
+    }
+
+    return w;
+  } // Number of trailing zero bits
+
+
+  BN.prototype.zeroBits = function zeroBits() {
+    if (this.isZero()) return 0;
+    var r = 0;
+
+    for (var i = 0; i < this.length; i++) {
+      var b = this._zeroBits(this.words[i]);
+
+      r += b;
+      if (b !== 26) break;
+    }
+
+    return r;
+  };
+
+  BN.prototype.byteLength = function byteLength() {
+    return Math.ceil(this.bitLength() / 8);
+  };
+
+  BN.prototype.toTwos = function toTwos(width) {
+    if (this.negative !== 0) {
+      return this.abs().inotn(width).iaddn(1);
+    }
+
+    return this.clone();
+  };
+
+  BN.prototype.fromTwos = function fromTwos(width) {
+    if (this.testn(width - 1)) {
+      return this.notn(width).iaddn(1).ineg();
+    }
+
+    return this.clone();
+  };
+
+  BN.prototype.isNeg = function isNeg() {
+    return this.negative !== 0;
+  }; // Return negative clone of `this`
+
+
+  BN.prototype.neg = function neg() {
+    return this.clone().ineg();
+  };
+
+  BN.prototype.ineg = function ineg() {
+    if (!this.isZero()) {
+      this.negative ^= 1;
+    }
+
+    return this;
+  }; // Or `num` with `this` in-place
+
+
+  BN.prototype.iuor = function iuor(num) {
+    while (this.length < num.length) {
+      this.words[this.length++] = 0;
+    }
+
+    for (var i = 0; i < num.length; i++) {
+      this.words[i] = this.words[i] | num.words[i];
+    }
+
+    return this.strip();
+  };
+
+  BN.prototype.ior = function ior(num) {
+    assert((this.negative | num.negative) === 0);
+    return this.iuor(num);
+  }; // Or `num` with `this`
+
+
+  BN.prototype.or = function or(num) {
+    if (this.length > num.length) return this.clone().ior(num);
+    return num.clone().ior(this);
+  };
+
+  BN.prototype.uor = function uor(num) {
+    if (this.length > num.length) return this.clone().iuor(num);
+    return num.clone().iuor(this);
+  }; // And `num` with `this` in-place
+
+
+  BN.prototype.iuand = function iuand(num) {
+    // b = min-length(num, this)
+    var b;
+
+    if (this.length > num.length) {
+      b = num;
+    } else {
+      b = this;
+    }
+
+    for (var i = 0; i < b.length; i++) {
+      this.words[i] = this.words[i] & num.words[i];
+    }
+
+    this.length = b.length;
+    return this.strip();
+  };
+
+  BN.prototype.iand = function iand(num) {
+    assert((this.negative | num.negative) === 0);
+    return this.iuand(num);
+  }; // And `num` with `this`
+
+
+  BN.prototype.and = function and(num) {
+    if (this.length > num.length) return this.clone().iand(num);
+    return num.clone().iand(this);
+  };
+
+  BN.prototype.uand = function uand(num) {
+    if (this.length > num.length) return this.clone().iuand(num);
+    return num.clone().iuand(this);
+  }; // Xor `num` with `this` in-place
+
+
+  BN.prototype.iuxor = function iuxor(num) {
+    // a.length > b.length
+    var a;
+    var b;
+
+    if (this.length > num.length) {
+      a = this;
+      b = num;
+    } else {
+      a = num;
+      b = this;
+    }
+
+    for (var i = 0; i < b.length; i++) {
+      this.words[i] = a.words[i] ^ b.words[i];
+    }
+
+    if (this !== a) {
+      for (; i < a.length; i++) {
+        this.words[i] = a.words[i];
+      }
+    }
+
+    this.length = a.length;
+    return this.strip();
+  };
+
+  BN.prototype.ixor = function ixor(num) {
+    assert((this.negative | num.negative) === 0);
+    return this.iuxor(num);
+  }; // Xor `num` with `this`
+
+
+  BN.prototype.xor = function xor(num) {
+    if (this.length > num.length) return this.clone().ixor(num);
+    return num.clone().ixor(this);
+  };
+
+  BN.prototype.uxor = function uxor(num) {
+    if (this.length > num.length) return this.clone().iuxor(num);
+    return num.clone().iuxor(this);
+  }; // Not ``this`` with ``width`` bitwidth
+
+
+  BN.prototype.inotn = function inotn(width) {
+    assert(typeof width === 'number' && width >= 0);
+    var bytesNeeded = Math.ceil(width / 26) | 0;
+    var bitsLeft = width % 26; // Extend the buffer with leading zeroes
+
+    this._expand(bytesNeeded);
+
+    if (bitsLeft > 0) {
+      bytesNeeded--;
+    } // Handle complete words
+
+
+    for (var i = 0; i < bytesNeeded; i++) {
+      this.words[i] = ~this.words[i] & 0x3ffffff;
+    } // Handle the residue
+
+
+    if (bitsLeft > 0) {
+      this.words[i] = ~this.words[i] & 0x3ffffff >> 26 - bitsLeft;
+    } // And remove leading zeroes
+
+
+    return this.strip();
+  };
+
+  BN.prototype.notn = function notn(width) {
+    return this.clone().inotn(width);
+  }; // Set `bit` of `this`
+
+
+  BN.prototype.setn = function setn(bit, val) {
+    assert(typeof bit === 'number' && bit >= 0);
+    var off = bit / 26 | 0;
+    var wbit = bit % 26;
+
+    this._expand(off + 1);
+
+    if (val) {
+      this.words[off] = this.words[off] | 1 << wbit;
+    } else {
+      this.words[off] = this.words[off] & ~(1 << wbit);
+    }
+
+    return this.strip();
+  }; // Add `num` to `this` in-place
+
+
+  BN.prototype.iadd = function iadd(num) {
+    var r; // negative + positive
+
+    if (this.negative !== 0 && num.negative === 0) {
+      this.negative = 0;
+      r = this.isub(num);
+      this.negative ^= 1;
+      return this._normSign(); // positive + negative
+    } else if (this.negative === 0 && num.negative !== 0) {
+      num.negative = 0;
+      r = this.isub(num);
+      num.negative = 1;
+      return r._normSign();
+    } // a.length > b.length
+
+
+    var a, b;
+
+    if (this.length > num.length) {
+      a = this;
+      b = num;
+    } else {
+      a = num;
+      b = this;
+    }
+
+    var carry = 0;
+
+    for (var i = 0; i < b.length; i++) {
+      r = (a.words[i] | 0) + (b.words[i] | 0) + carry;
+      this.words[i] = r & 0x3ffffff;
+      carry = r >>> 26;
+    }
+
+    for (; carry !== 0 && i < a.length; i++) {
+      r = (a.words[i] | 0) + carry;
+      this.words[i] = r & 0x3ffffff;
+      carry = r >>> 26;
+    }
+
+    this.length = a.length;
+
+    if (carry !== 0) {
+      this.words[this.length] = carry;
+      this.length++; // Copy the rest of the words
+    } else if (a !== this) {
+      for (; i < a.length; i++) {
+        this.words[i] = a.words[i];
+      }
+    }
+
+    return this;
+  }; // Add `num` to `this`
+
+
+  BN.prototype.add = function add(num) {
+    var res;
+
+    if (num.negative !== 0 && this.negative === 0) {
+      num.negative = 0;
+      res = this.sub(num);
+      num.negative ^= 1;
+      return res;
+    } else if (num.negative === 0 && this.negative !== 0) {
+      this.negative = 0;
+      res = num.sub(this);
+      this.negative = 1;
+      return res;
+    }
+
+    if (this.length > num.length) return this.clone().iadd(num);
+    return num.clone().iadd(this);
+  }; // Subtract `num` from `this` in-place
+
+
+  BN.prototype.isub = function isub(num) {
+    // this - (-num) = this + num
+    if (num.negative !== 0) {
+      num.negative = 0;
+      var r = this.iadd(num);
+      num.negative = 1;
+      return r._normSign(); // -this - num = -(this + num)
+    } else if (this.negative !== 0) {
+      this.negative = 0;
+      this.iadd(num);
+      this.negative = 1;
+      return this._normSign();
+    } // At this point both numbers are positive
+
+
+    var cmp = this.cmp(num); // Optimization - zeroify
+
+    if (cmp === 0) {
+      this.negative = 0;
+      this.length = 1;
+      this.words[0] = 0;
+      return this;
+    } // a > b
+
+
+    var a, b;
+
+    if (cmp > 0) {
+      a = this;
+      b = num;
+    } else {
+      a = num;
+      b = this;
+    }
+
+    var carry = 0;
+
+    for (var i = 0; i < b.length; i++) {
+      r = (a.words[i] | 0) - (b.words[i] | 0) + carry;
+      carry = r >> 26;
+      this.words[i] = r & 0x3ffffff;
+    }
+
+    for (; carry !== 0 && i < a.length; i++) {
+      r = (a.words[i] | 0) + carry;
+      carry = r >> 26;
+      this.words[i] = r & 0x3ffffff;
+    } // Copy rest of the words
+
+
+    if (carry === 0 && i < a.length && a !== this) {
+      for (; i < a.length; i++) {
+        this.words[i] = a.words[i];
+      }
+    }
+
+    this.length = Math.max(this.length, i);
+
+    if (a !== this) {
+      this.negative = 1;
+    }
+
+    return this.strip();
+  }; // Subtract `num` from `this`
+
+
+  BN.prototype.sub = function sub(num) {
+    return this.clone().isub(num);
+  };
+
+  function smallMulTo(self, num, out) {
+    out.negative = num.negative ^ self.negative;
+    var len = self.length + num.length | 0;
+    out.length = len;
+    len = len - 1 | 0; // Peel one iteration (compiler can't do it, because of code complexity)
+
+    var a = self.words[0] | 0;
+    var b = num.words[0] | 0;
+    var r = a * b;
+    var lo = r & 0x3ffffff;
+    var carry = r / 0x4000000 | 0;
+    out.words[0] = lo;
+
+    for (var k = 1; k < len; k++) {
+      // Sum all words with the same `i + j = k` and accumulate `ncarry`,
+      // note that ncarry could be >= 0x3ffffff
+      var ncarry = carry >>> 26;
+      var rword = carry & 0x3ffffff;
+      var maxJ = Math.min(k, num.length - 1);
+
+      for (var j = Math.max(0, k - self.length + 1); j <= maxJ; j++) {
+        var i = k - j | 0;
+        a = self.words[i] | 0;
+        b = num.words[j] | 0;
+        r = a * b + rword;
+        ncarry += r / 0x4000000 | 0;
+        rword = r & 0x3ffffff;
+      }
+
+      out.words[k] = rword | 0;
+      carry = ncarry | 0;
+    }
+
+    if (carry !== 0) {
+      out.words[k] = carry | 0;
+    } else {
+      out.length--;
+    }
+
+    return out.strip();
+  } // TODO(indutny): it may be reasonable to omit it for users who don't need
+  // to work with 256-bit numbers, otherwise it gives 20% improvement for 256-bit
+  // multiplication (like elliptic secp256k1).
+
+
+  var comb10MulTo = function comb10MulTo(self, num, out) {
+    var a = self.words;
+    var b = num.words;
+    var o = out.words;
+    var c = 0;
+    var lo;
+    var mid;
+    var hi;
+    var a0 = a[0] | 0;
+    var al0 = a0 & 0x1fff;
+    var ah0 = a0 >>> 13;
+    var a1 = a[1] | 0;
+    var al1 = a1 & 0x1fff;
+    var ah1 = a1 >>> 13;
+    var a2 = a[2] | 0;
+    var al2 = a2 & 0x1fff;
+    var ah2 = a2 >>> 13;
+    var a3 = a[3] | 0;
+    var al3 = a3 & 0x1fff;
+    var ah3 = a3 >>> 13;
+    var a4 = a[4] | 0;
+    var al4 = a4 & 0x1fff;
+    var ah4 = a4 >>> 13;
+    var a5 = a[5] | 0;
+    var al5 = a5 & 0x1fff;
+    var ah5 = a5 >>> 13;
+    var a6 = a[6] | 0;
+    var al6 = a6 & 0x1fff;
+    var ah6 = a6 >>> 13;
+    var a7 = a[7] | 0;
+    var al7 = a7 & 0x1fff;
+    var ah7 = a7 >>> 13;
+    var a8 = a[8] | 0;
+    var al8 = a8 & 0x1fff;
+    var ah8 = a8 >>> 13;
+    var a9 = a[9] | 0;
+    var al9 = a9 & 0x1fff;
+    var ah9 = a9 >>> 13;
+    var b0 = b[0] | 0;
+    var bl0 = b0 & 0x1fff;
+    var bh0 = b0 >>> 13;
+    var b1 = b[1] | 0;
+    var bl1 = b1 & 0x1fff;
+    var bh1 = b1 >>> 13;
+    var b2 = b[2] | 0;
+    var bl2 = b2 & 0x1fff;
+    var bh2 = b2 >>> 13;
+    var b3 = b[3] | 0;
+    var bl3 = b3 & 0x1fff;
+    var bh3 = b3 >>> 13;
+    var b4 = b[4] | 0;
+    var bl4 = b4 & 0x1fff;
+    var bh4 = b4 >>> 13;
+    var b5 = b[5] | 0;
+    var bl5 = b5 & 0x1fff;
+    var bh5 = b5 >>> 13;
+    var b6 = b[6] | 0;
+    var bl6 = b6 & 0x1fff;
+    var bh6 = b6 >>> 13;
+    var b7 = b[7] | 0;
+    var bl7 = b7 & 0x1fff;
+    var bh7 = b7 >>> 13;
+    var b8 = b[8] | 0;
+    var bl8 = b8 & 0x1fff;
+    var bh8 = b8 >>> 13;
+    var b9 = b[9] | 0;
+    var bl9 = b9 & 0x1fff;
+    var bh9 = b9 >>> 13;
+    out.negative = self.negative ^ num.negative;
+    out.length = 19;
+    /* k = 0 */
+
+    lo = Math.imul(al0, bl0);
+    mid = Math.imul(al0, bh0);
+    mid = mid + Math.imul(ah0, bl0) | 0;
+    hi = Math.imul(ah0, bh0);
+    var w0 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w0 >>> 26) | 0;
+    w0 &= 0x3ffffff;
+    /* k = 1 */
+
+    lo = Math.imul(al1, bl0);
+    mid = Math.imul(al1, bh0);
+    mid = mid + Math.imul(ah1, bl0) | 0;
+    hi = Math.imul(ah1, bh0);
+    lo = lo + Math.imul(al0, bl1) | 0;
+    mid = mid + Math.imul(al0, bh1) | 0;
+    mid = mid + Math.imul(ah0, bl1) | 0;
+    hi = hi + Math.imul(ah0, bh1) | 0;
+    var w1 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w1 >>> 26) | 0;
+    w1 &= 0x3ffffff;
+    /* k = 2 */
+
+    lo = Math.imul(al2, bl0);
+    mid = Math.imul(al2, bh0);
+    mid = mid + Math.imul(ah2, bl0) | 0;
+    hi = Math.imul(ah2, bh0);
+    lo = lo + Math.imul(al1, bl1) | 0;
+    mid = mid + Math.imul(al1, bh1) | 0;
+    mid = mid + Math.imul(ah1, bl1) | 0;
+    hi = hi + Math.imul(ah1, bh1) | 0;
+    lo = lo + Math.imul(al0, bl2) | 0;
+    mid = mid + Math.imul(al0, bh2) | 0;
+    mid = mid + Math.imul(ah0, bl2) | 0;
+    hi = hi + Math.imul(ah0, bh2) | 0;
+    var w2 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w2 >>> 26) | 0;
+    w2 &= 0x3ffffff;
+    /* k = 3 */
+
+    lo = Math.imul(al3, bl0);
+    mid = Math.imul(al3, bh0);
+    mid = mid + Math.imul(ah3, bl0) | 0;
+    hi = Math.imul(ah3, bh0);
+    lo = lo + Math.imul(al2, bl1) | 0;
+    mid = mid + Math.imul(al2, bh1) | 0;
+    mid = mid + Math.imul(ah2, bl1) | 0;
+    hi = hi + Math.imul(ah2, bh1) | 0;
+    lo = lo + Math.imul(al1, bl2) | 0;
+    mid = mid + Math.imul(al1, bh2) | 0;
+    mid = mid + Math.imul(ah1, bl2) | 0;
+    hi = hi + Math.imul(ah1, bh2) | 0;
+    lo = lo + Math.imul(al0, bl3) | 0;
+    mid = mid + Math.imul(al0, bh3) | 0;
+    mid = mid + Math.imul(ah0, bl3) | 0;
+    hi = hi + Math.imul(ah0, bh3) | 0;
+    var w3 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w3 >>> 26) | 0;
+    w3 &= 0x3ffffff;
+    /* k = 4 */
+
+    lo = Math.imul(al4, bl0);
+    mid = Math.imul(al4, bh0);
+    mid = mid + Math.imul(ah4, bl0) | 0;
+    hi = Math.imul(ah4, bh0);
+    lo = lo + Math.imul(al3, bl1) | 0;
+    mid = mid + Math.imul(al3, bh1) | 0;
+    mid = mid + Math.imul(ah3, bl1) | 0;
+    hi = hi + Math.imul(ah3, bh1) | 0;
+    lo = lo + Math.imul(al2, bl2) | 0;
+    mid = mid + Math.imul(al2, bh2) | 0;
+    mid = mid + Math.imul(ah2, bl2) | 0;
+    hi = hi + Math.imul(ah2, bh2) | 0;
+    lo = lo + Math.imul(al1, bl3) | 0;
+    mid = mid + Math.imul(al1, bh3) | 0;
+    mid = mid + Math.imul(ah1, bl3) | 0;
+    hi = hi + Math.imul(ah1, bh3) | 0;
+    lo = lo + Math.imul(al0, bl4) | 0;
+    mid = mid + Math.imul(al0, bh4) | 0;
+    mid = mid + Math.imul(ah0, bl4) | 0;
+    hi = hi + Math.imul(ah0, bh4) | 0;
+    var w4 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w4 >>> 26) | 0;
+    w4 &= 0x3ffffff;
+    /* k = 5 */
+
+    lo = Math.imul(al5, bl0);
+    mid = Math.imul(al5, bh0);
+    mid = mid + Math.imul(ah5, bl0) | 0;
+    hi = Math.imul(ah5, bh0);
+    lo = lo + Math.imul(al4, bl1) | 0;
+    mid = mid + Math.imul(al4, bh1) | 0;
+    mid = mid + Math.imul(ah4, bl1) | 0;
+    hi = hi + Math.imul(ah4, bh1) | 0;
+    lo = lo + Math.imul(al3, bl2) | 0;
+    mid = mid + Math.imul(al3, bh2) | 0;
+    mid = mid + Math.imul(ah3, bl2) | 0;
+    hi = hi + Math.imul(ah3, bh2) | 0;
+    lo = lo + Math.imul(al2, bl3) | 0;
+    mid = mid + Math.imul(al2, bh3) | 0;
+    mid = mid + Math.imul(ah2, bl3) | 0;
+    hi = hi + Math.imul(ah2, bh3) | 0;
+    lo = lo + Math.imul(al1, bl4) | 0;
+    mid = mid + Math.imul(al1, bh4) | 0;
+    mid = mid + Math.imul(ah1, bl4) | 0;
+    hi = hi + Math.imul(ah1, bh4) | 0;
+    lo = lo + Math.imul(al0, bl5) | 0;
+    mid = mid + Math.imul(al0, bh5) | 0;
+    mid = mid + Math.imul(ah0, bl5) | 0;
+    hi = hi + Math.imul(ah0, bh5) | 0;
+    var w5 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w5 >>> 26) | 0;
+    w5 &= 0x3ffffff;
+    /* k = 6 */
+
+    lo = Math.imul(al6, bl0);
+    mid = Math.imul(al6, bh0);
+    mid = mid + Math.imul(ah6, bl0) | 0;
+    hi = Math.imul(ah6, bh0);
+    lo = lo + Math.imul(al5, bl1) | 0;
+    mid = mid + Math.imul(al5, bh1) | 0;
+    mid = mid + Math.imul(ah5, bl1) | 0;
+    hi = hi + Math.imul(ah5, bh1) | 0;
+    lo = lo + Math.imul(al4, bl2) | 0;
+    mid = mid + Math.imul(al4, bh2) | 0;
+    mid = mid + Math.imul(ah4, bl2) | 0;
+    hi = hi + Math.imul(ah4, bh2) | 0;
+    lo = lo + Math.imul(al3, bl3) | 0;
+    mid = mid + Math.imul(al3, bh3) | 0;
+    mid = mid + Math.imul(ah3, bl3) | 0;
+    hi = hi + Math.imul(ah3, bh3) | 0;
+    lo = lo + Math.imul(al2, bl4) | 0;
+    mid = mid + Math.imul(al2, bh4) | 0;
+    mid = mid + Math.imul(ah2, bl4) | 0;
+    hi = hi + Math.imul(ah2, bh4) | 0;
+    lo = lo + Math.imul(al1, bl5) | 0;
+    mid = mid + Math.imul(al1, bh5) | 0;
+    mid = mid + Math.imul(ah1, bl5) | 0;
+    hi = hi + Math.imul(ah1, bh5) | 0;
+    lo = lo + Math.imul(al0, bl6) | 0;
+    mid = mid + Math.imul(al0, bh6) | 0;
+    mid = mid + Math.imul(ah0, bl6) | 0;
+    hi = hi + Math.imul(ah0, bh6) | 0;
+    var w6 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w6 >>> 26) | 0;
+    w6 &= 0x3ffffff;
+    /* k = 7 */
+
+    lo = Math.imul(al7, bl0);
+    mid = Math.imul(al7, bh0);
+    mid = mid + Math.imul(ah7, bl0) | 0;
+    hi = Math.imul(ah7, bh0);
+    lo = lo + Math.imul(al6, bl1) | 0;
+    mid = mid + Math.imul(al6, bh1) | 0;
+    mid = mid + Math.imul(ah6, bl1) | 0;
+    hi = hi + Math.imul(ah6, bh1) | 0;
+    lo = lo + Math.imul(al5, bl2) | 0;
+    mid = mid + Math.imul(al5, bh2) | 0;
+    mid = mid + Math.imul(ah5, bl2) | 0;
+    hi = hi + Math.imul(ah5, bh2) | 0;
+    lo = lo + Math.imul(al4, bl3) | 0;
+    mid = mid + Math.imul(al4, bh3) | 0;
+    mid = mid + Math.imul(ah4, bl3) | 0;
+    hi = hi + Math.imul(ah4, bh3) | 0;
+    lo = lo + Math.imul(al3, bl4) | 0;
+    mid = mid + Math.imul(al3, bh4) | 0;
+    mid = mid + Math.imul(ah3, bl4) | 0;
+    hi = hi + Math.imul(ah3, bh4) | 0;
+    lo = lo + Math.imul(al2, bl5) | 0;
+    mid = mid + Math.imul(al2, bh5) | 0;
+    mid = mid + Math.imul(ah2, bl5) | 0;
+    hi = hi + Math.imul(ah2, bh5) | 0;
+    lo = lo + Math.imul(al1, bl6) | 0;
+    mid = mid + Math.imul(al1, bh6) | 0;
+    mid = mid + Math.imul(ah1, bl6) | 0;
+    hi = hi + Math.imul(ah1, bh6) | 0;
+    lo = lo + Math.imul(al0, bl7) | 0;
+    mid = mid + Math.imul(al0, bh7) | 0;
+    mid = mid + Math.imul(ah0, bl7) | 0;
+    hi = hi + Math.imul(ah0, bh7) | 0;
+    var w7 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w7 >>> 26) | 0;
+    w7 &= 0x3ffffff;
+    /* k = 8 */
+
+    lo = Math.imul(al8, bl0);
+    mid = Math.imul(al8, bh0);
+    mid = mid + Math.imul(ah8, bl0) | 0;
+    hi = Math.imul(ah8, bh0);
+    lo = lo + Math.imul(al7, bl1) | 0;
+    mid = mid + Math.imul(al7, bh1) | 0;
+    mid = mid + Math.imul(ah7, bl1) | 0;
+    hi = hi + Math.imul(ah7, bh1) | 0;
+    lo = lo + Math.imul(al6, bl2) | 0;
+    mid = mid + Math.imul(al6, bh2) | 0;
+    mid = mid + Math.imul(ah6, bl2) | 0;
+    hi = hi + Math.imul(ah6, bh2) | 0;
+    lo = lo + Math.imul(al5, bl3) | 0;
+    mid = mid + Math.imul(al5, bh3) | 0;
+    mid = mid + Math.imul(ah5, bl3) | 0;
+    hi = hi + Math.imul(ah5, bh3) | 0;
+    lo = lo + Math.imul(al4, bl4) | 0;
+    mid = mid + Math.imul(al4, bh4) | 0;
+    mid = mid + Math.imul(ah4, bl4) | 0;
+    hi = hi + Math.imul(ah4, bh4) | 0;
+    lo = lo + Math.imul(al3, bl5) | 0;
+    mid = mid + Math.imul(al3, bh5) | 0;
+    mid = mid + Math.imul(ah3, bl5) | 0;
+    hi = hi + Math.imul(ah3, bh5) | 0;
+    lo = lo + Math.imul(al2, bl6) | 0;
+    mid = mid + Math.imul(al2, bh6) | 0;
+    mid = mid + Math.imul(ah2, bl6) | 0;
+    hi = hi + Math.imul(ah2, bh6) | 0;
+    lo = lo + Math.imul(al1, bl7) | 0;
+    mid = mid + Math.imul(al1, bh7) | 0;
+    mid = mid + Math.imul(ah1, bl7) | 0;
+    hi = hi + Math.imul(ah1, bh7) | 0;
+    lo = lo + Math.imul(al0, bl8) | 0;
+    mid = mid + Math.imul(al0, bh8) | 0;
+    mid = mid + Math.imul(ah0, bl8) | 0;
+    hi = hi + Math.imul(ah0, bh8) | 0;
+    var w8 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w8 >>> 26) | 0;
+    w8 &= 0x3ffffff;
+    /* k = 9 */
+
+    lo = Math.imul(al9, bl0);
+    mid = Math.imul(al9, bh0);
+    mid = mid + Math.imul(ah9, bl0) | 0;
+    hi = Math.imul(ah9, bh0);
+    lo = lo + Math.imul(al8, bl1) | 0;
+    mid = mid + Math.imul(al8, bh1) | 0;
+    mid = mid + Math.imul(ah8, bl1) | 0;
+    hi = hi + Math.imul(ah8, bh1) | 0;
+    lo = lo + Math.imul(al7, bl2) | 0;
+    mid = mid + Math.imul(al7, bh2) | 0;
+    mid = mid + Math.imul(ah7, bl2) | 0;
+    hi = hi + Math.imul(ah7, bh2) | 0;
+    lo = lo + Math.imul(al6, bl3) | 0;
+    mid = mid + Math.imul(al6, bh3) | 0;
+    mid = mid + Math.imul(ah6, bl3) | 0;
+    hi = hi + Math.imul(ah6, bh3) | 0;
+    lo = lo + Math.imul(al5, bl4) | 0;
+    mid = mid + Math.imul(al5, bh4) | 0;
+    mid = mid + Math.imul(ah5, bl4) | 0;
+    hi = hi + Math.imul(ah5, bh4) | 0;
+    lo = lo + Math.imul(al4, bl5) | 0;
+    mid = mid + Math.imul(al4, bh5) | 0;
+    mid = mid + Math.imul(ah4, bl5) | 0;
+    hi = hi + Math.imul(ah4, bh5) | 0;
+    lo = lo + Math.imul(al3, bl6) | 0;
+    mid = mid + Math.imul(al3, bh6) | 0;
+    mid = mid + Math.imul(ah3, bl6) | 0;
+    hi = hi + Math.imul(ah3, bh6) | 0;
+    lo = lo + Math.imul(al2, bl7) | 0;
+    mid = mid + Math.imul(al2, bh7) | 0;
+    mid = mid + Math.imul(ah2, bl7) | 0;
+    hi = hi + Math.imul(ah2, bh7) | 0;
+    lo = lo + Math.imul(al1, bl8) | 0;
+    mid = mid + Math.imul(al1, bh8) | 0;
+    mid = mid + Math.imul(ah1, bl8) | 0;
+    hi = hi + Math.imul(ah1, bh8) | 0;
+    lo = lo + Math.imul(al0, bl9) | 0;
+    mid = mid + Math.imul(al0, bh9) | 0;
+    mid = mid + Math.imul(ah0, bl9) | 0;
+    hi = hi + Math.imul(ah0, bh9) | 0;
+    var w9 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w9 >>> 26) | 0;
+    w9 &= 0x3ffffff;
+    /* k = 10 */
+
+    lo = Math.imul(al9, bl1);
+    mid = Math.imul(al9, bh1);
+    mid = mid + Math.imul(ah9, bl1) | 0;
+    hi = Math.imul(ah9, bh1);
+    lo = lo + Math.imul(al8, bl2) | 0;
+    mid = mid + Math.imul(al8, bh2) | 0;
+    mid = mid + Math.imul(ah8, bl2) | 0;
+    hi = hi + Math.imul(ah8, bh2) | 0;
+    lo = lo + Math.imul(al7, bl3) | 0;
+    mid = mid + Math.imul(al7, bh3) | 0;
+    mid = mid + Math.imul(ah7, bl3) | 0;
+    hi = hi + Math.imul(ah7, bh3) | 0;
+    lo = lo + Math.imul(al6, bl4) | 0;
+    mid = mid + Math.imul(al6, bh4) | 0;
+    mid = mid + Math.imul(ah6, bl4) | 0;
+    hi = hi + Math.imul(ah6, bh4) | 0;
+    lo = lo + Math.imul(al5, bl5) | 0;
+    mid = mid + Math.imul(al5, bh5) | 0;
+    mid = mid + Math.imul(ah5, bl5) | 0;
+    hi = hi + Math.imul(ah5, bh5) | 0;
+    lo = lo + Math.imul(al4, bl6) | 0;
+    mid = mid + Math.imul(al4, bh6) | 0;
+    mid = mid + Math.imul(ah4, bl6) | 0;
+    hi = hi + Math.imul(ah4, bh6) | 0;
+    lo = lo + Math.imul(al3, bl7) | 0;
+    mid = mid + Math.imul(al3, bh7) | 0;
+    mid = mid + Math.imul(ah3, bl7) | 0;
+    hi = hi + Math.imul(ah3, bh7) | 0;
+    lo = lo + Math.imul(al2, bl8) | 0;
+    mid = mid + Math.imul(al2, bh8) | 0;
+    mid = mid + Math.imul(ah2, bl8) | 0;
+    hi = hi + Math.imul(ah2, bh8) | 0;
+    lo = lo + Math.imul(al1, bl9) | 0;
+    mid = mid + Math.imul(al1, bh9) | 0;
+    mid = mid + Math.imul(ah1, bl9) | 0;
+    hi = hi + Math.imul(ah1, bh9) | 0;
+    var w10 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w10 >>> 26) | 0;
+    w10 &= 0x3ffffff;
+    /* k = 11 */
+
+    lo = Math.imul(al9, bl2);
+    mid = Math.imul(al9, bh2);
+    mid = mid + Math.imul(ah9, bl2) | 0;
+    hi = Math.imul(ah9, bh2);
+    lo = lo + Math.imul(al8, bl3) | 0;
+    mid = mid + Math.imul(al8, bh3) | 0;
+    mid = mid + Math.imul(ah8, bl3) | 0;
+    hi = hi + Math.imul(ah8, bh3) | 0;
+    lo = lo + Math.imul(al7, bl4) | 0;
+    mid = mid + Math.imul(al7, bh4) | 0;
+    mid = mid + Math.imul(ah7, bl4) | 0;
+    hi = hi + Math.imul(ah7, bh4) | 0;
+    lo = lo + Math.imul(al6, bl5) | 0;
+    mid = mid + Math.imul(al6, bh5) | 0;
+    mid = mid + Math.imul(ah6, bl5) | 0;
+    hi = hi + Math.imul(ah6, bh5) | 0;
+    lo = lo + Math.imul(al5, bl6) | 0;
+    mid = mid + Math.imul(al5, bh6) | 0;
+    mid = mid + Math.imul(ah5, bl6) | 0;
+    hi = hi + Math.imul(ah5, bh6) | 0;
+    lo = lo + Math.imul(al4, bl7) | 0;
+    mid = mid + Math.imul(al4, bh7) | 0;
+    mid = mid + Math.imul(ah4, bl7) | 0;
+    hi = hi + Math.imul(ah4, bh7) | 0;
+    lo = lo + Math.imul(al3, bl8) | 0;
+    mid = mid + Math.imul(al3, bh8) | 0;
+    mid = mid + Math.imul(ah3, bl8) | 0;
+    hi = hi + Math.imul(ah3, bh8) | 0;
+    lo = lo + Math.imul(al2, bl9) | 0;
+    mid = mid + Math.imul(al2, bh9) | 0;
+    mid = mid + Math.imul(ah2, bl9) | 0;
+    hi = hi + Math.imul(ah2, bh9) | 0;
+    var w11 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w11 >>> 26) | 0;
+    w11 &= 0x3ffffff;
+    /* k = 12 */
+
+    lo = Math.imul(al9, bl3);
+    mid = Math.imul(al9, bh3);
+    mid = mid + Math.imul(ah9, bl3) | 0;
+    hi = Math.imul(ah9, bh3);
+    lo = lo + Math.imul(al8, bl4) | 0;
+    mid = mid + Math.imul(al8, bh4) | 0;
+    mid = mid + Math.imul(ah8, bl4) | 0;
+    hi = hi + Math.imul(ah8, bh4) | 0;
+    lo = lo + Math.imul(al7, bl5) | 0;
+    mid = mid + Math.imul(al7, bh5) | 0;
+    mid = mid + Math.imul(ah7, bl5) | 0;
+    hi = hi + Math.imul(ah7, bh5) | 0;
+    lo = lo + Math.imul(al6, bl6) | 0;
+    mid = mid + Math.imul(al6, bh6) | 0;
+    mid = mid + Math.imul(ah6, bl6) | 0;
+    hi = hi + Math.imul(ah6, bh6) | 0;
+    lo = lo + Math.imul(al5, bl7) | 0;
+    mid = mid + Math.imul(al5, bh7) | 0;
+    mid = mid + Math.imul(ah5, bl7) | 0;
+    hi = hi + Math.imul(ah5, bh7) | 0;
+    lo = lo + Math.imul(al4, bl8) | 0;
+    mid = mid + Math.imul(al4, bh8) | 0;
+    mid = mid + Math.imul(ah4, bl8) | 0;
+    hi = hi + Math.imul(ah4, bh8) | 0;
+    lo = lo + Math.imul(al3, bl9) | 0;
+    mid = mid + Math.imul(al3, bh9) | 0;
+    mid = mid + Math.imul(ah3, bl9) | 0;
+    hi = hi + Math.imul(ah3, bh9) | 0;
+    var w12 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w12 >>> 26) | 0;
+    w12 &= 0x3ffffff;
+    /* k = 13 */
+
+    lo = Math.imul(al9, bl4);
+    mid = Math.imul(al9, bh4);
+    mid = mid + Math.imul(ah9, bl4) | 0;
+    hi = Math.imul(ah9, bh4);
+    lo = lo + Math.imul(al8, bl5) | 0;
+    mid = mid + Math.imul(al8, bh5) | 0;
+    mid = mid + Math.imul(ah8, bl5) | 0;
+    hi = hi + Math.imul(ah8, bh5) | 0;
+    lo = lo + Math.imul(al7, bl6) | 0;
+    mid = mid + Math.imul(al7, bh6) | 0;
+    mid = mid + Math.imul(ah7, bl6) | 0;
+    hi = hi + Math.imul(ah7, bh6) | 0;
+    lo = lo + Math.imul(al6, bl7) | 0;
+    mid = mid + Math.imul(al6, bh7) | 0;
+    mid = mid + Math.imul(ah6, bl7) | 0;
+    hi = hi + Math.imul(ah6, bh7) | 0;
+    lo = lo + Math.imul(al5, bl8) | 0;
+    mid = mid + Math.imul(al5, bh8) | 0;
+    mid = mid + Math.imul(ah5, bl8) | 0;
+    hi = hi + Math.imul(ah5, bh8) | 0;
+    lo = lo + Math.imul(al4, bl9) | 0;
+    mid = mid + Math.imul(al4, bh9) | 0;
+    mid = mid + Math.imul(ah4, bl9) | 0;
+    hi = hi + Math.imul(ah4, bh9) | 0;
+    var w13 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w13 >>> 26) | 0;
+    w13 &= 0x3ffffff;
+    /* k = 14 */
+
+    lo = Math.imul(al9, bl5);
+    mid = Math.imul(al9, bh5);
+    mid = mid + Math.imul(ah9, bl5) | 0;
+    hi = Math.imul(ah9, bh5);
+    lo = lo + Math.imul(al8, bl6) | 0;
+    mid = mid + Math.imul(al8, bh6) | 0;
+    mid = mid + Math.imul(ah8, bl6) | 0;
+    hi = hi + Math.imul(ah8, bh6) | 0;
+    lo = lo + Math.imul(al7, bl7) | 0;
+    mid = mid + Math.imul(al7, bh7) | 0;
+    mid = mid + Math.imul(ah7, bl7) | 0;
+    hi = hi + Math.imul(ah7, bh7) | 0;
+    lo = lo + Math.imul(al6, bl8) | 0;
+    mid = mid + Math.imul(al6, bh8) | 0;
+    mid = mid + Math.imul(ah6, bl8) | 0;
+    hi = hi + Math.imul(ah6, bh8) | 0;
+    lo = lo + Math.imul(al5, bl9) | 0;
+    mid = mid + Math.imul(al5, bh9) | 0;
+    mid = mid + Math.imul(ah5, bl9) | 0;
+    hi = hi + Math.imul(ah5, bh9) | 0;
+    var w14 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w14 >>> 26) | 0;
+    w14 &= 0x3ffffff;
+    /* k = 15 */
+
+    lo = Math.imul(al9, bl6);
+    mid = Math.imul(al9, bh6);
+    mid = mid + Math.imul(ah9, bl6) | 0;
+    hi = Math.imul(ah9, bh6);
+    lo = lo + Math.imul(al8, bl7) | 0;
+    mid = mid + Math.imul(al8, bh7) | 0;
+    mid = mid + Math.imul(ah8, bl7) | 0;
+    hi = hi + Math.imul(ah8, bh7) | 0;
+    lo = lo + Math.imul(al7, bl8) | 0;
+    mid = mid + Math.imul(al7, bh8) | 0;
+    mid = mid + Math.imul(ah7, bl8) | 0;
+    hi = hi + Math.imul(ah7, bh8) | 0;
+    lo = lo + Math.imul(al6, bl9) | 0;
+    mid = mid + Math.imul(al6, bh9) | 0;
+    mid = mid + Math.imul(ah6, bl9) | 0;
+    hi = hi + Math.imul(ah6, bh9) | 0;
+    var w15 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w15 >>> 26) | 0;
+    w15 &= 0x3ffffff;
+    /* k = 16 */
+
+    lo = Math.imul(al9, bl7);
+    mid = Math.imul(al9, bh7);
+    mid = mid + Math.imul(ah9, bl7) | 0;
+    hi = Math.imul(ah9, bh7);
+    lo = lo + Math.imul(al8, bl8) | 0;
+    mid = mid + Math.imul(al8, bh8) | 0;
+    mid = mid + Math.imul(ah8, bl8) | 0;
+    hi = hi + Math.imul(ah8, bh8) | 0;
+    lo = lo + Math.imul(al7, bl9) | 0;
+    mid = mid + Math.imul(al7, bh9) | 0;
+    mid = mid + Math.imul(ah7, bl9) | 0;
+    hi = hi + Math.imul(ah7, bh9) | 0;
+    var w16 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w16 >>> 26) | 0;
+    w16 &= 0x3ffffff;
+    /* k = 17 */
+
+    lo = Math.imul(al9, bl8);
+    mid = Math.imul(al9, bh8);
+    mid = mid + Math.imul(ah9, bl8) | 0;
+    hi = Math.imul(ah9, bh8);
+    lo = lo + Math.imul(al8, bl9) | 0;
+    mid = mid + Math.imul(al8, bh9) | 0;
+    mid = mid + Math.imul(ah8, bl9) | 0;
+    hi = hi + Math.imul(ah8, bh9) | 0;
+    var w17 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w17 >>> 26) | 0;
+    w17 &= 0x3ffffff;
+    /* k = 18 */
+
+    lo = Math.imul(al9, bl9);
+    mid = Math.imul(al9, bh9);
+    mid = mid + Math.imul(ah9, bl9) | 0;
+    hi = Math.imul(ah9, bh9);
+    var w18 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
+    c = (hi + (mid >>> 13) | 0) + (w18 >>> 26) | 0;
+    w18 &= 0x3ffffff;
+    o[0] = w0;
+    o[1] = w1;
+    o[2] = w2;
+    o[3] = w3;
+    o[4] = w4;
+    o[5] = w5;
+    o[6] = w6;
+    o[7] = w7;
+    o[8] = w8;
+    o[9] = w9;
+    o[10] = w10;
+    o[11] = w11;
+    o[12] = w12;
+    o[13] = w13;
+    o[14] = w14;
+    o[15] = w15;
+    o[16] = w16;
+    o[17] = w17;
+    o[18] = w18;
+
+    if (c !== 0) {
+      o[19] = c;
+      out.length++;
+    }
+
+    return out;
+  }; // Polyfill comb
+
+
+  if (!Math.imul) {
+    comb10MulTo = smallMulTo;
+  }
+
+  function bigMulTo(self, num, out) {
+    out.negative = num.negative ^ self.negative;
+    out.length = self.length + num.length;
+    var carry = 0;
+    var hncarry = 0;
+
+    for (var k = 0; k < out.length - 1; k++) {
+      // Sum all words with the same `i + j = k` and accumulate `ncarry`,
+      // note that ncarry could be >= 0x3ffffff
+      var ncarry = hncarry;
+      hncarry = 0;
+      var rword = carry & 0x3ffffff;
+      var maxJ = Math.min(k, num.length - 1);
+
+      for (var j = Math.max(0, k - self.length + 1); j <= maxJ; j++) {
+        var i = k - j;
+        var a = self.words[i] | 0;
+        var b = num.words[j] | 0;
+        var r = a * b;
+        var lo = r & 0x3ffffff;
+        ncarry = ncarry + (r / 0x4000000 | 0) | 0;
+        lo = lo + rword | 0;
+        rword = lo & 0x3ffffff;
+        ncarry = ncarry + (lo >>> 26) | 0;
+        hncarry += ncarry >>> 26;
+        ncarry &= 0x3ffffff;
+      }
+
+      out.words[k] = rword;
+      carry = ncarry;
+      ncarry = hncarry;
+    }
+
+    if (carry !== 0) {
+      out.words[k] = carry;
+    } else {
+      out.length--;
+    }
+
+    return out.strip();
+  }
+
+  function jumboMulTo(self, num, out) {
+    var fftm = new FFTM();
+    return fftm.mulp(self, num, out);
+  }
+
+  BN.prototype.mulTo = function mulTo(num, out) {
+    var res;
+    var len = this.length + num.length;
+
+    if (this.length === 10 && num.length === 10) {
+      res = comb10MulTo(this, num, out);
+    } else if (len < 63) {
+      res = smallMulTo(this, num, out);
+    } else if (len < 1024) {
+      res = bigMulTo(this, num, out);
+    } else {
+      res = jumboMulTo(this, num, out);
+    }
+
+    return res;
+  }; // Cooley-Tukey algorithm for FFT
+  // slightly revisited to rely on looping instead of recursion
+
+
+  function FFTM(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  FFTM.prototype.makeRBT = function makeRBT(N) {
+    var t = new Array(N);
+    var l = BN.prototype._countBits(N) - 1;
+
+    for (var i = 0; i < N; i++) {
+      t[i] = this.revBin(i, l, N);
+    }
+
+    return t;
+  }; // Returns binary-reversed representation of `x`
+
+
+  FFTM.prototype.revBin = function revBin(x, l, N) {
+    if (x === 0 || x === N - 1) return x;
+    var rb = 0;
+
+    for (var i = 0; i < l; i++) {
+      rb |= (x & 1) << l - i - 1;
+      x >>= 1;
+    }
+
+    return rb;
+  }; // Performs "tweedling" phase, therefore 'emulating'
+  // behaviour of the recursive algorithm
+
+
+  FFTM.prototype.permute = function permute(rbt, rws, iws, rtws, itws, N) {
+    for (var i = 0; i < N; i++) {
+      rtws[i] = rws[rbt[i]];
+      itws[i] = iws[rbt[i]];
+    }
+  };
+
+  FFTM.prototype.transform = function transform(rws, iws, rtws, itws, N, rbt) {
+    this.permute(rbt, rws, iws, rtws, itws, N);
+
+    for (var s = 1; s < N; s <<= 1) {
+      var l = s << 1;
+      var rtwdf = Math.cos(2 * Math.PI / l);
+      var itwdf = Math.sin(2 * Math.PI / l);
+
+      for (var p = 0; p < N; p += l) {
+        var rtwdf_ = rtwdf;
+        var itwdf_ = itwdf;
+
+        for (var j = 0; j < s; j++) {
+          var re = rtws[p + j];
+          var ie = itws[p + j];
+          var ro = rtws[p + j + s];
+          var io = itws[p + j + s];
+          var rx = rtwdf_ * ro - itwdf_ * io;
+          io = rtwdf_ * io + itwdf_ * ro;
+          ro = rx;
+          rtws[p + j] = re + ro;
+          itws[p + j] = ie + io;
+          rtws[p + j + s] = re - ro;
+          itws[p + j + s] = ie - io;
+          /* jshint maxdepth : false */
+
+          if (j !== l) {
+            rx = rtwdf * rtwdf_ - itwdf * itwdf_;
+            itwdf_ = rtwdf * itwdf_ + itwdf * rtwdf_;
+            rtwdf_ = rx;
+          }
+        }
+      }
+    }
+  };
+
+  FFTM.prototype.guessLen13b = function guessLen13b(n, m) {
+    var N = Math.max(m, n) | 1;
+    var odd = N & 1;
+    var i = 0;
+
+    for (N = N / 2 | 0; N; N = N >>> 1) {
+      i++;
+    }
+
+    return 1 << i + 1 + odd;
+  };
+
+  FFTM.prototype.conjugate = function conjugate(rws, iws, N) {
+    if (N <= 1) return;
+
+    for (var i = 0; i < N / 2; i++) {
+      var t = rws[i];
+      rws[i] = rws[N - i - 1];
+      rws[N - i - 1] = t;
+      t = iws[i];
+      iws[i] = -iws[N - i - 1];
+      iws[N - i - 1] = -t;
+    }
+  };
+
+  FFTM.prototype.normalize13b = function normalize13b(ws, N) {
+    var carry = 0;
+
+    for (var i = 0; i < N / 2; i++) {
+      var w = Math.round(ws[2 * i + 1] / N) * 0x2000 + Math.round(ws[2 * i] / N) + carry;
+      ws[i] = w & 0x3ffffff;
+
+      if (w < 0x4000000) {
+        carry = 0;
+      } else {
+        carry = w / 0x4000000 | 0;
+      }
+    }
+
+    return ws;
+  };
+
+  FFTM.prototype.convert13b = function convert13b(ws, len, rws, N) {
+    var carry = 0;
+
+    for (var i = 0; i < len; i++) {
+      carry = carry + (ws[i] | 0);
+      rws[2 * i] = carry & 0x1fff;
+      carry = carry >>> 13;
+      rws[2 * i + 1] = carry & 0x1fff;
+      carry = carry >>> 13;
+    } // Pad with zeroes
+
+
+    for (i = 2 * len; i < N; ++i) {
+      rws[i] = 0;
+    }
+
+    assert(carry === 0);
+    assert((carry & ~0x1fff) === 0);
+  };
+
+  FFTM.prototype.stub = function stub(N) {
+    var ph = new Array(N);
+
+    for (var i = 0; i < N; i++) {
+      ph[i] = 0;
+    }
+
+    return ph;
+  };
+
+  FFTM.prototype.mulp = function mulp(x, y, out) {
+    var N = 2 * this.guessLen13b(x.length, y.length);
+    var rbt = this.makeRBT(N);
+
+    var _ = this.stub(N);
+
+    var rws = new Array(N);
+    var rwst = new Array(N);
+    var iwst = new Array(N);
+    var nrws = new Array(N);
+    var nrwst = new Array(N);
+    var niwst = new Array(N);
+    var rmws = out.words;
+    rmws.length = N;
+    this.convert13b(x.words, x.length, rws, N);
+    this.convert13b(y.words, y.length, nrws, N);
+    this.transform(rws, _, rwst, iwst, N, rbt);
+    this.transform(nrws, _, nrwst, niwst, N, rbt);
+
+    for (var i = 0; i < N; i++) {
+      var rx = rwst[i] * nrwst[i] - iwst[i] * niwst[i];
+      iwst[i] = rwst[i] * niwst[i] + iwst[i] * nrwst[i];
+      rwst[i] = rx;
+    }
+
+    this.conjugate(rwst, iwst, N);
+    this.transform(rwst, iwst, rmws, _, N, rbt);
+    this.conjugate(rmws, _, N);
+    this.normalize13b(rmws, N);
+    out.negative = x.negative ^ y.negative;
+    out.length = x.length + y.length;
+    return out.strip();
+  }; // Multiply `this` by `num`
+
+
+  BN.prototype.mul = function mul(num) {
+    var out = new BN(null);
+    out.words = new Array(this.length + num.length);
+    return this.mulTo(num, out);
+  }; // Multiply employing FFT
+
+
+  BN.prototype.mulf = function mulf(num) {
+    var out = new BN(null);
+    out.words = new Array(this.length + num.length);
+    return jumboMulTo(this, num, out);
+  }; // In-place Multiplication
+
+
+  BN.prototype.imul = function imul(num) {
+    return this.clone().mulTo(num, this);
+  };
+
+  BN.prototype.imuln = function imuln(num) {
+    assert(typeof num === 'number');
+    assert(num < 0x4000000); // Carry
+
+    var carry = 0;
+
+    for (var i = 0; i < this.length; i++) {
+      var w = (this.words[i] | 0) * num;
+      var lo = (w & 0x3ffffff) + (carry & 0x3ffffff);
+      carry >>= 26;
+      carry += w / 0x4000000 | 0; // NOTE: lo is 27bit maximum
+
+      carry += lo >>> 26;
+      this.words[i] = lo & 0x3ffffff;
+    }
+
+    if (carry !== 0) {
+      this.words[i] = carry;
+      this.length++;
+    }
+
+    return this;
+  };
+
+  BN.prototype.muln = function muln(num) {
+    return this.clone().imuln(num);
+  }; // `this` * `this`
+
+
+  BN.prototype.sqr = function sqr() {
+    return this.mul(this);
+  }; // `this` * `this` in-place
+
+
+  BN.prototype.isqr = function isqr() {
+    return this.imul(this.clone());
+  }; // Math.pow(`this`, `num`)
+
+
+  BN.prototype.pow = function pow(num) {
+    var w = toBitArray(num);
+    if (w.length === 0) return new BN(1); // Skip leading zeroes
+
+    var res = this;
+
+    for (var i = 0; i < w.length; i++, res = res.sqr()) {
+      if (w[i] !== 0) break;
+    }
+
+    if (++i < w.length) {
+      for (var q = res.sqr(); i < w.length; i++, q = q.sqr()) {
+        if (w[i] === 0) continue;
+        res = res.mul(q);
+      }
+    }
+
+    return res;
+  }; // Shift-left in-place
+
+
+  BN.prototype.iushln = function iushln(bits) {
+    assert(typeof bits === 'number' && bits >= 0);
+    var r = bits % 26;
+    var s = (bits - r) / 26;
+    var carryMask = 0x3ffffff >>> 26 - r << 26 - r;
+    var i;
+
+    if (r !== 0) {
+      var carry = 0;
+
+      for (i = 0; i < this.length; i++) {
+        var newCarry = this.words[i] & carryMask;
+        var c = (this.words[i] | 0) - newCarry << r;
+        this.words[i] = c | carry;
+        carry = newCarry >>> 26 - r;
+      }
+
+      if (carry) {
+        this.words[i] = carry;
+        this.length++;
+      }
+    }
+
+    if (s !== 0) {
+      for (i = this.length - 1; i >= 0; i--) {
+        this.words[i + s] = this.words[i];
+      }
+
+      for (i = 0; i < s; i++) {
+        this.words[i] = 0;
+      }
+
+      this.length += s;
+    }
+
+    return this.strip();
+  };
+
+  BN.prototype.ishln = function ishln(bits) {
+    // TODO(indutny): implement me
+    assert(this.negative === 0);
+    return this.iushln(bits);
+  }; // Shift-right in-place
+  // NOTE: `hint` is a lowest bit before trailing zeroes
+  // NOTE: if `extended` is present - it will be filled with destroyed bits
+
+
+  BN.prototype.iushrn = function iushrn(bits, hint, extended) {
+    assert(typeof bits === 'number' && bits >= 0);
+    var h;
+
+    if (hint) {
+      h = (hint - hint % 26) / 26;
+    } else {
+      h = 0;
+    }
+
+    var r = bits % 26;
+    var s = Math.min((bits - r) / 26, this.length);
+    var mask = 0x3ffffff ^ 0x3ffffff >>> r << r;
+    var maskedWords = extended;
+    h -= s;
+    h = Math.max(0, h); // Extended mode, copy masked part
+
+    if (maskedWords) {
+      for (var i = 0; i < s; i++) {
+        maskedWords.words[i] = this.words[i];
+      }
+
+      maskedWords.length = s;
+    }
+
+    if (s === 0) {// No-op, we should not move anything at all
+    } else if (this.length > s) {
+      this.length -= s;
+
+      for (i = 0; i < this.length; i++) {
+        this.words[i] = this.words[i + s];
+      }
+    } else {
+      this.words[0] = 0;
+      this.length = 1;
+    }
+
+    var carry = 0;
+
+    for (i = this.length - 1; i >= 0 && (carry !== 0 || i >= h); i--) {
+      var word = this.words[i] | 0;
+      this.words[i] = carry << 26 - r | word >>> r;
+      carry = word & mask;
+    } // Push carried bits as a mask
+
+
+    if (maskedWords && carry !== 0) {
+      maskedWords.words[maskedWords.length++] = carry;
+    }
+
+    if (this.length === 0) {
+      this.words[0] = 0;
+      this.length = 1;
+    }
+
+    return this.strip();
+  };
+
+  BN.prototype.ishrn = function ishrn(bits, hint, extended) {
+    // TODO(indutny): implement me
+    assert(this.negative === 0);
+    return this.iushrn(bits, hint, extended);
+  }; // Shift-left
+
+
+  BN.prototype.shln = function shln(bits) {
+    return this.clone().ishln(bits);
+  };
+
+  BN.prototype.ushln = function ushln(bits) {
+    return this.clone().iushln(bits);
+  }; // Shift-right
+
+
+  BN.prototype.shrn = function shrn(bits) {
+    return this.clone().ishrn(bits);
+  };
+
+  BN.prototype.ushrn = function ushrn(bits) {
+    return this.clone().iushrn(bits);
+  }; // Test if n bit is set
+
+
+  BN.prototype.testn = function testn(bit) {
+    assert(typeof bit === 'number' && bit >= 0);
+    var r = bit % 26;
+    var s = (bit - r) / 26;
+    var q = 1 << r; // Fast case: bit is much higher than all existing words
+
+    if (this.length <= s) return false; // Check bit and return
+
+    var w = this.words[s];
+    return !!(w & q);
+  }; // Return only lowers bits of number (in-place)
+
+
+  BN.prototype.imaskn = function imaskn(bits) {
+    assert(typeof bits === 'number' && bits >= 0);
+    var r = bits % 26;
+    var s = (bits - r) / 26;
+    assert(this.negative === 0, 'imaskn works only with positive numbers');
+
+    if (this.length <= s) {
+      return this;
+    }
+
+    if (r !== 0) {
+      s++;
+    }
+
+    this.length = Math.min(s, this.length);
+
+    if (r !== 0) {
+      var mask = 0x3ffffff ^ 0x3ffffff >>> r << r;
+      this.words[this.length - 1] &= mask;
+    }
+
+    return this.strip();
+  }; // Return only lowers bits of number
+
+
+  BN.prototype.maskn = function maskn(bits) {
+    return this.clone().imaskn(bits);
+  }; // Add plain number `num` to `this`
+
+
+  BN.prototype.iaddn = function iaddn(num) {
+    assert(typeof num === 'number');
+    assert(num < 0x4000000);
+    if (num < 0) return this.isubn(-num); // Possible sign change
+
+    if (this.negative !== 0) {
+      if (this.length === 1 && (this.words[0] | 0) < num) {
+        this.words[0] = num - (this.words[0] | 0);
+        this.negative = 0;
+        return this;
+      }
+
+      this.negative = 0;
+      this.isubn(num);
+      this.negative = 1;
+      return this;
+    } // Add without checks
+
+
+    return this._iaddn(num);
+  };
+
+  BN.prototype._iaddn = function _iaddn(num) {
+    this.words[0] += num; // Carry
+
+    for (var i = 0; i < this.length && this.words[i] >= 0x4000000; i++) {
+      this.words[i] -= 0x4000000;
+
+      if (i === this.length - 1) {
+        this.words[i + 1] = 1;
+      } else {
+        this.words[i + 1]++;
+      }
+    }
+
+    this.length = Math.max(this.length, i + 1);
+    return this;
+  }; // Subtract plain number `num` from `this`
+
+
+  BN.prototype.isubn = function isubn(num) {
+    assert(typeof num === 'number');
+    assert(num < 0x4000000);
+    if (num < 0) return this.iaddn(-num);
+
+    if (this.negative !== 0) {
+      this.negative = 0;
+      this.iaddn(num);
+      this.negative = 1;
+      return this;
+    }
+
+    this.words[0] -= num;
+
+    if (this.length === 1 && this.words[0] < 0) {
+      this.words[0] = -this.words[0];
+      this.negative = 1;
+    } else {
+      // Carry
+      for (var i = 0; i < this.length && this.words[i] < 0; i++) {
+        this.words[i] += 0x4000000;
+        this.words[i + 1] -= 1;
+      }
+    }
+
+    return this.strip();
+  };
+
+  BN.prototype.addn = function addn(num) {
+    return this.clone().iaddn(num);
+  };
+
+  BN.prototype.subn = function subn(num) {
+    return this.clone().isubn(num);
+  };
+
+  BN.prototype.iabs = function iabs() {
+    this.negative = 0;
+    return this;
+  };
+
+  BN.prototype.abs = function abs() {
+    return this.clone().iabs();
+  };
+
+  BN.prototype._ishlnsubmul = function _ishlnsubmul(num, mul, shift) {
+    var len = num.length + shift;
+    var i;
+
+    this._expand(len);
+
+    var w;
+    var carry = 0;
+
+    for (i = 0; i < num.length; i++) {
+      w = (this.words[i + shift] | 0) + carry;
+      var right = (num.words[i] | 0) * mul;
+      w -= right & 0x3ffffff;
+      carry = (w >> 26) - (right / 0x4000000 | 0);
+      this.words[i + shift] = w & 0x3ffffff;
+    }
+
+    for (; i < this.length - shift; i++) {
+      w = (this.words[i + shift] | 0) + carry;
+      carry = w >> 26;
+      this.words[i + shift] = w & 0x3ffffff;
+    }
+
+    if (carry === 0) return this.strip(); // Subtraction overflow
+
+    assert(carry === -1);
+    carry = 0;
+
+    for (i = 0; i < this.length; i++) {
+      w = -(this.words[i] | 0) + carry;
+      carry = w >> 26;
+      this.words[i] = w & 0x3ffffff;
+    }
+
+    this.negative = 1;
+    return this.strip();
+  };
+
+  BN.prototype._wordDiv = function _wordDiv(num, mode) {
+    var shift = this.length - num.length;
+    var a = this.clone();
+    var b = num; // Normalize
+
+    var bhi = b.words[b.length - 1] | 0;
+
+    var bhiBits = this._countBits(bhi);
+
+    shift = 26 - bhiBits;
+
+    if (shift !== 0) {
+      b = b.ushln(shift);
+      a.iushln(shift);
+      bhi = b.words[b.length - 1] | 0;
+    } // Initialize quotient
+
+
+    var m = a.length - b.length;
+    var q;
+
+    if (mode !== 'mod') {
+      q = new BN(null);
+      q.length = m + 1;
+      q.words = new Array(q.length);
+
+      for (var i = 0; i < q.length; i++) {
+        q.words[i] = 0;
+      }
+    }
+
+    var diff = a.clone()._ishlnsubmul(b, 1, m);
+
+    if (diff.negative === 0) {
+      a = diff;
+
+      if (q) {
+        q.words[m] = 1;
+      }
+    }
+
+    for (var j = m - 1; j >= 0; j--) {
+      var qj = (a.words[b.length + j] | 0) * 0x4000000 + (a.words[b.length + j - 1] | 0); // NOTE: (qj / bhi) is (0x3ffffff * 0x4000000 + 0x3ffffff) / 0x2000000 max
+      // (0x7ffffff)
+
+      qj = Math.min(qj / bhi | 0, 0x3ffffff);
+
+      a._ishlnsubmul(b, qj, j);
+
+      while (a.negative !== 0) {
+        qj--;
+        a.negative = 0;
+
+        a._ishlnsubmul(b, 1, j);
+
+        if (!a.isZero()) {
+          a.negative ^= 1;
+        }
+      }
+
+      if (q) {
+        q.words[j] = qj;
+      }
+    }
+
+    if (q) {
+      q.strip();
+    }
+
+    a.strip(); // Denormalize
+
+    if (mode !== 'div' && shift !== 0) {
+      a.iushrn(shift);
+    }
+
+    return {
+      div: q || null,
+      mod: a
+    };
+  }; // NOTE: 1) `mode` can be set to `mod` to request mod only,
+  //       to `div` to request div only, or be absent to
+  //       request both div & mod
+  //       2) `positive` is true if unsigned mod is requested
+
+
+  BN.prototype.divmod = function divmod(num, mode, positive) {
+    assert(!num.isZero());
+
+    if (this.isZero()) {
+      return {
+        div: new BN(0),
+        mod: new BN(0)
+      };
+    }
+
+    var div, mod, res;
+
+    if (this.negative !== 0 && num.negative === 0) {
+      res = this.neg().divmod(num, mode);
+
+      if (mode !== 'mod') {
+        div = res.div.neg();
+      }
+
+      if (mode !== 'div') {
+        mod = res.mod.neg();
+
+        if (positive && mod.negative !== 0) {
+          mod.iadd(num);
+        }
+      }
+
+      return {
+        div: div,
+        mod: mod
+      };
+    }
+
+    if (this.negative === 0 && num.negative !== 0) {
+      res = this.divmod(num.neg(), mode);
+
+      if (mode !== 'mod') {
+        div = res.div.neg();
+      }
+
+      return {
+        div: div,
+        mod: res.mod
+      };
+    }
+
+    if ((this.negative & num.negative) !== 0) {
+      res = this.neg().divmod(num.neg(), mode);
+
+      if (mode !== 'div') {
+        mod = res.mod.neg();
+
+        if (positive && mod.negative !== 0) {
+          mod.isub(num);
+        }
+      }
+
+      return {
+        div: res.div,
+        mod: mod
+      };
+    } // Both numbers are positive at this point
+    // Strip both numbers to approximate shift value
+
+
+    if (num.length > this.length || this.cmp(num) < 0) {
+      return {
+        div: new BN(0),
+        mod: this
+      };
+    } // Very short reduction
+
+
+    if (num.length === 1) {
+      if (mode === 'div') {
+        return {
+          div: this.divn(num.words[0]),
+          mod: null
+        };
+      }
+
+      if (mode === 'mod') {
+        return {
+          div: null,
+          mod: new BN(this.modn(num.words[0]))
+        };
+      }
+
+      return {
+        div: this.divn(num.words[0]),
+        mod: new BN(this.modn(num.words[0]))
+      };
+    }
+
+    return this._wordDiv(num, mode);
+  }; // Find `this` / `num`
+
+
+  BN.prototype.div = function div(num) {
+    return this.divmod(num, 'div', false).div;
+  }; // Find `this` % `num`
+
+
+  BN.prototype.mod = function mod(num) {
+    return this.divmod(num, 'mod', false).mod;
+  };
+
+  BN.prototype.umod = function umod(num) {
+    return this.divmod(num, 'mod', true).mod;
+  }; // Find Round(`this` / `num`)
+
+
+  BN.prototype.divRound = function divRound(num) {
+    var dm = this.divmod(num); // Fast case - exact division
+
+    if (dm.mod.isZero()) return dm.div;
+    var mod = dm.div.negative !== 0 ? dm.mod.isub(num) : dm.mod;
+    var half = num.ushrn(1);
+    var r2 = num.andln(1);
+    var cmp = mod.cmp(half); // Round down
+
+    if (cmp < 0 || r2 === 1 && cmp === 0) return dm.div; // Round up
+
+    return dm.div.negative !== 0 ? dm.div.isubn(1) : dm.div.iaddn(1);
+  };
+
+  BN.prototype.modn = function modn(num) {
+    assert(num <= 0x3ffffff);
+    var p = (1 << 26) % num;
+    var acc = 0;
+
+    for (var i = this.length - 1; i >= 0; i--) {
+      acc = (p * acc + (this.words[i] | 0)) % num;
+    }
+
+    return acc;
+  }; // In-place division by number
+
+
+  BN.prototype.idivn = function idivn(num) {
+    assert(num <= 0x3ffffff);
+    var carry = 0;
+
+    for (var i = this.length - 1; i >= 0; i--) {
+      var w = (this.words[i] | 0) + carry * 0x4000000;
+      this.words[i] = w / num | 0;
+      carry = w % num;
+    }
+
+    return this.strip();
+  };
+
+  BN.prototype.divn = function divn(num) {
+    return this.clone().idivn(num);
+  };
+
+  BN.prototype.egcd = function egcd(p) {
+    assert(p.negative === 0);
+    assert(!p.isZero());
+    var x = this;
+    var y = p.clone();
+
+    if (x.negative !== 0) {
+      x = x.umod(p);
+    } else {
+      x = x.clone();
+    } // A * x + B * y = x
+
+
+    var A = new BN(1);
+    var B = new BN(0); // C * x + D * y = y
+
+    var C = new BN(0);
+    var D = new BN(1);
+    var g = 0;
+
+    while (x.isEven() && y.isEven()) {
+      x.iushrn(1);
+      y.iushrn(1);
+      ++g;
+    }
+
+    var yp = y.clone();
+    var xp = x.clone();
+
+    while (!x.isZero()) {
+      for (var i = 0, im = 1; (x.words[0] & im) === 0 && i < 26; ++i, im <<= 1) {
+        ;
+      }
+
+      if (i > 0) {
+        x.iushrn(i);
+
+        while (i-- > 0) {
+          if (A.isOdd() || B.isOdd()) {
+            A.iadd(yp);
+            B.isub(xp);
+          }
+
+          A.iushrn(1);
+          B.iushrn(1);
+        }
+      }
+
+      for (var j = 0, jm = 1; (y.words[0] & jm) === 0 && j < 26; ++j, jm <<= 1) {
+        ;
+      }
+
+      if (j > 0) {
+        y.iushrn(j);
+
+        while (j-- > 0) {
+          if (C.isOdd() || D.isOdd()) {
+            C.iadd(yp);
+            D.isub(xp);
+          }
+
+          C.iushrn(1);
+          D.iushrn(1);
+        }
+      }
+
+      if (x.cmp(y) >= 0) {
+        x.isub(y);
+        A.isub(C);
+        B.isub(D);
+      } else {
+        y.isub(x);
+        C.isub(A);
+        D.isub(B);
+      }
+    }
+
+    return {
+      a: C,
+      b: D,
+      gcd: y.iushln(g)
+    };
+  }; // This is reduced incarnation of the binary EEA
+  // above, designated to invert members of the
+  // _prime_ fields F(p) at a maximal speed
+
+
+  BN.prototype._invmp = function _invmp(p) {
+    assert(p.negative === 0);
+    assert(!p.isZero());
+    var a = this;
+    var b = p.clone();
+
+    if (a.negative !== 0) {
+      a = a.umod(p);
+    } else {
+      a = a.clone();
+    }
+
+    var x1 = new BN(1);
+    var x2 = new BN(0);
+    var delta = b.clone();
+
+    while (a.cmpn(1) > 0 && b.cmpn(1) > 0) {
+      for (var i = 0, im = 1; (a.words[0] & im) === 0 && i < 26; ++i, im <<= 1) {
+        ;
+      }
+
+      if (i > 0) {
+        a.iushrn(i);
+
+        while (i-- > 0) {
+          if (x1.isOdd()) {
+            x1.iadd(delta);
+          }
+
+          x1.iushrn(1);
+        }
+      }
+
+      for (var j = 0, jm = 1; (b.words[0] & jm) === 0 && j < 26; ++j, jm <<= 1) {
+        ;
+      }
+
+      if (j > 0) {
+        b.iushrn(j);
+
+        while (j-- > 0) {
+          if (x2.isOdd()) {
+            x2.iadd(delta);
+          }
+
+          x2.iushrn(1);
+        }
+      }
+
+      if (a.cmp(b) >= 0) {
+        a.isub(b);
+        x1.isub(x2);
+      } else {
+        b.isub(a);
+        x2.isub(x1);
+      }
+    }
+
+    var res;
+
+    if (a.cmpn(1) === 0) {
+      res = x1;
+    } else {
+      res = x2;
+    }
+
+    if (res.cmpn(0) < 0) {
+      res.iadd(p);
+    }
+
+    return res;
+  };
+
+  BN.prototype.gcd = function gcd(num) {
+    if (this.isZero()) return num.abs();
+    if (num.isZero()) return this.abs();
+    var a = this.clone();
+    var b = num.clone();
+    a.negative = 0;
+    b.negative = 0; // Remove common factor of two
+
+    for (var shift = 0; a.isEven() && b.isEven(); shift++) {
+      a.iushrn(1);
+      b.iushrn(1);
+    }
+
+    do {
+      while (a.isEven()) {
+        a.iushrn(1);
+      }
+
+      while (b.isEven()) {
+        b.iushrn(1);
+      }
+
+      var r = a.cmp(b);
+
+      if (r < 0) {
+        // Swap `a` and `b` to make `a` always bigger than `b`
+        var t = a;
+        a = b;
+        b = t;
+      } else if (r === 0 || b.cmpn(1) === 0) {
+        break;
+      }
+
+      a.isub(b);
+    } while (true);
+
+    return b.iushln(shift);
+  }; // Invert number in the field F(num)
+
+
+  BN.prototype.invm = function invm(num) {
+    return this.egcd(num).a.umod(num);
+  };
+
+  BN.prototype.isEven = function isEven() {
+    return (this.words[0] & 1) === 0;
+  };
+
+  BN.prototype.isOdd = function isOdd() {
+    return (this.words[0] & 1) === 1;
+  }; // And first word and num
+
+
+  BN.prototype.andln = function andln(num) {
+    return this.words[0] & num;
+  }; // Increment at the bit position in-line
+
+
+  BN.prototype.bincn = function bincn(bit) {
+    assert(typeof bit === 'number');
+    var r = bit % 26;
+    var s = (bit - r) / 26;
+    var q = 1 << r; // Fast case: bit is much higher than all existing words
+
+    if (this.length <= s) {
+      this._expand(s + 1);
+
+      this.words[s] |= q;
+      return this;
+    } // Add bit and propagate, if needed
+
+
+    var carry = q;
+
+    for (var i = s; carry !== 0 && i < this.length; i++) {
+      var w = this.words[i] | 0;
+      w += carry;
+      carry = w >>> 26;
+      w &= 0x3ffffff;
+      this.words[i] = w;
+    }
+
+    if (carry !== 0) {
+      this.words[i] = carry;
+      this.length++;
+    }
+
+    return this;
+  };
+
+  BN.prototype.isZero = function isZero() {
+    return this.length === 1 && this.words[0] === 0;
+  };
+
+  BN.prototype.cmpn = function cmpn(num) {
+    var negative = num < 0;
+    if (this.negative !== 0 && !negative) return -1;
+    if (this.negative === 0 && negative) return 1;
+    this.strip();
+    var res;
+
+    if (this.length > 1) {
+      res = 1;
+    } else {
+      if (negative) {
+        num = -num;
+      }
+
+      assert(num <= 0x3ffffff, 'Number is too big');
+      var w = this.words[0] | 0;
+      res = w === num ? 0 : w < num ? -1 : 1;
+    }
+
+    if (this.negative !== 0) return -res | 0;
+    return res;
+  }; // Compare two numbers and return:
+  // 1 - if `this` > `num`
+  // 0 - if `this` == `num`
+  // -1 - if `this` < `num`
+
+
+  BN.prototype.cmp = function cmp(num) {
+    if (this.negative !== 0 && num.negative === 0) return -1;
+    if (this.negative === 0 && num.negative !== 0) return 1;
+    var res = this.ucmp(num);
+    if (this.negative !== 0) return -res | 0;
+    return res;
+  }; // Unsigned comparison
+
+
+  BN.prototype.ucmp = function ucmp(num) {
+    // At this point both numbers have the same sign
+    if (this.length > num.length) return 1;
+    if (this.length < num.length) return -1;
+    var res = 0;
+
+    for (var i = this.length - 1; i >= 0; i--) {
+      var a = this.words[i] | 0;
+      var b = num.words[i] | 0;
+      if (a === b) continue;
+
+      if (a < b) {
+        res = -1;
+      } else if (a > b) {
+        res = 1;
+      }
+
+      break;
+    }
+
+    return res;
+  };
+
+  BN.prototype.gtn = function gtn(num) {
+    return this.cmpn(num) === 1;
+  };
+
+  BN.prototype.gt = function gt(num) {
+    return this.cmp(num) === 1;
+  };
+
+  BN.prototype.gten = function gten(num) {
+    return this.cmpn(num) >= 0;
+  };
+
+  BN.prototype.gte = function gte(num) {
+    return this.cmp(num) >= 0;
+  };
+
+  BN.prototype.ltn = function ltn(num) {
+    return this.cmpn(num) === -1;
+  };
+
+  BN.prototype.lt = function lt(num) {
+    return this.cmp(num) === -1;
+  };
+
+  BN.prototype.lten = function lten(num) {
+    return this.cmpn(num) <= 0;
+  };
+
+  BN.prototype.lte = function lte(num) {
+    return this.cmp(num) <= 0;
+  };
+
+  BN.prototype.eqn = function eqn(num) {
+    return this.cmpn(num) === 0;
+  };
+
+  BN.prototype.eq = function eq(num) {
+    return this.cmp(num) === 0;
+  }; //
+  // A reduce context, could be using montgomery or something better, depending
+  // on the `m` itself.
+  //
+
+
+  BN.red = function red(num) {
+    return new Red(num);
+  };
+
+  BN.prototype.toRed = function toRed(ctx) {
+    assert(!this.red, 'Already a number in reduction context');
+    assert(this.negative === 0, 'red works only with positives');
+    return ctx.convertTo(this)._forceRed(ctx);
+  };
+
+  BN.prototype.fromRed = function fromRed() {
+    assert(this.red, 'fromRed works only with numbers in reduction context');
+    return this.red.convertFrom(this);
+  };
+
+  BN.prototype._forceRed = function _forceRed(ctx) {
+    this.red = ctx;
+    return this;
+  };
+
+  BN.prototype.forceRed = function forceRed(ctx) {
+    assert(!this.red, 'Already a number in reduction context');
+    return this._forceRed(ctx);
+  };
+
+  BN.prototype.redAdd = function redAdd(num) {
+    assert(this.red, 'redAdd works only with red numbers');
+    return this.red.add(this, num);
+  };
+
+  BN.prototype.redIAdd = function redIAdd(num) {
+    assert(this.red, 'redIAdd works only with red numbers');
+    return this.red.iadd(this, num);
+  };
+
+  BN.prototype.redSub = function redSub(num) {
+    assert(this.red, 'redSub works only with red numbers');
+    return this.red.sub(this, num);
+  };
+
+  BN.prototype.redISub = function redISub(num) {
+    assert(this.red, 'redISub works only with red numbers');
+    return this.red.isub(this, num);
+  };
+
+  BN.prototype.redShl = function redShl(num) {
+    assert(this.red, 'redShl works only with red numbers');
+    return this.red.shl(this, num);
+  };
+
+  BN.prototype.redMul = function redMul(num) {
+    assert(this.red, 'redMul works only with red numbers');
+
+    this.red._verify2(this, num);
+
+    return this.red.mul(this, num);
+  };
+
+  BN.prototype.redIMul = function redIMul(num) {
+    assert(this.red, 'redMul works only with red numbers');
+
+    this.red._verify2(this, num);
+
+    return this.red.imul(this, num);
+  };
+
+  BN.prototype.redSqr = function redSqr() {
+    assert(this.red, 'redSqr works only with red numbers');
+
+    this.red._verify1(this);
+
+    return this.red.sqr(this);
+  };
+
+  BN.prototype.redISqr = function redISqr() {
+    assert(this.red, 'redISqr works only with red numbers');
+
+    this.red._verify1(this);
+
+    return this.red.isqr(this);
+  }; // Square root over p
+
+
+  BN.prototype.redSqrt = function redSqrt() {
+    assert(this.red, 'redSqrt works only with red numbers');
+
+    this.red._verify1(this);
+
+    return this.red.sqrt(this);
+  };
+
+  BN.prototype.redInvm = function redInvm() {
+    assert(this.red, 'redInvm works only with red numbers');
+
+    this.red._verify1(this);
+
+    return this.red.invm(this);
+  }; // Return negative clone of `this` % `red modulo`
+
+
+  BN.prototype.redNeg = function redNeg() {
+    assert(this.red, 'redNeg works only with red numbers');
+
+    this.red._verify1(this);
+
+    return this.red.neg(this);
+  };
+
+  BN.prototype.redPow = function redPow(num) {
+    assert(this.red && !num.red, 'redPow(normalNum)');
+
+    this.red._verify1(this);
+
+    return this.red.pow(this, num);
+  }; // Prime numbers with efficient reduction
+
+
+  var primes = {
+    k256: null,
+    p224: null,
+    p192: null,
+    p25519: null
+  }; // Pseudo-Mersenne prime
+
+  function MPrime(name, p) {
+    // P = 2 ^ N - K
+    this.name = name;
+    this.p = new BN(p, 16);
+    this.n = this.p.bitLength();
+    this.k = new BN(1).iushln(this.n).isub(this.p);
+    this.tmp = this._tmp();
+  }
+
+  MPrime.prototype._tmp = function _tmp() {
+    var tmp = new BN(null);
+    tmp.words = new Array(Math.ceil(this.n / 13));
+    return tmp;
+  };
+
+  MPrime.prototype.ireduce = function ireduce(num) {
+    // Assumes that `num` is less than `P^2`
+    // num = HI * (2 ^ N - K) + HI * K + LO = HI * K + LO (mod P)
+    var r = num;
+    var rlen;
+
+    do {
+      this.split(r, this.tmp);
+      r = this.imulK(r);
+      r = r.iadd(this.tmp);
+      rlen = r.bitLength();
+    } while (rlen > this.n);
+
+    var cmp = rlen < this.n ? -1 : r.ucmp(this.p);
+
+    if (cmp === 0) {
+      r.words[0] = 0;
+      r.length = 1;
+    } else if (cmp > 0) {
+      r.isub(this.p);
+    } else {
+      if (r.strip !== undefined) {
+        // r is BN v4 instance
+        r.strip();
+      } else {
+        // r is BN v5 instance
+        r._strip();
+      }
+    }
+
+    return r;
+  };
+
+  MPrime.prototype.split = function split(input, out) {
+    input.iushrn(this.n, 0, out);
+  };
+
+  MPrime.prototype.imulK = function imulK(num) {
+    return num.imul(this.k);
+  };
+
+  function K256() {
+    MPrime.call(this, 'k256', 'ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff fffffffe fffffc2f');
+  }
+
+  inherits(K256, MPrime);
+
+  K256.prototype.split = function split(input, output) {
+    // 256 = 9 * 26 + 22
+    var mask = 0x3fffff;
+    var outLen = Math.min(input.length, 9);
+
+    for (var i = 0; i < outLen; i++) {
+      output.words[i] = input.words[i];
+    }
+
+    output.length = outLen;
+
+    if (input.length <= 9) {
+      input.words[0] = 0;
+      input.length = 1;
+      return;
+    } // Shift by 9 limbs
+
+
+    var prev = input.words[9];
+    output.words[output.length++] = prev & mask;
+
+    for (i = 10; i < input.length; i++) {
+      var next = input.words[i] | 0;
+      input.words[i - 10] = (next & mask) << 4 | prev >>> 22;
+      prev = next;
+    }
+
+    prev >>>= 22;
+    input.words[i - 10] = prev;
+
+    if (prev === 0 && input.length > 10) {
+      input.length -= 10;
+    } else {
+      input.length -= 9;
+    }
+  };
+
+  K256.prototype.imulK = function imulK(num) {
+    // K = 0x1000003d1 = [ 0x40, 0x3d1 ]
+    num.words[num.length] = 0;
+    num.words[num.length + 1] = 0;
+    num.length += 2; // bounded at: 0x40 * 0x3ffffff + 0x3d0 = 0x100000390
+
+    var lo = 0;
+
+    for (var i = 0; i < num.length; i++) {
+      var w = num.words[i] | 0;
+      lo += w * 0x3d1;
+      num.words[i] = lo & 0x3ffffff;
+      lo = w * 0x40 + (lo / 0x4000000 | 0);
+    } // Fast length reduction
+
+
+    if (num.words[num.length - 1] === 0) {
+      num.length--;
+
+      if (num.words[num.length - 1] === 0) {
+        num.length--;
+      }
+    }
+
+    return num;
+  };
+
+  function P224() {
+    MPrime.call(this, 'p224', 'ffffffff ffffffff ffffffff ffffffff 00000000 00000000 00000001');
+  }
+
+  inherits(P224, MPrime);
+
+  function P192() {
+    MPrime.call(this, 'p192', 'ffffffff ffffffff ffffffff fffffffe ffffffff ffffffff');
+  }
+
+  inherits(P192, MPrime);
+
+  function P25519() {
+    // 2 ^ 255 - 19
+    MPrime.call(this, '25519', '7fffffffffffffff ffffffffffffffff ffffffffffffffff ffffffffffffffed');
+  }
+
+  inherits(P25519, MPrime);
+
+  P25519.prototype.imulK = function imulK(num) {
+    // K = 0x13
+    var carry = 0;
+
+    for (var i = 0; i < num.length; i++) {
+      var hi = (num.words[i] | 0) * 0x13 + carry;
+      var lo = hi & 0x3ffffff;
+      hi >>>= 26;
+      num.words[i] = lo;
+      carry = hi;
+    }
+
+    if (carry !== 0) {
+      num.words[num.length++] = carry;
+    }
+
+    return num;
+  }; // Exported mostly for testing purposes, use plain name instead
+
+
+  BN._prime = function prime(name) {
+    // Cached version of prime
+    if (primes[name]) return primes[name];
+    var prime;
+
+    if (name === 'k256') {
+      prime = new K256();
+    } else if (name === 'p224') {
+      prime = new P224();
+    } else if (name === 'p192') {
+      prime = new P192();
+    } else if (name === 'p25519') {
+      prime = new P25519();
+    } else {
+      throw new Error('Unknown prime ' + name);
+    }
+
+    primes[name] = prime;
+    return prime;
+  }; //
+  // Base reduction engine
+  //
+
+
+  function Red(m) {
+    if (typeof m === 'string') {
+      var prime = BN._prime(m);
+
+      this.m = prime.p;
+      this.prime = prime;
+    } else {
+      assert(m.gtn(1), 'modulus must be greater than 1');
+      this.m = m;
+      this.prime = null;
+    }
+  }
+
+  Red.prototype._verify1 = function _verify1(a) {
+    assert(a.negative === 0, 'red works only with positives');
+    assert(a.red, 'red works only with red numbers');
+  };
+
+  Red.prototype._verify2 = function _verify2(a, b) {
+    assert((a.negative | b.negative) === 0, 'red works only with positives');
+    assert(a.red && a.red === b.red, 'red works only with red numbers');
+  };
+
+  Red.prototype.imod = function imod(a) {
+    if (this.prime) return this.prime.ireduce(a)._forceRed(this);
+    return a.umod(this.m)._forceRed(this);
+  };
+
+  Red.prototype.neg = function neg(a) {
+    if (a.isZero()) {
+      return a.clone();
+    }
+
+    return this.m.sub(a)._forceRed(this);
+  };
+
+  Red.prototype.add = function add(a, b) {
+    this._verify2(a, b);
+
+    var res = a.add(b);
+
+    if (res.cmp(this.m) >= 0) {
+      res.isub(this.m);
+    }
+
+    return res._forceRed(this);
+  };
+
+  Red.prototype.iadd = function iadd(a, b) {
+    this._verify2(a, b);
+
+    var res = a.iadd(b);
+
+    if (res.cmp(this.m) >= 0) {
+      res.isub(this.m);
+    }
+
+    return res;
+  };
+
+  Red.prototype.sub = function sub(a, b) {
+    this._verify2(a, b);
+
+    var res = a.sub(b);
+
+    if (res.cmpn(0) < 0) {
+      res.iadd(this.m);
+    }
+
+    return res._forceRed(this);
+  };
+
+  Red.prototype.isub = function isub(a, b) {
+    this._verify2(a, b);
+
+    var res = a.isub(b);
+
+    if (res.cmpn(0) < 0) {
+      res.iadd(this.m);
+    }
+
+    return res;
+  };
+
+  Red.prototype.shl = function shl(a, num) {
+    this._verify1(a);
+
+    return this.imod(a.ushln(num));
+  };
+
+  Red.prototype.imul = function imul(a, b) {
+    this._verify2(a, b);
+
+    return this.imod(a.imul(b));
+  };
+
+  Red.prototype.mul = function mul(a, b) {
+    this._verify2(a, b);
+
+    return this.imod(a.mul(b));
+  };
+
+  Red.prototype.isqr = function isqr(a) {
+    return this.imul(a, a.clone());
+  };
+
+  Red.prototype.sqr = function sqr(a) {
+    return this.mul(a, a);
+  };
+
+  Red.prototype.sqrt = function sqrt(a) {
+    if (a.isZero()) return a.clone();
+    var mod3 = this.m.andln(3);
+    assert(mod3 % 2 === 1); // Fast case
+
+    if (mod3 === 3) {
+      var pow = this.m.add(new BN(1)).iushrn(2);
+      return this.pow(a, pow);
+    } // Tonelli-Shanks algorithm (Totally unoptimized and slow)
+    //
+    // Find Q and S, that Q * 2 ^ S = (P - 1)
+
+
+    var q = this.m.subn(1);
+    var s = 0;
+
+    while (!q.isZero() && q.andln(1) === 0) {
+      s++;
+      q.iushrn(1);
+    }
+
+    assert(!q.isZero());
+    var one = new BN(1).toRed(this);
+    var nOne = one.redNeg(); // Find quadratic non-residue
+    // NOTE: Max is such because of generalized Riemann hypothesis.
+
+    var lpow = this.m.subn(1).iushrn(1);
+    var z = this.m.bitLength();
+    z = new BN(2 * z * z).toRed(this);
+
+    while (this.pow(z, lpow).cmp(nOne) !== 0) {
+      z.redIAdd(nOne);
+    }
+
+    var c = this.pow(z, q);
+    var r = this.pow(a, q.addn(1).iushrn(1));
+    var t = this.pow(a, q);
+    var m = s;
+
+    while (t.cmp(one) !== 0) {
+      var tmp = t;
+
+      for (var i = 0; tmp.cmp(one) !== 0; i++) {
+        tmp = tmp.redSqr();
+      }
+
+      assert(i < m);
+      var b = this.pow(c, new BN(1).iushln(m - i - 1));
+      r = r.redMul(b);
+      c = b.redSqr();
+      t = t.redMul(c);
+      m = i;
+    }
+
+    return r;
+  };
+
+  Red.prototype.invm = function invm(a) {
+    var inv = a._invmp(this.m);
+
+    if (inv.negative !== 0) {
+      inv.negative = 0;
+      return this.imod(inv).redNeg();
+    } else {
+      return this.imod(inv);
+    }
+  };
+
+  Red.prototype.pow = function pow(a, num) {
+    if (num.isZero()) return new BN(1).toRed(this);
+    if (num.cmpn(1) === 0) return a.clone();
+    var windowSize = 4;
+    var wnd = new Array(1 << windowSize);
+    wnd[0] = new BN(1).toRed(this);
+    wnd[1] = a;
+
+    for (var i = 2; i < wnd.length; i++) {
+      wnd[i] = this.mul(wnd[i - 1], a);
+    }
+
+    var res = wnd[0];
+    var current = 0;
+    var currentLen = 0;
+    var start = num.bitLength() % 26;
+
+    if (start === 0) {
+      start = 26;
+    }
+
+    for (i = num.length - 1; i >= 0; i--) {
+      var word = num.words[i];
+
+      for (var j = start - 1; j >= 0; j--) {
+        var bit = word >> j & 1;
+
+        if (res !== wnd[0]) {
+          res = this.sqr(res);
+        }
+
+        if (bit === 0 && current === 0) {
+          currentLen = 0;
+          continue;
+        }
+
+        current <<= 1;
+        current |= bit;
+        currentLen++;
+        if (currentLen !== windowSize && (i !== 0 || j !== 0)) continue;
+        res = this.mul(res, wnd[current]);
+        currentLen = 0;
+        current = 0;
+      }
+
+      start = 26;
+    }
+
+    return res;
+  };
+
+  Red.prototype.convertTo = function convertTo(num) {
+    var r = num.umod(this.m);
+    return r === num ? r.clone() : r;
+  };
+
+  Red.prototype.convertFrom = function convertFrom(num) {
+    var res = num.clone();
+    res.red = null;
+    return res;
+  }; //
+  // Montgomery method engine
+  //
+
+
+  BN.mont = function mont(num) {
+    return new Mont(num);
+  };
+
+  function Mont(m) {
+    Red.call(this, m);
+    this.shift = this.m.bitLength();
+
+    if (this.shift % 26 !== 0) {
+      this.shift += 26 - this.shift % 26;
+    }
+
+    this.r = new BN(1).iushln(this.shift);
+    this.r2 = this.imod(this.r.sqr());
+    this.rinv = this.r._invmp(this.m);
+    this.minv = this.rinv.mul(this.r).isubn(1).div(this.m);
+    this.minv = this.minv.umod(this.r);
+    this.minv = this.r.sub(this.minv);
+  }
+
+  inherits(Mont, Red);
+
+  Mont.prototype.convertTo = function convertTo(num) {
+    return this.imod(num.ushln(this.shift));
+  };
+
+  Mont.prototype.convertFrom = function convertFrom(num) {
+    var r = this.imod(num.mul(this.rinv));
+    r.red = null;
+    return r;
+  };
+
+  Mont.prototype.imul = function imul(a, b) {
+    if (a.isZero() || b.isZero()) {
+      a.words[0] = 0;
+      a.length = 1;
+      return a;
+    }
+
+    var t = a.imul(b);
+    var c = t.maskn(this.shift).mul(this.minv).imaskn(this.shift).mul(this.m);
+    var u = t.isub(c).iushrn(this.shift);
+    var res = u;
+
+    if (u.cmp(this.m) >= 0) {
+      res = u.isub(this.m);
+    } else if (u.cmpn(0) < 0) {
+      res = u.iadd(this.m);
+    }
+
+    return res._forceRed(this);
+  };
+
+  Mont.prototype.mul = function mul(a, b) {
+    if (a.isZero() || b.isZero()) return new BN(0)._forceRed(this);
+    var t = a.mul(b);
+    var c = t.maskn(this.shift).mul(this.minv).imaskn(this.shift).mul(this.m);
+    var u = t.isub(c).iushrn(this.shift);
+    var res = u;
+
+    if (u.cmp(this.m) >= 0) {
+      res = u.isub(this.m);
+    } else if (u.cmpn(0) < 0) {
+      res = u.iadd(this.m);
+    }
+
+    return res._forceRed(this);
+  };
+
+  Mont.prototype.invm = function invm(a) {
+    // (AR)^-1 * R^2 = (A^-1 * R^-1) * R^2 = A^-1 * R
+    var res = this.imod(a._invmp(this.m).mul(this.r2));
+    return res._forceRed(this);
+  };
+})(typeof module === 'undefined' || module, void 0);
+
+},{"buffer":139}],31:[function(require,module,exports){
+"use strict";
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.version = void 0;
-exports.version = "bytes/5.1.0";
+exports.version = "bytes/5.4.0";
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5416,7 +8877,7 @@ function hexlify(value, options) {
     var hex = "";
 
     while (value) {
-      hex = HexCharacters[value & 0x0f] + hex;
+      hex = HexCharacters[value & 0xf] + hex;
       value = Math.floor(value / 16);
     }
 
@@ -5429,6 +8890,16 @@ function hexlify(value, options) {
     }
 
     return "0x00";
+  }
+
+  if (typeof value === "bigint") {
+    value = value.toString(16);
+
+    if (value.length % 2) {
+      return "0x0" + value;
+    }
+
+    return "0x" + value;
   }
 
   if (options.allowMissingPrefix && typeof value === "string" && value.substring(0, 2) !== "0x") {
@@ -5709,7 +9180,7 @@ function joinSignature(signature) {
 
 exports.joinSignature = joinSignature;
 
-},{"./_version":30,"@ethersproject/logger":45}],32:[function(require,module,exports){
+},{"./_version":31,"@ethersproject/logger":46}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5718,13 +9189,13 @@ Object.defineProperty(exports, "__esModule", {
 exports.AddressZero = void 0;
 exports.AddressZero = "0x0000000000000000000000000000000000000000";
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MaxUint256 = exports.WeiPerEther = exports.Two = exports.One = exports.Zero = exports.NegativeOne = void 0;
+exports.MaxInt256 = exports.MinInt256 = exports.MaxUint256 = exports.WeiPerEther = exports.Two = exports.One = exports.Zero = exports.NegativeOne = void 0;
 
 var bignumber_1 = require("@ethersproject/bignumber");
 
@@ -5740,8 +9211,12 @@ var WeiPerEther = /*#__PURE__*/bignumber_1.BigNumber.from("1000000000000000000")
 exports.WeiPerEther = WeiPerEther;
 var MaxUint256 = /*#__PURE__*/bignumber_1.BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 exports.MaxUint256 = MaxUint256;
+var MinInt256 = /*#__PURE__*/bignumber_1.BigNumber.from("-0x8000000000000000000000000000000000000000000000000000000000000000");
+exports.MinInt256 = MinInt256;
+var MaxInt256 = /*#__PURE__*/bignumber_1.BigNumber.from("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+exports.MaxInt256 = MaxInt256;
 
-},{"@ethersproject/bignumber":29}],34:[function(require,module,exports){
+},{"@ethersproject/bignumber":29}],35:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5750,13 +9225,13 @@ Object.defineProperty(exports, "__esModule", {
 exports.HashZero = void 0;
 exports.HashZero = "0x0000000000000000000000000000000000000000000000000000000000000000";
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.EtherSymbol = exports.HashZero = exports.MaxUint256 = exports.WeiPerEther = exports.Two = exports.One = exports.Zero = exports.NegativeOne = exports.AddressZero = void 0;
+exports.EtherSymbol = exports.HashZero = exports.MaxInt256 = exports.MinInt256 = exports.MaxUint256 = exports.WeiPerEther = exports.Two = exports.One = exports.Zero = exports.NegativeOne = exports.AddressZero = void 0;
 
 var addresses_1 = require("./addresses");
 
@@ -5805,6 +9280,18 @@ Object.defineProperty(exports, "MaxUint256", {
     return bignumbers_1.MaxUint256;
   }
 });
+Object.defineProperty(exports, "MinInt256", {
+  enumerable: true,
+  get: function get() {
+    return bignumbers_1.MinInt256;
+  }
+});
+Object.defineProperty(exports, "MaxInt256", {
+  enumerable: true,
+  get: function get() {
+    return bignumbers_1.MaxInt256;
+  }
+});
 
 var hashes_1 = require("./hashes");
 
@@ -5824,7 +9311,7 @@ Object.defineProperty(exports, "EtherSymbol", {
   }
 });
 
-},{"./addresses":32,"./bignumbers":33,"./hashes":34,"./strings":36}],36:[function(require,module,exports){
+},{"./addresses":33,"./bignumbers":34,"./hashes":35,"./strings":37}],37:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5834,16 +9321,16 @@ exports.EtherSymbol = void 0; // NFKC (composed)             // (decomposed)
 
 exports.EtherSymbol = "\u039E"; // "\uD835\uDF63";
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.version = void 0;
-exports.version = "hash/5.1.0";
+exports.version = "hash/5.4.0";
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5861,7 +9348,7 @@ function id(text) {
 
 exports.id = id;
 
-},{"@ethersproject/keccak256":43,"@ethersproject/strings":53}],39:[function(require,module,exports){
+},{"@ethersproject/keccak256":44,"@ethersproject/strings":54}],40:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5917,7 +9404,7 @@ Object.defineProperty(exports, "_TypedDataEncoder", {
   }
 });
 
-},{"./id":38,"./message":40,"./namehash":41,"./typed-data":42}],40:[function(require,module,exports){
+},{"./id":39,"./message":41,"./namehash":42,"./typed-data":43}],41:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5943,7 +9430,7 @@ function hashMessage(message) {
 
 exports.hashMessage = hashMessage;
 
-},{"@ethersproject/bytes":31,"@ethersproject/keccak256":43,"@ethersproject/strings":53}],41:[function(require,module,exports){
+},{"@ethersproject/bytes":32,"@ethersproject/keccak256":44,"@ethersproject/strings":54}],42:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5987,16 +9474,22 @@ exports.isValidName = isValidName;
 function namehash(name) {
   /* istanbul ignore if */
   if (typeof name !== "string") {
-    logger.throwArgumentError("invalid address - " + String(name), "name", name);
+    logger.throwArgumentError("invalid ENS name; not a string", "name", name);
   }
 
+  var current = name;
   var result = Zeros;
 
-  while (name.length) {
-    var partition = name.match(Partition);
+  while (current.length) {
+    var partition = current.match(Partition);
+
+    if (partition == null || partition[2] === "") {
+      logger.throwArgumentError("invalid ENS address; missing component", "name", name);
+    }
+
     var label = strings_1.toUtf8Bytes(strings_1.nameprep(partition[3]));
     result = keccak256_1.keccak256(bytes_1.concat([result, keccak256_1.keccak256(label)]));
-    name = partition[2] || "";
+    current = partition[2] || "";
   }
 
   return bytes_1.hexlify(result);
@@ -6004,7 +9497,7 @@ function namehash(name) {
 
 exports.namehash = namehash;
 
-},{"./_version":37,"@ethersproject/bytes":31,"@ethersproject/keccak256":43,"@ethersproject/logger":45,"@ethersproject/strings":53}],42:[function(require,module,exports){
+},{"./_version":38,"@ethersproject/bytes":32,"@ethersproject/keccak256":44,"@ethersproject/logger":46,"@ethersproject/strings":54}],43:[function(require,module,exports){
 "use strict";
 
 var __awaiter = void 0 && (void 0).__awaiter || function (thisArg, _arguments, P, generator) {
@@ -6326,9 +9819,7 @@ function encodeType(name, fields) {
   }).join(",") + ")";
 }
 
-var TypedDataEncoder =
-/** @class */
-function () {
+var TypedDataEncoder = function () {
   function TypedDataEncoder(types) {
     properties_1.defineReadOnly(this, "types", Object.freeze(properties_1.deepCopy(types)));
     properties_1.defineReadOnly(this, "_encoderCache", {});
@@ -6764,7 +10255,7 @@ function () {
 
 exports.TypedDataEncoder = TypedDataEncoder;
 
-},{"./_version":37,"./id":38,"@ethersproject/address":25,"@ethersproject/bignumber":29,"@ethersproject/bytes":31,"@ethersproject/keccak256":43,"@ethersproject/logger":45,"@ethersproject/properties":47}],43:[function(require,module,exports){
+},{"./_version":38,"./id":39,"@ethersproject/address":25,"@ethersproject/bignumber":29,"@ethersproject/bytes":32,"@ethersproject/keccak256":44,"@ethersproject/logger":46,"@ethersproject/properties":48}],44:[function(require,module,exports){
 "use strict";
 
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
@@ -6788,16 +10279,16 @@ function keccak256(data) {
 
 exports.keccak256 = keccak256;
 
-},{"@ethersproject/bytes":31,"js-sha3":318}],44:[function(require,module,exports){
+},{"@ethersproject/bytes":32,"js-sha3":320}],45:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.version = void 0;
-exports.version = "logger/5.1.0";
+exports.version = "logger/5.4.0";
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6928,14 +10419,19 @@ var ErrorCode;
   ErrorCode["REPLACEMENT_UNDERPRICED"] = "REPLACEMENT_UNDERPRICED"; // The gas limit could not be estimated
   //   - transaction: the transaction passed to estimateGas
 
-  ErrorCode["UNPREDICTABLE_GAS_LIMIT"] = "UNPREDICTABLE_GAS_LIMIT";
+  ErrorCode["UNPREDICTABLE_GAS_LIMIT"] = "UNPREDICTABLE_GAS_LIMIT"; // The transaction was replaced by one with a higher gas price
+  //   - reason: "cancelled", "replaced" or "repriced"
+  //   - cancelled: true if reason == "cancelled" or reason == "replaced")
+  //   - hash: original transaction hash
+  //   - replacement: the full TransactionsResponse for the replacement
+  //   - receipt: the receipt of the replacement
+
+  ErrorCode["TRANSACTION_REPLACED"] = "TRANSACTION_REPLACED";
 })(ErrorCode = exports.ErrorCode || (exports.ErrorCode = {}));
 
 ;
 
-var Logger =
-/** @class */
-function () {
+var Logger = function () {
   function Logger(version) {
     Object.defineProperty(this, "version", {
       enumerable: true,
@@ -7188,16 +10684,16 @@ function () {
 
 exports.Logger = Logger;
 
-},{"./_version":44}],46:[function(require,module,exports){
+},{"./_version":45}],47:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.version = void 0;
-exports.version = "properties/5.1.0";
+exports.version = "properties/5.4.0";
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -7515,9 +11011,7 @@ function deepCopy(object) {
 
 exports.deepCopy = deepCopy;
 
-var Description =
-/** @class */
-function () {
+var Description = function () {
   function Description(info) {
     for (var key in info) {
       this[key] = deepCopy(info[key]);
@@ -7529,16 +11023,16 @@ function () {
 
 exports.Description = Description;
 
-},{"./_version":46,"@ethersproject/logger":45}],48:[function(require,module,exports){
+},{"./_version":47,"@ethersproject/logger":46}],49:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.version = void 0;
-exports.version = "rlp/5.1.0";
+exports.version = "rlp/5.4.0";
 
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7717,16 +11211,16 @@ function decode(data) {
 
 exports.decode = decode;
 
-},{"./_version":48,"@ethersproject/bytes":31,"@ethersproject/logger":45}],50:[function(require,module,exports){
+},{"./_version":49,"@ethersproject/bytes":32,"@ethersproject/logger":46}],51:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.version = void 0;
-exports.version = "strings/5.1.0";
+exports.version = "strings/5.4.0";
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7778,7 +11272,7 @@ function parseBytes32String(bytes) {
 
 exports.parseBytes32String = parseBytes32String;
 
-},{"./utf8":54,"@ethersproject/bytes":31,"@ethersproject/constants":35}],52:[function(require,module,exports){
+},{"./utf8":55,"@ethersproject/bytes":32,"@ethersproject/constants":36}],53:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8178,7 +11672,7 @@ function nameprep(value) {
 
 exports.nameprep = nameprep;
 
-},{"./utf8":54}],53:[function(require,module,exports){
+},{"./utf8":55}],54:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8255,7 +11749,7 @@ Object.defineProperty(exports, "Utf8ErrorReason", {
   }
 });
 
-},{"./bytes32":51,"./idna":52,"./utf8":54}],54:[function(require,module,exports){
+},{"./bytes32":52,"./idna":53,"./utf8":55}],55:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8576,7 +12070,7 @@ function toUtf8CodePoints(str, form) {
 
 exports.toUtf8CodePoints = toUtf8CodePoints;
 
-},{"./_version":50,"@ethersproject/bytes":31,"@ethersproject/logger":45}],55:[function(require,module,exports){
+},{"./_version":51,"@ethersproject/bytes":32,"@ethersproject/logger":46}],56:[function(require,module,exports){
 'use strict';
 
 var asn1 = exports;
@@ -8587,7 +12081,7 @@ asn1.constants = require('./asn1/constants');
 asn1.decoders = require('./asn1/decoders');
 asn1.encoders = require('./asn1/encoders');
 
-},{"./asn1/api":56,"./asn1/base":58,"./asn1/constants":62,"./asn1/decoders":64,"./asn1/encoders":67,"bn.js":136}],56:[function(require,module,exports){
+},{"./asn1/api":57,"./asn1/base":59,"./asn1/constants":63,"./asn1/decoders":65,"./asn1/encoders":68,"bn.js":137}],57:[function(require,module,exports){
 'use strict';
 
 var encoders = require('./encoders');
@@ -8649,7 +12143,7 @@ reporter) {
   return this._getEncoder(enc).encode(data, reporter);
 };
 
-},{"./decoders":64,"./encoders":67,"inherits":315}],57:[function(require,module,exports){
+},{"./decoders":65,"./encoders":68,"inherits":317}],58:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8779,7 +12273,7 @@ EncoderBuffer.prototype.join = function join(out, offset) {
   return out;
 };
 
-},{"../base/reporter":60,"inherits":315,"safer-buffer":375}],58:[function(require,module,exports){
+},{"../base/reporter":61,"inherits":317,"safer-buffer":377}],59:[function(require,module,exports){
 'use strict';
 
 var base = exports;
@@ -8788,7 +12282,7 @@ base.DecoderBuffer = require('./buffer').DecoderBuffer;
 base.EncoderBuffer = require('./buffer').EncoderBuffer;
 base.Node = require('./node');
 
-},{"./buffer":57,"./node":59,"./reporter":60}],59:[function(require,module,exports){
+},{"./buffer":58,"./node":60,"./reporter":61}],60:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -9276,7 +12770,7 @@ Node.prototype._isPrintstr = function isPrintstr(str) {
   return /^[A-Za-z0-9 '()+,-./:=?]*$/.test(str);
 };
 
-},{"../base/buffer":57,"../base/reporter":60,"minimalistic-assert":328}],60:[function(require,module,exports){
+},{"../base/buffer":58,"../base/reporter":61,"minimalistic-assert":330}],61:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -9393,7 +12887,7 @@ ReporterError.prototype.rethrow = function rethrow(msg) {
   return this;
 };
 
-},{"inherits":315}],61:[function(require,module,exports){
+},{"inherits":317}],62:[function(require,module,exports){
 'use strict'; // Helper
 
 function reverse(map) {
@@ -9447,7 +12941,7 @@ exports.tag = {
 };
 exports.tagByName = reverse(exports.tag);
 
-},{}],62:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 'use strict';
 
 var constants = exports; // Helper
@@ -9465,7 +12959,7 @@ constants._reverse = function reverse(map) {
 
 constants.der = require('./der');
 
-},{"./der":61}],63:[function(require,module,exports){
+},{"./der":62}],64:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -9752,14 +13246,14 @@ function derDecodeLen(buf, primitive, fail) {
   return len;
 }
 
-},{"../base/buffer":57,"../base/node":59,"../constants/der":61,"bn.js":136,"inherits":315}],64:[function(require,module,exports){
+},{"../base/buffer":58,"../base/node":60,"../constants/der":62,"bn.js":137,"inherits":317}],65:[function(require,module,exports){
 'use strict';
 
 var decoders = exports;
 decoders.der = require('./der');
 decoders.pem = require('./pem');
 
-},{"./der":63,"./pem":65}],65:[function(require,module,exports){
+},{"./der":64,"./pem":66}],66:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -9806,7 +13300,7 @@ PEMDecoder.prototype.decode = function decode(data, options) {
   return DERDecoder.prototype.decode.call(this, input, options);
 };
 
-},{"./der":63,"inherits":315,"safer-buffer":375}],66:[function(require,module,exports){
+},{"./der":64,"inherits":317,"safer-buffer":377}],67:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -10068,14 +13562,14 @@ function encodeTag(tag, primitive, cls, reporter) {
   return res;
 }
 
-},{"../base/node":59,"../constants/der":61,"inherits":315,"safer-buffer":375}],67:[function(require,module,exports){
+},{"../base/node":60,"../constants/der":62,"inherits":317,"safer-buffer":377}],68:[function(require,module,exports){
 'use strict';
 
 var encoders = exports;
 encoders.der = require('./der');
 encoders.pem = require('./pem');
 
-},{"./der":66,"./pem":68}],68:[function(require,module,exports){
+},{"./der":67,"./pem":69}],69:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -10103,7 +13597,7 @@ PEMEncoder.prototype.encode = function encode(data, options) {
   return out.join('\n');
 };
 
-},{"./der":66,"inherits":315}],69:[function(require,module,exports){
+},{"./der":67,"inherits":317}],70:[function(require,module,exports){
 (function (global){(function (){
 'use strict';
 
@@ -10610,7 +14104,7 @@ var objectKeys = Object.keys || function (obj) {
 };
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"object-assign":332,"util/":71}],70:[function(require,module,exports){
+},{"object-assign":334,"util/":72}],71:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -10619,7 +14113,7 @@ module.exports = function isBuffer(arg) {
   return arg && _typeof(arg) === 'object' && typeof arg.copy === 'function' && typeof arg.fill === 'function' && typeof arg.readUInt8 === 'function';
 };
 
-},{}],71:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 (function (process,global){(function (){
 "use strict";
 
@@ -11216,7 +14710,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":70,"_process":344,"inherits":315}],72:[function(require,module,exports){
+},{"./support/isBuffer":71,"_process":346,"inherits":317}],73:[function(require,module,exports){
 'use strict'; // base-x encoding / decoding
 // Copyright (c) 2018 base-x contributors
 // Copyright (c) 2014-2018 The Bitcoin Core developers (base58.cpp)
@@ -11414,7 +14908,7 @@ function base(ALPHABET) {
 
 module.exports = base;
 
-},{"safe-buffer":374}],73:[function(require,module,exports){
+},{"safe-buffer":376}],74:[function(require,module,exports){
 'use strict';
 
 exports.byteLength = byteLength;
@@ -11535,7 +15029,7 @@ function fromByteArray(uint8) {
   return parts.join('');
 }
 
-},{}],74:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 'use strict';
 
 var ALPHABET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'; // pre-compute lookup table
@@ -11679,7 +15173,7 @@ module.exports = {
   fromWords: fromWords
 };
 
-},{}],75:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 (function (global,Buffer){(function (){
 'use strict';
 
@@ -11745,7 +15239,7 @@ bitcore.deps._ = require('lodash'); // Internal usage, exposed for testing/advan
 bitcore.Transaction.sighash = require('./lib/transaction/sighash');
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"./lib/address":76,"./lib/block":79,"./lib/block/blockheader":78,"./lib/block/merkleblock":80,"./lib/crypto/bn":81,"./lib/crypto/ecdsa":82,"./lib/crypto/hash":83,"./lib/crypto/point":84,"./lib/crypto/random":85,"./lib/crypto/signature":86,"./lib/encoding/base58":87,"./lib/encoding/base58check":88,"./lib/encoding/bufferreader":90,"./lib/encoding/bufferwriter":91,"./lib/encoding/varint":92,"./lib/errors":93,"./lib/hdprivatekey.js":95,"./lib/hdpublickey.js":96,"./lib/message":97,"./lib/networks":98,"./lib/opcode":99,"./lib/privatekey":100,"./lib/publickey":101,"./lib/script":102,"./lib/transaction":105,"./lib/transaction/sighash":113,"./lib/unit":118,"./lib/uri":119,"./lib/util/buffer":120,"./lib/util/js":121,"./lib/util/preconditions":122,"./package.json":123,"bn.js":136,"bs58":170,"buffer":173,"elliptic":225,"lodash":325}],76:[function(require,module,exports){
+},{"./lib/address":77,"./lib/block":80,"./lib/block/blockheader":79,"./lib/block/merkleblock":81,"./lib/crypto/bn":82,"./lib/crypto/ecdsa":83,"./lib/crypto/hash":84,"./lib/crypto/point":85,"./lib/crypto/random":86,"./lib/crypto/signature":87,"./lib/encoding/base58":88,"./lib/encoding/base58check":89,"./lib/encoding/bufferreader":91,"./lib/encoding/bufferwriter":92,"./lib/encoding/varint":93,"./lib/errors":94,"./lib/hdprivatekey.js":96,"./lib/hdpublickey.js":97,"./lib/message":98,"./lib/networks":99,"./lib/opcode":100,"./lib/privatekey":101,"./lib/publickey":102,"./lib/script":103,"./lib/transaction":106,"./lib/transaction/sighash":114,"./lib/unit":119,"./lib/uri":120,"./lib/util/buffer":121,"./lib/util/js":122,"./lib/util/preconditions":123,"./package.json":124,"bn.js":137,"bs58":171,"buffer":174,"elliptic":227,"lodash":327}],77:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -12443,7 +15937,7 @@ module.exports = Address;
 var Script = require('./script');
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./crypto/hash":83,"./encoding/base58check":88,"./encoding/bech32":89,"./errors":93,"./networks":98,"./publickey":101,"./script":102,"./util/js":121,"./util/preconditions":122,"buffer":173,"lodash":325}],77:[function(require,module,exports){
+},{"./crypto/hash":84,"./encoding/base58check":89,"./encoding/bech32":90,"./errors":94,"./networks":99,"./publickey":102,"./script":103,"./util/js":122,"./util/preconditions":123,"buffer":174,"lodash":327}],78:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -12772,7 +16266,7 @@ Block.Values = {
 module.exports = Block;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/bn":81,"../crypto/hash":83,"../encoding/bufferreader":90,"../encoding/bufferwriter":91,"../transaction":105,"../util/buffer":120,"../util/preconditions":122,"./blockheader":78,"buffer":173,"lodash":325}],78:[function(require,module,exports){
+},{"../crypto/bn":82,"../crypto/hash":84,"../encoding/bufferreader":91,"../encoding/bufferwriter":92,"../transaction":106,"../util/buffer":121,"../util/preconditions":123,"./blockheader":79,"buffer":174,"lodash":327}],79:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -13112,14 +16606,14 @@ BlockHeader.Constants = {
 module.exports = BlockHeader;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/bn":81,"../crypto/hash":83,"../encoding/bufferreader":90,"../encoding/bufferwriter":91,"../util/buffer":120,"../util/js":121,"../util/preconditions":122,"buffer":173,"lodash":325}],79:[function(require,module,exports){
+},{"../crypto/bn":82,"../crypto/hash":84,"../encoding/bufferreader":91,"../encoding/bufferwriter":92,"../util/buffer":121,"../util/js":122,"../util/preconditions":123,"buffer":174,"lodash":327}],80:[function(require,module,exports){
 "use strict";
 
 module.exports = require('./block');
 module.exports.BlockHeader = require('./blockheader');
 module.exports.MerkleBlock = require('./merkleblock');
 
-},{"./block":77,"./blockheader":78,"./merkleblock":80}],80:[function(require,module,exports){
+},{"./block":78,"./blockheader":79,"./merkleblock":81}],81:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -13504,7 +16998,7 @@ MerkleBlock.fromObject = function fromObject(obj) {
 module.exports = MerkleBlock;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/hash":83,"../encoding/bufferreader":90,"../encoding/bufferwriter":91,"../errors":93,"../transaction":105,"../util/buffer":120,"../util/js":121,"../util/preconditions":122,"./blockheader":78,"buffer":173,"lodash":325}],81:[function(require,module,exports){
+},{"../crypto/hash":84,"../encoding/bufferreader":91,"../encoding/bufferwriter":92,"../errors":94,"../transaction":106,"../util/buffer":121,"../util/js":122,"../util/preconditions":123,"./blockheader":79,"buffer":174,"lodash":327}],82:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -13720,7 +17214,7 @@ BN.pad = function (buf, natlen, size) {
 module.exports = BN;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../util/preconditions":122,"bn.js":136,"buffer":173,"lodash":325}],82:[function(require,module,exports){
+},{"../util/preconditions":123,"bn.js":137,"buffer":174,"lodash":327}],83:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -14031,7 +17525,7 @@ ECDSA.verify = function (hashbuf, sig, pubkey, endian) {
 module.exports = ECDSA;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../publickey":101,"../util/buffer":120,"../util/preconditions":122,"./bn":81,"./hash":83,"./point":84,"./random":85,"./signature":86,"buffer":173,"lodash":325}],83:[function(require,module,exports){
+},{"../publickey":102,"../util/buffer":121,"../util/preconditions":123,"./bn":82,"./hash":84,"./point":85,"./random":86,"./signature":87,"buffer":174,"lodash":327}],84:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -14120,7 +17614,7 @@ Hash.sha512hmac = function (data, key) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../util/buffer":120,"../util/preconditions":122,"buffer":173,"crypto":180}],84:[function(require,module,exports){
+},{"../util/buffer":121,"../util/preconditions":123,"buffer":174,"crypto":181}],85:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -14284,7 +17778,7 @@ Point.pointToCompressed = function pointToCompressed(point) {
 module.exports = Point;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../util/buffer":120,"./bn":81,"buffer":173,"elliptic":225}],85:[function(require,module,exports){
+},{"../util/buffer":121,"./bn":82,"buffer":174,"elliptic":227}],86:[function(require,module,exports){
 (function (process,Buffer){(function (){
 'use strict';
 
@@ -14337,7 +17831,7 @@ Random.getPseudoRandomBuffer = function (size) {
 module.exports = Random;
 
 }).call(this)}).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":344,"buffer":173,"crypto":180}],86:[function(require,module,exports){
+},{"_process":346,"buffer":174,"crypto":181}],87:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -14664,7 +18158,7 @@ Signature.SIGHASH_ANYONECANPAY = 0x80;
 module.exports = Signature;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../util/buffer":120,"../util/js":121,"../util/preconditions":122,"./bn":81,"buffer":173,"lodash":325}],87:[function(require,module,exports){
+},{"../util/buffer":121,"../util/js":122,"../util/preconditions":123,"./bn":82,"buffer":174,"lodash":327}],88:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -14746,7 +18240,7 @@ Base58.prototype.toString = function () {
 module.exports = Base58;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"bs58":170,"buffer":173,"lodash":325}],88:[function(require,module,exports){
+},{"bs58":171,"buffer":174,"lodash":327}],89:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -14841,7 +18335,7 @@ Base58Check.prototype.toString = function () {
 module.exports = Base58Check;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/hash":83,"./base58":87,"buffer":173,"lodash":325}],89:[function(require,module,exports){
+},{"../crypto/hash":84,"./base58":88,"buffer":174,"lodash":327}],90:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -14880,7 +18374,7 @@ module.exports = {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"bech32":74,"buffer":173}],90:[function(require,module,exports){
+},{"bech32":75,"buffer":174}],91:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -15110,7 +18604,7 @@ BufferReader.prototype.readReverse = function (len) {
 module.exports = BufferReader;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/bn":81,"../util/buffer":120,"../util/preconditions":122,"buffer":173,"lodash":325}],91:[function(require,module,exports){
+},{"../crypto/bn":82,"../util/buffer":121,"../util/preconditions":123,"buffer":174,"lodash":327}],92:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -15276,7 +18770,7 @@ BufferWriter.varintBufBN = function (bn) {
 module.exports = BufferWriter;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../util/buffer":120,"assert":69,"buffer":173}],92:[function(require,module,exports){
+},{"../util/buffer":121,"assert":70,"buffer":174}],93:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -15354,7 +18848,7 @@ Varint.prototype.toNumber = function () {
 module.exports = Varint;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/bn":81,"./bufferreader":90,"./bufferwriter":91,"buffer":173}],93:[function(require,module,exports){
+},{"../crypto/bn":82,"./bufferreader":91,"./bufferwriter":92,"buffer":174}],94:[function(require,module,exports){
 'use strict';
 
 var _ = require('lodash');
@@ -15421,7 +18915,7 @@ module.exports.extend = function (spec) {
   return traverseNode(bitcore.Error, spec);
 };
 
-},{"./spec":94,"lodash":325}],94:[function(require,module,exports){
+},{"./spec":95,"lodash":327}],95:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -15613,7 +19107,7 @@ module.exports = [{
   }]
 }];
 
-},{}],95:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -16297,7 +19791,7 @@ assert(HDPrivateKey.ChecksumEnd === HDPrivateKey.SerializedByteSize);
 module.exports = HDPrivateKey;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./crypto/bn":81,"./crypto/hash":83,"./crypto/point":84,"./crypto/random":85,"./encoding/base58":87,"./encoding/base58check":88,"./errors":93,"./hdpublickey":96,"./networks":98,"./privatekey":100,"./util/buffer":120,"./util/js":121,"./util/preconditions":122,"assert":69,"buffer":173,"lodash":325}],96:[function(require,module,exports){
+},{"./crypto/bn":82,"./crypto/hash":84,"./crypto/point":85,"./crypto/random":86,"./encoding/base58":88,"./encoding/base58check":89,"./errors":94,"./hdpublickey":97,"./networks":99,"./privatekey":101,"./util/buffer":121,"./util/js":122,"./util/preconditions":123,"assert":70,"buffer":174,"lodash":327}],97:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -16832,7 +20326,7 @@ assert(HDPublicKey.ChecksumEnd === HDPublicKey.SerializedByteSize);
 module.exports = HDPublicKey;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./crypto/bn":81,"./crypto/hash":83,"./crypto/point":84,"./encoding/base58":87,"./encoding/base58check":88,"./errors":93,"./hdprivatekey":95,"./networks":98,"./publickey":101,"./util/buffer":120,"./util/js":121,"./util/preconditions":122,"assert":69,"buffer":173,"lodash":325}],97:[function(require,module,exports){
+},{"./crypto/bn":82,"./crypto/hash":84,"./crypto/point":85,"./encoding/base58":88,"./encoding/base58check":89,"./errors":94,"./hdprivatekey":96,"./networks":99,"./publickey":102,"./util/buffer":121,"./util/js":122,"./util/preconditions":123,"assert":70,"buffer":174,"lodash":327}],98:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -17049,7 +20543,7 @@ module.exports = Message;
 var Script = require('./script');
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./address":76,"./crypto/ecdsa":82,"./crypto/hash":83,"./crypto/signature":86,"./encoding/bufferwriter":91,"./privatekey":100,"./publickey":101,"./script":102,"./util/js":121,"./util/preconditions":122,"buffer":173,"lodash":325}],98:[function(require,module,exports){
+},{"./address":77,"./crypto/ecdsa":83,"./crypto/hash":84,"./crypto/signature":87,"./encoding/bufferwriter":92,"./privatekey":101,"./publickey":102,"./script":103,"./util/js":122,"./util/preconditions":123,"buffer":174,"lodash":327}],99:[function(require,module,exports){
 'use strict';
 
 var _ = require('lodash');
@@ -17295,7 +20789,7 @@ module.exports = {
   disableRegtest: disableRegtest
 };
 
-},{"./util/buffer":120,"./util/js":121,"lodash":325}],99:[function(require,module,exports){
+},{"./util/buffer":121,"./util/js":122,"lodash":327}],100:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -17547,7 +21041,7 @@ Opcode.prototype.inspect = function () {
 module.exports = Opcode;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./util/buffer":120,"./util/js":121,"./util/preconditions":122,"buffer":173,"lodash":325}],100:[function(require,module,exports){
+},{"./util/buffer":121,"./util/js":122,"./util/preconditions":123,"buffer":174,"lodash":327}],101:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -17990,7 +21484,7 @@ PrivateKey.prototype.inspect = function () {
 module.exports = PrivateKey;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./address":76,"./crypto/bn":81,"./crypto/point":84,"./crypto/random":85,"./encoding/base58check":88,"./networks":98,"./publickey":101,"./util/js":121,"./util/preconditions":122,"buffer":173,"lodash":325}],101:[function(require,module,exports){
+},{"./address":77,"./crypto/bn":82,"./crypto/point":85,"./crypto/random":86,"./encoding/base58check":89,"./networks":99,"./publickey":102,"./util/js":122,"./util/preconditions":123,"buffer":174,"lodash":327}],102:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -18427,13 +21921,13 @@ PublicKey.prototype.inspect = function () {
 module.exports = PublicKey;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./address":76,"./crypto/bn":81,"./crypto/hash":83,"./crypto/point":84,"./networks":98,"./privatekey":100,"./util/js":121,"./util/preconditions":122,"buffer":173,"lodash":325}],102:[function(require,module,exports){
+},{"./address":77,"./crypto/bn":82,"./crypto/hash":84,"./crypto/point":85,"./networks":99,"./privatekey":101,"./util/js":122,"./util/preconditions":123,"buffer":174,"lodash":327}],103:[function(require,module,exports){
 "use strict";
 
 module.exports = require('./script');
 module.exports.Interpreter = require('./interpreter');
 
-},{"./interpreter":103,"./script":104}],103:[function(require,module,exports){
+},{"./interpreter":104,"./script":105}],104:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -20102,7 +23596,7 @@ Interpreter.prototype.step = function () {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/bn":81,"../crypto/hash":83,"../crypto/signature":86,"../opcode":99,"../publickey":101,"../transaction":105,"./script":104,"buffer":173,"lodash":325}],104:[function(require,module,exports){
+},{"../crypto/bn":82,"../crypto/hash":84,"../crypto/signature":87,"../opcode":100,"../publickey":102,"../transaction":106,"./script":105,"buffer":174,"lodash":327}],105:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -21379,7 +24873,7 @@ Script.prototype.getSignatureOperationsCount = function (accurate) {
 module.exports = Script;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../address":76,"../crypto/hash":83,"../crypto/signature":86,"../encoding/bufferreader":90,"../encoding/bufferwriter":91,"../errors":93,"../networks":98,"../opcode":99,"../publickey":101,"../util/buffer":120,"../util/js":121,"../util/preconditions":122,"buffer":173,"lodash":325}],105:[function(require,module,exports){
+},{"../address":77,"../crypto/hash":84,"../crypto/signature":87,"../encoding/bufferreader":91,"../encoding/bufferwriter":92,"../errors":94,"../networks":99,"../opcode":100,"../publickey":102,"../util/buffer":121,"../util/js":122,"../util/preconditions":123,"buffer":174,"lodash":327}],106:[function(require,module,exports){
 "use strict";
 
 module.exports = require('./transaction');
@@ -21390,7 +24884,7 @@ module.exports.Signature = require('./signature');
 module.exports.Sighash = require('./sighash');
 module.exports.SighashWitness = require('./sighashwitness');
 
-},{"./input":106,"./output":112,"./sighash":113,"./sighashwitness":114,"./signature":115,"./transaction":116,"./unspentoutput":117}],106:[function(require,module,exports){
+},{"./input":107,"./output":113,"./sighash":114,"./sighashwitness":115,"./signature":116,"./transaction":117,"./unspentoutput":118}],107:[function(require,module,exports){
 "use strict";
 
 module.exports = require('./input');
@@ -21399,7 +24893,7 @@ module.exports.PublicKeyHash = require('./publickeyhash');
 module.exports.MultiSig = require('./multisig.js');
 module.exports.MultiSigScriptHash = require('./multisigscripthash.js');
 
-},{"./input":107,"./multisig.js":108,"./multisigscripthash.js":109,"./publickey":110,"./publickeyhash":111}],107:[function(require,module,exports){
+},{"./input":108,"./multisig.js":109,"./multisigscripthash.js":110,"./publickey":111,"./publickeyhash":112}],108:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -21706,7 +25200,7 @@ Input.prototype.getLockTime = function () {
 module.exports = Input;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../../encoding/bufferwriter":91,"../../errors":93,"../../script":102,"../../util/buffer":120,"../../util/js":121,"../../util/preconditions":122,"../output":112,"../sighash":113,"buffer":173,"lodash":325}],108:[function(require,module,exports){
+},{"../../encoding/bufferwriter":92,"../../errors":94,"../../script":103,"../../util/buffer":121,"../../util/js":122,"../../util/preconditions":123,"../output":113,"../sighash":114,"buffer":174,"lodash":327}],109:[function(require,module,exports){
 'use strict';
 
 var _ = require('lodash');
@@ -21929,7 +25423,7 @@ MultiSigInput.prototype._estimateSize = function () {
 
 module.exports = MultiSigInput;
 
-},{"../../crypto/signature":86,"../../publickey":101,"../../script":102,"../../util/buffer":120,"../../util/preconditions":122,"../output":112,"../sighash":113,"../signature":115,"../transaction":116,"./input":107,"inherits":315,"lodash":325}],109:[function(require,module,exports){
+},{"../../crypto/signature":87,"../../publickey":102,"../../script":103,"../../util/buffer":121,"../../util/preconditions":123,"../output":113,"../sighash":114,"../signature":116,"../transaction":117,"./input":108,"inherits":317,"lodash":327}],110:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 /* jshint maxparams:5 */
@@ -22215,7 +25709,7 @@ MultiSigScriptHashInput.prototype._estimateSize = function () {
 module.exports = MultiSigScriptHashInput;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../../address":76,"../../crypto/signature":86,"../../encoding/bufferwriter":91,"../../script":102,"../../util/buffer":120,"../../util/preconditions":122,"../output":112,"../sighash":113,"../sighashwitness":114,"../signature":115,"./input":107,"buffer":173,"inherits":315,"lodash":325}],110:[function(require,module,exports){
+},{"../../address":77,"../../crypto/signature":87,"../../encoding/bufferwriter":92,"../../script":103,"../../util/buffer":121,"../../util/preconditions":123,"../output":113,"../sighash":114,"../sighashwitness":115,"../signature":116,"./input":108,"buffer":174,"inherits":317,"lodash":327}],111:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -22318,7 +25812,7 @@ PublicKeyInput.prototype._estimateSize = function () {
 
 module.exports = PublicKeyInput;
 
-},{"../../crypto/signature":86,"../../script":102,"../../util/buffer":120,"../../util/preconditions":122,"../output":112,"../sighash":113,"../signature":115,"./input":107,"inherits":315}],111:[function(require,module,exports){
+},{"../../crypto/signature":87,"../../script":103,"../../util/buffer":121,"../../util/preconditions":123,"../output":113,"../sighash":114,"../signature":116,"./input":108,"inherits":317}],112:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -22523,7 +26017,7 @@ PublicKeyHashInput.prototype._estimateSize = function () {
 
 module.exports = PublicKeyHashInput;
 
-},{"../../address":76,"../../crypto/hash":83,"../../crypto/signature":86,"../../encoding/bufferwriter":91,"../../script":102,"../../util/buffer":120,"../../util/preconditions":122,"../output":112,"../sighash":113,"../sighashwitness":114,"../signature":115,"./input":107,"inherits":315}],112:[function(require,module,exports){
+},{"../../address":77,"../../crypto/hash":84,"../../crypto/signature":87,"../../encoding/bufferwriter":92,"../../script":103,"../../util/buffer":121,"../../util/preconditions":123,"../output":113,"../sighash":114,"../sighashwitness":115,"../signature":116,"./input":108,"inherits":317}],113:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -22710,7 +26204,7 @@ Output.prototype.toBufferWriter = function (writer) {
 module.exports = Output;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/bn":81,"../encoding/bufferwriter":91,"../errors":93,"../script":102,"../util/buffer":120,"../util/js":121,"../util/preconditions":122,"buffer":173,"lodash":325}],113:[function(require,module,exports){
+},{"../crypto/bn":82,"../encoding/bufferwriter":92,"../errors":94,"../script":103,"../util/buffer":121,"../util/js":122,"../util/preconditions":123,"buffer":174,"lodash":327}],114:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -22871,7 +26365,7 @@ module.exports = {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/bn":81,"../crypto/ecdsa":82,"../crypto/hash":83,"../crypto/signature":86,"../encoding/bufferreader":90,"../encoding/bufferwriter":91,"../script":102,"../util/preconditions":122,"./input":106,"./output":112,"./transaction":116,"buffer":173,"lodash":325}],114:[function(require,module,exports){
+},{"../crypto/bn":82,"../crypto/ecdsa":83,"../crypto/hash":84,"../crypto/signature":87,"../encoding/bufferreader":91,"../encoding/bufferwriter":92,"../script":103,"../util/preconditions":123,"./input":107,"./output":113,"./transaction":117,"buffer":174,"lodash":327}],115:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 /* jshint maxparams:5 */
@@ -23044,7 +26538,7 @@ module.exports = {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/bn":81,"../crypto/ecdsa":82,"../crypto/hash":83,"../crypto/signature":86,"../encoding/bufferreader":90,"../encoding/bufferwriter":91,"../script":102,"../util/preconditions":122,"./output":112,"buffer":173,"lodash":325}],115:[function(require,module,exports){
+},{"../crypto/bn":82,"../crypto/ecdsa":83,"../crypto/hash":84,"../crypto/signature":87,"../encoding/bufferreader":91,"../encoding/bufferwriter":92,"../script":103,"../util/preconditions":123,"./output":113,"buffer":174,"lodash":327}],116:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -23146,7 +26640,7 @@ TransactionSignature.fromObject = function (object) {
 module.exports = TransactionSignature;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../crypto/signature":86,"../errors":93,"../publickey":101,"../util/buffer":120,"../util/js":121,"../util/preconditions":122,"buffer":173,"inherits":315,"lodash":325}],116:[function(require,module,exports){
+},{"../crypto/signature":87,"../errors":94,"../publickey":102,"../util/buffer":121,"../util/js":122,"../util/preconditions":123,"buffer":174,"inherits":317,"lodash":327}],117:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -24715,7 +28209,7 @@ Transaction.prototype.setVersion = function (version) {
 module.exports = Transaction;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"../address":76,"../crypto/bn":81,"../crypto/hash":83,"../crypto/signature":86,"../encoding/bufferreader":90,"../encoding/bufferwriter":91,"../errors":93,"../privatekey":100,"../script":102,"../util/buffer":120,"../util/js":121,"../util/preconditions":122,"./input":106,"./output":112,"./sighash":113,"./sighashwitness":114,"./unspentoutput":117,"buffer":173,"buffer-compare":171,"lodash":325}],117:[function(require,module,exports){
+},{"../address":77,"../crypto/bn":82,"../crypto/hash":84,"../crypto/signature":87,"../encoding/bufferreader":91,"../encoding/bufferwriter":92,"../errors":94,"../privatekey":101,"../script":103,"../util/buffer":121,"../util/js":122,"../util/preconditions":123,"./input":107,"./output":113,"./sighash":114,"./sighashwitness":115,"./unspentoutput":118,"buffer":174,"buffer-compare":172,"lodash":327}],118:[function(require,module,exports){
 'use strict';
 
 var _ = require('lodash');
@@ -24829,7 +28323,7 @@ UnspentOutput.prototype.toObject = UnspentOutput.prototype.toJSON = function toO
 
 module.exports = UnspentOutput;
 
-},{"../address":76,"../script":102,"../unit":118,"../util/js":121,"../util/preconditions":122,"lodash":325}],118:[function(require,module,exports){
+},{"../address":77,"../script":103,"../unit":119,"../util/js":122,"../util/preconditions":123,"lodash":327}],119:[function(require,module,exports){
 'use strict';
 
 var _ = require('lodash');
@@ -25089,7 +28583,7 @@ Unit.prototype.inspect = function () {
 
 module.exports = Unit;
 
-},{"./errors":93,"./util/preconditions":122,"lodash":325}],119:[function(require,module,exports){
+},{"./errors":94,"./util/preconditions":123,"lodash":327}],120:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -25339,7 +28833,7 @@ URI.prototype.inspect = function () {
 
 module.exports = URI;
 
-},{"./address":76,"./unit":118,"lodash":325,"url":397}],120:[function(require,module,exports){
+},{"./address":77,"./unit":119,"lodash":327,"url":398}],121:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -25510,7 +29004,7 @@ module.exports.NULL_HASH = module.exports.fill(Buffer.alloc(32), 0);
 module.exports.EMPTY_BUFFER = Buffer.alloc(0);
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./js":121,"./preconditions":122,"assert":69,"buffer":173}],121:[function(require,module,exports){
+},{"./js":122,"./preconditions":123,"assert":70,"buffer":174}],122:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -25603,7 +29097,7 @@ module.exports = {
   }
 };
 
-},{"lodash":325}],122:[function(require,module,exports){
+},{"lodash":327}],123:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -25645,59 +29139,20 @@ module.exports = {
   }
 };
 
-},{"../errors":93,"buffer":173,"lodash":325}],123:[function(require,module,exports){
+},{"../errors":94,"buffer":174,"lodash":327}],124:[function(require,module,exports){
 module.exports={
-  "_from": "bitcore-lib@8.25.8",
-  "_id": "bitcore-lib@8.25.8",
-  "_inBundle": false,
-  "_integrity": "sha512-vxNJ+DLAeC2V8iPa6dRvUbb/Nm3Vr/cXKhCKSIxj8YPU2tP0QiwEz2Lu9sbqhtsmIerS+F1eeHulzS21MpS2GQ==",
-  "_location": "/bitcore-lib",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "version",
-    "registry": true,
-    "raw": "bitcore-lib@8.25.8",
-    "name": "bitcore-lib",
-    "escapedName": "bitcore-lib",
-    "rawSpec": "8.25.8",
-    "saveSpec": null,
-    "fetchSpec": "8.25.8"
-  },
-  "_requiredBy": [
-    "/",
-    "/bitcore-mnemonic"
-  ],
-  "_resolved": "https://registry.npmjs.org/bitcore-lib/-/bitcore-lib-8.25.8.tgz",
-  "_shasum": "b4a9d6cd715596297d958d2ad12fdf09e54a16d7",
-  "_spec": "bitcore-lib@8.25.8",
-  "_where": "/Users/txreplay/www/ownest/eth-lightwallet",
-  "author": {
-    "name": "BitPay",
-    "email": "dev@bitpay.com"
-  },
-  "browser": {
-    "request": "browser-request"
-  },
-  "bundleDependencies": false,
-  "dependencies": {
-    "bech32": "=1.1.3",
-    "bn.js": "=4.11.8",
-    "bs58": "^4.0.1",
-    "buffer-compare": "=1.1.1",
-    "elliptic": "^6.5.3",
-    "inherits": "=2.0.1",
-    "lodash": "^4.17.20"
-  },
-  "deprecated": false,
+  "name": "bitcore-lib",
+  "version": "8.25.10",
   "description": "A pure and powerful JavaScript Bitcoin library.",
-  "devDependencies": {
-    "bitcore-build": "^8.25.8",
-    "brfs": "^2.0.1",
-    "chai": "^4.2.0",
-    "gulp": "^4.0.0",
-    "sinon": "^7.1.1"
+  "author": "BitPay <dev@bitpay.com>",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test",
+    "test:ci": "npm run test",
+    "coverage": "gulp coverage",
+    "build": "gulp",
+    "pub": "npm run build && npm publish"
   },
-  "gitHead": "012cc0216a9bc6b195035855bd17149bad41acd1",
   "keywords": [
     "bitcoin",
     "transaction",
@@ -25714,29 +29169,39 @@ module.exports={
     "bip70",
     "multisig"
   ],
-  "license": "MIT",
-  "main": "index.js",
-  "name": "bitcore-lib",
   "repository": {
     "type": "git",
     "url": "https://github.com/bitpay/bitcore/tree/master/packages/bitcore-lib"
   },
-  "scripts": {
-    "build": "gulp",
-    "coverage": "gulp coverage",
-    "pub": "npm run build && npm publish",
-    "test": "gulp test",
-    "test:ci": "npm run test"
+  "browser": {
+    "request": "browser-request"
   },
-  "version": "8.25.8"
+  "dependencies": {
+    "bech32": "=1.1.3",
+    "bn.js": "=4.11.8",
+    "bs58": "^4.0.1",
+    "buffer-compare": "=1.1.1",
+    "elliptic": "^6.5.3",
+    "inherits": "=2.0.1",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "bitcore-build": "^8.25.10",
+    "brfs": "^2.0.1",
+    "chai": "^4.2.0",
+    "gulp": "^4.0.0",
+    "sinon": "^7.1.1"
+  },
+  "license": "MIT",
+  "gitHead": "012cc0216a9bc6b195035855bd17149bad41acd1"
 }
 
-},{}],124:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 "use strict";
 
 module.exports = require('./lib/mnemonic');
 
-},{"./lib/mnemonic":126}],125:[function(require,module,exports){
+},{"./lib/mnemonic":127}],126:[function(require,module,exports){
 'use strict';
 
 var spec = {
@@ -25755,7 +29220,7 @@ var spec = {
 };
 module.exports = require('bitcore-lib').errors.extend(spec);
 
-},{"bitcore-lib":75}],126:[function(require,module,exports){
+},{"bitcore-lib":76}],127:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -26081,7 +29546,7 @@ Mnemonic.bitcore = bitcore;
 module.exports = Mnemonic;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./errors":125,"./pbkdf2":127,"./words":131,"bitcore-lib":75,"buffer":173,"unorm":396}],127:[function(require,module,exports){
+},{"./errors":126,"./pbkdf2":128,"./words":132,"bitcore-lib":76,"buffer":174,"unorm":397}],128:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -26154,26 +29619,26 @@ function pbkdf2(key, salt, iterations, dkLen) {
 module.exports = pbkdf2;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":173,"crypto":180}],128:[function(require,module,exports){
+},{"buffer":174,"crypto":181}],129:[function(require,module,exports){
 'use strict';
 
 var chinese = ['的', '一', '是', '在', '不', '了', '有', '和', '人', '这', '中', '大', '为', '上', '个', '国', '我', '以', '要', '他', '时', '来', '用', '们', '生', '到', '作', '地', '于', '出', '就', '分', '对', '成', '会', '可', '主', '发', '年', '动', '同', '工', '也', '能', '下', '过', '子', '说', '产', '种', '面', '而', '方', '后', '多', '定', '行', '学', '法', '所', '民', '得', '经', '十', '三', '之', '进', '着', '等', '部', '度', '家', '电', '力', '里', '如', '水', '化', '高', '自', '二', '理', '起', '小', '物', '现', '实', '加', '量', '都', '两', '体', '制', '机', '当', '使', '点', '从', '业', '本', '去', '把', '性', '好', '应', '开', '它', '合', '还', '因', '由', '其', '些', '然', '前', '外', '天', '政', '四', '日', '那', '社', '义', '事', '平', '形', '相', '全', '表', '间', '样', '与', '关', '各', '重', '新', '线', '内', '数', '正', '心', '反', '你', '明', '看', '原', '又', '么', '利', '比', '或', '但', '质', '气', '第', '向', '道', '命', '此', '变', '条', '只', '没', '结', '解', '问', '意', '建', '月', '公', '无', '系', '军', '很', '情', '者', '最', '立', '代', '想', '已', '通', '并', '提', '直', '题', '党', '程', '展', '五', '果', '料', '象', '员', '革', '位', '入', '常', '文', '总', '次', '品', '式', '活', '设', '及', '管', '特', '件', '长', '求', '老', '头', '基', '资', '边', '流', '路', '级', '少', '图', '山', '统', '接', '知', '较', '将', '组', '见', '计', '别', '她', '手', '角', '期', '根', '论', '运', '农', '指', '几', '九', '区', '强', '放', '决', '西', '被', '干', '做', '必', '战', '先', '回', '则', '任', '取', '据', '处', '队', '南', '给', '色', '光', '门', '即', '保', '治', '北', '造', '百', '规', '热', '领', '七', '海', '口', '东', '导', '器', '压', '志', '世', '金', '增', '争', '济', '阶', '油', '思', '术', '极', '交', '受', '联', '什', '认', '六', '共', '权', '收', '证', '改', '清', '美', '再', '采', '转', '更', '单', '风', '切', '打', '白', '教', '速', '花', '带', '安', '场', '身', '车', '例', '真', '务', '具', '万', '每', '目', '至', '达', '走', '积', '示', '议', '声', '报', '斗', '完', '类', '八', '离', '华', '名', '确', '才', '科', '张', '信', '马', '节', '话', '米', '整', '空', '元', '况', '今', '集', '温', '传', '土', '许', '步', '群', '广', '石', '记', '需', '段', '研', '界', '拉', '林', '律', '叫', '且', '究', '观', '越', '织', '装', '影', '算', '低', '持', '音', '众', '书', '布', '复', '容', '儿', '须', '际', '商', '非', '验', '连', '断', '深', '难', '近', '矿', '千', '周', '委', '素', '技', '备', '半', '办', '青', '省', '列', '习', '响', '约', '支', '般', '史', '感', '劳', '便', '团', '往', '酸', '历', '市', '克', '何', '除', '消', '构', '府', '称', '太', '准', '精', '值', '号', '率', '族', '维', '划', '选', '标', '写', '存', '候', '毛', '亲', '快', '效', '斯', '院', '查', '江', '型', '眼', '王', '按', '格', '养', '易', '置', '派', '层', '片', '始', '却', '专', '状', '育', '厂', '京', '识', '适', '属', '圆', '包', '火', '住', '调', '满', '县', '局', '照', '参', '红', '细', '引', '听', '该', '铁', '价', '严', '首', '底', '液', '官', '德', '随', '病', '苏', '失', '尔', '死', '讲', '配', '女', '黄', '推', '显', '谈', '罪', '神', '艺', '呢', '席', '含', '企', '望', '密', '批', '营', '项', '防', '举', '球', '英', '氧', '势', '告', '李', '台', '落', '木', '帮', '轮', '破', '亚', '师', '围', '注', '远', '字', '材', '排', '供', '河', '态', '封', '另', '施', '减', '树', '溶', '怎', '止', '案', '言', '士', '均', '武', '固', '叶', '鱼', '波', '视', '仅', '费', '紧', '爱', '左', '章', '早', '朝', '害', '续', '轻', '服', '试', '食', '充', '兵', '源', '判', '护', '司', '足', '某', '练', '差', '致', '板', '田', '降', '黑', '犯', '负', '击', '范', '继', '兴', '似', '余', '坚', '曲', '输', '修', '故', '城', '夫', '够', '送', '笔', '船', '占', '右', '财', '吃', '富', '春', '职', '觉', '汉', '画', '功', '巴', '跟', '虽', '杂', '飞', '检', '吸', '助', '升', '阳', '互', '初', '创', '抗', '考', '投', '坏', '策', '古', '径', '换', '未', '跑', '留', '钢', '曾', '端', '责', '站', '简', '述', '钱', '副', '尽', '帝', '射', '草', '冲', '承', '独', '令', '限', '阿', '宣', '环', '双', '请', '超', '微', '让', '控', '州', '良', '轴', '找', '否', '纪', '益', '依', '优', '顶', '础', '载', '倒', '房', '突', '坐', '粉', '敌', '略', '客', '袁', '冷', '胜', '绝', '析', '块', '剂', '测', '丝', '协', '诉', '念', '陈', '仍', '罗', '盐', '友', '洋', '错', '苦', '夜', '刑', '移', '频', '逐', '靠', '混', '母', '短', '皮', '终', '聚', '汽', '村', '云', '哪', '既', '距', '卫', '停', '烈', '央', '察', '烧', '迅', '境', '若', '印', '洲', '刻', '括', '激', '孔', '搞', '甚', '室', '待', '核', '校', '散', '侵', '吧', '甲', '游', '久', '菜', '味', '旧', '模', '湖', '货', '损', '预', '阻', '毫', '普', '稳', '乙', '妈', '植', '息', '扩', '银', '语', '挥', '酒', '守', '拿', '序', '纸', '医', '缺', '雨', '吗', '针', '刘', '啊', '急', '唱', '误', '训', '愿', '审', '附', '获', '茶', '鲜', '粮', '斤', '孩', '脱', '硫', '肥', '善', '龙', '演', '父', '渐', '血', '欢', '械', '掌', '歌', '沙', '刚', '攻', '谓', '盾', '讨', '晚', '粒', '乱', '燃', '矛', '乎', '杀', '药', '宁', '鲁', '贵', '钟', '煤', '读', '班', '伯', '香', '介', '迫', '句', '丰', '培', '握', '兰', '担', '弦', '蛋', '沉', '假', '穿', '执', '答', '乐', '谁', '顺', '烟', '缩', '征', '脸', '喜', '松', '脚', '困', '异', '免', '背', '星', '福', '买', '染', '井', '概', '慢', '怕', '磁', '倍', '祖', '皇', '促', '静', '补', '评', '翻', '肉', '践', '尼', '衣', '宽', '扬', '棉', '希', '伤', '操', '垂', '秋', '宜', '氢', '套', '督', '振', '架', '亮', '末', '宪', '庆', '编', '牛', '触', '映', '雷', '销', '诗', '座', '居', '抓', '裂', '胞', '呼', '娘', '景', '威', '绿', '晶', '厚', '盟', '衡', '鸡', '孙', '延', '危', '胶', '屋', '乡', '临', '陆', '顾', '掉', '呀', '灯', '岁', '措', '束', '耐', '剧', '玉', '赵', '跳', '哥', '季', '课', '凯', '胡', '额', '款', '绍', '卷', '齐', '伟', '蒸', '殖', '永', '宗', '苗', '川', '炉', '岩', '弱', '零', '杨', '奏', '沿', '露', '杆', '探', '滑', '镇', '饭', '浓', '航', '怀', '赶', '库', '夺', '伊', '灵', '税', '途', '灭', '赛', '归', '召', '鼓', '播', '盘', '裁', '险', '康', '唯', '录', '菌', '纯', '借', '糖', '盖', '横', '符', '私', '努', '堂', '域', '枪', '润', '幅', '哈', '竟', '熟', '虫', '泽', '脑', '壤', '碳', '欧', '遍', '侧', '寨', '敢', '彻', '虑', '斜', '薄', '庭', '纳', '弹', '饲', '伸', '折', '麦', '湿', '暗', '荷', '瓦', '塞', '床', '筑', '恶', '户', '访', '塔', '奇', '透', '梁', '刀', '旋', '迹', '卡', '氯', '遇', '份', '毒', '泥', '退', '洗', '摆', '灰', '彩', '卖', '耗', '夏', '择', '忙', '铜', '献', '硬', '予', '繁', '圈', '雪', '函', '亦', '抽', '篇', '阵', '阴', '丁', '尺', '追', '堆', '雄', '迎', '泛', '爸', '楼', '避', '谋', '吨', '野', '猪', '旗', '累', '偏', '典', '馆', '索', '秦', '脂', '潮', '爷', '豆', '忽', '托', '惊', '塑', '遗', '愈', '朱', '替', '纤', '粗', '倾', '尚', '痛', '楚', '谢', '奋', '购', '磨', '君', '池', '旁', '碎', '骨', '监', '捕', '弟', '暴', '割', '贯', '殊', '释', '词', '亡', '壁', '顿', '宝', '午', '尘', '闻', '揭', '炮', '残', '冬', '桥', '妇', '警', '综', '招', '吴', '付', '浮', '遭', '徐', '您', '摇', '谷', '赞', '箱', '隔', '订', '男', '吹', '园', '纷', '唐', '败', '宋', '玻', '巨', '耕', '坦', '荣', '闭', '湾', '键', '凡', '驻', '锅', '救', '恩', '剥', '凝', '碱', '齿', '截', '炼', '麻', '纺', '禁', '废', '盛', '版', '缓', '净', '睛', '昌', '婚', '涉', '筒', '嘴', '插', '岸', '朗', '庄', '街', '藏', '姑', '贸', '腐', '奴', '啦', '惯', '乘', '伙', '恢', '匀', '纱', '扎', '辩', '耳', '彪', '臣', '亿', '璃', '抵', '脉', '秀', '萨', '俄', '网', '舞', '店', '喷', '纵', '寸', '汗', '挂', '洪', '贺', '闪', '柬', '爆', '烯', '津', '稻', '墙', '软', '勇', '像', '滚', '厘', '蒙', '芳', '肯', '坡', '柱', '荡', '腿', '仪', '旅', '尾', '轧', '冰', '贡', '登', '黎', '削', '钻', '勒', '逃', '障', '氨', '郭', '峰', '币', '港', '伏', '轨', '亩', '毕', '擦', '莫', '刺', '浪', '秘', '援', '株', '健', '售', '股', '岛', '甘', '泡', '睡', '童', '铸', '汤', '阀', '休', '汇', '舍', '牧', '绕', '炸', '哲', '磷', '绩', '朋', '淡', '尖', '启', '陷', '柴', '呈', '徒', '颜', '泪', '稍', '忘', '泵', '蓝', '拖', '洞', '授', '镜', '辛', '壮', '锋', '贫', '虚', '弯', '摩', '泰', '幼', '廷', '尊', '窗', '纲', '弄', '隶', '疑', '氏', '宫', '姐', '震', '瑞', '怪', '尤', '琴', '循', '描', '膜', '违', '夹', '腰', '缘', '珠', '穷', '森', '枝', '竹', '沟', '催', '绳', '忆', '邦', '剩', '幸', '浆', '栏', '拥', '牙', '贮', '礼', '滤', '钠', '纹', '罢', '拍', '咱', '喊', '袖', '埃', '勤', '罚', '焦', '潜', '伍', '墨', '欲', '缝', '姓', '刊', '饱', '仿', '奖', '铝', '鬼', '丽', '跨', '默', '挖', '链', '扫', '喝', '袋', '炭', '污', '幕', '诸', '弧', '励', '梅', '奶', '洁', '灾', '舟', '鉴', '苯', '讼', '抱', '毁', '懂', '寒', '智', '埔', '寄', '届', '跃', '渡', '挑', '丹', '艰', '贝', '碰', '拔', '爹', '戴', '码', '梦', '芽', '熔', '赤', '渔', '哭', '敬', '颗', '奔', '铅', '仲', '虎', '稀', '妹', '乏', '珍', '申', '桌', '遵', '允', '隆', '螺', '仓', '魏', '锐', '晓', '氮', '兼', '隐', '碍', '赫', '拨', '忠', '肃', '缸', '牵', '抢', '博', '巧', '壳', '兄', '杜', '讯', '诚', '碧', '祥', '柯', '页', '巡', '矩', '悲', '灌', '龄', '伦', '票', '寻', '桂', '铺', '圣', '恐', '恰', '郑', '趣', '抬', '荒', '腾', '贴', '柔', '滴', '猛', '阔', '辆', '妻', '填', '撤', '储', '签', '闹', '扰', '紫', '砂', '递', '戏', '吊', '陶', '伐', '喂', '疗', '瓶', '婆', '抚', '臂', '摸', '忍', '虾', '蜡', '邻', '胸', '巩', '挤', '偶', '弃', '槽', '劲', '乳', '邓', '吉', '仁', '烂', '砖', '租', '乌', '舰', '伴', '瓜', '浅', '丙', '暂', '燥', '橡', '柳', '迷', '暖', '牌', '秧', '胆', '详', '簧', '踏', '瓷', '谱', '呆', '宾', '糊', '洛', '辉', '愤', '竞', '隙', '怒', '粘', '乃', '绪', '肩', '籍', '敏', '涂', '熙', '皆', '侦', '悬', '掘', '享', '纠', '醒', '狂', '锁', '淀', '恨', '牲', '霸', '爬', '赏', '逆', '玩', '陵', '祝', '秒', '浙', '貌', '役', '彼', '悉', '鸭', '趋', '凤', '晨', '畜', '辈', '秩', '卵', '署', '梯', '炎', '滩', '棋', '驱', '筛', '峡', '冒', '啥', '寿', '译', '浸', '泉', '帽', '迟', '硅', '疆', '贷', '漏', '稿', '冠', '嫩', '胁', '芯', '牢', '叛', '蚀', '奥', '鸣', '岭', '羊', '凭', '串', '塘', '绘', '酵', '融', '盆', '锡', '庙', '筹', '冻', '辅', '摄', '袭', '筋', '拒', '僚', '旱', '钾', '鸟', '漆', '沈', '眉', '疏', '添', '棒', '穗', '硝', '韩', '逼', '扭', '侨', '凉', '挺', '碗', '栽', '炒', '杯', '患', '馏', '劝', '豪', '辽', '勃', '鸿', '旦', '吏', '拜', '狗', '埋', '辊', '掩', '饮', '搬', '骂', '辞', '勾', '扣', '估', '蒋', '绒', '雾', '丈', '朵', '姆', '拟', '宇', '辑', '陕', '雕', '偿', '蓄', '崇', '剪', '倡', '厅', '咬', '驶', '薯', '刷', '斥', '番', '赋', '奉', '佛', '浇', '漫', '曼', '扇', '钙', '桃', '扶', '仔', '返', '俗', '亏', '腔', '鞋', '棱', '覆', '框', '悄', '叔', '撞', '骗', '勘', '旺', '沸', '孤', '吐', '孟', '渠', '屈', '疾', '妙', '惜', '仰', '狠', '胀', '谐', '抛', '霉', '桑', '岗', '嘛', '衰', '盗', '渗', '脏', '赖', '涌', '甜', '曹', '阅', '肌', '哩', '厉', '烃', '纬', '毅', '昨', '伪', '症', '煮', '叹', '钉', '搭', '茎', '笼', '酷', '偷', '弓', '锥', '恒', '杰', '坑', '鼻', '翼', '纶', '叙', '狱', '逮', '罐', '络', '棚', '抑', '膨', '蔬', '寺', '骤', '穆', '冶', '枯', '册', '尸', '凸', '绅', '坯', '牺', '焰', '轰', '欣', '晋', '瘦', '御', '锭', '锦', '丧', '旬', '锻', '垄', '搜', '扑', '邀', '亭', '酯', '迈', '舒', '脆', '酶', '闲', '忧', '酚', '顽', '羽', '涨', '卸', '仗', '陪', '辟', '惩', '杭', '姚', '肚', '捉', '飘', '漂', '昆', '欺', '吾', '郎', '烷', '汁', '呵', '饰', '萧', '雅', '邮', '迁', '燕', '撒', '姻', '赴', '宴', '烦', '债', '帐', '斑', '铃', '旨', '醇', '董', '饼', '雏', '姿', '拌', '傅', '腹', '妥', '揉', '贤', '拆', '歪', '葡', '胺', '丢', '浩', '徽', '昂', '垫', '挡', '览', '贪', '慰', '缴', '汪', '慌', '冯', '诺', '姜', '谊', '凶', '劣', '诬', '耀', '昏', '躺', '盈', '骑', '乔', '溪', '丛', '卢', '抹', '闷', '咨', '刮', '驾', '缆', '悟', '摘', '铒', '掷', '颇', '幻', '柄', '惠', '惨', '佳', '仇', '腊', '窝', '涤', '剑', '瞧', '堡', '泼', '葱', '罩', '霍', '捞', '胎', '苍', '滨', '俩', '捅', '湘', '砍', '霞', '邵', '萄', '疯', '淮', '遂', '熊', '粪', '烘', '宿', '档', '戈', '驳', '嫂', '裕', '徙', '箭', '捐', '肠', '撑', '晒', '辨', '殿', '莲', '摊', '搅', '酱', '屏', '疫', '哀', '蔡', '堵', '沫', '皱', '畅', '叠', '阁', '莱', '敲', '辖', '钩', '痕', '坝', '巷', '饿', '祸', '丘', '玄', '溜', '曰', '逻', '彭', '尝', '卿', '妨', '艇', '吞', '韦', '怨', '矮', '歇'];
 module.exports = chinese;
 
-},{}],129:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 'use strict';
 
 var english = ['abandon', 'ability', 'able', 'about', 'above', 'absent', 'absorb', 'abstract', 'absurd', 'abuse', 'access', 'accident', 'account', 'accuse', 'achieve', 'acid', 'acoustic', 'acquire', 'across', 'act', 'action', 'actor', 'actress', 'actual', 'adapt', 'add', 'addict', 'address', 'adjust', 'admit', 'adult', 'advance', 'advice', 'aerobic', 'affair', 'afford', 'afraid', 'again', 'age', 'agent', 'agree', 'ahead', 'aim', 'air', 'airport', 'aisle', 'alarm', 'album', 'alcohol', 'alert', 'alien', 'all', 'alley', 'allow', 'almost', 'alone', 'alpha', 'already', 'also', 'alter', 'always', 'amateur', 'amazing', 'among', 'amount', 'amused', 'analyst', 'anchor', 'ancient', 'anger', 'angle', 'angry', 'animal', 'ankle', 'announce', 'annual', 'another', 'answer', 'antenna', 'antique', 'anxiety', 'any', 'apart', 'apology', 'appear', 'apple', 'approve', 'april', 'arch', 'arctic', 'area', 'arena', 'argue', 'arm', 'armed', 'armor', 'army', 'around', 'arrange', 'arrest', 'arrive', 'arrow', 'art', 'artefact', 'artist', 'artwork', 'ask', 'aspect', 'assault', 'asset', 'assist', 'assume', 'asthma', 'athlete', 'atom', 'attack', 'attend', 'attitude', 'attract', 'auction', 'audit', 'august', 'aunt', 'author', 'auto', 'autumn', 'average', 'avocado', 'avoid', 'awake', 'aware', 'away', 'awesome', 'awful', 'awkward', 'axis', 'baby', 'bachelor', 'bacon', 'badge', 'bag', 'balance', 'balcony', 'ball', 'bamboo', 'banana', 'banner', 'bar', 'barely', 'bargain', 'barrel', 'base', 'basic', 'basket', 'battle', 'beach', 'bean', 'beauty', 'because', 'become', 'beef', 'before', 'begin', 'behave', 'behind', 'believe', 'below', 'belt', 'bench', 'benefit', 'best', 'betray', 'better', 'between', 'beyond', 'bicycle', 'bid', 'bike', 'bind', 'biology', 'bird', 'birth', 'bitter', 'black', 'blade', 'blame', 'blanket', 'blast', 'bleak', 'bless', 'blind', 'blood', 'blossom', 'blouse', 'blue', 'blur', 'blush', 'board', 'boat', 'body', 'boil', 'bomb', 'bone', 'bonus', 'book', 'boost', 'border', 'boring', 'borrow', 'boss', 'bottom', 'bounce', 'box', 'boy', 'bracket', 'brain', 'brand', 'brass', 'brave', 'bread', 'breeze', 'brick', 'bridge', 'brief', 'bright', 'bring', 'brisk', 'broccoli', 'broken', 'bronze', 'broom', 'brother', 'brown', 'brush', 'bubble', 'buddy', 'budget', 'buffalo', 'build', 'bulb', 'bulk', 'bullet', 'bundle', 'bunker', 'burden', 'burger', 'burst', 'bus', 'business', 'busy', 'butter', 'buyer', 'buzz', 'cabbage', 'cabin', 'cable', 'cactus', 'cage', 'cake', 'call', 'calm', 'camera', 'camp', 'can', 'canal', 'cancel', 'candy', 'cannon', 'canoe', 'canvas', 'canyon', 'capable', 'capital', 'captain', 'car', 'carbon', 'card', 'cargo', 'carpet', 'carry', 'cart', 'case', 'cash', 'casino', 'castle', 'casual', 'cat', 'catalog', 'catch', 'category', 'cattle', 'caught', 'cause', 'caution', 'cave', 'ceiling', 'celery', 'cement', 'census', 'century', 'cereal', 'certain', 'chair', 'chalk', 'champion', 'change', 'chaos', 'chapter', 'charge', 'chase', 'chat', 'cheap', 'check', 'cheese', 'chef', 'cherry', 'chest', 'chicken', 'chief', 'child', 'chimney', 'choice', 'choose', 'chronic', 'chuckle', 'chunk', 'churn', 'cigar', 'cinnamon', 'circle', 'citizen', 'city', 'civil', 'claim', 'clap', 'clarify', 'claw', 'clay', 'clean', 'clerk', 'clever', 'click', 'client', 'cliff', 'climb', 'clinic', 'clip', 'clock', 'clog', 'close', 'cloth', 'cloud', 'clown', 'club', 'clump', 'cluster', 'clutch', 'coach', 'coast', 'coconut', 'code', 'coffee', 'coil', 'coin', 'collect', 'color', 'column', 'combine', 'come', 'comfort', 'comic', 'common', 'company', 'concert', 'conduct', 'confirm', 'congress', 'connect', 'consider', 'control', 'convince', 'cook', 'cool', 'copper', 'copy', 'coral', 'core', 'corn', 'correct', 'cost', 'cotton', 'couch', 'country', 'couple', 'course', 'cousin', 'cover', 'coyote', 'crack', 'cradle', 'craft', 'cram', 'crane', 'crash', 'crater', 'crawl', 'crazy', 'cream', 'credit', 'creek', 'crew', 'cricket', 'crime', 'crisp', 'critic', 'crop', 'cross', 'crouch', 'crowd', 'crucial', 'cruel', 'cruise', 'crumble', 'crunch', 'crush', 'cry', 'crystal', 'cube', 'culture', 'cup', 'cupboard', 'curious', 'current', 'curtain', 'curve', 'cushion', 'custom', 'cute', 'cycle', 'dad', 'damage', 'damp', 'dance', 'danger', 'daring', 'dash', 'daughter', 'dawn', 'day', 'deal', 'debate', 'debris', 'decade', 'december', 'decide', 'decline', 'decorate', 'decrease', 'deer', 'defense', 'define', 'defy', 'degree', 'delay', 'deliver', 'demand', 'demise', 'denial', 'dentist', 'deny', 'depart', 'depend', 'deposit', 'depth', 'deputy', 'derive', 'describe', 'desert', 'design', 'desk', 'despair', 'destroy', 'detail', 'detect', 'develop', 'device', 'devote', 'diagram', 'dial', 'diamond', 'diary', 'dice', 'diesel', 'diet', 'differ', 'digital', 'dignity', 'dilemma', 'dinner', 'dinosaur', 'direct', 'dirt', 'disagree', 'discover', 'disease', 'dish', 'dismiss', 'disorder', 'display', 'distance', 'divert', 'divide', 'divorce', 'dizzy', 'doctor', 'document', 'dog', 'doll', 'dolphin', 'domain', 'donate', 'donkey', 'donor', 'door', 'dose', 'double', 'dove', 'draft', 'dragon', 'drama', 'drastic', 'draw', 'dream', 'dress', 'drift', 'drill', 'drink', 'drip', 'drive', 'drop', 'drum', 'dry', 'duck', 'dumb', 'dune', 'during', 'dust', 'dutch', 'duty', 'dwarf', 'dynamic', 'eager', 'eagle', 'early', 'earn', 'earth', 'easily', 'east', 'easy', 'echo', 'ecology', 'economy', 'edge', 'edit', 'educate', 'effort', 'egg', 'eight', 'either', 'elbow', 'elder', 'electric', 'elegant', 'element', 'elephant', 'elevator', 'elite', 'else', 'embark', 'embody', 'embrace', 'emerge', 'emotion', 'employ', 'empower', 'empty', 'enable', 'enact', 'end', 'endless', 'endorse', 'enemy', 'energy', 'enforce', 'engage', 'engine', 'enhance', 'enjoy', 'enlist', 'enough', 'enrich', 'enroll', 'ensure', 'enter', 'entire', 'entry', 'envelope', 'episode', 'equal', 'equip', 'era', 'erase', 'erode', 'erosion', 'error', 'erupt', 'escape', 'essay', 'essence', 'estate', 'eternal', 'ethics', 'evidence', 'evil', 'evoke', 'evolve', 'exact', 'example', 'excess', 'exchange', 'excite', 'exclude', 'excuse', 'execute', 'exercise', 'exhaust', 'exhibit', 'exile', 'exist', 'exit', 'exotic', 'expand', 'expect', 'expire', 'explain', 'expose', 'express', 'extend', 'extra', 'eye', 'eyebrow', 'fabric', 'face', 'faculty', 'fade', 'faint', 'faith', 'fall', 'false', 'fame', 'family', 'famous', 'fan', 'fancy', 'fantasy', 'farm', 'fashion', 'fat', 'fatal', 'father', 'fatigue', 'fault', 'favorite', 'feature', 'february', 'federal', 'fee', 'feed', 'feel', 'female', 'fence', 'festival', 'fetch', 'fever', 'few', 'fiber', 'fiction', 'field', 'figure', 'file', 'film', 'filter', 'final', 'find', 'fine', 'finger', 'finish', 'fire', 'firm', 'first', 'fiscal', 'fish', 'fit', 'fitness', 'fix', 'flag', 'flame', 'flash', 'flat', 'flavor', 'flee', 'flight', 'flip', 'float', 'flock', 'floor', 'flower', 'fluid', 'flush', 'fly', 'foam', 'focus', 'fog', 'foil', 'fold', 'follow', 'food', 'foot', 'force', 'forest', 'forget', 'fork', 'fortune', 'forum', 'forward', 'fossil', 'foster', 'found', 'fox', 'fragile', 'frame', 'frequent', 'fresh', 'friend', 'fringe', 'frog', 'front', 'frost', 'frown', 'frozen', 'fruit', 'fuel', 'fun', 'funny', 'furnace', 'fury', 'future', 'gadget', 'gain', 'galaxy', 'gallery', 'game', 'gap', 'garage', 'garbage', 'garden', 'garlic', 'garment', 'gas', 'gasp', 'gate', 'gather', 'gauge', 'gaze', 'general', 'genius', 'genre', 'gentle', 'genuine', 'gesture', 'ghost', 'giant', 'gift', 'giggle', 'ginger', 'giraffe', 'girl', 'give', 'glad', 'glance', 'glare', 'glass', 'glide', 'glimpse', 'globe', 'gloom', 'glory', 'glove', 'glow', 'glue', 'goat', 'goddess', 'gold', 'good', 'goose', 'gorilla', 'gospel', 'gossip', 'govern', 'gown', 'grab', 'grace', 'grain', 'grant', 'grape', 'grass', 'gravity', 'great', 'green', 'grid', 'grief', 'grit', 'grocery', 'group', 'grow', 'grunt', 'guard', 'guess', 'guide', 'guilt', 'guitar', 'gun', 'gym', 'habit', 'hair', 'half', 'hammer', 'hamster', 'hand', 'happy', 'harbor', 'hard', 'harsh', 'harvest', 'hat', 'have', 'hawk', 'hazard', 'head', 'health', 'heart', 'heavy', 'hedgehog', 'height', 'hello', 'helmet', 'help', 'hen', 'hero', 'hidden', 'high', 'hill', 'hint', 'hip', 'hire', 'history', 'hobby', 'hockey', 'hold', 'hole', 'holiday', 'hollow', 'home', 'honey', 'hood', 'hope', 'horn', 'horror', 'horse', 'hospital', 'host', 'hotel', 'hour', 'hover', 'hub', 'huge', 'human', 'humble', 'humor', 'hundred', 'hungry', 'hunt', 'hurdle', 'hurry', 'hurt', 'husband', 'hybrid', 'ice', 'icon', 'idea', 'identify', 'idle', 'ignore', 'ill', 'illegal', 'illness', 'image', 'imitate', 'immense', 'immune', 'impact', 'impose', 'improve', 'impulse', 'inch', 'include', 'income', 'increase', 'index', 'indicate', 'indoor', 'industry', 'infant', 'inflict', 'inform', 'inhale', 'inherit', 'initial', 'inject', 'injury', 'inmate', 'inner', 'innocent', 'input', 'inquiry', 'insane', 'insect', 'inside', 'inspire', 'install', 'intact', 'interest', 'into', 'invest', 'invite', 'involve', 'iron', 'island', 'isolate', 'issue', 'item', 'ivory', 'jacket', 'jaguar', 'jar', 'jazz', 'jealous', 'jeans', 'jelly', 'jewel', 'job', 'join', 'joke', 'journey', 'joy', 'judge', 'juice', 'jump', 'jungle', 'junior', 'junk', 'just', 'kangaroo', 'keen', 'keep', 'ketchup', 'key', 'kick', 'kid', 'kidney', 'kind', 'kingdom', 'kiss', 'kit', 'kitchen', 'kite', 'kitten', 'kiwi', 'knee', 'knife', 'knock', 'know', 'lab', 'label', 'labor', 'ladder', 'lady', 'lake', 'lamp', 'language', 'laptop', 'large', 'later', 'latin', 'laugh', 'laundry', 'lava', 'law', 'lawn', 'lawsuit', 'layer', 'lazy', 'leader', 'leaf', 'learn', 'leave', 'lecture', 'left', 'leg', 'legal', 'legend', 'leisure', 'lemon', 'lend', 'length', 'lens', 'leopard', 'lesson', 'letter', 'level', 'liar', 'liberty', 'library', 'license', 'life', 'lift', 'light', 'like', 'limb', 'limit', 'link', 'lion', 'liquid', 'list', 'little', 'live', 'lizard', 'load', 'loan', 'lobster', 'local', 'lock', 'logic', 'lonely', 'long', 'loop', 'lottery', 'loud', 'lounge', 'love', 'loyal', 'lucky', 'luggage', 'lumber', 'lunar', 'lunch', 'luxury', 'lyrics', 'machine', 'mad', 'magic', 'magnet', 'maid', 'mail', 'main', 'major', 'make', 'mammal', 'man', 'manage', 'mandate', 'mango', 'mansion', 'manual', 'maple', 'marble', 'march', 'margin', 'marine', 'market', 'marriage', 'mask', 'mass', 'master', 'match', 'material', 'math', 'matrix', 'matter', 'maximum', 'maze', 'meadow', 'mean', 'measure', 'meat', 'mechanic', 'medal', 'media', 'melody', 'melt', 'member', 'memory', 'mention', 'menu', 'mercy', 'merge', 'merit', 'merry', 'mesh', 'message', 'metal', 'method', 'middle', 'midnight', 'milk', 'million', 'mimic', 'mind', 'minimum', 'minor', 'minute', 'miracle', 'mirror', 'misery', 'miss', 'mistake', 'mix', 'mixed', 'mixture', 'mobile', 'model', 'modify', 'mom', 'moment', 'monitor', 'monkey', 'monster', 'month', 'moon', 'moral', 'more', 'morning', 'mosquito', 'mother', 'motion', 'motor', 'mountain', 'mouse', 'move', 'movie', 'much', 'muffin', 'mule', 'multiply', 'muscle', 'museum', 'mushroom', 'music', 'must', 'mutual', 'myself', 'mystery', 'myth', 'naive', 'name', 'napkin', 'narrow', 'nasty', 'nation', 'nature', 'near', 'neck', 'need', 'negative', 'neglect', 'neither', 'nephew', 'nerve', 'nest', 'net', 'network', 'neutral', 'never', 'news', 'next', 'nice', 'night', 'noble', 'noise', 'nominee', 'noodle', 'normal', 'north', 'nose', 'notable', 'note', 'nothing', 'notice', 'novel', 'now', 'nuclear', 'number', 'nurse', 'nut', 'oak', 'obey', 'object', 'oblige', 'obscure', 'observe', 'obtain', 'obvious', 'occur', 'ocean', 'october', 'odor', 'off', 'offer', 'office', 'often', 'oil', 'okay', 'old', 'olive', 'olympic', 'omit', 'once', 'one', 'onion', 'online', 'only', 'open', 'opera', 'opinion', 'oppose', 'option', 'orange', 'orbit', 'orchard', 'order', 'ordinary', 'organ', 'orient', 'original', 'orphan', 'ostrich', 'other', 'outdoor', 'outer', 'output', 'outside', 'oval', 'oven', 'over', 'own', 'owner', 'oxygen', 'oyster', 'ozone', 'pact', 'paddle', 'page', 'pair', 'palace', 'palm', 'panda', 'panel', 'panic', 'panther', 'paper', 'parade', 'parent', 'park', 'parrot', 'party', 'pass', 'patch', 'path', 'patient', 'patrol', 'pattern', 'pause', 'pave', 'payment', 'peace', 'peanut', 'pear', 'peasant', 'pelican', 'pen', 'penalty', 'pencil', 'people', 'pepper', 'perfect', 'permit', 'person', 'pet', 'phone', 'photo', 'phrase', 'physical', 'piano', 'picnic', 'picture', 'piece', 'pig', 'pigeon', 'pill', 'pilot', 'pink', 'pioneer', 'pipe', 'pistol', 'pitch', 'pizza', 'place', 'planet', 'plastic', 'plate', 'play', 'please', 'pledge', 'pluck', 'plug', 'plunge', 'poem', 'poet', 'point', 'polar', 'pole', 'police', 'pond', 'pony', 'pool', 'popular', 'portion', 'position', 'possible', 'post', 'potato', 'pottery', 'poverty', 'powder', 'power', 'practice', 'praise', 'predict', 'prefer', 'prepare', 'present', 'pretty', 'prevent', 'price', 'pride', 'primary', 'print', 'priority', 'prison', 'private', 'prize', 'problem', 'process', 'produce', 'profit', 'program', 'project', 'promote', 'proof', 'property', 'prosper', 'protect', 'proud', 'provide', 'public', 'pudding', 'pull', 'pulp', 'pulse', 'pumpkin', 'punch', 'pupil', 'puppy', 'purchase', 'purity', 'purpose', 'purse', 'push', 'put', 'puzzle', 'pyramid', 'quality', 'quantum', 'quarter', 'question', 'quick', 'quit', 'quiz', 'quote', 'rabbit', 'raccoon', 'race', 'rack', 'radar', 'radio', 'rail', 'rain', 'raise', 'rally', 'ramp', 'ranch', 'random', 'range', 'rapid', 'rare', 'rate', 'rather', 'raven', 'raw', 'razor', 'ready', 'real', 'reason', 'rebel', 'rebuild', 'recall', 'receive', 'recipe', 'record', 'recycle', 'reduce', 'reflect', 'reform', 'refuse', 'region', 'regret', 'regular', 'reject', 'relax', 'release', 'relief', 'rely', 'remain', 'remember', 'remind', 'remove', 'render', 'renew', 'rent', 'reopen', 'repair', 'repeat', 'replace', 'report', 'require', 'rescue', 'resemble', 'resist', 'resource', 'response', 'result', 'retire', 'retreat', 'return', 'reunion', 'reveal', 'review', 'reward', 'rhythm', 'rib', 'ribbon', 'rice', 'rich', 'ride', 'ridge', 'rifle', 'right', 'rigid', 'ring', 'riot', 'ripple', 'risk', 'ritual', 'rival', 'river', 'road', 'roast', 'robot', 'robust', 'rocket', 'romance', 'roof', 'rookie', 'room', 'rose', 'rotate', 'rough', 'round', 'route', 'royal', 'rubber', 'rude', 'rug', 'rule', 'run', 'runway', 'rural', 'sad', 'saddle', 'sadness', 'safe', 'sail', 'salad', 'salmon', 'salon', 'salt', 'salute', 'same', 'sample', 'sand', 'satisfy', 'satoshi', 'sauce', 'sausage', 'save', 'say', 'scale', 'scan', 'scare', 'scatter', 'scene', 'scheme', 'school', 'science', 'scissors', 'scorpion', 'scout', 'scrap', 'screen', 'script', 'scrub', 'sea', 'search', 'season', 'seat', 'second', 'secret', 'section', 'security', 'seed', 'seek', 'segment', 'select', 'sell', 'seminar', 'senior', 'sense', 'sentence', 'series', 'service', 'session', 'settle', 'setup', 'seven', 'shadow', 'shaft', 'shallow', 'share', 'shed', 'shell', 'sheriff', 'shield', 'shift', 'shine', 'ship', 'shiver', 'shock', 'shoe', 'shoot', 'shop', 'short', 'shoulder', 'shove', 'shrimp', 'shrug', 'shuffle', 'shy', 'sibling', 'sick', 'side', 'siege', 'sight', 'sign', 'silent', 'silk', 'silly', 'silver', 'similar', 'simple', 'since', 'sing', 'siren', 'sister', 'situate', 'six', 'size', 'skate', 'sketch', 'ski', 'skill', 'skin', 'skirt', 'skull', 'slab', 'slam', 'sleep', 'slender', 'slice', 'slide', 'slight', 'slim', 'slogan', 'slot', 'slow', 'slush', 'small', 'smart', 'smile', 'smoke', 'smooth', 'snack', 'snake', 'snap', 'sniff', 'snow', 'soap', 'soccer', 'social', 'sock', 'soda', 'soft', 'solar', 'soldier', 'solid', 'solution', 'solve', 'someone', 'song', 'soon', 'sorry', 'sort', 'soul', 'sound', 'soup', 'source', 'south', 'space', 'spare', 'spatial', 'spawn', 'speak', 'special', 'speed', 'spell', 'spend', 'sphere', 'spice', 'spider', 'spike', 'spin', 'spirit', 'split', 'spoil', 'sponsor', 'spoon', 'sport', 'spot', 'spray', 'spread', 'spring', 'spy', 'square', 'squeeze', 'squirrel', 'stable', 'stadium', 'staff', 'stage', 'stairs', 'stamp', 'stand', 'start', 'state', 'stay', 'steak', 'steel', 'stem', 'step', 'stereo', 'stick', 'still', 'sting', 'stock', 'stomach', 'stone', 'stool', 'story', 'stove', 'strategy', 'street', 'strike', 'strong', 'struggle', 'student', 'stuff', 'stumble', 'style', 'subject', 'submit', 'subway', 'success', 'such', 'sudden', 'suffer', 'sugar', 'suggest', 'suit', 'summer', 'sun', 'sunny', 'sunset', 'super', 'supply', 'supreme', 'sure', 'surface', 'surge', 'surprise', 'surround', 'survey', 'suspect', 'sustain', 'swallow', 'swamp', 'swap', 'swarm', 'swear', 'sweet', 'swift', 'swim', 'swing', 'switch', 'sword', 'symbol', 'symptom', 'syrup', 'system', 'table', 'tackle', 'tag', 'tail', 'talent', 'talk', 'tank', 'tape', 'target', 'task', 'taste', 'tattoo', 'taxi', 'teach', 'team', 'tell', 'ten', 'tenant', 'tennis', 'tent', 'term', 'test', 'text', 'thank', 'that', 'theme', 'then', 'theory', 'there', 'they', 'thing', 'this', 'thought', 'three', 'thrive', 'throw', 'thumb', 'thunder', 'ticket', 'tide', 'tiger', 'tilt', 'timber', 'time', 'tiny', 'tip', 'tired', 'tissue', 'title', 'toast', 'tobacco', 'today', 'toddler', 'toe', 'together', 'toilet', 'token', 'tomato', 'tomorrow', 'tone', 'tongue', 'tonight', 'tool', 'tooth', 'top', 'topic', 'topple', 'torch', 'tornado', 'tortoise', 'toss', 'total', 'tourist', 'toward', 'tower', 'town', 'toy', 'track', 'trade', 'traffic', 'tragic', 'train', 'transfer', 'trap', 'trash', 'travel', 'tray', 'treat', 'tree', 'trend', 'trial', 'tribe', 'trick', 'trigger', 'trim', 'trip', 'trophy', 'trouble', 'truck', 'true', 'truly', 'trumpet', 'trust', 'truth', 'try', 'tube', 'tuition', 'tumble', 'tuna', 'tunnel', 'turkey', 'turn', 'turtle', 'twelve', 'twenty', 'twice', 'twin', 'twist', 'two', 'type', 'typical', 'ugly', 'umbrella', 'unable', 'unaware', 'uncle', 'uncover', 'under', 'undo', 'unfair', 'unfold', 'unhappy', 'uniform', 'unique', 'unit', 'universe', 'unknown', 'unlock', 'until', 'unusual', 'unveil', 'update', 'upgrade', 'uphold', 'upon', 'upper', 'upset', 'urban', 'urge', 'usage', 'use', 'used', 'useful', 'useless', 'usual', 'utility', 'vacant', 'vacuum', 'vague', 'valid', 'valley', 'valve', 'van', 'vanish', 'vapor', 'various', 'vast', 'vault', 'vehicle', 'velvet', 'vendor', 'venture', 'venue', 'verb', 'verify', 'version', 'very', 'vessel', 'veteran', 'viable', 'vibrant', 'vicious', 'victory', 'video', 'view', 'village', 'vintage', 'violin', 'virtual', 'virus', 'visa', 'visit', 'visual', 'vital', 'vivid', 'vocal', 'voice', 'void', 'volcano', 'volume', 'vote', 'voyage', 'wage', 'wagon', 'wait', 'walk', 'wall', 'walnut', 'want', 'warfare', 'warm', 'warrior', 'wash', 'wasp', 'waste', 'water', 'wave', 'way', 'wealth', 'weapon', 'wear', 'weasel', 'weather', 'web', 'wedding', 'weekend', 'weird', 'welcome', 'west', 'wet', 'whale', 'what', 'wheat', 'wheel', 'when', 'where', 'whip', 'whisper', 'wide', 'width', 'wife', 'wild', 'will', 'win', 'window', 'wine', 'wing', 'wink', 'winner', 'winter', 'wire', 'wisdom', 'wise', 'wish', 'witness', 'wolf', 'woman', 'wonder', 'wood', 'wool', 'word', 'work', 'world', 'worry', 'worth', 'wrap', 'wreck', 'wrestle', 'wrist', 'write', 'wrong', 'yard', 'year', 'yellow', 'you', 'young', 'youth', 'zebra', 'zero', 'zone', 'zoo'];
 module.exports = english;
 
-},{}],130:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 "use strict";
 'use string';
 
 var french = ['abaisser', 'abandon', 'abdiquer', 'abeille', 'abolir', 'aborder', 'aboutir', 'aboyer', 'abrasif', 'abreuver', 'abriter', 'abroger', 'abrupt', 'absence', 'absolu', 'absurde', 'abusif', 'abyssal', 'académie', 'acajou', 'acarien', 'accabler', 'accepter', 'acclamer', 'accolade', 'accroche', 'accuser', 'acerbe', 'achat', 'acheter', 'aciduler', 'acier', 'acompte', 'acquérir', 'acronyme', 'acteur', 'actif', 'actuel', 'adepte', 'adéquat', 'adhésif', 'adjectif', 'adjuger', 'admettre', 'admirer', 'adopter', 'adorer', 'adoucir', 'adresse', 'adroit', 'adulte', 'adverbe', 'aérer', 'aéronef', 'affaire', 'affecter', 'affiche', 'affreux', 'affubler', 'agacer', 'agencer', 'agile', 'agiter', 'agrafer', 'agréable', 'agrume', 'aider', 'aiguille', 'ailier', 'aimable', 'aisance', 'ajouter', 'ajuster', 'alarmer', 'alchimie', 'alerte', 'algèbre', 'algue', 'aliéner', 'aliment', 'alléger', 'alliage', 'allouer', 'allumer', 'alourdir', 'alpaga', 'altesse', 'alvéole', 'amateur', 'ambigu', 'ambre', 'aménager', 'amertume', 'amidon', 'amiral', 'amorcer', 'amour', 'amovible', 'amphibie', 'ampleur', 'amusant', 'analyse', 'anaphore', 'anarchie', 'anatomie', 'ancien', 'anéantir', 'angle', 'angoisse', 'anguleux', 'animal', 'annexer', 'annonce', 'annuel', 'anodin', 'anomalie', 'anonyme', 'anormal', 'antenne', 'antidote', 'anxieux', 'apaiser', 'apéritif', 'aplanir', 'apologie', 'appareil', 'appeler', 'apporter', 'appuyer', 'aquarium', 'aqueduc', 'arbitre', 'arbuste', 'ardeur', 'ardoise', 'argent', 'arlequin', 'armature', 'armement', 'armoire', 'armure', 'arpenter', 'arracher', 'arriver', 'arroser', 'arsenic', 'artériel', 'article', 'aspect', 'asphalte', 'aspirer', 'assaut', 'asservir', 'assiette', 'associer', 'assurer', 'asticot', 'astre', 'astuce', 'atelier', 'atome', 'atrium', 'atroce', 'attaque', 'attentif', 'attirer', 'attraper', 'aubaine', 'auberge', 'audace', 'audible', 'augurer', 'aurore', 'automne', 'autruche', 'avaler', 'avancer', 'avarice', 'avenir', 'averse', 'aveugle', 'aviateur', 'avide', 'avion', 'aviser', 'avoine', 'avouer', 'avril', 'axial', 'axiome', 'badge', 'bafouer', 'bagage', 'baguette', 'baignade', 'balancer', 'balcon', 'baleine', 'balisage', 'bambin', 'bancaire', 'bandage', 'banlieue', 'bannière', 'banquier', 'barbier', 'baril', 'baron', 'barque', 'barrage', 'bassin', 'bastion', 'bataille', 'bateau', 'batterie', 'baudrier', 'bavarder', 'belette', 'bélier', 'belote', 'bénéfice', 'berceau', 'berger', 'berline', 'bermuda', 'besace', 'besogne', 'bétail', 'beurre', 'biberon', 'bicycle', 'bidule', 'bijou', 'bilan', 'bilingue', 'billard', 'binaire', 'biologie', 'biopsie', 'biotype', 'biscuit', 'bison', 'bistouri', 'bitume', 'bizarre', 'blafard', 'blague', 'blanchir', 'blessant', 'blinder', 'blond', 'bloquer', 'blouson', 'bobard', 'bobine', 'boire', 'boiser', 'bolide', 'bonbon', 'bondir', 'bonheur', 'bonifier', 'bonus', 'bordure', 'borne', 'botte', 'boucle', 'boueux', 'bougie', 'boulon', 'bouquin', 'bourse', 'boussole', 'boutique', 'boxeur', 'branche', 'brasier', 'brave', 'brebis', 'brèche', 'breuvage', 'bricoler', 'brigade', 'brillant', 'brioche', 'brique', 'brochure', 'broder', 'bronzer', 'brousse', 'broyeur', 'brume', 'brusque', 'brutal', 'bruyant', 'buffle', 'buisson', 'bulletin', 'bureau', 'burin', 'bustier', 'butiner', 'butoir', 'buvable', 'buvette', 'cabanon', 'cabine', 'cachette', 'cadeau', 'cadre', 'caféine', 'caillou', 'caisson', 'calculer', 'calepin', 'calibre', 'calmer', 'calomnie', 'calvaire', 'camarade', 'caméra', 'camion', 'campagne', 'canal', 'caneton', 'canon', 'cantine', 'canular', 'capable', 'caporal', 'caprice', 'capsule', 'capter', 'capuche', 'carabine', 'carbone', 'caresser', 'caribou', 'carnage', 'carotte', 'carreau', 'carton', 'cascade', 'casier', 'casque', 'cassure', 'causer', 'caution', 'cavalier', 'caverne', 'caviar', 'cédille', 'ceinture', 'céleste', 'cellule', 'cendrier', 'censurer', 'central', 'cercle', 'cérébral', 'cerise', 'cerner', 'cerveau', 'cesser', 'chagrin', 'chaise', 'chaleur', 'chambre', 'chance', 'chapitre', 'charbon', 'chasseur', 'chaton', 'chausson', 'chavirer', 'chemise', 'chenille', 'chéquier', 'chercher', 'cheval', 'chien', 'chiffre', 'chignon', 'chimère', 'chiot', 'chlorure', 'chocolat', 'choisir', 'chose', 'chouette', 'chrome', 'chute', 'cigare', 'cigogne', 'cimenter', 'cinéma', 'cintrer', 'circuler', 'cirer', 'cirque', 'citerne', 'citoyen', 'citron', 'civil', 'clairon', 'clameur', 'claquer', 'classe', 'clavier', 'client', 'cligner', 'climat', 'clivage', 'cloche', 'clonage', 'cloporte', 'cobalt', 'cobra', 'cocasse', 'cocotier', 'coder', 'codifier', 'coffre', 'cogner', 'cohésion', 'coiffer', 'coincer', 'colère', 'colibri', 'colline', 'colmater', 'colonel', 'combat', 'comédie', 'commande', 'compact', 'concert', 'conduire', 'confier', 'congeler', 'connoter', 'consonne', 'contact', 'convexe', 'copain', 'copie', 'corail', 'corbeau', 'cordage', 'corniche', 'corpus', 'correct', 'cortège', 'cosmique', 'costume', 'coton', 'coude', 'coupure', 'courage', 'couteau', 'couvrir', 'coyote', 'crabe', 'crainte', 'cravate', 'crayon', 'créature', 'créditer', 'crémeux', 'creuser', 'crevette', 'cribler', 'crier', 'cristal', 'critère', 'croire', 'croquer', 'crotale', 'crucial', 'cruel', 'crypter', 'cubique', 'cueillir', 'cuillère', 'cuisine', 'cuivre', 'culminer', 'cultiver', 'cumuler', 'cupide', 'curatif', 'curseur', 'cyanure', 'cycle', 'cylindre', 'cynique', 'daigner', 'damier', 'danger', 'danseur', 'dauphin', 'débattre', 'débiter', 'déborder', 'débrider', 'débutant', 'décaler', 'décembre', 'déchirer', 'décider', 'déclarer', 'décorer', 'décrire', 'décupler', 'dédale', 'déductif', 'déesse', 'défensif', 'défiler', 'défrayer', 'dégager', 'dégivrer', 'déglutir', 'dégrafer', 'déjeuner', 'délice', 'déloger', 'demander', 'demeurer', 'démolir', 'dénicher', 'dénouer', 'dentelle', 'dénuder', 'départ', 'dépenser', 'déphaser', 'déplacer', 'déposer', 'déranger', 'dérober', 'désastre', 'descente', 'désert', 'désigner', 'désobéir', 'dessiner', 'destrier', 'détacher', 'détester', 'détourer', 'détresse', 'devancer', 'devenir', 'deviner', 'devoir', 'diable', 'dialogue', 'diamant', 'dicter', 'différer', 'digérer', 'digital', 'digne', 'diluer', 'dimanche', 'diminuer', 'dioxyde', 'directif', 'diriger', 'discuter', 'disposer', 'dissiper', 'distance', 'divertir', 'diviser', 'docile', 'docteur', 'dogme', 'doigt', 'domaine', 'domicile', 'dompter', 'donateur', 'donjon', 'donner', 'dopamine', 'dortoir', 'dorure', 'dosage', 'doseur', 'dossier', 'dotation', 'douanier', 'double', 'douceur', 'douter', 'doyen', 'dragon', 'draper', 'dresser', 'dribbler', 'droiture', 'duperie', 'duplexe', 'durable', 'durcir', 'dynastie', 'éblouir', 'écarter', 'écharpe', 'échelle', 'éclairer', 'éclipse', 'éclore', 'écluse', 'école', 'économie', 'écorce', 'écouter', 'écraser', 'écrémer', 'écrivain', 'écrou', 'écume', 'écureuil', 'édifier', 'éduquer', 'effacer', 'effectif', 'effigie', 'effort', 'effrayer', 'effusion', 'égaliser', 'égarer', 'éjecter', 'élaborer', 'élargir', 'électron', 'élégant', 'éléphant', 'élève', 'éligible', 'élitisme', 'éloge', 'élucider', 'éluder', 'emballer', 'embellir', 'embryon', 'émeraude', 'émission', 'emmener', 'émotion', 'émouvoir', 'empereur', 'employer', 'emporter', 'emprise', 'émulsion', 'encadrer', 'enchère', 'enclave', 'encoche', 'endiguer', 'endosser', 'endroit', 'enduire', 'énergie', 'enfance', 'enfermer', 'enfouir', 'engager', 'engin', 'englober', 'énigme', 'enjamber', 'enjeu', 'enlever', 'ennemi', 'ennuyeux', 'enrichir', 'enrobage', 'enseigne', 'entasser', 'entendre', 'entier', 'entourer', 'entraver', 'énumérer', 'envahir', 'enviable', 'envoyer', 'enzyme', 'éolien', 'épaissir', 'épargne', 'épatant', 'épaule', 'épicerie', 'épidémie', 'épier', 'épilogue', 'épine', 'épisode', 'épitaphe', 'époque', 'épreuve', 'éprouver', 'épuisant', 'équerre', 'équipe', 'ériger', 'érosion', 'erreur', 'éruption', 'escalier', 'espadon', 'espèce', 'espiègle', 'espoir', 'esprit', 'esquiver', 'essayer', 'essence', 'essieu', 'essorer', 'estime', 'estomac', 'estrade', 'étagère', 'étaler', 'étanche', 'étatique', 'éteindre', 'étendoir', 'éternel', 'éthanol', 'éthique', 'ethnie', 'étirer', 'étoffer', 'étoile', 'étonnant', 'étourdir', 'étrange', 'étroit', 'étude', 'euphorie', 'évaluer', 'évasion', 'éventail', 'évidence', 'éviter', 'évolutif', 'évoquer', 'exact', 'exagérer', 'exaucer', 'exceller', 'excitant', 'exclusif', 'excuse', 'exécuter', 'exemple', 'exercer', 'exhaler', 'exhorter', 'exigence', 'exiler', 'exister', 'exotique', 'expédier', 'explorer', 'exposer', 'exprimer', 'exquis', 'extensif', 'extraire', 'exulter', 'fable', 'fabuleux', 'facette', 'facile', 'facture', 'faiblir', 'falaise', 'fameux', 'famille', 'farceur', 'farfelu', 'farine', 'farouche', 'fasciner', 'fatal', 'fatigue', 'faucon', 'fautif', 'faveur', 'favori', 'fébrile', 'féconder', 'fédérer', 'félin', 'femme', 'fémur', 'fendoir', 'féodal', 'fermer', 'féroce', 'ferveur', 'festival', 'feuille', 'feutre', 'février', 'fiasco', 'ficeler', 'fictif', 'fidèle', 'figure', 'filature', 'filetage', 'filière', 'filleul', 'filmer', 'filou', 'filtrer', 'financer', 'finir', 'fiole', 'firme', 'fissure', 'fixer', 'flairer', 'flamme', 'flasque', 'flatteur', 'fléau', 'flèche', 'fleur', 'flexion', 'flocon', 'flore', 'fluctuer', 'fluide', 'fluvial', 'folie', 'fonderie', 'fongible', 'fontaine', 'forcer', 'forgeron', 'formuler', 'fortune', 'fossile', 'foudre', 'fougère', 'fouiller', 'foulure', 'fourmi', 'fragile', 'fraise', 'franchir', 'frapper', 'frayeur', 'frégate', 'freiner', 'frelon', 'frémir', 'frénésie', 'frère', 'friable', 'friction', 'frisson', 'frivole', 'froid', 'fromage', 'frontal', 'frotter', 'fruit', 'fugitif', 'fuite', 'fureur', 'furieux', 'furtif', 'fusion', 'futur', 'gagner', 'galaxie', 'galerie', 'gambader', 'garantir', 'gardien', 'garnir', 'garrigue', 'gazelle', 'gazon', 'géant', 'gélatine', 'gélule', 'gendarme', 'général', 'génie', 'genou', 'gentil', 'géologie', 'géomètre', 'géranium', 'germe', 'gestuel', 'geyser', 'gibier', 'gicler', 'girafe', 'givre', 'glace', 'glaive', 'glisser', 'globe', 'gloire', 'glorieux', 'golfeur', 'gomme', 'gonfler', 'gorge', 'gorille', 'goudron', 'gouffre', 'goulot', 'goupille', 'gourmand', 'goutte', 'graduel', 'graffiti', 'graine', 'grand', 'grappin', 'gratuit', 'gravir', 'grenat', 'griffure', 'griller', 'grimper', 'grogner', 'gronder', 'grotte', 'groupe', 'gruger', 'grutier', 'gruyère', 'guépard', 'guerrier', 'guide', 'guimauve', 'guitare', 'gustatif', 'gymnaste', 'gyrostat', 'habitude', 'hachoir', 'halte', 'hameau', 'hangar', 'hanneton', 'haricot', 'harmonie', 'harpon', 'hasard', 'hélium', 'hématome', 'herbe', 'hérisson', 'hermine', 'héron', 'hésiter', 'heureux', 'hiberner', 'hibou', 'hilarant', 'histoire', 'hiver', 'homard', 'hommage', 'homogène', 'honneur', 'honorer', 'honteux', 'horde', 'horizon', 'horloge', 'hormone', 'horrible', 'houleux', 'housse', 'hublot', 'huileux', 'humain', 'humble', 'humide', 'humour', 'hurler', 'hydromel', 'hygiène', 'hymne', 'hypnose', 'idylle', 'ignorer', 'iguane', 'illicite', 'illusion', 'image', 'imbiber', 'imiter', 'immense', 'immobile', 'immuable', 'impact', 'impérial', 'implorer', 'imposer', 'imprimer', 'imputer', 'incarner', 'incendie', 'incident', 'incliner', 'incolore', 'indexer', 'indice', 'inductif', 'inédit', 'ineptie', 'inexact', 'infini', 'infliger', 'informer', 'infusion', 'ingérer', 'inhaler', 'inhiber', 'injecter', 'injure', 'innocent', 'inoculer', 'inonder', 'inscrire', 'insecte', 'insigne', 'insolite', 'inspirer', 'instinct', 'insulter', 'intact', 'intense', 'intime', 'intrigue', 'intuitif', 'inutile', 'invasion', 'inventer', 'inviter', 'invoquer', 'ironique', 'irradier', 'irréel', 'irriter', 'isoler', 'ivoire', 'ivresse', 'jaguar', 'jaillir', 'jambe', 'janvier', 'jardin', 'jauger', 'jaune', 'javelot', 'jetable', 'jeton', 'jeudi', 'jeunesse', 'joindre', 'joncher', 'jongler', 'joueur', 'jouissif', 'journal', 'jovial', 'joyau', 'joyeux', 'jubiler', 'jugement', 'junior', 'jupon', 'juriste', 'justice', 'juteux', 'juvénile', 'kayak', 'kimono', 'kiosque', 'label', 'labial', 'labourer', 'lacérer', 'lactose', 'lagune', 'laine', 'laisser', 'laitier', 'lambeau', 'lamelle', 'lampe', 'lanceur', 'langage', 'lanterne', 'lapin', 'largeur', 'larme', 'laurier', 'lavabo', 'lavoir', 'lecture', 'légal', 'léger', 'légume', 'lessive', 'lettre', 'levier', 'lexique', 'lézard', 'liasse', 'libérer', 'libre', 'licence', 'licorne', 'liège', 'lièvre', 'ligature', 'ligoter', 'ligue', 'limer', 'limite', 'limonade', 'limpide', 'linéaire', 'lingot', 'lionceau', 'liquide', 'lisière', 'lister', 'lithium', 'litige', 'littoral', 'livreur', 'logique', 'lointain', 'loisir', 'lombric', 'loterie', 'louer', 'lourd', 'loutre', 'louve', 'loyal', 'lubie', 'lucide', 'lucratif', 'lueur', 'lugubre', 'luisant', 'lumière', 'lunaire', 'lundi', 'luron', 'lutter', 'luxueux', 'machine', 'magasin', 'magenta', 'magique', 'maigre', 'maillon', 'maintien', 'mairie', 'maison', 'majorer', 'malaxer', 'maléfice', 'malheur', 'malice', 'mallette', 'mammouth', 'mandater', 'maniable', 'manquant', 'manteau', 'manuel', 'marathon', 'marbre', 'marchand', 'mardi', 'maritime', 'marqueur', 'marron', 'marteler', 'mascotte', 'massif', 'matériel', 'matière', 'matraque', 'maudire', 'maussade', 'mauve', 'maximal', 'méchant', 'méconnu', 'médaille', 'médecin', 'méditer', 'méduse', 'meilleur', 'mélange', 'mélodie', 'membre', 'mémoire', 'menacer', 'mener', 'menhir', 'mensonge', 'mentor', 'mercredi', 'mérite', 'merle', 'messager', 'mesure', 'métal', 'météore', 'méthode', 'métier', 'meuble', 'miauler', 'microbe', 'miette', 'mignon', 'migrer', 'milieu', 'million', 'mimique', 'mince', 'minéral', 'minimal', 'minorer', 'minute', 'miracle', 'miroiter', 'missile', 'mixte', 'mobile', 'moderne', 'moelleux', 'mondial', 'moniteur', 'monnaie', 'monotone', 'monstre', 'montagne', 'monument', 'moqueur', 'morceau', 'morsure', 'mortier', 'moteur', 'motif', 'mouche', 'moufle', 'moulin', 'mousson', 'mouton', 'mouvant', 'multiple', 'munition', 'muraille', 'murène', 'murmure', 'muscle', 'muséum', 'musicien', 'mutation', 'muter', 'mutuel', 'myriade', 'myrtille', 'mystère', 'mythique', 'nageur', 'nappe', 'narquois', 'narrer', 'natation', 'nation', 'nature', 'naufrage', 'nautique', 'navire', 'nébuleux', 'nectar', 'néfaste', 'négation', 'négliger', 'négocier', 'neige', 'nerveux', 'nettoyer', 'neurone', 'neutron', 'neveu', 'niche', 'nickel', 'nitrate', 'niveau', 'noble', 'nocif', 'nocturne', 'noirceur', 'noisette', 'nomade', 'nombreux', 'nommer', 'normatif', 'notable', 'notifier', 'notoire', 'nourrir', 'nouveau', 'novateur', 'novembre', 'novice', 'nuage', 'nuancer', 'nuire', 'nuisible', 'numéro', 'nuptial', 'nuque', 'nutritif', 'obéir', 'objectif', 'obliger', 'obscur', 'observer', 'obstacle', 'obtenir', 'obturer', 'occasion', 'occuper', 'océan', 'octobre', 'octroyer', 'octupler', 'oculaire', 'odeur', 'odorant', 'offenser', 'officier', 'offrir', 'ogive', 'oiseau', 'oisillon', 'olfactif', 'olivier', 'ombrage', 'omettre', 'onctueux', 'onduler', 'onéreux', 'onirique', 'opale', 'opaque', 'opérer', 'opinion', 'opportun', 'opprimer', 'opter', 'optique', 'orageux', 'orange', 'orbite', 'ordonner', 'oreille', 'organe', 'orgueil', 'orifice', 'ornement', 'orque', 'ortie', 'osciller', 'osmose', 'ossature', 'otarie', 'ouragan', 'ourson', 'outil', 'outrager', 'ouvrage', 'ovation', 'oxyde', 'oxygène', 'ozone', 'paisible', 'palace', 'palmarès', 'palourde', 'palper', 'panache', 'panda', 'pangolin', 'paniquer', 'panneau', 'panorama', 'pantalon', 'papaye', 'papier', 'papoter', 'papyrus', 'paradoxe', 'parcelle', 'paresse', 'parfumer', 'parler', 'parole', 'parrain', 'parsemer', 'partager', 'parure', 'parvenir', 'passion', 'pastèque', 'paternel', 'patience', 'patron', 'pavillon', 'pavoiser', 'payer', 'paysage', 'peigne', 'peintre', 'pelage', 'pélican', 'pelle', 'pelouse', 'peluche', 'pendule', 'pénétrer', 'pénible', 'pensif', 'pénurie', 'pépite', 'péplum', 'perdrix', 'perforer', 'période', 'permuter', 'perplexe', 'persil', 'perte', 'peser', 'pétale', 'petit', 'pétrir', 'peuple', 'pharaon', 'phobie', 'phoque', 'photon', 'phrase', 'physique', 'piano', 'pictural', 'pièce', 'pierre', 'pieuvre', 'pilote', 'pinceau', 'pipette', 'piquer', 'pirogue', 'piscine', 'piston', 'pivoter', 'pixel', 'pizza', 'placard', 'plafond', 'plaisir', 'planer', 'plaque', 'plastron', 'plateau', 'pleurer', 'plexus', 'pliage', 'plomb', 'plonger', 'pluie', 'plumage', 'pochette', 'poésie', 'poète', 'pointe', 'poirier', 'poisson', 'poivre', 'polaire', 'policier', 'pollen', 'polygone', 'pommade', 'pompier', 'ponctuel', 'pondérer', 'poney', 'portique', 'position', 'posséder', 'posture', 'potager', 'poteau', 'potion', 'pouce', 'poulain', 'poumon', 'pourpre', 'poussin', 'pouvoir', 'prairie', 'pratique', 'précieux', 'prédire', 'préfixe', 'prélude', 'prénom', 'présence', 'prétexte', 'prévoir', 'primitif', 'prince', 'prison', 'priver', 'problème', 'procéder', 'prodige', 'profond', 'progrès', 'proie', 'projeter', 'prologue', 'promener', 'propre', 'prospère', 'protéger', 'prouesse', 'proverbe', 'prudence', 'pruneau', 'psychose', 'public', 'puceron', 'puiser', 'pulpe', 'pulsar', 'punaise', 'punitif', 'pupitre', 'purifier', 'puzzle', 'pyramide', 'quasar', 'querelle', 'question', 'quiétude', 'quitter', 'quotient', 'racine', 'raconter', 'radieux', 'ragondin', 'raideur', 'raisin', 'ralentir', 'rallonge', 'ramasser', 'rapide', 'rasage', 'ratisser', 'ravager', 'ravin', 'rayonner', 'réactif', 'réagir', 'réaliser', 'réanimer', 'recevoir', 'réciter', 'réclamer', 'récolter', 'recruter', 'reculer', 'recycler', 'rédiger', 'redouter', 'refaire', 'réflexe', 'réformer', 'refrain', 'refuge', 'régalien', 'région', 'réglage', 'régulier', 'réitérer', 'rejeter', 'rejouer', 'relatif', 'relever', 'relief', 'remarque', 'remède', 'remise', 'remonter', 'remplir', 'remuer', 'renard', 'renfort', 'renifler', 'renoncer', 'rentrer', 'renvoi', 'replier', 'reporter', 'reprise', 'reptile', 'requin', 'réserve', 'résineux', 'résoudre', 'respect', 'rester', 'résultat', 'rétablir', 'retenir', 'réticule', 'retomber', 'retracer', 'réunion', 'réussir', 'revanche', 'revivre', 'révolte', 'révulsif', 'richesse', 'rideau', 'rieur', 'rigide', 'rigoler', 'rincer', 'riposter', 'risible', 'risque', 'rituel', 'rival', 'rivière', 'rocheux', 'romance', 'rompre', 'ronce', 'rondin', 'roseau', 'rosier', 'rotatif', 'rotor', 'rotule', 'rouge', 'rouille', 'rouleau', 'routine', 'royaume', 'ruban', 'rubis', 'ruche', 'ruelle', 'rugueux', 'ruiner', 'ruisseau', 'ruser', 'rustique', 'rythme', 'sabler', 'saboter', 'sabre', 'sacoche', 'safari', 'sagesse', 'saisir', 'salade', 'salive', 'salon', 'saluer', 'samedi', 'sanction', 'sanglier', 'sarcasme', 'sardine', 'saturer', 'saugrenu', 'saumon', 'sauter', 'sauvage', 'savant', 'savonner', 'scalpel', 'scandale', 'scélérat', 'scénario', 'sceptre', 'schéma', 'science', 'scinder', 'score', 'scrutin', 'sculpter', 'séance', 'sécable', 'sécher', 'secouer', 'sécréter', 'sédatif', 'séduire', 'seigneur', 'séjour', 'sélectif', 'semaine', 'sembler', 'semence', 'séminal', 'sénateur', 'sensible', 'sentence', 'séparer', 'séquence', 'serein', 'sergent', 'sérieux', 'serrure', 'sérum', 'service', 'sésame', 'sévir', 'sevrage', 'sextuple', 'sidéral', 'siècle', 'siéger', 'siffler', 'sigle', 'signal', 'silence', 'silicium', 'simple', 'sincère', 'sinistre', 'siphon', 'sirop', 'sismique', 'situer', 'skier', 'social', 'socle', 'sodium', 'soigneux', 'soldat', 'soleil', 'solitude', 'soluble', 'sombre', 'sommeil', 'somnoler', 'sonde', 'songeur', 'sonnette', 'sonore', 'sorcier', 'sortir', 'sosie', 'sottise', 'soucieux', 'soudure', 'souffle', 'soulever', 'soupape', 'source', 'soutirer', 'souvenir', 'spacieux', 'spatial', 'spécial', 'sphère', 'spiral', 'stable', 'station', 'sternum', 'stimulus', 'stipuler', 'strict', 'studieux', 'stupeur', 'styliste', 'sublime', 'substrat', 'subtil', 'subvenir', 'succès', 'sucre', 'suffixe', 'suggérer', 'suiveur', 'sulfate', 'superbe', 'supplier', 'surface', 'suricate', 'surmener', 'surprise', 'sursaut', 'survie', 'suspect', 'syllabe', 'symbole', 'symétrie', 'synapse', 'syntaxe', 'système', 'tabac', 'tablier', 'tactile', 'tailler', 'talent', 'talisman', 'talonner', 'tambour', 'tamiser', 'tangible', 'tapis', 'taquiner', 'tarder', 'tarif', 'tartine', 'tasse', 'tatami', 'tatouage', 'taupe', 'taureau', 'taxer', 'témoin', 'temporel', 'tenaille', 'tendre', 'teneur', 'tenir', 'tension', 'terminer', 'terne', 'terrible', 'tétine', 'texte', 'thème', 'théorie', 'thérapie', 'thorax', 'tibia', 'tiède', 'timide', 'tirelire', 'tiroir', 'tissu', 'titane', 'titre', 'tituber', 'toboggan', 'tolérant', 'tomate', 'tonique', 'tonneau', 'toponyme', 'torche', 'tordre', 'tornade', 'torpille', 'torrent', 'torse', 'tortue', 'totem', 'toucher', 'tournage', 'tousser', 'toxine', 'traction', 'trafic', 'tragique', 'trahir', 'train', 'trancher', 'travail', 'trèfle', 'tremper', 'trésor', 'treuil', 'triage', 'tribunal', 'tricoter', 'trilogie', 'triomphe', 'tripler', 'triturer', 'trivial', 'trombone', 'tronc', 'tropical', 'troupeau', 'tuile', 'tulipe', 'tumulte', 'tunnel', 'turbine', 'tuteur', 'tutoyer', 'tuyau', 'tympan', 'typhon', 'typique', 'tyran', 'ubuesque', 'ultime', 'ultrason', 'unanime', 'unifier', 'union', 'unique', 'unitaire', 'univers', 'uranium', 'urbain', 'urticant', 'usage', 'usine', 'usuel', 'usure', 'utile', 'utopie', 'vacarme', 'vaccin', 'vagabond', 'vague', 'vaillant', 'vaincre', 'vaisseau', 'valable', 'valise', 'vallon', 'valve', 'vampire', 'vanille', 'vapeur', 'varier', 'vaseux', 'vassal', 'vaste', 'vecteur', 'vedette', 'végétal', 'véhicule', 'veinard', 'véloce', 'vendredi', 'vénérer', 'venger', 'venimeux', 'ventouse', 'verdure', 'vérin', 'vernir', 'verrou', 'verser', 'vertu', 'veston', 'vétéran', 'vétuste', 'vexant', 'vexer', 'viaduc', 'viande', 'victoire', 'vidange', 'vidéo', 'vignette', 'vigueur', 'vilain', 'village', 'vinaigre', 'violon', 'vipère', 'virement', 'virtuose', 'virus', 'visage', 'viseur', 'vision', 'visqueux', 'visuel', 'vital', 'vitesse', 'viticole', 'vitrine', 'vivace', 'vivipare', 'vocation', 'voguer', 'voile', 'voisin', 'voiture', 'volaille', 'volcan', 'voltiger', 'volume', 'vorace', 'vortex', 'voter', 'vouloir', 'voyage', 'voyelle', 'wagon', 'xénon', 'yacht', 'zèbre', 'zénith', 'zeste', 'zoologie'];
 module.exports = french;
 
-},{}],131:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -26186,31 +29651,31 @@ module.exports = {
   'SPANISH': require('./spanish')
 };
 
-},{"./chinese":128,"./english":129,"./french":130,"./italian":132,"./japanese":133,"./korean":134,"./spanish":135}],132:[function(require,module,exports){
+},{"./chinese":129,"./english":130,"./french":131,"./italian":133,"./japanese":134,"./korean":135,"./spanish":136}],133:[function(require,module,exports){
 'use strict';
 
 var italian = ['abaco', 'abbaglio', 'abbinato', 'abete', 'abisso', 'abolire', 'abrasivo', 'abrogato', 'accadere', 'accenno', 'accusato', 'acetone', 'achille', 'acido', 'acqua', 'acre', 'acrilico', 'acrobata', 'acuto', 'adagio', 'addebito', 'addome', 'adeguato', 'aderire', 'adipe', 'adottare', 'adulare', 'affabile', 'affetto', 'affisso', 'affranto', 'aforisma', 'afoso', 'africano', 'agave', 'agente', 'agevole', 'aggancio', 'agire', 'agitare', 'agonismo', 'agricolo', 'agrumeto', 'aguzzo', 'alabarda', 'alato', 'albatro', 'alberato', 'albo', 'albume', 'alce', 'alcolico', 'alettone', 'alfa', 'algebra', 'aliante', 'alibi', 'alimento', 'allagato', 'allegro', 'allievo', 'allodola', 'allusivo', 'almeno', 'alogeno', 'alpaca', 'alpestre', 'altalena', 'alterno', 'alticcio', 'altrove', 'alunno', 'alveolo', 'alzare', 'amalgama', 'amanita', 'amarena', 'ambito', 'ambrato', 'ameba', 'america', 'ametista', 'amico', 'ammasso', 'ammenda', 'ammirare', 'ammonito', 'amore', 'ampio', 'ampliare', 'amuleto', 'anacardo', 'anagrafe', 'analista', 'anarchia', 'anatra', 'anca', 'ancella', 'ancora', 'andare', 'andrea', 'anello', 'angelo', 'angolare', 'angusto', 'anima', 'annegare', 'annidato', 'anno', 'annuncio', 'anonimo', 'anticipo', 'anzi', 'apatico', 'apertura', 'apode', 'apparire', 'appetito', 'appoggio', 'approdo', 'appunto', 'aprile', 'arabica', 'arachide', 'aragosta', 'araldica', 'arancio', 'aratura', 'arazzo', 'arbitro', 'archivio', 'ardito', 'arenile', 'argento', 'argine', 'arguto', 'aria', 'armonia', 'arnese', 'arredato', 'arringa', 'arrosto', 'arsenico', 'arso', 'artefice', 'arzillo', 'asciutto', 'ascolto', 'asepsi', 'asettico', 'asfalto', 'asino', 'asola', 'aspirato', 'aspro', 'assaggio', 'asse', 'assoluto', 'assurdo', 'asta', 'astenuto', 'astice', 'astratto', 'atavico', 'ateismo', 'atomico', 'atono', 'attesa', 'attivare', 'attorno', 'attrito', 'attuale', 'ausilio', 'austria', 'autista', 'autonomo', 'autunno', 'avanzato', 'avere', 'avvenire', 'avviso', 'avvolgere', 'azione', 'azoto', 'azzimo', 'azzurro', 'babele', 'baccano', 'bacino', 'baco', 'badessa', 'badilata', 'bagnato', 'baita', 'balcone', 'baldo', 'balena', 'ballata', 'balzano', 'bambino', 'bandire', 'baraonda', 'barbaro', 'barca', 'baritono', 'barlume', 'barocco', 'basilico', 'basso', 'batosta', 'battuto', 'baule', 'bava', 'bavosa', 'becco', 'beffa', 'belgio', 'belva', 'benda', 'benevole', 'benigno', 'benzina', 'bere', 'berlina', 'beta', 'bibita', 'bici', 'bidone', 'bifido', 'biga', 'bilancia', 'bimbo', 'binocolo', 'biologo', 'bipede', 'bipolare', 'birbante', 'birra', 'biscotto', 'bisesto', 'bisnonno', 'bisonte', 'bisturi', 'bizzarro', 'blando', 'blatta', 'bollito', 'bonifico', 'bordo', 'bosco', 'botanico', 'bottino', 'bozzolo', 'braccio', 'bradipo', 'brama', 'branca', 'bravura', 'bretella', 'brevetto', 'brezza', 'briglia', 'brillante', 'brindare', 'broccolo', 'brodo', 'bronzina', 'brullo', 'bruno', 'bubbone', 'buca', 'budino', 'buffone', 'buio', 'bulbo', 'buono', 'burlone', 'burrasca', 'bussola', 'busta', 'cadetto', 'caduco', 'calamaro', 'calcolo', 'calesse', 'calibro', 'calmo', 'caloria', 'cambusa', 'camerata', 'camicia', 'cammino', 'camola', 'campale', 'canapa', 'candela', 'cane', 'canino', 'canotto', 'cantina', 'capace', 'capello', 'capitolo', 'capogiro', 'cappero', 'capra', 'capsula', 'carapace', 'carcassa', 'cardo', 'carisma', 'carovana', 'carretto', 'cartolina', 'casaccio', 'cascata', 'caserma', 'caso', 'cassone', 'castello', 'casuale', 'catasta', 'catena', 'catrame', 'cauto', 'cavillo', 'cedibile', 'cedrata', 'cefalo', 'celebre', 'cellulare', 'cena', 'cenone', 'centesimo', 'ceramica', 'cercare', 'certo', 'cerume', 'cervello', 'cesoia', 'cespo', 'ceto', 'chela', 'chiaro', 'chicca', 'chiedere', 'chimera', 'china', 'chirurgo', 'chitarra', 'ciao', 'ciclismo', 'cifrare', 'cigno', 'cilindro', 'ciottolo', 'circa', 'cirrosi', 'citrico', 'cittadino', 'ciuffo', 'civetta', 'civile', 'classico', 'clinica', 'cloro', 'cocco', 'codardo', 'codice', 'coerente', 'cognome', 'collare', 'colmato', 'colore', 'colposo', 'coltivato', 'colza', 'coma', 'cometa', 'commando', 'comodo', 'computer', 'comune', 'conciso', 'condurre', 'conferma', 'congelare', 'coniuge', 'connesso', 'conoscere', 'consumo', 'continuo', 'convegno', 'coperto', 'copione', 'coppia', 'copricapo', 'corazza', 'cordata', 'coricato', 'cornice', 'corolla', 'corpo', 'corredo', 'corsia', 'cortese', 'cosmico', 'costante', 'cottura', 'covato', 'cratere', 'cravatta', 'creato', 'credere', 'cremoso', 'crescita', 'creta', 'criceto', 'crinale', 'crisi', 'critico', 'croce', 'cronaca', 'crostata', 'cruciale', 'crusca', 'cucire', 'cuculo', 'cugino', 'cullato', 'cupola', 'curatore', 'cursore', 'curvo', 'cuscino', 'custode', 'dado', 'daino', 'dalmata', 'damerino', 'daniela', 'dannoso', 'danzare', 'datato', 'davanti', 'davvero', 'debutto', 'decennio', 'deciso', 'declino', 'decollo', 'decreto', 'dedicato', 'definito', 'deforme', 'degno', 'delegare', 'delfino', 'delirio', 'delta', 'demenza', 'denotato', 'dentro', 'deposito', 'derapata', 'derivare', 'deroga', 'descritto', 'deserto', 'desiderio', 'desumere', 'detersivo', 'devoto', 'diametro', 'dicembre', 'diedro', 'difeso', 'diffuso', 'digerire', 'digitale', 'diluvio', 'dinamico', 'dinnanzi', 'dipinto', 'diploma', 'dipolo', 'diradare', 'dire', 'dirotto', 'dirupo', 'disagio', 'discreto', 'disfare', 'disgelo', 'disposto', 'distanza', 'disumano', 'dito', 'divano', 'divelto', 'dividere', 'divorato', 'doblone', 'docente', 'doganale', 'dogma', 'dolce', 'domato', 'domenica', 'dominare', 'dondolo', 'dono', 'dormire', 'dote', 'dottore', 'dovuto', 'dozzina', 'drago', 'druido', 'dubbio', 'dubitare', 'ducale', 'duna', 'duomo', 'duplice', 'duraturo', 'ebano', 'eccesso', 'ecco', 'eclissi', 'economia', 'edera', 'edicola', 'edile', 'editoria', 'educare', 'egemonia', 'egli', 'egoismo', 'egregio', 'elaborato', 'elargire', 'elegante', 'elencato', 'eletto', 'elevare', 'elfico', 'elica', 'elmo', 'elsa', 'eluso', 'emanato', 'emblema', 'emesso', 'emiro', 'emotivo', 'emozione', 'empirico', 'emulo', 'endemico', 'enduro', 'energia', 'enfasi', 'enoteca', 'entrare', 'enzima', 'epatite', 'epilogo', 'episodio', 'epocale', 'eppure', 'equatore', 'erario', 'erba', 'erboso', 'erede', 'eremita', 'erigere', 'ermetico', 'eroe', 'erosivo', 'errante', 'esagono', 'esame', 'esanime', 'esaudire', 'esca', 'esempio', 'esercito', 'esibito', 'esigente', 'esistere', 'esito', 'esofago', 'esortato', 'esoso', 'espanso', 'espresso', 'essenza', 'esso', 'esteso', 'estimare', 'estonia', 'estroso', 'esultare', 'etilico', 'etnico', 'etrusco', 'etto', 'euclideo', 'europa', 'evaso', 'evidenza', 'evitato', 'evoluto', 'evviva', 'fabbrica', 'faccenda', 'fachiro', 'falco', 'famiglia', 'fanale', 'fanfara', 'fango', 'fantasma', 'fare', 'farfalla', 'farinoso', 'farmaco', 'fascia', 'fastoso', 'fasullo', 'faticare', 'fato', 'favoloso', 'febbre', 'fecola', 'fede', 'fegato', 'felpa', 'feltro', 'femmina', 'fendere', 'fenomeno', 'fermento', 'ferro', 'fertile', 'fessura', 'festivo', 'fetta', 'feudo', 'fiaba', 'fiducia', 'fifa', 'figurato', 'filo', 'finanza', 'finestra', 'finire', 'fiore', 'fiscale', 'fisico', 'fiume', 'flacone', 'flamenco', 'flebo', 'flemma', 'florido', 'fluente', 'fluoro', 'fobico', 'focaccia', 'focoso', 'foderato', 'foglio', 'folata', 'folclore', 'folgore', 'fondente', 'fonetico', 'fonia', 'fontana', 'forbito', 'forchetta', 'foresta', 'formica', 'fornaio', 'foro', 'fortezza', 'forzare', 'fosfato', 'fosso', 'fracasso', 'frana', 'frassino', 'fratello', 'freccetta', 'frenata', 'fresco', 'frigo', 'frollino', 'fronde', 'frugale', 'frutta', 'fucilata', 'fucsia', 'fuggente', 'fulmine', 'fulvo', 'fumante', 'fumetto', 'fumoso', 'fune', 'funzione', 'fuoco', 'furbo', 'furgone', 'furore', 'fuso', 'futile', 'gabbiano', 'gaffe', 'galateo', 'gallina', 'galoppo', 'gambero', 'gamma', 'garanzia', 'garbo', 'garofano', 'garzone', 'gasdotto', 'gasolio', 'gastrico', 'gatto', 'gaudio', 'gazebo', 'gazzella', 'geco', 'gelatina', 'gelso', 'gemello', 'gemmato', 'gene', 'genitore', 'gennaio', 'genotipo', 'gergo', 'ghepardo', 'ghiaccio', 'ghisa', 'giallo', 'gilda', 'ginepro', 'giocare', 'gioiello', 'giorno', 'giove', 'girato', 'girone', 'gittata', 'giudizio', 'giurato', 'giusto', 'globulo', 'glutine', 'gnomo', 'gobba', 'golf', 'gomito', 'gommone', 'gonfio', 'gonna', 'governo', 'gracile', 'grado', 'grafico', 'grammo', 'grande', 'grattare', 'gravoso', 'grazia', 'greca', 'gregge', 'grifone', 'grigio', 'grinza', 'grotta', 'gruppo', 'guadagno', 'guaio', 'guanto', 'guardare', 'gufo', 'guidare', 'ibernato', 'icona', 'identico', 'idillio', 'idolo', 'idra', 'idrico', 'idrogeno', 'igiene', 'ignaro', 'ignorato', 'ilare', 'illeso', 'illogico', 'illudere', 'imballo', 'imbevuto', 'imbocco', 'imbuto', 'immane', 'immerso', 'immolato', 'impacco', 'impeto', 'impiego', 'importo', 'impronta', 'inalare', 'inarcare', 'inattivo', 'incanto', 'incendio', 'inchino', 'incisivo', 'incluso', 'incontro', 'incrocio', 'incubo', 'indagine', 'india', 'indole', 'inedito', 'infatti', 'infilare', 'inflitto', 'ingaggio', 'ingegno', 'inglese', 'ingordo', 'ingrosso', 'innesco', 'inodore', 'inoltrare', 'inondato', 'insano', 'insetto', 'insieme', 'insonnia', 'insulina', 'intasato', 'intero', 'intonaco', 'intuito', 'inumidire', 'invalido', 'invece', 'invito', 'iperbole', 'ipnotico', 'ipotesi', 'ippica', 'iride', 'irlanda', 'ironico', 'irrigato', 'irrorare', 'isolato', 'isotopo', 'isterico', 'istituto', 'istrice', 'italia', 'iterare', 'labbro', 'labirinto', 'lacca', 'lacerato', 'lacrima', 'lacuna', 'laddove', 'lago', 'lampo', 'lancetta', 'lanterna', 'lardoso', 'larga', 'laringe', 'lastra', 'latenza', 'latino', 'lattuga', 'lavagna', 'lavoro', 'legale', 'leggero', 'lembo', 'lentezza', 'lenza', 'leone', 'lepre', 'lesivo', 'lessato', 'lesto', 'letterale', 'leva', 'levigato', 'libero', 'lido', 'lievito', 'lilla', 'limatura', 'limitare', 'limpido', 'lineare', 'lingua', 'liquido', 'lira', 'lirica', 'lisca', 'lite', 'litigio', 'livrea', 'locanda', 'lode', 'logica', 'lombare', 'londra', 'longevo', 'loquace', 'lorenzo', 'loto', 'lotteria', 'luce', 'lucidato', 'lumaca', 'luminoso', 'lungo', 'lupo', 'luppolo', 'lusinga', 'lusso', 'lutto', 'macabro', 'macchina', 'macero', 'macinato', 'madama', 'magico', 'maglia', 'magnete', 'magro', 'maiolica', 'malafede', 'malgrado', 'malinteso', 'malsano', 'malto', 'malumore', 'mana', 'mancia', 'mandorla', 'mangiare', 'manifesto', 'mannaro', 'manovra', 'mansarda', 'mantide', 'manubrio', 'mappa', 'maratona', 'marcire', 'maretta', 'marmo', 'marsupio', 'maschera', 'massaia', 'mastino', 'materasso', 'matricola', 'mattone', 'maturo', 'mazurca', 'meandro', 'meccanico', 'mecenate', 'medesimo', 'meditare', 'mega', 'melassa', 'melis', 'melodia', 'meninge', 'meno', 'mensola', 'mercurio', 'merenda', 'merlo', 'meschino', 'mese', 'messere', 'mestolo', 'metallo', 'metodo', 'mettere', 'miagolare', 'mica', 'micelio', 'michele', 'microbo', 'midollo', 'miele', 'migliore', 'milano', 'milite', 'mimosa', 'minerale', 'mini', 'minore', 'mirino', 'mirtillo', 'miscela', 'missiva', 'misto', 'misurare', 'mitezza', 'mitigare', 'mitra', 'mittente', 'mnemonico', 'modello', 'modifica', 'modulo', 'mogano', 'mogio', 'mole', 'molosso', 'monastero', 'monco', 'mondina', 'monetario', 'monile', 'monotono', 'monsone', 'montato', 'monviso', 'mora', 'mordere', 'morsicato', 'mostro', 'motivato', 'motosega', 'motto', 'movenza', 'movimento', 'mozzo', 'mucca', 'mucosa', 'muffa', 'mughetto', 'mugnaio', 'mulatto', 'mulinello', 'multiplo', 'mummia', 'munto', 'muovere', 'murale', 'musa', 'muscolo', 'musica', 'mutevole', 'muto', 'nababbo', 'nafta', 'nanometro', 'narciso', 'narice', 'narrato', 'nascere', 'nastrare', 'naturale', 'nautica', 'naviglio', 'nebulosa', 'necrosi', 'negativo', 'negozio', 'nemmeno', 'neofita', 'neretto', 'nervo', 'nessuno', 'nettuno', 'neutrale', 'neve', 'nevrotico', 'nicchia', 'ninfa', 'nitido', 'nobile', 'nocivo', 'nodo', 'nome', 'nomina', 'nordico', 'normale', 'norvegese', 'nostrano', 'notare', 'notizia', 'notturno', 'novella', 'nucleo', 'nulla', 'numero', 'nuovo', 'nutrire', 'nuvola', 'nuziale', 'oasi', 'obbedire', 'obbligo', 'obelisco', 'oblio', 'obolo', 'obsoleto', 'occasione', 'occhio', 'occidente', 'occorrere', 'occultare', 'ocra', 'oculato', 'odierno', 'odorare', 'offerta', 'offrire', 'offuscato', 'oggetto', 'oggi', 'ognuno', 'olandese', 'olfatto', 'oliato', 'oliva', 'ologramma', 'oltre', 'omaggio', 'ombelico', 'ombra', 'omega', 'omissione', 'ondoso', 'onere', 'onice', 'onnivoro', 'onorevole', 'onta', 'operato', 'opinione', 'opposto', 'oracolo', 'orafo', 'ordine', 'orecchino', 'orefice', 'orfano', 'organico', 'origine', 'orizzonte', 'orma', 'ormeggio', 'ornativo', 'orologio', 'orrendo', 'orribile', 'ortensia', 'ortica', 'orzata', 'orzo', 'osare', 'oscurare', 'osmosi', 'ospedale', 'ospite', 'ossa', 'ossidare', 'ostacolo', 'oste', 'otite', 'otre', 'ottagono', 'ottimo', 'ottobre', 'ovale', 'ovest', 'ovino', 'oviparo', 'ovocito', 'ovunque', 'ovviare', 'ozio', 'pacchetto', 'pace', 'pacifico', 'padella', 'padrone', 'paese', 'paga', 'pagina', 'palazzina', 'palesare', 'pallido', 'palo', 'palude', 'pandoro', 'pannello', 'paolo', 'paonazzo', 'paprica', 'parabola', 'parcella', 'parere', 'pargolo', 'pari', 'parlato', 'parola', 'partire', 'parvenza', 'parziale', 'passivo', 'pasticca', 'patacca', 'patologia', 'pattume', 'pavone', 'peccato', 'pedalare', 'pedonale', 'peggio', 'peloso', 'penare', 'pendice', 'penisola', 'pennuto', 'penombra', 'pensare', 'pentola', 'pepe', 'pepita', 'perbene', 'percorso', 'perdonato', 'perforare', 'pergamena', 'periodo', 'permesso', 'perno', 'perplesso', 'persuaso', 'pertugio', 'pervaso', 'pesatore', 'pesista', 'peso', 'pestifero', 'petalo', 'pettine', 'petulante', 'pezzo', 'piacere', 'pianta', 'piattino', 'piccino', 'picozza', 'piega', 'pietra', 'piffero', 'pigiama', 'pigolio', 'pigro', 'pila', 'pilifero', 'pillola', 'pilota', 'pimpante', 'pineta', 'pinna', 'pinolo', 'pioggia', 'piombo', 'piramide', 'piretico', 'pirite', 'pirolisi', 'pitone', 'pizzico', 'placebo', 'planare', 'plasma', 'platano', 'plenario', 'pochezza', 'poderoso', 'podismo', 'poesia', 'poggiare', 'polenta', 'poligono', 'pollice', 'polmonite', 'polpetta', 'polso', 'poltrona', 'polvere', 'pomice', 'pomodoro', 'ponte', 'popoloso', 'porfido', 'poroso', 'porpora', 'porre', 'portata', 'posa', 'positivo', 'possesso', 'postulato', 'potassio', 'potere', 'pranzo', 'prassi', 'pratica', 'precluso', 'predica', 'prefisso', 'pregiato', 'prelievo', 'premere', 'prenotare', 'preparato', 'presenza', 'pretesto', 'prevalso', 'prima', 'principe', 'privato', 'problema', 'procura', 'produrre', 'profumo', 'progetto', 'prolunga', 'promessa', 'pronome', 'proposta', 'proroga', 'proteso', 'prova', 'prudente', 'prugna', 'prurito', 'psiche', 'pubblico', 'pudica', 'pugilato', 'pugno', 'pulce', 'pulito', 'pulsante', 'puntare', 'pupazzo', 'pupilla', 'puro', 'quadro', 'qualcosa', 'quasi', 'querela', 'quota', 'raccolto', 'raddoppio', 'radicale', 'radunato', 'raffica', 'ragazzo', 'ragione', 'ragno', 'ramarro', 'ramingo', 'ramo', 'randagio', 'rantolare', 'rapato', 'rapina', 'rappreso', 'rasatura', 'raschiato', 'rasente', 'rassegna', 'rastrello', 'rata', 'ravveduto', 'reale', 'recepire', 'recinto', 'recluta', 'recondito', 'recupero', 'reddito', 'redimere', 'regalato', 'registro', 'regola', 'regresso', 'relazione', 'remare', 'remoto', 'renna', 'replica', 'reprimere', 'reputare', 'resa', 'residente', 'responso', 'restauro', 'rete', 'retina', 'retorica', 'rettifica', 'revocato', 'riassunto', 'ribadire', 'ribelle', 'ribrezzo', 'ricarica', 'ricco', 'ricevere', 'riciclato', 'ricordo', 'ricreduto', 'ridicolo', 'ridurre', 'rifasare', 'riflesso', 'riforma', 'rifugio', 'rigare', 'rigettato', 'righello', 'rilassato', 'rilevato', 'rimanere', 'rimbalzo', 'rimedio', 'rimorchio', 'rinascita', 'rincaro', 'rinforzo', 'rinnovo', 'rinomato', 'rinsavito', 'rintocco', 'rinuncia', 'rinvenire', 'riparato', 'ripetuto', 'ripieno', 'riportare', 'ripresa', 'ripulire', 'risata', 'rischio', 'riserva', 'risibile', 'riso', 'rispetto', 'ristoro', 'risultato', 'risvolto', 'ritardo', 'ritegno', 'ritmico', 'ritrovo', 'riunione', 'riva', 'riverso', 'rivincita', 'rivolto', 'rizoma', 'roba', 'robotico', 'robusto', 'roccia', 'roco', 'rodaggio', 'rodere', 'roditore', 'rogito', 'rollio', 'romantico', 'rompere', 'ronzio', 'rosolare', 'rospo', 'rotante', 'rotondo', 'rotula', 'rovescio', 'rubizzo', 'rubrica', 'ruga', 'rullino', 'rumine', 'rumoroso', 'ruolo', 'rupe', 'russare', 'rustico', 'sabato', 'sabbiare', 'sabotato', 'sagoma', 'salasso', 'saldatura', 'salgemma', 'salivare', 'salmone', 'salone', 'saltare', 'saluto', 'salvo', 'sapere', 'sapido', 'saporito', 'saraceno', 'sarcasmo', 'sarto', 'sassoso', 'satellite', 'satira', 'satollo', 'saturno', 'savana', 'savio', 'saziato', 'sbadiglio', 'sbalzo', 'sbancato', 'sbarra', 'sbattere', 'sbavare', 'sbendare', 'sbirciare', 'sbloccato', 'sbocciato', 'sbrinare', 'sbruffone', 'sbuffare', 'scabroso', 'scadenza', 'scala', 'scambiare', 'scandalo', 'scapola', 'scarso', 'scatenare', 'scavato', 'scelto', 'scenico', 'scettro', 'scheda', 'schiena', 'sciarpa', 'scienza', 'scindere', 'scippo', 'sciroppo', 'scivolo', 'sclerare', 'scodella', 'scolpito', 'scomparto', 'sconforto', 'scoprire', 'scorta', 'scossone', 'scozzese', 'scriba', 'scrollare', 'scrutinio', 'scuderia', 'scultore', 'scuola', 'scuro', 'scusare', 'sdebitare', 'sdoganare', 'seccatura', 'secondo', 'sedano', 'seggiola', 'segnalato', 'segregato', 'seguito', 'selciato', 'selettivo', 'sella', 'selvaggio', 'semaforo', 'sembrare', 'seme', 'seminato', 'sempre', 'senso', 'sentire', 'sepolto', 'sequenza', 'serata', 'serbato', 'sereno', 'serio', 'serpente', 'serraglio', 'servire', 'sestina', 'setola', 'settimana', 'sfacelo', 'sfaldare', 'sfamato', 'sfarzoso', 'sfaticato', 'sfera', 'sfida', 'sfilato', 'sfinge', 'sfocato', 'sfoderare', 'sfogo', 'sfoltire', 'sforzato', 'sfratto', 'sfruttato', 'sfuggito', 'sfumare', 'sfuso', 'sgabello', 'sgarbato', 'sgonfiare', 'sgorbio', 'sgrassato', 'sguardo', 'sibilo', 'siccome', 'sierra', 'sigla', 'signore', 'silenzio', 'sillaba', 'simbolo', 'simpatico', 'simulato', 'sinfonia', 'singolo', 'sinistro', 'sino', 'sintesi', 'sinusoide', 'sipario', 'sisma', 'sistole', 'situato', 'slitta', 'slogatura', 'sloveno', 'smarrito', 'smemorato', 'smentito', 'smeraldo', 'smilzo', 'smontare', 'smottato', 'smussato', 'snellire', 'snervato', 'snodo', 'sobbalzo', 'sobrio', 'soccorso', 'sociale', 'sodale', 'soffitto', 'sogno', 'soldato', 'solenne', 'solido', 'sollazzo', 'solo', 'solubile', 'solvente', 'somatico', 'somma', 'sonda', 'sonetto', 'sonnifero', 'sopire', 'soppeso', 'sopra', 'sorgere', 'sorpasso', 'sorriso', 'sorso', 'sorteggio', 'sorvolato', 'sospiro', 'sosta', 'sottile', 'spada', 'spalla', 'spargere', 'spatola', 'spavento', 'spazzola', 'specie', 'spedire', 'spegnere', 'spelatura', 'speranza', 'spessore', 'spettrale', 'spezzato', 'spia', 'spigoloso', 'spillato', 'spinoso', 'spirale', 'splendido', 'sportivo', 'sposo', 'spranga', 'sprecare', 'spronato', 'spruzzo', 'spuntino', 'squillo', 'sradicare', 'srotolato', 'stabile', 'stacco', 'staffa', 'stagnare', 'stampato', 'stantio', 'starnuto', 'stasera', 'statuto', 'stelo', 'steppa', 'sterzo', 'stiletto', 'stima', 'stirpe', 'stivale', 'stizzoso', 'stonato', 'storico', 'strappo', 'stregato', 'stridulo', 'strozzare', 'strutto', 'stuccare', 'stufo', 'stupendo', 'subentro', 'succoso', 'sudore', 'suggerito', 'sugo', 'sultano', 'suonare', 'superbo', 'supporto', 'surgelato', 'surrogato', 'sussurro', 'sutura', 'svagare', 'svedese', 'sveglio', 'svelare', 'svenuto', 'svezia', 'sviluppo', 'svista', 'svizzera', 'svolta', 'svuotare', 'tabacco', 'tabulato', 'tacciare', 'taciturno', 'tale', 'talismano', 'tampone', 'tannino', 'tara', 'tardivo', 'targato', 'tariffa', 'tarpare', 'tartaruga', 'tasto', 'tattico', 'taverna', 'tavolata', 'tazza', 'teca', 'tecnico', 'telefono', 'temerario', 'tempo', 'temuto', 'tendone', 'tenero', 'tensione', 'tentacolo', 'teorema', 'terme', 'terrazzo', 'terzetto', 'tesi', 'tesserato', 'testato', 'tetro', 'tettoia', 'tifare', 'tigella', 'timbro', 'tinto', 'tipico', 'tipografo', 'tiraggio', 'tiro', 'titanio', 'titolo', 'titubante', 'tizio', 'tizzone', 'toccare', 'tollerare', 'tolto', 'tombola', 'tomo', 'tonfo', 'tonsilla', 'topazio', 'topologia', 'toppa', 'torba', 'tornare', 'torrone', 'tortora', 'toscano', 'tossire', 'tostatura', 'totano', 'trabocco', 'trachea', 'trafila', 'tragedia', 'tralcio', 'tramonto', 'transito', 'trapano', 'trarre', 'trasloco', 'trattato', 'trave', 'treccia', 'tremolio', 'trespolo', 'tributo', 'tricheco', 'trifoglio', 'trillo', 'trincea', 'trio', 'tristezza', 'triturato', 'trivella', 'tromba', 'trono', 'troppo', 'trottola', 'trovare', 'truccato', 'tubatura', 'tuffato', 'tulipano', 'tumulto', 'tunisia', 'turbare', 'turchino', 'tuta', 'tutela', 'ubicato', 'uccello', 'uccisore', 'udire', 'uditivo', 'uffa', 'ufficio', 'uguale', 'ulisse', 'ultimato', 'umano', 'umile', 'umorismo', 'uncinetto', 'ungere', 'ungherese', 'unicorno', 'unificato', 'unisono', 'unitario', 'unte', 'uovo', 'upupa', 'uragano', 'urgenza', 'urlo', 'usanza', 'usato', 'uscito', 'usignolo', 'usuraio', 'utensile', 'utilizzo', 'utopia', 'vacante', 'vaccinato', 'vagabondo', 'vagliato', 'valanga', 'valgo', 'valico', 'valletta', 'valoroso', 'valutare', 'valvola', 'vampata', 'vangare', 'vanitoso', 'vano', 'vantaggio', 'vanvera', 'vapore', 'varano', 'varcato', 'variante', 'vasca', 'vedetta', 'vedova', 'veduto', 'vegetale', 'veicolo', 'velcro', 'velina', 'velluto', 'veloce', 'venato', 'vendemmia', 'vento', 'verace', 'verbale', 'vergogna', 'verifica', 'vero', 'verruca', 'verticale', 'vescica', 'vessillo', 'vestale', 'veterano', 'vetrina', 'vetusto', 'viandante', 'vibrante', 'vicenda', 'vichingo', 'vicinanza', 'vidimare', 'vigilia', 'vigneto', 'vigore', 'vile', 'villano', 'vimini', 'vincitore', 'viola', 'vipera', 'virgola', 'virologo', 'virulento', 'viscoso', 'visione', 'vispo', 'vissuto', 'visura', 'vita', 'vitello', 'vittima', 'vivanda', 'vivido', 'viziare', 'voce', 'voga', 'volatile', 'volere', 'volpe', 'voragine', 'vulcano', 'zampogna', 'zanna', 'zappato', 'zattera', 'zavorra', 'zefiro', 'zelante', 'zelo', 'zenzero', 'zerbino', 'zibetto', 'zinco', 'zircone', 'zitto', 'zolla', 'zotico', 'zucchero', 'zufolo', 'zulu', 'zuppa'];
 module.exports = italian;
 
-},{}],133:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 'use strict';
 
 var japanese = ['あいこくしん', 'あいさつ', 'あいだ', 'あおぞら', 'あかちゃん', 'あきる', 'あけがた', 'あける', 'あこがれる', 'あさい', 'あさひ', 'あしあと', 'あじわう', 'あずかる', 'あずき', 'あそぶ', 'あたえる', 'あたためる', 'あたりまえ', 'あたる', 'あつい', 'あつかう', 'あっしゅく', 'あつまり', 'あつめる', 'あてな', 'あてはまる', 'あひる', 'あぶら', 'あぶる', 'あふれる', 'あまい', 'あまど', 'あまやかす', 'あまり', 'あみもの', 'あめりか', 'あやまる', 'あゆむ', 'あらいぐま', 'あらし', 'あらすじ', 'あらためる', 'あらゆる', 'あらわす', 'ありがとう', 'あわせる', 'あわてる', 'あんい', 'あんがい', 'あんこ', 'あんぜん', 'あんてい', 'あんない', 'あんまり', 'いいだす', 'いおん', 'いがい', 'いがく', 'いきおい', 'いきなり', 'いきもの', 'いきる', 'いくじ', 'いくぶん', 'いけばな', 'いけん', 'いこう', 'いこく', 'いこつ', 'いさましい', 'いさん', 'いしき', 'いじゅう', 'いじょう', 'いじわる', 'いずみ', 'いずれ', 'いせい', 'いせえび', 'いせかい', 'いせき', 'いぜん', 'いそうろう', 'いそがしい', 'いだい', 'いだく', 'いたずら', 'いたみ', 'いたりあ', 'いちおう', 'いちじ', 'いちど', 'いちば', 'いちぶ', 'いちりゅう', 'いつか', 'いっしゅん', 'いっせい', 'いっそう', 'いったん', 'いっち', 'いってい', 'いっぽう', 'いてざ', 'いてん', 'いどう', 'いとこ', 'いない', 'いなか', 'いねむり', 'いのち', 'いのる', 'いはつ', 'いばる', 'いはん', 'いびき', 'いひん', 'いふく', 'いへん', 'いほう', 'いみん', 'いもうと', 'いもたれ', 'いもり', 'いやがる', 'いやす', 'いよかん', 'いよく', 'いらい', 'いらすと', 'いりぐち', 'いりょう', 'いれい', 'いれもの', 'いれる', 'いろえんぴつ', 'いわい', 'いわう', 'いわかん', 'いわば', 'いわゆる', 'いんげんまめ', 'いんさつ', 'いんしょう', 'いんよう', 'うえき', 'うえる', 'うおざ', 'うがい', 'うかぶ', 'うかべる', 'うきわ', 'うくらいな', 'うくれれ', 'うけたまわる', 'うけつけ', 'うけとる', 'うけもつ', 'うける', 'うごかす', 'うごく', 'うこん', 'うさぎ', 'うしなう', 'うしろがみ', 'うすい', 'うすぎ', 'うすぐらい', 'うすめる', 'うせつ', 'うちあわせ', 'うちがわ', 'うちき', 'うちゅう', 'うっかり', 'うつくしい', 'うったえる', 'うつる', 'うどん', 'うなぎ', 'うなじ', 'うなずく', 'うなる', 'うねる', 'うのう', 'うぶげ', 'うぶごえ', 'うまれる', 'うめる', 'うもう', 'うやまう', 'うよく', 'うらがえす', 'うらぐち', 'うらない', 'うりあげ', 'うりきれ', 'うるさい', 'うれしい', 'うれゆき', 'うれる', 'うろこ', 'うわき', 'うわさ', 'うんこう', 'うんちん', 'うんてん', 'うんどう', 'えいえん', 'えいが', 'えいきょう', 'えいご', 'えいせい', 'えいぶん', 'えいよう', 'えいわ', 'えおり', 'えがお', 'えがく', 'えきたい', 'えくせる', 'えしゃく', 'えすて', 'えつらん', 'えのぐ', 'えほうまき', 'えほん', 'えまき', 'えもじ', 'えもの', 'えらい', 'えらぶ', 'えりあ', 'えんえん', 'えんかい', 'えんぎ', 'えんげき', 'えんしゅう', 'えんぜつ', 'えんそく', 'えんちょう', 'えんとつ', 'おいかける', 'おいこす', 'おいしい', 'おいつく', 'おうえん', 'おうさま', 'おうじ', 'おうせつ', 'おうたい', 'おうふく', 'おうべい', 'おうよう', 'おえる', 'おおい', 'おおう', 'おおどおり', 'おおや', 'おおよそ', 'おかえり', 'おかず', 'おがむ', 'おかわり', 'おぎなう', 'おきる', 'おくさま', 'おくじょう', 'おくりがな', 'おくる', 'おくれる', 'おこす', 'おこなう', 'おこる', 'おさえる', 'おさない', 'おさめる', 'おしいれ', 'おしえる', 'おじぎ', 'おじさん', 'おしゃれ', 'おそらく', 'おそわる', 'おたがい', 'おたく', 'おだやか', 'おちつく', 'おっと', 'おつり', 'おでかけ', 'おとしもの', 'おとなしい', 'おどり', 'おどろかす', 'おばさん', 'おまいり', 'おめでとう', 'おもいで', 'おもう', 'おもたい', 'おもちゃ', 'おやつ', 'おやゆび', 'およぼす', 'おらんだ', 'おろす', 'おんがく', 'おんけい', 'おんしゃ', 'おんせん', 'おんだん', 'おんちゅう', 'おんどけい', 'かあつ', 'かいが', 'がいき', 'がいけん', 'がいこう', 'かいさつ', 'かいしゃ', 'かいすいよく', 'かいぜん', 'かいぞうど', 'かいつう', 'かいてん', 'かいとう', 'かいふく', 'がいへき', 'かいほう', 'かいよう', 'がいらい', 'かいわ', 'かえる', 'かおり', 'かかえる', 'かがく', 'かがし', 'かがみ', 'かくご', 'かくとく', 'かざる', 'がぞう', 'かたい', 'かたち', 'がちょう', 'がっきゅう', 'がっこう', 'がっさん', 'がっしょう', 'かなざわし', 'かのう', 'がはく', 'かぶか', 'かほう', 'かほご', 'かまう', 'かまぼこ', 'かめれおん', 'かゆい', 'かようび', 'からい', 'かるい', 'かろう', 'かわく', 'かわら', 'がんか', 'かんけい', 'かんこう', 'かんしゃ', 'かんそう', 'かんたん', 'かんち', 'がんばる', 'きあい', 'きあつ', 'きいろ', 'ぎいん', 'きうい', 'きうん', 'きえる', 'きおう', 'きおく', 'きおち', 'きおん', 'きかい', 'きかく', 'きかんしゃ', 'ききて', 'きくばり', 'きくらげ', 'きけんせい', 'きこう', 'きこえる', 'きこく', 'きさい', 'きさく', 'きさま', 'きさらぎ', 'ぎじかがく', 'ぎしき', 'ぎじたいけん', 'ぎじにってい', 'ぎじゅつしゃ', 'きすう', 'きせい', 'きせき', 'きせつ', 'きそう', 'きぞく', 'きぞん', 'きたえる', 'きちょう', 'きつえん', 'ぎっちり', 'きつつき', 'きつね', 'きてい', 'きどう', 'きどく', 'きない', 'きなが', 'きなこ', 'きぬごし', 'きねん', 'きのう', 'きのした', 'きはく', 'きびしい', 'きひん', 'きふく', 'きぶん', 'きぼう', 'きほん', 'きまる', 'きみつ', 'きむずかしい', 'きめる', 'きもだめし', 'きもち', 'きもの', 'きゃく', 'きやく', 'ぎゅうにく', 'きよう', 'きょうりゅう', 'きらい', 'きらく', 'きりん', 'きれい', 'きれつ', 'きろく', 'ぎろん', 'きわめる', 'ぎんいろ', 'きんかくじ', 'きんじょ', 'きんようび', 'ぐあい', 'くいず', 'くうかん', 'くうき', 'くうぐん', 'くうこう', 'ぐうせい', 'くうそう', 'ぐうたら', 'くうふく', 'くうぼ', 'くかん', 'くきょう', 'くげん', 'ぐこう', 'くさい', 'くさき', 'くさばな', 'くさる', 'くしゃみ', 'くしょう', 'くすのき', 'くすりゆび', 'くせげ', 'くせん', 'ぐたいてき', 'くださる', 'くたびれる', 'くちこみ', 'くちさき', 'くつした', 'ぐっすり', 'くつろぐ', 'くとうてん', 'くどく', 'くなん', 'くねくね', 'くのう', 'くふう', 'くみあわせ', 'くみたてる', 'くめる', 'くやくしょ', 'くらす', 'くらべる', 'くるま', 'くれる', 'くろう', 'くわしい', 'ぐんかん', 'ぐんしょく', 'ぐんたい', 'ぐんて', 'けあな', 'けいかく', 'けいけん', 'けいこ', 'けいさつ', 'げいじゅつ', 'けいたい', 'げいのうじん', 'けいれき', 'けいろ', 'けおとす', 'けおりもの', 'げきか', 'げきげん', 'げきだん', 'げきちん', 'げきとつ', 'げきは', 'げきやく', 'げこう', 'げこくじょう', 'げざい', 'けさき', 'げざん', 'けしき', 'けしごむ', 'けしょう', 'げすと', 'けたば', 'けちゃっぷ', 'けちらす', 'けつあつ', 'けつい', 'けつえき', 'けっこん', 'けつじょ', 'けっせき', 'けってい', 'けつまつ', 'げつようび', 'げつれい', 'けつろん', 'げどく', 'けとばす', 'けとる', 'けなげ', 'けなす', 'けなみ', 'けぬき', 'げねつ', 'けねん', 'けはい', 'げひん', 'けぶかい', 'げぼく', 'けまり', 'けみかる', 'けむし', 'けむり', 'けもの', 'けらい', 'けろけろ', 'けわしい', 'けんい', 'けんえつ', 'けんお', 'けんか', 'げんき', 'けんげん', 'けんこう', 'けんさく', 'けんしゅう', 'けんすう', 'げんそう', 'けんちく', 'けんてい', 'けんとう', 'けんない', 'けんにん', 'げんぶつ', 'けんま', 'けんみん', 'けんめい', 'けんらん', 'けんり', 'こあくま', 'こいぬ', 'こいびと', 'ごうい', 'こうえん', 'こうおん', 'こうかん', 'ごうきゅう', 'ごうけい', 'こうこう', 'こうさい', 'こうじ', 'こうすい', 'ごうせい', 'こうそく', 'こうたい', 'こうちゃ', 'こうつう', 'こうてい', 'こうどう', 'こうない', 'こうはい', 'ごうほう', 'ごうまん', 'こうもく', 'こうりつ', 'こえる', 'こおり', 'ごかい', 'ごがつ', 'ごかん', 'こくご', 'こくさい', 'こくとう', 'こくない', 'こくはく', 'こぐま', 'こけい', 'こける', 'ここのか', 'こころ', 'こさめ', 'こしつ', 'こすう', 'こせい', 'こせき', 'こぜん', 'こそだて', 'こたい', 'こたえる', 'こたつ', 'こちょう', 'こっか', 'こつこつ', 'こつばん', 'こつぶ', 'こてい', 'こてん', 'ことがら', 'ことし', 'ことば', 'ことり', 'こなごな', 'こねこね', 'このまま', 'このみ', 'このよ', 'ごはん', 'こひつじ', 'こふう', 'こふん', 'こぼれる', 'ごまあぶら', 'こまかい', 'ごますり', 'こまつな', 'こまる', 'こむぎこ', 'こもじ', 'こもち', 'こもの', 'こもん', 'こやく', 'こやま', 'こゆう', 'こゆび', 'こよい', 'こよう', 'こりる', 'これくしょん', 'ころっけ', 'こわもて', 'こわれる', 'こんいん', 'こんかい', 'こんき', 'こんしゅう', 'こんすい', 'こんだて', 'こんとん', 'こんなん', 'こんびに', 'こんぽん', 'こんまけ', 'こんや', 'こんれい', 'こんわく', 'ざいえき', 'さいかい', 'さいきん', 'ざいげん', 'ざいこ', 'さいしょ', 'さいせい', 'ざいたく', 'ざいちゅう', 'さいてき', 'ざいりょう', 'さうな', 'さかいし', 'さがす', 'さかな', 'さかみち', 'さがる', 'さぎょう', 'さくし', 'さくひん', 'さくら', 'さこく', 'さこつ', 'さずかる', 'ざせき', 'さたん', 'さつえい', 'ざつおん', 'ざっか', 'ざつがく', 'さっきょく', 'ざっし', 'さつじん', 'ざっそう', 'さつたば', 'さつまいも', 'さてい', 'さといも', 'さとう', 'さとおや', 'さとし', 'さとる', 'さのう', 'さばく', 'さびしい', 'さべつ', 'さほう', 'さほど', 'さます', 'さみしい', 'さみだれ', 'さむけ', 'さめる', 'さやえんどう', 'さゆう', 'さよう', 'さよく', 'さらだ', 'ざるそば', 'さわやか', 'さわる', 'さんいん', 'さんか', 'さんきゃく', 'さんこう', 'さんさい', 'ざんしょ', 'さんすう', 'さんせい', 'さんそ', 'さんち', 'さんま', 'さんみ', 'さんらん', 'しあい', 'しあげ', 'しあさって', 'しあわせ', 'しいく', 'しいん', 'しうち', 'しえい', 'しおけ', 'しかい', 'しかく', 'じかん', 'しごと', 'しすう', 'じだい', 'したうけ', 'したぎ', 'したて', 'したみ', 'しちょう', 'しちりん', 'しっかり', 'しつじ', 'しつもん', 'してい', 'してき', 'してつ', 'じてん', 'じどう', 'しなぎれ', 'しなもの', 'しなん', 'しねま', 'しねん', 'しのぐ', 'しのぶ', 'しはい', 'しばかり', 'しはつ', 'しはらい', 'しはん', 'しひょう', 'しふく', 'じぶん', 'しへい', 'しほう', 'しほん', 'しまう', 'しまる', 'しみん', 'しむける', 'じむしょ', 'しめい', 'しめる', 'しもん', 'しゃいん', 'しゃうん', 'しゃおん', 'じゃがいも', 'しやくしょ', 'しゃくほう', 'しゃけん', 'しゃこ', 'しゃざい', 'しゃしん', 'しゃせん', 'しゃそう', 'しゃたい', 'しゃちょう', 'しゃっきん', 'じゃま', 'しゃりん', 'しゃれい', 'じゆう', 'じゅうしょ', 'しゅくはく', 'じゅしん', 'しゅっせき', 'しゅみ', 'しゅらば', 'じゅんばん', 'しょうかい', 'しょくたく', 'しょっけん', 'しょどう', 'しょもつ', 'しらせる', 'しらべる', 'しんか', 'しんこう', 'じんじゃ', 'しんせいじ', 'しんちく', 'しんりん', 'すあげ', 'すあし', 'すあな', 'ずあん', 'すいえい', 'すいか', 'すいとう', 'ずいぶん', 'すいようび', 'すうがく', 'すうじつ', 'すうせん', 'すおどり', 'すきま', 'すくう', 'すくない', 'すける', 'すごい', 'すこし', 'ずさん', 'すずしい', 'すすむ', 'すすめる', 'すっかり', 'ずっしり', 'ずっと', 'すてき', 'すてる', 'すねる', 'すのこ', 'すはだ', 'すばらしい', 'ずひょう', 'ずぶぬれ', 'すぶり', 'すふれ', 'すべて', 'すべる', 'ずほう', 'すぼん', 'すまい', 'すめし', 'すもう', 'すやき', 'すらすら', 'するめ', 'すれちがう', 'すろっと', 'すわる', 'すんぜん', 'すんぽう', 'せあぶら', 'せいかつ', 'せいげん', 'せいじ', 'せいよう', 'せおう', 'せかいかん', 'せきにん', 'せきむ', 'せきゆ', 'せきらんうん', 'せけん', 'せこう', 'せすじ', 'せたい', 'せたけ', 'せっかく', 'せっきゃく', 'ぜっく', 'せっけん', 'せっこつ', 'せっさたくま', 'せつぞく', 'せつだん', 'せつでん', 'せっぱん', 'せつび', 'せつぶん', 'せつめい', 'せつりつ', 'せなか', 'せのび', 'せはば', 'せびろ', 'せぼね', 'せまい', 'せまる', 'せめる', 'せもたれ', 'せりふ', 'ぜんあく', 'せんい', 'せんえい', 'せんか', 'せんきょ', 'せんく', 'せんげん', 'ぜんご', 'せんさい', 'せんしゅ', 'せんすい', 'せんせい', 'せんぞ', 'せんたく', 'せんちょう', 'せんてい', 'せんとう', 'せんぬき', 'せんねん', 'せんぱい', 'ぜんぶ', 'ぜんぽう', 'せんむ', 'せんめんじょ', 'せんもん', 'せんやく', 'せんゆう', 'せんよう', 'ぜんら', 'ぜんりゃく', 'せんれい', 'せんろ', 'そあく', 'そいとげる', 'そいね', 'そうがんきょう', 'そうき', 'そうご', 'そうしん', 'そうだん', 'そうなん', 'そうび', 'そうめん', 'そうり', 'そえもの', 'そえん', 'そがい', 'そげき', 'そこう', 'そこそこ', 'そざい', 'そしな', 'そせい', 'そせん', 'そそぐ', 'そだてる', 'そつう', 'そつえん', 'そっかん', 'そつぎょう', 'そっけつ', 'そっこう', 'そっせん', 'そっと', 'そとがわ', 'そとづら', 'そなえる', 'そなた', 'そふぼ', 'そぼく', 'そぼろ', 'そまつ', 'そまる', 'そむく', 'そむりえ', 'そめる', 'そもそも', 'そよかぜ', 'そらまめ', 'そろう', 'そんかい', 'そんけい', 'そんざい', 'そんしつ', 'そんぞく', 'そんちょう', 'ぞんび', 'ぞんぶん', 'そんみん', 'たあい', 'たいいん', 'たいうん', 'たいえき', 'たいおう', 'だいがく', 'たいき', 'たいぐう', 'たいけん', 'たいこ', 'たいざい', 'だいじょうぶ', 'だいすき', 'たいせつ', 'たいそう', 'だいたい', 'たいちょう', 'たいてい', 'だいどころ', 'たいない', 'たいねつ', 'たいのう', 'たいはん', 'だいひょう', 'たいふう', 'たいへん', 'たいほ', 'たいまつばな', 'たいみんぐ', 'たいむ', 'たいめん', 'たいやき', 'たいよう', 'たいら', 'たいりょく', 'たいる', 'たいわん', 'たうえ', 'たえる', 'たおす', 'たおる', 'たおれる', 'たかい', 'たかね', 'たきび', 'たくさん', 'たこく', 'たこやき', 'たさい', 'たしざん', 'だじゃれ', 'たすける', 'たずさわる', 'たそがれ', 'たたかう', 'たたく', 'ただしい', 'たたみ', 'たちばな', 'だっかい', 'だっきゃく', 'だっこ', 'だっしゅつ', 'だったい', 'たてる', 'たとえる', 'たなばた', 'たにん', 'たぬき', 'たのしみ', 'たはつ', 'たぶん', 'たべる', 'たぼう', 'たまご', 'たまる', 'だむる', 'ためいき', 'ためす', 'ためる', 'たもつ', 'たやすい', 'たよる', 'たらす', 'たりきほんがん', 'たりょう', 'たりる', 'たると', 'たれる', 'たれんと', 'たろっと', 'たわむれる', 'だんあつ', 'たんい', 'たんおん', 'たんか', 'たんき', 'たんけん', 'たんご', 'たんさん', 'たんじょうび', 'だんせい', 'たんそく', 'たんたい', 'だんち', 'たんてい', 'たんとう', 'だんな', 'たんにん', 'だんねつ', 'たんのう', 'たんぴん', 'だんぼう', 'たんまつ', 'たんめい', 'だんれつ', 'だんろ', 'だんわ', 'ちあい', 'ちあん', 'ちいき', 'ちいさい', 'ちえん', 'ちかい', 'ちから', 'ちきゅう', 'ちきん', 'ちけいず', 'ちけん', 'ちこく', 'ちさい', 'ちしき', 'ちしりょう', 'ちせい', 'ちそう', 'ちたい', 'ちたん', 'ちちおや', 'ちつじょ', 'ちてき', 'ちてん', 'ちぬき', 'ちぬり', 'ちのう', 'ちひょう', 'ちへいせん', 'ちほう', 'ちまた', 'ちみつ', 'ちみどろ', 'ちめいど', 'ちゃんこなべ', 'ちゅうい', 'ちゆりょく', 'ちょうし', 'ちょさくけん', 'ちらし', 'ちらみ', 'ちりがみ', 'ちりょう', 'ちるど', 'ちわわ', 'ちんたい', 'ちんもく', 'ついか', 'ついたち', 'つうか', 'つうじょう', 'つうはん', 'つうわ', 'つかう', 'つかれる', 'つくね', 'つくる', 'つけね', 'つける', 'つごう', 'つたえる', 'つづく', 'つつじ', 'つつむ', 'つとめる', 'つながる', 'つなみ', 'つねづね', 'つのる', 'つぶす', 'つまらない', 'つまる', 'つみき', 'つめたい', 'つもり', 'つもる', 'つよい', 'つるぼ', 'つるみく', 'つわもの', 'つわり', 'てあし', 'てあて', 'てあみ', 'ていおん', 'ていか', 'ていき', 'ていけい', 'ていこく', 'ていさつ', 'ていし', 'ていせい', 'ていたい', 'ていど', 'ていねい', 'ていひょう', 'ていへん', 'ていぼう', 'てうち', 'ておくれ', 'てきとう', 'てくび', 'でこぼこ', 'てさぎょう', 'てさげ', 'てすり', 'てそう', 'てちがい', 'てちょう', 'てつがく', 'てつづき', 'でっぱ', 'てつぼう', 'てつや', 'でぬかえ', 'てぬき', 'てぬぐい', 'てのひら', 'てはい', 'てぶくろ', 'てふだ', 'てほどき', 'てほん', 'てまえ', 'てまきずし', 'てみじか', 'てみやげ', 'てらす', 'てれび', 'てわけ', 'てわたし', 'でんあつ', 'てんいん', 'てんかい', 'てんき', 'てんぐ', 'てんけん', 'てんごく', 'てんさい', 'てんし', 'てんすう', 'でんち', 'てんてき', 'てんとう', 'てんない', 'てんぷら', 'てんぼうだい', 'てんめつ', 'てんらんかい', 'でんりょく', 'でんわ', 'どあい', 'といれ', 'どうかん', 'とうきゅう', 'どうぐ', 'とうし', 'とうむぎ', 'とおい', 'とおか', 'とおく', 'とおす', 'とおる', 'とかい', 'とかす', 'ときおり', 'ときどき', 'とくい', 'とくしゅう', 'とくてん', 'とくに', 'とくべつ', 'とけい', 'とける', 'とこや', 'とさか', 'としょかん', 'とそう', 'とたん', 'とちゅう', 'とっきゅう', 'とっくん', 'とつぜん', 'とつにゅう', 'とどける', 'ととのえる', 'とない', 'となえる', 'となり', 'とのさま', 'とばす', 'どぶがわ', 'とほう', 'とまる', 'とめる', 'ともだち', 'ともる', 'どようび', 'とらえる', 'とんかつ', 'どんぶり', 'ないかく', 'ないこう', 'ないしょ', 'ないす', 'ないせん', 'ないそう', 'なおす', 'ながい', 'なくす', 'なげる', 'なこうど', 'なさけ', 'なたでここ', 'なっとう', 'なつやすみ', 'ななおし', 'なにごと', 'なにもの', 'なにわ', 'なのか', 'なふだ', 'なまいき', 'なまえ', 'なまみ', 'なみだ', 'なめらか', 'なめる', 'なやむ', 'ならう', 'ならび', 'ならぶ', 'なれる', 'なわとび', 'なわばり', 'にあう', 'にいがた', 'にうけ', 'におい', 'にかい', 'にがて', 'にきび', 'にくしみ', 'にくまん', 'にげる', 'にさんかたんそ', 'にしき', 'にせもの', 'にちじょう', 'にちようび', 'にっか', 'にっき', 'にっけい', 'にっこう', 'にっさん', 'にっしょく', 'にっすう', 'にっせき', 'にってい', 'になう', 'にほん', 'にまめ', 'にもつ', 'にやり', 'にゅういん', 'にりんしゃ', 'にわとり', 'にんい', 'にんか', 'にんき', 'にんげん', 'にんしき', 'にんずう', 'にんそう', 'にんたい', 'にんち', 'にんてい', 'にんにく', 'にんぷ', 'にんまり', 'にんむ', 'にんめい', 'にんよう', 'ぬいくぎ', 'ぬかす', 'ぬぐいとる', 'ぬぐう', 'ぬくもり', 'ぬすむ', 'ぬまえび', 'ぬめり', 'ぬらす', 'ぬんちゃく', 'ねあげ', 'ねいき', 'ねいる', 'ねいろ', 'ねぐせ', 'ねくたい', 'ねくら', 'ねこぜ', 'ねこむ', 'ねさげ', 'ねすごす', 'ねそべる', 'ねだん', 'ねつい', 'ねっしん', 'ねつぞう', 'ねったいぎょ', 'ねぶそく', 'ねふだ', 'ねぼう', 'ねほりはほり', 'ねまき', 'ねまわし', 'ねみみ', 'ねむい', 'ねむたい', 'ねもと', 'ねらう', 'ねわざ', 'ねんいり', 'ねんおし', 'ねんかん', 'ねんきん', 'ねんぐ', 'ねんざ', 'ねんし', 'ねんちゃく', 'ねんど', 'ねんぴ', 'ねんぶつ', 'ねんまつ', 'ねんりょう', 'ねんれい', 'のいず', 'のおづま', 'のがす', 'のきなみ', 'のこぎり', 'のこす', 'のこる', 'のせる', 'のぞく', 'のぞむ', 'のたまう', 'のちほど', 'のっく', 'のばす', 'のはら', 'のべる', 'のぼる', 'のみもの', 'のやま', 'のらいぬ', 'のらねこ', 'のりもの', 'のりゆき', 'のれん', 'のんき', 'ばあい', 'はあく', 'ばあさん', 'ばいか', 'ばいく', 'はいけん', 'はいご', 'はいしん', 'はいすい', 'はいせん', 'はいそう', 'はいち', 'ばいばい', 'はいれつ', 'はえる', 'はおる', 'はかい', 'ばかり', 'はかる', 'はくしゅ', 'はけん', 'はこぶ', 'はさみ', 'はさん', 'はしご', 'ばしょ', 'はしる', 'はせる', 'ぱそこん', 'はそん', 'はたん', 'はちみつ', 'はつおん', 'はっかく', 'はづき', 'はっきり', 'はっくつ', 'はっけん', 'はっこう', 'はっさん', 'はっしん', 'はったつ', 'はっちゅう', 'はってん', 'はっぴょう', 'はっぽう', 'はなす', 'はなび', 'はにかむ', 'はぶらし', 'はみがき', 'はむかう', 'はめつ', 'はやい', 'はやし', 'はらう', 'はろうぃん', 'はわい', 'はんい', 'はんえい', 'はんおん', 'はんかく', 'はんきょう', 'ばんぐみ', 'はんこ', 'はんしゃ', 'はんすう', 'はんだん', 'ぱんち', 'ぱんつ', 'はんてい', 'はんとし', 'はんのう', 'はんぱ', 'はんぶん', 'はんぺん', 'はんぼうき', 'はんめい', 'はんらん', 'はんろん', 'ひいき', 'ひうん', 'ひえる', 'ひかく', 'ひかり', 'ひかる', 'ひかん', 'ひくい', 'ひけつ', 'ひこうき', 'ひこく', 'ひさい', 'ひさしぶり', 'ひさん', 'びじゅつかん', 'ひしょ', 'ひそか', 'ひそむ', 'ひたむき', 'ひだり', 'ひたる', 'ひつぎ', 'ひっこし', 'ひっし', 'ひつじゅひん', 'ひっす', 'ひつぜん', 'ぴったり', 'ぴっちり', 'ひつよう', 'ひてい', 'ひとごみ', 'ひなまつり', 'ひなん', 'ひねる', 'ひはん', 'ひびく', 'ひひょう', 'ひほう', 'ひまわり', 'ひまん', 'ひみつ', 'ひめい', 'ひめじし', 'ひやけ', 'ひやす', 'ひよう', 'びょうき', 'ひらがな', 'ひらく', 'ひりつ', 'ひりょう', 'ひるま', 'ひるやすみ', 'ひれい', 'ひろい', 'ひろう', 'ひろき', 'ひろゆき', 'ひんかく', 'ひんけつ', 'ひんこん', 'ひんしゅ', 'ひんそう', 'ぴんち', 'ひんぱん', 'びんぼう', 'ふあん', 'ふいうち', 'ふうけい', 'ふうせん', 'ぷうたろう', 'ふうとう', 'ふうふ', 'ふえる', 'ふおん', 'ふかい', 'ふきん', 'ふくざつ', 'ふくぶくろ', 'ふこう', 'ふさい', 'ふしぎ', 'ふじみ', 'ふすま', 'ふせい', 'ふせぐ', 'ふそく', 'ぶたにく', 'ふたん', 'ふちょう', 'ふつう', 'ふつか', 'ふっかつ', 'ふっき', 'ふっこく', 'ぶどう', 'ふとる', 'ふとん', 'ふのう', 'ふはい', 'ふひょう', 'ふへん', 'ふまん', 'ふみん', 'ふめつ', 'ふめん', 'ふよう', 'ふりこ', 'ふりる', 'ふるい', 'ふんいき', 'ぶんがく', 'ぶんぐ', 'ふんしつ', 'ぶんせき', 'ふんそう', 'ぶんぽう', 'へいあん', 'へいおん', 'へいがい', 'へいき', 'へいげん', 'へいこう', 'へいさ', 'へいしゃ', 'へいせつ', 'へいそ', 'へいたく', 'へいてん', 'へいねつ', 'へいわ', 'へきが', 'へこむ', 'べにいろ', 'べにしょうが', 'へらす', 'へんかん', 'べんきょう', 'べんごし', 'へんさい', 'へんたい', 'べんり', 'ほあん', 'ほいく', 'ぼうぎょ', 'ほうこく', 'ほうそう', 'ほうほう', 'ほうもん', 'ほうりつ', 'ほえる', 'ほおん', 'ほかん', 'ほきょう', 'ぼきん', 'ほくろ', 'ほけつ', 'ほけん', 'ほこう', 'ほこる', 'ほしい', 'ほしつ', 'ほしゅ', 'ほしょう', 'ほせい', 'ほそい', 'ほそく', 'ほたて', 'ほたる', 'ぽちぶくろ', 'ほっきょく', 'ほっさ', 'ほったん', 'ほとんど', 'ほめる', 'ほんい', 'ほんき', 'ほんけ', 'ほんしつ', 'ほんやく', 'まいにち', 'まかい', 'まかせる', 'まがる', 'まける', 'まこと', 'まさつ', 'まじめ', 'ますく', 'まぜる', 'まつり', 'まとめ', 'まなぶ', 'まぬけ', 'まねく', 'まほう', 'まもる', 'まゆげ', 'まよう', 'まろやか', 'まわす', 'まわり', 'まわる', 'まんが', 'まんきつ', 'まんぞく', 'まんなか', 'みいら', 'みうち', 'みえる', 'みがく', 'みかた', 'みかん', 'みけん', 'みこん', 'みじかい', 'みすい', 'みすえる', 'みせる', 'みっか', 'みつかる', 'みつける', 'みてい', 'みとめる', 'みなと', 'みなみかさい', 'みねらる', 'みのう', 'みのがす', 'みほん', 'みもと', 'みやげ', 'みらい', 'みりょく', 'みわく', 'みんか', 'みんぞく', 'むいか', 'むえき', 'むえん', 'むかい', 'むかう', 'むかえ', 'むかし', 'むぎちゃ', 'むける', 'むげん', 'むさぼる', 'むしあつい', 'むしば', 'むじゅん', 'むしろ', 'むすう', 'むすこ', 'むすぶ', 'むすめ', 'むせる', 'むせん', 'むちゅう', 'むなしい', 'むのう', 'むやみ', 'むよう', 'むらさき', 'むりょう', 'むろん', 'めいあん', 'めいうん', 'めいえん', 'めいかく', 'めいきょく', 'めいさい', 'めいし', 'めいそう', 'めいぶつ', 'めいれい', 'めいわく', 'めぐまれる', 'めざす', 'めした', 'めずらしい', 'めだつ', 'めまい', 'めやす', 'めんきょ', 'めんせき', 'めんどう', 'もうしあげる', 'もうどうけん', 'もえる', 'もくし', 'もくてき', 'もくようび', 'もちろん', 'もどる', 'もらう', 'もんく', 'もんだい', 'やおや', 'やける', 'やさい', 'やさしい', 'やすい', 'やすたろう', 'やすみ', 'やせる', 'やそう', 'やたい', 'やちん', 'やっと', 'やっぱり', 'やぶる', 'やめる', 'ややこしい', 'やよい', 'やわらかい', 'ゆうき', 'ゆうびんきょく', 'ゆうべ', 'ゆうめい', 'ゆけつ', 'ゆしゅつ', 'ゆせん', 'ゆそう', 'ゆたか', 'ゆちゃく', 'ゆでる', 'ゆにゅう', 'ゆびわ', 'ゆらい', 'ゆれる', 'ようい', 'ようか', 'ようきゅう', 'ようじ', 'ようす', 'ようちえん', 'よかぜ', 'よかん', 'よきん', 'よくせい', 'よくぼう', 'よけい', 'よごれる', 'よさん', 'よしゅう', 'よそう', 'よそく', 'よっか', 'よてい', 'よどがわく', 'よねつ', 'よやく', 'よゆう', 'よろこぶ', 'よろしい', 'らいう', 'らくがき', 'らくご', 'らくさつ', 'らくだ', 'らしんばん', 'らせん', 'らぞく', 'らたい', 'らっか', 'られつ', 'りえき', 'りかい', 'りきさく', 'りきせつ', 'りくぐん', 'りくつ', 'りけん', 'りこう', 'りせい', 'りそう', 'りそく', 'りてん', 'りねん', 'りゆう', 'りゅうがく', 'りよう', 'りょうり', 'りょかん', 'りょくちゃ', 'りょこう', 'りりく', 'りれき', 'りろん', 'りんご', 'るいけい', 'るいさい', 'るいじ', 'るいせき', 'るすばん', 'るりがわら', 'れいかん', 'れいぎ', 'れいせい', 'れいぞうこ', 'れいとう', 'れいぼう', 'れきし', 'れきだい', 'れんあい', 'れんけい', 'れんこん', 'れんさい', 'れんしゅう', 'れんぞく', 'れんらく', 'ろうか', 'ろうご', 'ろうじん', 'ろうそく', 'ろくが', 'ろこつ', 'ろじうら', 'ろしゅつ', 'ろせん', 'ろてん', 'ろめん', 'ろれつ', 'ろんぎ', 'ろんぱ', 'ろんぶん', 'ろんり', 'わかす', 'わかめ', 'わかやま', 'わかれる', 'わしつ', 'わじまし', 'わすれもの', 'わらう', 'われる'];
 module.exports = japanese;
 
-},{}],134:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 'use strict';
 
 var korean = ['가격', '가끔', '가난', '가능', '가득', '가르침', '가뭄', '가방', '가상', '가슴', '가운데', '가을', '가이드', '가입', '가장', '가정', '가족', '가죽', '각오', '각자', '간격', '간부', '간섭', '간장', '간접', '간판', '갈등', '갈비', '갈색', '갈증', '감각', '감기', '감소', '감수성', '감자', '감정', '갑자기', '강남', '강당', '강도', '강력히', '강변', '강북', '강사', '강수량', '강아지', '강원도', '강의', '강제', '강조', '같이', '개구리', '개나리', '개방', '개별', '개선', '개성', '개인', '객관적', '거실', '거액', '거울', '거짓', '거품', '걱정', '건강', '건물', '건설', '건조', '건축', '걸음', '검사', '검토', '게시판', '게임', '겨울', '견해', '결과', '결국', '결론', '결석', '결승', '결심', '결정', '결혼', '경계', '경고', '경기', '경력', '경복궁', '경비', '경상도', '경영', '경우', '경쟁', '경제', '경주', '경찰', '경치', '경향', '경험', '계곡', '계단', '계란', '계산', '계속', '계약', '계절', '계층', '계획', '고객', '고구려', '고궁', '고급', '고등학생', '고무신', '고민', '고양이', '고장', '고전', '고집', '고춧가루', '고통', '고향', '곡식', '골목', '골짜기', '골프', '공간', '공개', '공격', '공군', '공급', '공기', '공동', '공무원', '공부', '공사', '공식', '공업', '공연', '공원', '공장', '공짜', '공책', '공통', '공포', '공항', '공휴일', '과목', '과일', '과장', '과정', '과학', '관객', '관계', '관광', '관념', '관람', '관련', '관리', '관습', '관심', '관점', '관찰', '광경', '광고', '광장', '광주', '괴로움', '굉장히', '교과서', '교문', '교복', '교실', '교양', '교육', '교장', '교직', '교통', '교환', '교훈', '구경', '구름', '구멍', '구별', '구분', '구석', '구성', '구속', '구역', '구입', '구청', '구체적', '국가', '국기', '국내', '국립', '국물', '국민', '국수', '국어', '국왕', '국적', '국제', '국회', '군대', '군사', '군인', '궁극적', '권리', '권위', '권투', '귀국', '귀신', '규정', '규칙', '균형', '그날', '그냥', '그늘', '그러나', '그룹', '그릇', '그림', '그제서야', '그토록', '극복', '극히', '근거', '근교', '근래', '근로', '근무', '근본', '근원', '근육', '근처', '글씨', '글자', '금강산', '금고', '금년', '금메달', '금액', '금연', '금요일', '금지', '긍정적', '기간', '기관', '기념', '기능', '기독교', '기둥', '기록', '기름', '기법', '기본', '기분', '기쁨', '기숙사', '기술', '기억', '기업', '기온', '기운', '기원', '기적', '기준', '기침', '기혼', '기획', '긴급', '긴장', '길이', '김밥', '김치', '김포공항', '깍두기', '깜빡', '깨달음', '깨소금', '껍질', '꼭대기', '꽃잎', '나들이', '나란히', '나머지', '나물', '나침반', '나흘', '낙엽', '난방', '날개', '날씨', '날짜', '남녀', '남대문', '남매', '남산', '남자', '남편', '남학생', '낭비', '낱말', '내년', '내용', '내일', '냄비', '냄새', '냇물', '냉동', '냉면', '냉방', '냉장고', '넥타이', '넷째', '노동', '노란색', '노력', '노인', '녹음', '녹차', '녹화', '논리', '논문', '논쟁', '놀이', '농구', '농담', '농민', '농부', '농업', '농장', '농촌', '높이', '눈동자', '눈물', '눈썹', '뉴욕', '느낌', '늑대', '능동적', '능력', '다방', '다양성', '다음', '다이어트', '다행', '단계', '단골', '단독', '단맛', '단순', '단어', '단위', '단점', '단체', '단추', '단편', '단풍', '달걀', '달러', '달력', '달리', '닭고기', '담당', '담배', '담요', '담임', '답변', '답장', '당근', '당분간', '당연히', '당장', '대규모', '대낮', '대단히', '대답', '대도시', '대략', '대량', '대륙', '대문', '대부분', '대신', '대응', '대장', '대전', '대접', '대중', '대책', '대출', '대충', '대통령', '대학', '대한민국', '대합실', '대형', '덩어리', '데이트', '도대체', '도덕', '도둑', '도망', '도서관', '도심', '도움', '도입', '도자기', '도저히', '도전', '도중', '도착', '독감', '독립', '독서', '독일', '독창적', '동화책', '뒷모습', '뒷산', '딸아이', '마누라', '마늘', '마당', '마라톤', '마련', '마무리', '마사지', '마약', '마요네즈', '마을', '마음', '마이크', '마중', '마지막', '마찬가지', '마찰', '마흔', '막걸리', '막내', '막상', '만남', '만두', '만세', '만약', '만일', '만점', '만족', '만화', '많이', '말기', '말씀', '말투', '맘대로', '망원경', '매년', '매달', '매력', '매번', '매스컴', '매일', '매장', '맥주', '먹이', '먼저', '먼지', '멀리', '메일', '며느리', '며칠', '면담', '멸치', '명단', '명령', '명예', '명의', '명절', '명칭', '명함', '모금', '모니터', '모델', '모든', '모범', '모습', '모양', '모임', '모조리', '모집', '모퉁이', '목걸이', '목록', '목사', '목소리', '목숨', '목적', '목표', '몰래', '몸매', '몸무게', '몸살', '몸속', '몸짓', '몸통', '몹시', '무관심', '무궁화', '무더위', '무덤', '무릎', '무슨', '무엇', '무역', '무용', '무조건', '무지개', '무척', '문구', '문득', '문법', '문서', '문제', '문학', '문화', '물가', '물건', '물결', '물고기', '물론', '물리학', '물음', '물질', '물체', '미국', '미디어', '미사일', '미술', '미역', '미용실', '미움', '미인', '미팅', '미혼', '민간', '민족', '민주', '믿음', '밀가루', '밀리미터', '밑바닥', '바가지', '바구니', '바나나', '바늘', '바닥', '바닷가', '바람', '바이러스', '바탕', '박물관', '박사', '박수', '반대', '반드시', '반말', '반발', '반성', '반응', '반장', '반죽', '반지', '반찬', '받침', '발가락', '발걸음', '발견', '발달', '발레', '발목', '발바닥', '발생', '발음', '발자국', '발전', '발톱', '발표', '밤하늘', '밥그릇', '밥맛', '밥상', '밥솥', '방금', '방면', '방문', '방바닥', '방법', '방송', '방식', '방안', '방울', '방지', '방학', '방해', '방향', '배경', '배꼽', '배달', '배드민턴', '백두산', '백색', '백성', '백인', '백제', '백화점', '버릇', '버섯', '버튼', '번개', '번역', '번지', '번호', '벌금', '벌레', '벌써', '범위', '범인', '범죄', '법률', '법원', '법적', '법칙', '베이징', '벨트', '변경', '변동', '변명', '변신', '변호사', '변화', '별도', '별명', '별일', '병실', '병아리', '병원', '보관', '보너스', '보라색', '보람', '보름', '보상', '보안', '보자기', '보장', '보전', '보존', '보통', '보편적', '보험', '복도', '복사', '복숭아', '복습', '볶음', '본격적', '본래', '본부', '본사', '본성', '본인', '본질', '볼펜', '봉사', '봉지', '봉투', '부근', '부끄러움', '부담', '부동산', '부문', '부분', '부산', '부상', '부엌', '부인', '부작용', '부장', '부정', '부족', '부지런히', '부친', '부탁', '부품', '부회장', '북부', '북한', '분노', '분량', '분리', '분명', '분석', '분야', '분위기', '분필', '분홍색', '불고기', '불과', '불교', '불꽃', '불만', '불법', '불빛', '불안', '불이익', '불행', '브랜드', '비극', '비난', '비닐', '비둘기', '비디오', '비로소', '비만', '비명', '비밀', '비바람', '비빔밥', '비상', '비용', '비율', '비중', '비타민', '비판', '빌딩', '빗물', '빗방울', '빗줄기', '빛깔', '빨간색', '빨래', '빨리', '사건', '사계절', '사나이', '사냥', '사람', '사랑', '사립', '사모님', '사물', '사방', '사상', '사생활', '사설', '사슴', '사실', '사업', '사용', '사월', '사장', '사전', '사진', '사촌', '사춘기', '사탕', '사투리', '사흘', '산길', '산부인과', '산업', '산책', '살림', '살인', '살짝', '삼계탕', '삼국', '삼십', '삼월', '삼촌', '상관', '상금', '상대', '상류', '상반기', '상상', '상식', '상업', '상인', '상자', '상점', '상처', '상추', '상태', '상표', '상품', '상황', '새벽', '색깔', '색연필', '생각', '생명', '생물', '생방송', '생산', '생선', '생신', '생일', '생활', '서랍', '서른', '서명', '서민', '서비스', '서양', '서울', '서적', '서점', '서쪽', '서클', '석사', '석유', '선거', '선물', '선배', '선생', '선수', '선원', '선장', '선전', '선택', '선풍기', '설거지', '설날', '설렁탕', '설명', '설문', '설사', '설악산', '설치', '설탕', '섭씨', '성공', '성당', '성명', '성별', '성인', '성장', '성적', '성질', '성함', '세금', '세미나', '세상', '세월', '세종대왕', '세탁', '센터', '센티미터', '셋째', '소규모', '소극적', '소금', '소나기', '소년', '소득', '소망', '소문', '소설', '소속', '소아과', '소용', '소원', '소음', '소중히', '소지품', '소질', '소풍', '소형', '속담', '속도', '속옷', '손가락', '손길', '손녀', '손님', '손등', '손목', '손뼉', '손실', '손질', '손톱', '손해', '솔직히', '솜씨', '송아지', '송이', '송편', '쇠고기', '쇼핑', '수건', '수년', '수단', '수돗물', '수동적', '수면', '수명', '수박', '수상', '수석', '수술', '수시로', '수업', '수염', '수영', '수입', '수준', '수집', '수출', '수컷', '수필', '수학', '수험생', '수화기', '숙녀', '숙소', '숙제', '순간', '순서', '순수', '순식간', '순위', '숟가락', '술병', '술집', '숫자', '스님', '스물', '스스로', '스승', '스웨터', '스위치', '스케이트', '스튜디오', '스트레스', '스포츠', '슬쩍', '슬픔', '습관', '습기', '승객', '승리', '승부', '승용차', '승진', '시각', '시간', '시골', '시금치', '시나리오', '시댁', '시리즈', '시멘트', '시민', '시부모', '시선', '시설', '시스템', '시아버지', '시어머니', '시월', '시인', '시일', '시작', '시장', '시절', '시점', '시중', '시즌', '시집', '시청', '시합', '시험', '식구', '식기', '식당', '식량', '식료품', '식물', '식빵', '식사', '식생활', '식초', '식탁', '식품', '신고', '신규', '신념', '신문', '신발', '신비', '신사', '신세', '신용', '신제품', '신청', '신체', '신화', '실감', '실내', '실력', '실례', '실망', '실수', '실습', '실시', '실장', '실정', '실질적', '실천', '실체', '실컷', '실태', '실패', '실험', '실현', '심리', '심부름', '심사', '심장', '심정', '심판', '쌍둥이', '씨름', '씨앗', '아가씨', '아나운서', '아드님', '아들', '아쉬움', '아스팔트', '아시아', '아울러', '아저씨', '아줌마', '아직', '아침', '아파트', '아프리카', '아픔', '아홉', '아흔', '악기', '악몽', '악수', '안개', '안경', '안과', '안내', '안녕', '안동', '안방', '안부', '안주', '알루미늄', '알코올', '암시', '암컷', '압력', '앞날', '앞문', '애인', '애정', '액수', '앨범', '야간', '야단', '야옹', '약간', '약국', '약속', '약수', '약점', '약품', '약혼녀', '양념', '양력', '양말', '양배추', '양주', '양파', '어둠', '어려움', '어른', '어젯밤', '어쨌든', '어쩌다가', '어쩐지', '언니', '언덕', '언론', '언어', '얼굴', '얼른', '얼음', '얼핏', '엄마', '업무', '업종', '업체', '엉덩이', '엉망', '엉터리', '엊그제', '에너지', '에어컨', '엔진', '여건', '여고생', '여관', '여군', '여권', '여대생', '여덟', '여동생', '여든', '여론', '여름', '여섯', '여성', '여왕', '여인', '여전히', '여직원', '여학생', '여행', '역사', '역시', '역할', '연결', '연구', '연극', '연기', '연락', '연설', '연세', '연속', '연습', '연애', '연예인', '연인', '연장', '연주', '연출', '연필', '연합', '연휴', '열기', '열매', '열쇠', '열심히', '열정', '열차', '열흘', '염려', '엽서', '영국', '영남', '영상', '영양', '영역', '영웅', '영원히', '영하', '영향', '영혼', '영화', '옆구리', '옆방', '옆집', '예감', '예금', '예방', '예산', '예상', '예선', '예술', '예습', '예식장', '예약', '예전', '예절', '예정', '예컨대', '옛날', '오늘', '오락', '오랫동안', '오렌지', '오로지', '오른발', '오븐', '오십', '오염', '오월', '오전', '오직', '오징어', '오페라', '오피스텔', '오히려', '옥상', '옥수수', '온갖', '온라인', '온몸', '온종일', '온통', '올가을', '올림픽', '올해', '옷차림', '와이셔츠', '와인', '완성', '완전', '왕비', '왕자', '왜냐하면', '왠지', '외갓집', '외국', '외로움', '외삼촌', '외출', '외침', '외할머니', '왼발', '왼손', '왼쪽', '요금', '요일', '요즘', '요청', '용기', '용서', '용어', '우산', '우선', '우승', '우연히', '우정', '우체국', '우편', '운동', '운명', '운반', '운전', '운행', '울산', '울음', '움직임', '웃어른', '웃음', '워낙', '원고', '원래', '원서', '원숭이', '원인', '원장', '원피스', '월급', '월드컵', '월세', '월요일', '웨이터', '위반', '위법', '위성', '위원', '위험', '위협', '윗사람', '유난히', '유럽', '유명', '유물', '유산', '유적', '유치원', '유학', '유행', '유형', '육군', '육상', '육십', '육체', '은행', '음력', '음료', '음반', '음성', '음식', '음악', '음주', '의견', '의논', '의문', '의복', '의식', '의심', '의외로', '의욕', '의원', '의학', '이것', '이곳', '이념', '이놈', '이달', '이대로', '이동', '이렇게', '이력서', '이론적', '이름', '이민', '이발소', '이별', '이불', '이빨', '이상', '이성', '이슬', '이야기', '이용', '이웃', '이월', '이윽고', '이익', '이전', '이중', '이튿날', '이틀', '이혼', '인간', '인격', '인공', '인구', '인근', '인기', '인도', '인류', '인물', '인생', '인쇄', '인연', '인원', '인재', '인종', '인천', '인체', '인터넷', '인하', '인형', '일곱', '일기', '일단', '일대', '일등', '일반', '일본', '일부', '일상', '일생', '일손', '일요일', '일월', '일정', '일종', '일주일', '일찍', '일체', '일치', '일행', '일회용', '임금', '임무', '입대', '입력', '입맛', '입사', '입술', '입시', '입원', '입장', '입학', '자가용', '자격', '자극', '자동', '자랑', '자부심', '자식', '자신', '자연', '자원', '자율', '자전거', '자정', '자존심', '자판', '작가', '작년', '작성', '작업', '작용', '작은딸', '작품', '잔디', '잔뜩', '잔치', '잘못', '잠깐', '잠수함', '잠시', '잠옷', '잠자리', '잡지', '장관', '장군', '장기간', '장래', '장례', '장르', '장마', '장면', '장모', '장미', '장비', '장사', '장소', '장식', '장애인', '장인', '장점', '장차', '장학금', '재능', '재빨리', '재산', '재생', '재작년', '재정', '재채기', '재판', '재학', '재활용', '저것', '저고리', '저곳', '저녁', '저런', '저렇게', '저번', '저울', '저절로', '저축', '적극', '적당히', '적성', '적용', '적응', '전개', '전공', '전기', '전달', '전라도', '전망', '전문', '전반', '전부', '전세', '전시', '전용', '전자', '전쟁', '전주', '전철', '전체', '전통', '전혀', '전후', '절대', '절망', '절반', '절약', '절차', '점검', '점수', '점심', '점원', '점점', '점차', '접근', '접시', '접촉', '젓가락', '정거장', '정도', '정류장', '정리', '정말', '정면', '정문', '정반대', '정보', '정부', '정비', '정상', '정성', '정오', '정원', '정장', '정지', '정치', '정확히', '제공', '제과점', '제대로', '제목', '제발', '제법', '제삿날', '제안', '제일', '제작', '제주도', '제출', '제품', '제한', '조각', '조건', '조금', '조깅', '조명', '조미료', '조상', '조선', '조용히', '조절', '조정', '조직', '존댓말', '존재', '졸업', '졸음', '종교', '종로', '종류', '종소리', '종업원', '종종', '종합', '좌석', '죄인', '주관적', '주름', '주말', '주머니', '주먹', '주문', '주민', '주방', '주변', '주식', '주인', '주일', '주장', '주전자', '주택', '준비', '줄거리', '줄기', '줄무늬', '중간', '중계방송', '중국', '중년', '중단', '중독', '중반', '중부', '중세', '중소기업', '중순', '중앙', '중요', '중학교', '즉석', '즉시', '즐거움', '증가', '증거', '증권', '증상', '증세', '지각', '지갑', '지경', '지극히', '지금', '지급', '지능', '지름길', '지리산', '지방', '지붕', '지식', '지역', '지우개', '지원', '지적', '지점', '지진', '지출', '직선', '직업', '직원', '직장', '진급', '진동', '진로', '진료', '진리', '진짜', '진찰', '진출', '진통', '진행', '질문', '질병', '질서', '짐작', '집단', '집안', '집중', '짜증', '찌꺼기', '차남', '차라리', '차량', '차림', '차별', '차선', '차츰', '착각', '찬물', '찬성', '참가', '참기름', '참새', '참석', '참여', '참외', '참조', '찻잔', '창가', '창고', '창구', '창문', '창밖', '창작', '창조', '채널', '채점', '책가방', '책방', '책상', '책임', '챔피언', '처벌', '처음', '천국', '천둥', '천장', '천재', '천천히', '철도', '철저히', '철학', '첫날', '첫째', '청년', '청바지', '청소', '청춘', '체계', '체력', '체온', '체육', '체중', '체험', '초등학생', '초반', '초밥', '초상화', '초순', '초여름', '초원', '초저녁', '초점', '초청', '초콜릿', '촛불', '총각', '총리', '총장', '촬영', '최근', '최상', '최선', '최신', '최악', '최종', '추석', '추억', '추진', '추천', '추측', '축구', '축소', '축제', '축하', '출근', '출발', '출산', '출신', '출연', '출입', '출장', '출판', '충격', '충고', '충돌', '충분히', '충청도', '취업', '취직', '취향', '치약', '친구', '친척', '칠십', '칠월', '칠판', '침대', '침묵', '침실', '칫솔', '칭찬', '카메라', '카운터', '칼국수', '캐릭터', '캠퍼스', '캠페인', '커튼', '컨디션', '컬러', '컴퓨터', '코끼리', '코미디', '콘서트', '콜라', '콤플렉스', '콩나물', '쾌감', '쿠데타', '크림', '큰길', '큰딸', '큰소리', '큰아들', '큰어머니', '큰일', '큰절', '클래식', '클럽', '킬로', '타입', '타자기', '탁구', '탁자', '탄생', '태권도', '태양', '태풍', '택시', '탤런트', '터널', '터미널', '테니스', '테스트', '테이블', '텔레비전', '토론', '토마토', '토요일', '통계', '통과', '통로', '통신', '통역', '통일', '통장', '통제', '통증', '통합', '통화', '퇴근', '퇴원', '퇴직금', '튀김', '트럭', '특급', '특별', '특성', '특수', '특징', '특히', '튼튼히', '티셔츠', '파란색', '파일', '파출소', '판결', '판단', '판매', '판사', '팔십', '팔월', '팝송', '패션', '팩스', '팩시밀리', '팬티', '퍼센트', '페인트', '편견', '편의', '편지', '편히', '평가', '평균', '평생', '평소', '평양', '평일', '평화', '포스터', '포인트', '포장', '포함', '표면', '표정', '표준', '표현', '품목', '품질', '풍경', '풍속', '풍습', '프랑스', '프린터', '플라스틱', '피곤', '피망', '피아노', '필름', '필수', '필요', '필자', '필통', '핑계', '하느님', '하늘', '하드웨어', '하룻밤', '하반기', '하숙집', '하순', '하여튼', '하지만', '하천', '하품', '하필', '학과', '학교', '학급', '학기', '학년', '학력', '학번', '학부모', '학비', '학생', '학술', '학습', '학용품', '학원', '학위', '학자', '학점', '한계', '한글', '한꺼번에', '한낮', '한눈', '한동안', '한때', '한라산', '한마디', '한문', '한번', '한복', '한식', '한여름', '한쪽', '할머니', '할아버지', '할인', '함께', '함부로', '합격', '합리적', '항공', '항구', '항상', '항의', '해결', '해군', '해답', '해당', '해물', '해석', '해설', '해수욕장', '해안', '핵심', '핸드백', '햄버거', '햇볕', '햇살', '행동', '행복', '행사', '행운', '행위', '향기', '향상', '향수', '허락', '허용', '헬기', '현관', '현금', '현대', '현상', '현실', '현장', '현재', '현지', '혈액', '협력', '형부', '형사', '형수', '형식', '형제', '형태', '형편', '혜택', '호기심', '호남', '호랑이', '호박', '호텔', '호흡', '혹시', '홀로', '홈페이지', '홍보', '홍수', '홍차', '화면', '화분', '화살', '화요일', '화장', '화학', '확보', '확인', '확장', '확정', '환갑', '환경', '환영', '환율', '환자', '활기', '활동', '활발히', '활용', '활짝', '회견', '회관', '회복', '회색', '회원', '회장', '회전', '횟수', '횡단보도', '효율적', '후반', '후춧가루', '훈련', '훨씬', '휴식', '휴일', '흉내', '흐름', '흑백', '흑인', '흔적', '흔히', '흥미', '흥분', '희곡', '희망', '희생', '흰색', '힘껏'];
 module.exports = korean;
 
-},{}],135:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 'use strict';
 
 var spanish = ['ábaco', 'abdomen', 'abeja', 'abierto', 'abogado', 'abono', 'aborto', 'abrazo', 'abrir', 'abuelo', 'abuso', 'acabar', 'academia', 'acceso', 'acción', 'aceite', 'acelga', 'acento', 'aceptar', 'ácido', 'aclarar', 'acné', 'acoger', 'acoso', 'activo', 'acto', 'actriz', 'actuar', 'acudir', 'acuerdo', 'acusar', 'adicto', 'admitir', 'adoptar', 'adorno', 'aduana', 'adulto', 'aéreo', 'afectar', 'afición', 'afinar', 'afirmar', 'ágil', 'agitar', 'agonía', 'agosto', 'agotar', 'agregar', 'agrio', 'agua', 'agudo', 'águila', 'aguja', 'ahogo', 'ahorro', 'aire', 'aislar', 'ajedrez', 'ajeno', 'ajuste', 'alacrán', 'alambre', 'alarma', 'alba', 'álbum', 'alcalde', 'aldea', 'alegre', 'alejar', 'alerta', 'aleta', 'alfiler', 'alga', 'algodón', 'aliado', 'aliento', 'alivio', 'alma', 'almeja', 'almíbar', 'altar', 'alteza', 'altivo', 'alto', 'altura', 'alumno', 'alzar', 'amable', 'amante', 'amapola', 'amargo', 'amasar', 'ámbar', 'ámbito', 'ameno', 'amigo', 'amistad', 'amor', 'amparo', 'amplio', 'ancho', 'anciano', 'ancla', 'andar', 'andén', 'anemia', 'ángulo', 'anillo', 'ánimo', 'anís', 'anotar', 'antena', 'antiguo', 'antojo', 'anual', 'anular', 'anuncio', 'añadir', 'añejo', 'año', 'apagar', 'aparato', 'apetito', 'apio', 'aplicar', 'apodo', 'aporte', 'apoyo', 'aprender', 'aprobar', 'apuesta', 'apuro', 'arado', 'araña', 'arar', 'árbitro', 'árbol', 'arbusto', 'archivo', 'arco', 'arder', 'ardilla', 'arduo', 'área', 'árido', 'aries', 'armonía', 'arnés', 'aroma', 'arpa', 'arpón', 'arreglo', 'arroz', 'arruga', 'arte', 'artista', 'asa', 'asado', 'asalto', 'ascenso', 'asegurar', 'aseo', 'asesor', 'asiento', 'asilo', 'asistir', 'asno', 'asombro', 'áspero', 'astilla', 'astro', 'astuto', 'asumir', 'asunto', 'atajo', 'ataque', 'atar', 'atento', 'ateo', 'ático', 'atleta', 'átomo', 'atraer', 'atroz', 'atún', 'audaz', 'audio', 'auge', 'aula', 'aumento', 'ausente', 'autor', 'aval', 'avance', 'avaro', 'ave', 'avellana', 'avena', 'avestruz', 'avión', 'aviso', 'ayer', 'ayuda', 'ayuno', 'azafrán', 'azar', 'azote', 'azúcar', 'azufre', 'azul', 'baba', 'babor', 'bache', 'bahía', 'baile', 'bajar', 'balanza', 'balcón', 'balde', 'bambú', 'banco', 'banda', 'baño', 'barba', 'barco', 'barniz', 'barro', 'báscula', 'bastón', 'basura', 'batalla', 'batería', 'batir', 'batuta', 'baúl', 'bazar', 'bebé', 'bebida', 'bello', 'besar', 'beso', 'bestia', 'bicho', 'bien', 'bingo', 'blanco', 'bloque', 'blusa', 'boa', 'bobina', 'bobo', 'boca', 'bocina', 'boda', 'bodega', 'boina', 'bola', 'bolero', 'bolsa', 'bomba', 'bondad', 'bonito', 'bono', 'bonsái', 'borde', 'borrar', 'bosque', 'bote', 'botín', 'bóveda', 'bozal', 'bravo', 'brazo', 'brecha', 'breve', 'brillo', 'brinco', 'brisa', 'broca', 'broma', 'bronce', 'brote', 'bruja', 'brusco', 'bruto', 'buceo', 'bucle', 'bueno', 'buey', 'bufanda', 'bufón', 'búho', 'buitre', 'bulto', 'burbuja', 'burla', 'burro', 'buscar', 'butaca', 'buzón', 'caballo', 'cabeza', 'cabina', 'cabra', 'cacao', 'cadáver', 'cadena', 'caer', 'café', 'caída', 'caimán', 'caja', 'cajón', 'cal', 'calamar', 'calcio', 'caldo', 'calidad', 'calle', 'calma', 'calor', 'calvo', 'cama', 'cambio', 'camello', 'camino', 'campo', 'cáncer', 'candil', 'canela', 'canguro', 'canica', 'canto', 'caña', 'cañón', 'caoba', 'caos', 'capaz', 'capitán', 'capote', 'captar', 'capucha', 'cara', 'carbón', 'cárcel', 'careta', 'carga', 'cariño', 'carne', 'carpeta', 'carro', 'carta', 'casa', 'casco', 'casero', 'caspa', 'castor', 'catorce', 'catre', 'caudal', 'causa', 'cazo', 'cebolla', 'ceder', 'cedro', 'celda', 'célebre', 'celoso', 'célula', 'cemento', 'ceniza', 'centro', 'cerca', 'cerdo', 'cereza', 'cero', 'cerrar', 'certeza', 'césped', 'cetro', 'chacal', 'chaleco', 'champú', 'chancla', 'chapa', 'charla', 'chico', 'chiste', 'chivo', 'choque', 'choza', 'chuleta', 'chupar', 'ciclón', 'ciego', 'cielo', 'cien', 'cierto', 'cifra', 'cigarro', 'cima', 'cinco', 'cine', 'cinta', 'ciprés', 'circo', 'ciruela', 'cisne', 'cita', 'ciudad', 'clamor', 'clan', 'claro', 'clase', 'clave', 'cliente', 'clima', 'clínica', 'cobre', 'cocción', 'cochino', 'cocina', 'coco', 'código', 'codo', 'cofre', 'coger', 'cohete', 'cojín', 'cojo', 'cola', 'colcha', 'colegio', 'colgar', 'colina', 'collar', 'colmo', 'columna', 'combate', 'comer', 'comida', 'cómodo', 'compra', 'conde', 'conejo', 'conga', 'conocer', 'consejo', 'contar', 'copa', 'copia', 'corazón', 'corbata', 'corcho', 'cordón', 'corona', 'correr', 'coser', 'cosmos', 'costa', 'cráneo', 'cráter', 'crear', 'crecer', 'creído', 'crema', 'cría', 'crimen', 'cripta', 'crisis', 'cromo', 'crónica', 'croqueta', 'crudo', 'cruz', 'cuadro', 'cuarto', 'cuatro', 'cubo', 'cubrir', 'cuchara', 'cuello', 'cuento', 'cuerda', 'cuesta', 'cueva', 'cuidar', 'culebra', 'culpa', 'culto', 'cumbre', 'cumplir', 'cuna', 'cuneta', 'cuota', 'cupón', 'cúpula', 'curar', 'curioso', 'curso', 'curva', 'cutis', 'dama', 'danza', 'dar', 'dardo', 'dátil', 'deber', 'débil', 'década', 'decir', 'dedo', 'defensa', 'definir', 'dejar', 'delfín', 'delgado', 'delito', 'demora', 'denso', 'dental', 'deporte', 'derecho', 'derrota', 'desayuno', 'deseo', 'desfile', 'desnudo', 'destino', 'desvío', 'detalle', 'detener', 'deuda', 'día', 'diablo', 'diadema', 'diamante', 'diana', 'diario', 'dibujo', 'dictar', 'diente', 'dieta', 'diez', 'difícil', 'digno', 'dilema', 'diluir', 'dinero', 'directo', 'dirigir', 'disco', 'diseño', 'disfraz', 'diva', 'divino', 'doble', 'doce', 'dolor', 'domingo', 'don', 'donar', 'dorado', 'dormir', 'dorso', 'dos', 'dosis', 'dragón', 'droga', 'ducha', 'duda', 'duelo', 'dueño', 'dulce', 'dúo', 'duque', 'durar', 'dureza', 'duro', 'ébano', 'ebrio', 'echar', 'eco', 'ecuador', 'edad', 'edición', 'edificio', 'editor', 'educar', 'efecto', 'eficaz', 'eje', 'ejemplo', 'elefante', 'elegir', 'elemento', 'elevar', 'elipse', 'élite', 'elixir', 'elogio', 'eludir', 'embudo', 'emitir', 'emoción', 'empate', 'empeño', 'empleo', 'empresa', 'enano', 'encargo', 'enchufe', 'encía', 'enemigo', 'enero', 'enfado', 'enfermo', 'engaño', 'enigma', 'enlace', 'enorme', 'enredo', 'ensayo', 'enseñar', 'entero', 'entrar', 'envase', 'envío', 'época', 'equipo', 'erizo', 'escala', 'escena', 'escolar', 'escribir', 'escudo', 'esencia', 'esfera', 'esfuerzo', 'espada', 'espejo', 'espía', 'esposa', 'espuma', 'esquí', 'estar', 'este', 'estilo', 'estufa', 'etapa', 'eterno', 'ética', 'etnia', 'evadir', 'evaluar', 'evento', 'evitar', 'exacto', 'examen', 'exceso', 'excusa', 'exento', 'exigir', 'exilio', 'existir', 'éxito', 'experto', 'explicar', 'exponer', 'extremo', 'fábrica', 'fábula', 'fachada', 'fácil', 'factor', 'faena', 'faja', 'falda', 'fallo', 'falso', 'faltar', 'fama', 'familia', 'famoso', 'faraón', 'farmacia', 'farol', 'farsa', 'fase', 'fatiga', 'fauna', 'favor', 'fax', 'febrero', 'fecha', 'feliz', 'feo', 'feria', 'feroz', 'fértil', 'fervor', 'festín', 'fiable', 'fianza', 'fiar', 'fibra', 'ficción', 'ficha', 'fideo', 'fiebre', 'fiel', 'fiera', 'fiesta', 'figura', 'fijar', 'fijo', 'fila', 'filete', 'filial', 'filtro', 'fin', 'finca', 'fingir', 'finito', 'firma', 'flaco', 'flauta', 'flecha', 'flor', 'flota', 'fluir', 'flujo', 'flúor', 'fobia', 'foca', 'fogata', 'fogón', 'folio', 'folleto', 'fondo', 'forma', 'forro', 'fortuna', 'forzar', 'fosa', 'foto', 'fracaso', 'frágil', 'franja', 'frase', 'fraude', 'freír', 'freno', 'fresa', 'frío', 'frito', 'fruta', 'fuego', 'fuente', 'fuerza', 'fuga', 'fumar', 'función', 'funda', 'furgón', 'furia', 'fusil', 'fútbol', 'futuro', 'gacela', 'gafas', 'gaita', 'gajo', 'gala', 'galería', 'gallo', 'gamba', 'ganar', 'gancho', 'ganga', 'ganso', 'garaje', 'garza', 'gasolina', 'gastar', 'gato', 'gavilán', 'gemelo', 'gemir', 'gen', 'género', 'genio', 'gente', 'geranio', 'gerente', 'germen', 'gesto', 'gigante', 'gimnasio', 'girar', 'giro', 'glaciar', 'globo', 'gloria', 'gol', 'golfo', 'goloso', 'golpe', 'goma', 'gordo', 'gorila', 'gorra', 'gota', 'goteo', 'gozar', 'grada', 'gráfico', 'grano', 'grasa', 'gratis', 'grave', 'grieta', 'grillo', 'gripe', 'gris', 'grito', 'grosor', 'grúa', 'grueso', 'grumo', 'grupo', 'guante', 'guapo', 'guardia', 'guerra', 'guía', 'guiño', 'guion', 'guiso', 'guitarra', 'gusano', 'gustar', 'haber', 'hábil', 'hablar', 'hacer', 'hacha', 'hada', 'hallar', 'hamaca', 'harina', 'haz', 'hazaña', 'hebilla', 'hebra', 'hecho', 'helado', 'helio', 'hembra', 'herir', 'hermano', 'héroe', 'hervir', 'hielo', 'hierro', 'hígado', 'higiene', 'hijo', 'himno', 'historia', 'hocico', 'hogar', 'hoguera', 'hoja', 'hombre', 'hongo', 'honor', 'honra', 'hora', 'hormiga', 'horno', 'hostil', 'hoyo', 'hueco', 'huelga', 'huerta', 'hueso', 'huevo', 'huida', 'huir', 'humano', 'húmedo', 'humilde', 'humo', 'hundir', 'huracán', 'hurto', 'icono', 'ideal', 'idioma', 'ídolo', 'iglesia', 'iglú', 'igual', 'ilegal', 'ilusión', 'imagen', 'imán', 'imitar', 'impar', 'imperio', 'imponer', 'impulso', 'incapaz', 'índice', 'inerte', 'infiel', 'informe', 'ingenio', 'inicio', 'inmenso', 'inmune', 'innato', 'insecto', 'instante', 'interés', 'íntimo', 'intuir', 'inútil', 'invierno', 'ira', 'iris', 'ironía', 'isla', 'islote', 'jabalí', 'jabón', 'jamón', 'jarabe', 'jardín', 'jarra', 'jaula', 'jazmín', 'jefe', 'jeringa', 'jinete', 'jornada', 'joroba', 'joven', 'joya', 'juerga', 'jueves', 'juez', 'jugador', 'jugo', 'juguete', 'juicio', 'junco', 'jungla', 'junio', 'juntar', 'júpiter', 'jurar', 'justo', 'juvenil', 'juzgar', 'kilo', 'koala', 'labio', 'lacio', 'lacra', 'lado', 'ladrón', 'lagarto', 'lágrima', 'laguna', 'laico', 'lamer', 'lámina', 'lámpara', 'lana', 'lancha', 'langosta', 'lanza', 'lápiz', 'largo', 'larva', 'lástima', 'lata', 'látex', 'latir', 'laurel', 'lavar', 'lazo', 'leal', 'lección', 'leche', 'lector', 'leer', 'legión', 'legumbre', 'lejano', 'lengua', 'lento', 'leña', 'león', 'leopardo', 'lesión', 'letal', 'letra', 'leve', 'leyenda', 'libertad', 'libro', 'licor', 'líder', 'lidiar', 'lienzo', 'liga', 'ligero', 'lima', 'límite', 'limón', 'limpio', 'lince', 'lindo', 'línea', 'lingote', 'lino', 'linterna', 'líquido', 'liso', 'lista', 'litera', 'litio', 'litro', 'llaga', 'llama', 'llanto', 'llave', 'llegar', 'llenar', 'llevar', 'llorar', 'llover', 'lluvia', 'lobo', 'loción', 'loco', 'locura', 'lógica', 'logro', 'lombriz', 'lomo', 'lonja', 'lote', 'lucha', 'lucir', 'lugar', 'lujo', 'luna', 'lunes', 'lupa', 'lustro', 'luto', 'luz', 'maceta', 'macho', 'madera', 'madre', 'maduro', 'maestro', 'mafia', 'magia', 'mago', 'maíz', 'maldad', 'maleta', 'malla', 'malo', 'mamá', 'mambo', 'mamut', 'manco', 'mando', 'manejar', 'manga', 'maniquí', 'manjar', 'mano', 'manso', 'manta', 'mañana', 'mapa', 'máquina', 'mar', 'marco', 'marea', 'marfil', 'margen', 'marido', 'mármol', 'marrón', 'martes', 'marzo', 'masa', 'máscara', 'masivo', 'matar', 'materia', 'matiz', 'matriz', 'máximo', 'mayor', 'mazorca', 'mecha', 'medalla', 'medio', 'médula', 'mejilla', 'mejor', 'melena', 'melón', 'memoria', 'menor', 'mensaje', 'mente', 'menú', 'mercado', 'merengue', 'mérito', 'mes', 'mesón', 'meta', 'meter', 'método', 'metro', 'mezcla', 'miedo', 'miel', 'miembro', 'miga', 'mil', 'milagro', 'militar', 'millón', 'mimo', 'mina', 'minero', 'mínimo', 'minuto', 'miope', 'mirar', 'misa', 'miseria', 'misil', 'mismo', 'mitad', 'mito', 'mochila', 'moción', 'moda', 'modelo', 'moho', 'mojar', 'molde', 'moler', 'molino', 'momento', 'momia', 'monarca', 'moneda', 'monja', 'monto', 'moño', 'morada', 'morder', 'moreno', 'morir', 'morro', 'morsa', 'mortal', 'mosca', 'mostrar', 'motivo', 'mover', 'móvil', 'mozo', 'mucho', 'mudar', 'mueble', 'muela', 'muerte', 'muestra', 'mugre', 'mujer', 'mula', 'muleta', 'multa', 'mundo', 'muñeca', 'mural', 'muro', 'músculo', 'museo', 'musgo', 'música', 'muslo', 'nácar', 'nación', 'nadar', 'naipe', 'naranja', 'nariz', 'narrar', 'nasal', 'natal', 'nativo', 'natural', 'náusea', 'naval', 'nave', 'navidad', 'necio', 'néctar', 'negar', 'negocio', 'negro', 'neón', 'nervio', 'neto', 'neutro', 'nevar', 'nevera', 'nicho', 'nido', 'niebla', 'nieto', 'niñez', 'niño', 'nítido', 'nivel', 'nobleza', 'noche', 'nómina', 'noria', 'norma', 'norte', 'nota', 'noticia', 'novato', 'novela', 'novio', 'nube', 'nuca', 'núcleo', 'nudillo', 'nudo', 'nuera', 'nueve', 'nuez', 'nulo', 'número', 'nutria', 'oasis', 'obeso', 'obispo', 'objeto', 'obra', 'obrero', 'observar', 'obtener', 'obvio', 'oca', 'ocaso', 'océano', 'ochenta', 'ocho', 'ocio', 'ocre', 'octavo', 'octubre', 'oculto', 'ocupar', 'ocurrir', 'odiar', 'odio', 'odisea', 'oeste', 'ofensa', 'oferta', 'oficio', 'ofrecer', 'ogro', 'oído', 'oír', 'ojo', 'ola', 'oleada', 'olfato', 'olivo', 'olla', 'olmo', 'olor', 'olvido', 'ombligo', 'onda', 'onza', 'opaco', 'opción', 'ópera', 'opinar', 'oponer', 'optar', 'óptica', 'opuesto', 'oración', 'orador', 'oral', 'órbita', 'orca', 'orden', 'oreja', 'órgano', 'orgía', 'orgullo', 'oriente', 'origen', 'orilla', 'oro', 'orquesta', 'oruga', 'osadía', 'oscuro', 'osezno', 'oso', 'ostra', 'otoño', 'otro', 'oveja', 'óvulo', 'óxido', 'oxígeno', 'oyente', 'ozono', 'pacto', 'padre', 'paella', 'página', 'pago', 'país', 'pájaro', 'palabra', 'palco', 'paleta', 'pálido', 'palma', 'paloma', 'palpar', 'pan', 'panal', 'pánico', 'pantera', 'pañuelo', 'papá', 'papel', 'papilla', 'paquete', 'parar', 'parcela', 'pared', 'parir', 'paro', 'párpado', 'parque', 'párrafo', 'parte', 'pasar', 'paseo', 'pasión', 'paso', 'pasta', 'pata', 'patio', 'patria', 'pausa', 'pauta', 'pavo', 'payaso', 'peatón', 'pecado', 'pecera', 'pecho', 'pedal', 'pedir', 'pegar', 'peine', 'pelar', 'peldaño', 'pelea', 'peligro', 'pellejo', 'pelo', 'peluca', 'pena', 'pensar', 'peñón', 'peón', 'peor', 'pepino', 'pequeño', 'pera', 'percha', 'perder', 'pereza', 'perfil', 'perico', 'perla', 'permiso', 'perro', 'persona', 'pesa', 'pesca', 'pésimo', 'pestaña', 'pétalo', 'petróleo', 'pez', 'pezuña', 'picar', 'pichón', 'pie', 'piedra', 'pierna', 'pieza', 'pijama', 'pilar', 'piloto', 'pimienta', 'pino', 'pintor', 'pinza', 'piña', 'piojo', 'pipa', 'pirata', 'pisar', 'piscina', 'piso', 'pista', 'pitón', 'pizca', 'placa', 'plan', 'plata', 'playa', 'plaza', 'pleito', 'pleno', 'plomo', 'pluma', 'plural', 'pobre', 'poco', 'poder', 'podio', 'poema', 'poesía', 'poeta', 'polen', 'policía', 'pollo', 'polvo', 'pomada', 'pomelo', 'pomo', 'pompa', 'poner', 'porción', 'portal', 'posada', 'poseer', 'posible', 'poste', 'potencia', 'potro', 'pozo', 'prado', 'precoz', 'pregunta', 'premio', 'prensa', 'preso', 'previo', 'primo', 'príncipe', 'prisión', 'privar', 'proa', 'probar', 'proceso', 'producto', 'proeza', 'profesor', 'programa', 'prole', 'promesa', 'pronto', 'propio', 'próximo', 'prueba', 'público', 'puchero', 'pudor', 'pueblo', 'puerta', 'puesto', 'pulga', 'pulir', 'pulmón', 'pulpo', 'pulso', 'puma', 'punto', 'puñal', 'puño', 'pupa', 'pupila', 'puré', 'quedar', 'queja', 'quemar', 'querer', 'queso', 'quieto', 'química', 'quince', 'quitar', 'rábano', 'rabia', 'rabo', 'ración', 'radical', 'raíz', 'rama', 'rampa', 'rancho', 'rango', 'rapaz', 'rápido', 'rapto', 'rasgo', 'raspa', 'rato', 'rayo', 'raza', 'razón', 'reacción', 'realidad', 'rebaño', 'rebote', 'recaer', 'receta', 'rechazo', 'recoger', 'recreo', 'recto', 'recurso', 'red', 'redondo', 'reducir', 'reflejo', 'reforma', 'refrán', 'refugio', 'regalo', 'regir', 'regla', 'regreso', 'rehén', 'reino', 'reír', 'reja', 'relato', 'relevo', 'relieve', 'relleno', 'reloj', 'remar', 'remedio', 'remo', 'rencor', 'rendir', 'renta', 'reparto', 'repetir', 'reposo', 'reptil', 'res', 'rescate', 'resina', 'respeto', 'resto', 'resumen', 'retiro', 'retorno', 'retrato', 'reunir', 'revés', 'revista', 'rey', 'rezar', 'rico', 'riego', 'rienda', 'riesgo', 'rifa', 'rígido', 'rigor', 'rincón', 'riñón', 'río', 'riqueza', 'risa', 'ritmo', 'rito', 'rizo', 'roble', 'roce', 'rociar', 'rodar', 'rodeo', 'rodilla', 'roer', 'rojizo', 'rojo', 'romero', 'romper', 'ron', 'ronco', 'ronda', 'ropa', 'ropero', 'rosa', 'rosca', 'rostro', 'rotar', 'rubí', 'rubor', 'rudo', 'rueda', 'rugir', 'ruido', 'ruina', 'ruleta', 'rulo', 'rumbo', 'rumor', 'ruptura', 'ruta', 'rutina', 'sábado', 'saber', 'sabio', 'sable', 'sacar', 'sagaz', 'sagrado', 'sala', 'saldo', 'salero', 'salir', 'salmón', 'salón', 'salsa', 'salto', 'salud', 'salvar', 'samba', 'sanción', 'sandía', 'sanear', 'sangre', 'sanidad', 'sano', 'santo', 'sapo', 'saque', 'sardina', 'sartén', 'sastre', 'satán', 'sauna', 'saxofón', 'sección', 'seco', 'secreto', 'secta', 'sed', 'seguir', 'seis', 'sello', 'selva', 'semana', 'semilla', 'senda', 'sensor', 'señal', 'señor', 'separar', 'sepia', 'sequía', 'ser', 'serie', 'sermón', 'servir', 'sesenta', 'sesión', 'seta', 'setenta', 'severo', 'sexo', 'sexto', 'sidra', 'siesta', 'siete', 'siglo', 'signo', 'sílaba', 'silbar', 'silencio', 'silla', 'símbolo', 'simio', 'sirena', 'sistema', 'sitio', 'situar', 'sobre', 'socio', 'sodio', 'sol', 'solapa', 'soldado', 'soledad', 'sólido', 'soltar', 'solución', 'sombra', 'sondeo', 'sonido', 'sonoro', 'sonrisa', 'sopa', 'soplar', 'soporte', 'sordo', 'sorpresa', 'sorteo', 'sostén', 'sótano', 'suave', 'subir', 'suceso', 'sudor', 'suegra', 'suelo', 'sueño', 'suerte', 'sufrir', 'sujeto', 'sultán', 'sumar', 'superar', 'suplir', 'suponer', 'supremo', 'sur', 'surco', 'sureño', 'surgir', 'susto', 'sutil', 'tabaco', 'tabique', 'tabla', 'tabú', 'taco', 'tacto', 'tajo', 'talar', 'talco', 'talento', 'talla', 'talón', 'tamaño', 'tambor', 'tango', 'tanque', 'tapa', 'tapete', 'tapia', 'tapón', 'taquilla', 'tarde', 'tarea', 'tarifa', 'tarjeta', 'tarot', 'tarro', 'tarta', 'tatuaje', 'tauro', 'taza', 'tazón', 'teatro', 'techo', 'tecla', 'técnica', 'tejado', 'tejer', 'tejido', 'tela', 'teléfono', 'tema', 'temor', 'templo', 'tenaz', 'tender', 'tener', 'tenis', 'tenso', 'teoría', 'terapia', 'terco', 'término', 'ternura', 'terror', 'tesis', 'tesoro', 'testigo', 'tetera', 'texto', 'tez', 'tibio', 'tiburón', 'tiempo', 'tienda', 'tierra', 'tieso', 'tigre', 'tijera', 'tilde', 'timbre', 'tímido', 'timo', 'tinta', 'tío', 'típico', 'tipo', 'tira', 'tirón', 'titán', 'títere', 'título', 'tiza', 'toalla', 'tobillo', 'tocar', 'tocino', 'todo', 'toga', 'toldo', 'tomar', 'tono', 'tonto', 'topar', 'tope', 'toque', 'tórax', 'torero', 'tormenta', 'torneo', 'toro', 'torpedo', 'torre', 'torso', 'tortuga', 'tos', 'tosco', 'toser', 'tóxico', 'trabajo', 'tractor', 'traer', 'tráfico', 'trago', 'traje', 'tramo', 'trance', 'trato', 'trauma', 'trazar', 'trébol', 'tregua', 'treinta', 'tren', 'trepar', 'tres', 'tribu', 'trigo', 'tripa', 'triste', 'triunfo', 'trofeo', 'trompa', 'tronco', 'tropa', 'trote', 'trozo', 'truco', 'trueno', 'trufa', 'tubería', 'tubo', 'tuerto', 'tumba', 'tumor', 'túnel', 'túnica', 'turbina', 'turismo', 'turno', 'tutor', 'ubicar', 'úlcera', 'umbral', 'unidad', 'unir', 'universo', 'uno', 'untar', 'uña', 'urbano', 'urbe', 'urgente', 'urna', 'usar', 'usuario', 'útil', 'utopía', 'uva', 'vaca', 'vacío', 'vacuna', 'vagar', 'vago', 'vaina', 'vajilla', 'vale', 'válido', 'valle', 'valor', 'válvula', 'vampiro', 'vara', 'variar', 'varón', 'vaso', 'vecino', 'vector', 'vehículo', 'veinte', 'vejez', 'vela', 'velero', 'veloz', 'vena', 'vencer', 'venda', 'veneno', 'vengar', 'venir', 'venta', 'venus', 'ver', 'verano', 'verbo', 'verde', 'vereda', 'verja', 'verso', 'verter', 'vía', 'viaje', 'vibrar', 'vicio', 'víctima', 'vida', 'vídeo', 'vidrio', 'viejo', 'viernes', 'vigor', 'vil', 'villa', 'vinagre', 'vino', 'viñedo', 'violín', 'viral', 'virgo', 'virtud', 'visor', 'víspera', 'vista', 'vitamina', 'viudo', 'vivaz', 'vivero', 'vivir', 'vivo', 'volcán', 'volumen', 'volver', 'voraz', 'votar', 'voto', 'voz', 'vuelo', 'vulgar', 'yacer', 'yate', 'yegua', 'yema', 'yerno', 'yeso', 'yodo', 'yoga', 'yogur', 'zafiro', 'zanja', 'zapato', 'zarza', 'zona', 'zorro', 'zumo', 'zurdo'];
 module.exports = spanish;
 
-},{}],136:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -29672,7 +33137,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 })(typeof module === 'undefined' || module, void 0);
 
-},{"buffer":138}],137:[function(require,module,exports){
+},{"buffer":139}],138:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -29741,10 +33206,10 @@ if ((typeof self === "undefined" ? "undefined" : _typeof(self)) === 'object') {
   } catch (e) {}
 }
 
-},{"crypto":138}],138:[function(require,module,exports){
+},{"crypto":139}],139:[function(require,module,exports){
 "use strict";
 
-},{}],139:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 "use strict";
 
 // based on the aes implimentation in triple sec
@@ -29959,7 +33424,7 @@ AES.prototype.scrub = function () {
 
 module.exports.AES = AES;
 
-},{"safe-buffer":374}],140:[function(require,module,exports){
+},{"safe-buffer":376}],141:[function(require,module,exports){
 "use strict";
 
 var aes = require('./aes');
@@ -30091,7 +33556,7 @@ StreamCipher.prototype.setAAD = function setAAD(buf) {
 
 module.exports = StreamCipher;
 
-},{"./aes":139,"./ghash":144,"./incr32":145,"buffer-xor":172,"cipher-base":174,"inherits":315,"safe-buffer":374}],141:[function(require,module,exports){
+},{"./aes":140,"./ghash":145,"./incr32":146,"buffer-xor":173,"cipher-base":175,"inherits":317,"safe-buffer":376}],142:[function(require,module,exports){
 "use strict";
 
 var ciphers = require('./encrypter');
@@ -30110,7 +33575,7 @@ exports.createDecipher = exports.Decipher = deciphers.createDecipher;
 exports.createDecipheriv = exports.Decipheriv = deciphers.createDecipheriv;
 exports.listCiphers = exports.getCiphers = getCiphers;
 
-},{"./decrypter":142,"./encrypter":143,"./modes/list.json":153}],142:[function(require,module,exports){
+},{"./decrypter":143,"./encrypter":144,"./modes/list.json":154}],143:[function(require,module,exports){
 "use strict";
 
 var AuthCipher = require('./authCipher');
@@ -30249,7 +33714,7 @@ function createDecipher(suite, password) {
 exports.createDecipher = createDecipher;
 exports.createDecipheriv = createDecipheriv;
 
-},{"./aes":139,"./authCipher":140,"./modes":152,"./streamCipher":155,"cipher-base":174,"evp_bytestokey":297,"inherits":315,"safe-buffer":374}],143:[function(require,module,exports){
+},{"./aes":140,"./authCipher":141,"./modes":153,"./streamCipher":156,"cipher-base":175,"evp_bytestokey":299,"inherits":317,"safe-buffer":376}],144:[function(require,module,exports){
 "use strict";
 
 var MODES = require('./modes');
@@ -30376,7 +33841,7 @@ function createCipher(suite, password) {
 exports.createCipheriv = createCipheriv;
 exports.createCipher = createCipher;
 
-},{"./aes":139,"./authCipher":140,"./modes":152,"./streamCipher":155,"cipher-base":174,"evp_bytestokey":297,"inherits":315,"safe-buffer":374}],144:[function(require,module,exports){
+},{"./aes":140,"./authCipher":141,"./modes":153,"./streamCipher":156,"cipher-base":175,"evp_bytestokey":299,"inherits":317,"safe-buffer":376}],145:[function(require,module,exports){
 "use strict";
 
 var Buffer = require('safe-buffer').Buffer;
@@ -30470,7 +33935,7 @@ GHASH.prototype["final"] = function (abl, bl) {
 
 module.exports = GHASH;
 
-},{"safe-buffer":374}],145:[function(require,module,exports){
+},{"safe-buffer":376}],146:[function(require,module,exports){
 "use strict";
 
 function incr32(iv) {
@@ -30492,7 +33957,7 @@ function incr32(iv) {
 
 module.exports = incr32;
 
-},{}],146:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 "use strict";
 
 var xor = require('buffer-xor');
@@ -30512,7 +33977,7 @@ exports.decrypt = function (self, block) {
   return xor(out, pad);
 };
 
-},{"buffer-xor":172}],147:[function(require,module,exports){
+},{"buffer-xor":173}],148:[function(require,module,exports){
 "use strict";
 
 var Buffer = require('safe-buffer').Buffer;
@@ -30550,7 +34015,7 @@ exports.encrypt = function (self, data, decrypt) {
   return out;
 };
 
-},{"buffer-xor":172,"safe-buffer":374}],148:[function(require,module,exports){
+},{"buffer-xor":173,"safe-buffer":376}],149:[function(require,module,exports){
 "use strict";
 
 var Buffer = require('safe-buffer').Buffer;
@@ -30598,7 +34063,7 @@ exports.encrypt = function (self, chunk, decrypt) {
   return out;
 };
 
-},{"safe-buffer":374}],149:[function(require,module,exports){
+},{"safe-buffer":376}],150:[function(require,module,exports){
 "use strict";
 
 var Buffer = require('safe-buffer').Buffer;
@@ -30623,7 +34088,7 @@ exports.encrypt = function (self, chunk, decrypt) {
   return out;
 };
 
-},{"safe-buffer":374}],150:[function(require,module,exports){
+},{"safe-buffer":376}],151:[function(require,module,exports){
 "use strict";
 
 var xor = require('buffer-xor');
@@ -30665,7 +34130,7 @@ exports.encrypt = function (self, chunk) {
   return xor(chunk, pad);
 };
 
-},{"../incr32":145,"buffer-xor":172,"safe-buffer":374}],151:[function(require,module,exports){
+},{"../incr32":146,"buffer-xor":173,"safe-buffer":376}],152:[function(require,module,exports){
 "use strict";
 
 exports.encrypt = function (self, block) {
@@ -30676,7 +34141,7 @@ exports.decrypt = function (self, block) {
   return self._cipher.decryptBlock(block);
 };
 
-},{}],152:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 "use strict";
 
 var modeModules = {
@@ -30698,7 +34163,7 @@ for (var key in modes) {
 
 module.exports = modes;
 
-},{"./cbc":146,"./cfb":147,"./cfb1":148,"./cfb8":149,"./ctr":150,"./ecb":151,"./list.json":153,"./ofb":154}],153:[function(require,module,exports){
+},{"./cbc":147,"./cfb":148,"./cfb1":149,"./cfb8":150,"./ctr":151,"./ecb":152,"./list.json":154,"./ofb":155}],154:[function(require,module,exports){
 module.exports={
   "aes-128-ecb": {
     "cipher": "AES",
@@ -30891,7 +34356,7 @@ module.exports={
   }
 }
 
-},{}],154:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -30914,7 +34379,7 @@ exports.encrypt = function (self, chunk) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":173,"buffer-xor":172}],155:[function(require,module,exports){
+},{"buffer":174,"buffer-xor":173}],156:[function(require,module,exports){
 "use strict";
 
 var aes = require('./aes');
@@ -30947,7 +34412,7 @@ StreamCipher.prototype._final = function () {
 
 module.exports = StreamCipher;
 
-},{"./aes":139,"cipher-base":174,"inherits":315,"safe-buffer":374}],156:[function(require,module,exports){
+},{"./aes":140,"cipher-base":175,"inherits":317,"safe-buffer":376}],157:[function(require,module,exports){
 "use strict";
 
 var DES = require('browserify-des');
@@ -31029,7 +34494,7 @@ exports.createDecipher = exports.Decipher = createDecipher;
 exports.createDecipheriv = exports.Decipheriv = createDecipheriv;
 exports.listCiphers = exports.getCiphers = getCiphers;
 
-},{"browserify-aes/browser":141,"browserify-aes/modes":152,"browserify-des":157,"browserify-des/modes":158,"evp_bytestokey":297}],157:[function(require,module,exports){
+},{"browserify-aes/browser":142,"browserify-aes/modes":153,"browserify-des":158,"browserify-des/modes":159,"evp_bytestokey":299}],158:[function(require,module,exports){
 "use strict";
 
 var CipherBase = require('cipher-base');
@@ -31096,7 +34561,7 @@ DES.prototype._final = function () {
   return Buffer.from(this._des["final"]());
 };
 
-},{"cipher-base":174,"des.js":215,"inherits":315,"safe-buffer":374}],158:[function(require,module,exports){
+},{"cipher-base":175,"des.js":217,"inherits":317,"safe-buffer":376}],159:[function(require,module,exports){
 "use strict";
 
 exports['des-ecb'] = {
@@ -31124,7 +34589,7 @@ exports['des-ede'] = {
   iv: 0
 };
 
-},{}],159:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -31171,7 +34636,7 @@ crt.getr = getr;
 module.exports = crt;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"bn.js":160,"buffer":173,"randombytes":354}],160:[function(require,module,exports){
+},{"bn.js":161,"buffer":174,"randombytes":356}],161:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -34766,12 +38231,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 })(typeof module === 'undefined' || module, void 0);
 
-},{"buffer":138}],161:[function(require,module,exports){
+},{"buffer":139}],162:[function(require,module,exports){
 "use strict";
 
 module.exports = require('./browser/algorithms.json');
 
-},{"./browser/algorithms.json":162}],162:[function(require,module,exports){
+},{"./browser/algorithms.json":163}],163:[function(require,module,exports){
 module.exports={
   "sha224WithRSAEncryption": {
     "sign": "rsa",
@@ -34925,7 +38390,7 @@ module.exports={
   }
 }
 
-},{}],163:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 module.exports={
   "1.3.132.0.10": "secp256k1",
   "1.3.132.0.33": "p224",
@@ -34935,7 +38400,7 @@ module.exports={
   "1.3.132.0.35": "p521"
 }
 
-},{}],164:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 "use strict";
 
 var Buffer = require('safe-buffer').Buffer;
@@ -35041,7 +38506,7 @@ module.exports = {
   createVerify: createVerify
 };
 
-},{"./algorithms.json":162,"./sign":165,"./verify":166,"create-hash":176,"inherits":168,"readable-stream":371,"safe-buffer":374}],165:[function(require,module,exports){
+},{"./algorithms.json":163,"./sign":166,"./verify":167,"create-hash":177,"inherits":169,"readable-stream":373,"safe-buffer":376}],166:[function(require,module,exports){
 "use strict";
 
 // much of this based on https://github.com/indutny/self-signed/blob/gh-pages/lib/rsa.js
@@ -35209,7 +38674,7 @@ module.exports = sign;
 module.exports.getKey = getKey;
 module.exports.makeKey = makeKey;
 
-},{"./curves.json":163,"bn.js":167,"browserify-rsa":159,"create-hmac":178,"elliptic":225,"parse-asn1":337,"safe-buffer":374}],166:[function(require,module,exports){
+},{"./curves.json":164,"bn.js":168,"browserify-rsa":160,"create-hmac":179,"elliptic":227,"parse-asn1":339,"safe-buffer":376}],167:[function(require,module,exports){
 "use strict";
 
 // much of this based on https://github.com/indutny/self-signed/blob/gh-pages/lib/rsa.js
@@ -35302,9 +38767,9 @@ function checkValue(b, q) {
 
 module.exports = verify;
 
-},{"./curves.json":163,"bn.js":167,"elliptic":225,"parse-asn1":337,"safe-buffer":374}],167:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"buffer":138,"dup":160}],168:[function(require,module,exports){
+},{"./curves.json":164,"bn.js":168,"elliptic":227,"parse-asn1":339,"safe-buffer":376}],168:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"buffer":139,"dup":161}],169:[function(require,module,exports){
 "use strict";
 
 if (typeof Object.create === 'function') {
@@ -35337,7 +38802,7 @@ if (typeof Object.create === 'function') {
   };
 }
 
-},{}],169:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 (function (global){(function (){
 "use strict";
 
@@ -35587,9 +39052,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     delta = firstTime ? floor(delta / damp) : delta >> 1;
     delta += floor(delta / numPoints);
 
-    for (;
-    /* no initialization */
-    delta > baseMinusTMin * tMax >> 1; k += base) {
+    for (; delta > baseMinusTMin * tMax >> 1; k += base) {
       delta = floor(delta / baseMinusTMin);
     }
 
@@ -35643,17 +39106,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     // points were copied; start at the beginning otherwise.
 
 
-    for (index = basic > 0 ? basic + 1 : 0; index < inputLength;)
-    /* no final expression */
-    {
+    for (index = basic > 0 ? basic + 1 : 0; index < inputLength;) {
       // `index` is the index of the next character to be consumed.
       // Decode a generalized variable-length integer into `delta`,
       // which gets added to `i`. The overflow checking is easier
       // if we increase `i` as we go, then subtract off its starting
       // value at the end to obtain `delta`.
-      for (oldi = i, w = 1, k = base;;
-      /* no condition */
-      k += base) {
+      for (oldi = i, w = 1, k = base;; k += base) {
         if (index >= inputLength) {
           error('invalid-input');
         }
@@ -35783,9 +39242,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         if (currentValue == n) {
           // Represent delta as a generalized variable-length integer
-          for (q = delta, k = base;;
-          /* no condition */
-          k += base) {
+          for (q = delta, k = base;; k += base) {
             t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
 
             if (q < t) {
@@ -35901,7 +39358,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 })(void 0);
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],170:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 "use strict";
 
 var basex = require('base-x');
@@ -35909,7 +39366,7 @@ var basex = require('base-x');
 var ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
 module.exports = basex(ALPHABET);
 
-},{"base-x":72}],171:[function(require,module,exports){
+},{"base-x":73}],172:[function(require,module,exports){
 "use strict";
 
 module.exports = function (a, b) {
@@ -35935,7 +39392,7 @@ module.exports = function (a, b) {
   return 0;
 };
 
-},{}],172:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -35951,7 +39408,7 @@ module.exports = function xor(a, b) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":173}],173:[function(require,module,exports){
+},{"buffer":174}],174:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -37756,7 +41213,7 @@ function numberIsNaN(obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":73,"buffer":173,"ieee754":314}],174:[function(require,module,exports){
+},{"base64-js":74,"buffer":174,"ieee754":316}],175:[function(require,module,exports){
 "use strict";
 
 var Buffer = require('safe-buffer').Buffer;
@@ -37875,7 +41332,7 @@ CipherBase.prototype._toString = function (value, enc, fin) {
 
 module.exports = CipherBase;
 
-},{"inherits":315,"safe-buffer":374,"stream":388,"string_decoder":390}],175:[function(require,module,exports){
+},{"inherits":317,"safe-buffer":376,"stream":390,"string_decoder":392}],176:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -38022,7 +41479,7 @@ function formatReturnValue(bn, enc, len) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"bn.js":136,"buffer":173,"elliptic":225}],176:[function(require,module,exports){
+},{"bn.js":137,"buffer":174,"elliptic":227}],177:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -38057,7 +41514,7 @@ module.exports = function createHash(alg) {
   return new Hash(sha(alg));
 };
 
-},{"cipher-base":174,"inherits":315,"md5.js":326,"ripemd160":372,"sha.js":381}],177:[function(require,module,exports){
+},{"cipher-base":175,"inherits":317,"md5.js":328,"ripemd160":374,"sha.js":383}],178:[function(require,module,exports){
 "use strict";
 
 var MD5 = require('md5.js');
@@ -38066,7 +41523,7 @@ module.exports = function (buffer) {
   return new MD5().update(buffer).digest();
 };
 
-},{"md5.js":326}],178:[function(require,module,exports){
+},{"md5.js":328}],179:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -38143,7 +41600,7 @@ module.exports = function createHmac(alg, key) {
   return new Hmac(alg, key);
 };
 
-},{"./legacy":179,"cipher-base":174,"create-hash/md5":177,"inherits":315,"ripemd160":372,"safe-buffer":374,"sha.js":381}],179:[function(require,module,exports){
+},{"./legacy":180,"cipher-base":175,"create-hash/md5":178,"inherits":317,"ripemd160":374,"safe-buffer":376,"sha.js":383}],180:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -38196,7 +41653,7 @@ Hmac.prototype._final = function () {
 
 module.exports = Hmac;
 
-},{"cipher-base":174,"inherits":315,"safe-buffer":374}],180:[function(require,module,exports){
+},{"cipher-base":175,"inherits":317,"safe-buffer":376}],181:[function(require,module,exports){
 'use strict';
 
 exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = require('randombytes');
@@ -38291,7 +41748,7 @@ exports.constants = {
   'POINT_CONVERSION_HYBRID': 6
 };
 
-},{"browserify-cipher":156,"browserify-sign":164,"browserify-sign/algos":161,"create-ecdh":175,"create-hash":176,"create-hmac":178,"diffie-hellman":221,"pbkdf2":338,"public-encrypt":345,"randombytes":354,"randomfill":355}],181:[function(require,module,exports){
+},{"browserify-cipher":157,"browserify-sign":165,"browserify-sign/algos":162,"create-ecdh":176,"create-hash":177,"create-hmac":179,"diffie-hellman":223,"pbkdf2":340,"public-encrypt":347,"randombytes":356,"randomfill":357}],182:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -38510,7 +41967,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.AES;
 });
 
-},{"./cipher-core":182,"./core":183,"./enc-base64":184,"./evpkdf":186,"./md5":191}],182:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184,"./enc-base64":185,"./evpkdf":188,"./md5":193}],183:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -39362,7 +42819,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   }();
 });
 
-},{"./core":183,"./evpkdf":186}],183:[function(require,module,exports){
+},{"./core":184,"./evpkdf":188}],184:[function(require,module,exports){
 (function (global){(function (){
 "use strict";
 
@@ -39392,6 +42849,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
     if (typeof window !== 'undefined' && window.crypto) {
       crypto = window.crypto;
+    } // Native crypto in web worker (Browser)
+
+
+    if (typeof self !== 'undefined' && self.crypto) {
+      crypto = self.crypto;
+    } // Native crypto from worker
+
+
+    if (typeof globalThis !== 'undefined' && globalThis.crypto) {
+      crypto = globalThis.crypto;
     } // Native (experimental IE 11) crypto from window (Browser)
 
 
@@ -39655,8 +43122,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         } else {
           // Copy one word at a time
-          for (var i = 0; i < thatSigBytes; i += 4) {
-            thisWords[thisSigBytes + i >>> 2] = thatWords[i >>> 2];
+          for (var j = 0; j < thatSigBytes; j += 4) {
+            thisWords[thisSigBytes + j >>> 2] = thatWords[j >>> 2];
           }
         }
 
@@ -40142,7 +43609,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 });
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"crypto":180}],184:[function(require,module,exports){
+},{"crypto":139}],185:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -40283,7 +43750,155 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.enc.Base64;
 });
 
-},{"./core":183}],185:[function(require,module,exports){
+},{"./core":184}],186:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+;
+
+(function (root, factory) {
+  if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
+    // CommonJS
+    module.exports = exports = factory(require("./core"));
+  } else if (typeof define === "function" && define.amd) {
+    // AMD
+    define(["./core"], factory);
+  } else {
+    // Global (browser)
+    factory(root.CryptoJS);
+  }
+})(void 0, function (CryptoJS) {
+  (function () {
+    // Shortcuts
+    var C = CryptoJS;
+    var C_lib = C.lib;
+    var WordArray = C_lib.WordArray;
+    var C_enc = C.enc;
+    /**
+     * Base64url encoding strategy.
+     */
+
+    var Base64url = C_enc.Base64url = {
+      /**
+       * Converts a word array to a Base64url string.
+       *
+       * @param {WordArray} wordArray The word array.
+       *
+       * @param {boolean} urlSafe Whether to use url safe
+       *
+       * @return {string} The Base64url string.
+       *
+       * @static
+       *
+       * @example
+       *
+       *     var base64String = CryptoJS.enc.Base64url.stringify(wordArray);
+       */
+      stringify: function stringify(wordArray) {
+        var urlSafe = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+        // Shortcuts
+        var words = wordArray.words;
+        var sigBytes = wordArray.sigBytes;
+        var map = urlSafe ? this._safe_map : this._map; // Clamp excess bits
+
+        wordArray.clamp(); // Convert
+
+        var base64Chars = [];
+
+        for (var i = 0; i < sigBytes; i += 3) {
+          var byte1 = words[i >>> 2] >>> 24 - i % 4 * 8 & 0xff;
+          var byte2 = words[i + 1 >>> 2] >>> 24 - (i + 1) % 4 * 8 & 0xff;
+          var byte3 = words[i + 2 >>> 2] >>> 24 - (i + 2) % 4 * 8 & 0xff;
+          var triplet = byte1 << 16 | byte2 << 8 | byte3;
+
+          for (var j = 0; j < 4 && i + j * 0.75 < sigBytes; j++) {
+            base64Chars.push(map.charAt(triplet >>> 6 * (3 - j) & 0x3f));
+          }
+        } // Add padding
+
+
+        var paddingChar = map.charAt(64);
+
+        if (paddingChar) {
+          while (base64Chars.length % 4) {
+            base64Chars.push(paddingChar);
+          }
+        }
+
+        return base64Chars.join('');
+      },
+
+      /**
+       * Converts a Base64url string to a word array.
+       *
+       * @param {string} base64Str The Base64url string.
+       *
+       * @param {boolean} urlSafe Whether to use url safe
+       *
+       * @return {WordArray} The word array.
+       *
+       * @static
+       *
+       * @example
+       *
+       *     var wordArray = CryptoJS.enc.Base64url.parse(base64String);
+       */
+      parse: function parse(base64Str) {
+        var urlSafe = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+        // Shortcuts
+        var base64StrLength = base64Str.length;
+        var map = urlSafe ? this._safe_map : this._map;
+        var reverseMap = this._reverseMap;
+
+        if (!reverseMap) {
+          reverseMap = this._reverseMap = [];
+
+          for (var j = 0; j < map.length; j++) {
+            reverseMap[map.charCodeAt(j)] = j;
+          }
+        } // Ignore padding
+
+
+        var paddingChar = map.charAt(64);
+
+        if (paddingChar) {
+          var paddingIndex = base64Str.indexOf(paddingChar);
+
+          if (paddingIndex !== -1) {
+            base64StrLength = paddingIndex;
+          }
+        } // Convert
+
+
+        return parseLoop(base64Str, base64StrLength, reverseMap);
+      },
+      _map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
+      _safe_map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
+    };
+
+    function parseLoop(base64Str, base64StrLength, reverseMap) {
+      var words = [];
+      var nBytes = 0;
+
+      for (var i = 0; i < base64StrLength; i++) {
+        if (i % 4) {
+          var bits1 = reverseMap[base64Str.charCodeAt(i - 1)] << i % 4 * 2;
+          var bits2 = reverseMap[base64Str.charCodeAt(i)] >>> 6 - i % 4 * 2;
+          var bitsCombined = bits1 | bits2;
+          words[nBytes >>> 2] |= bitsCombined << 24 - nBytes % 4 * 8;
+          nBytes++;
+        }
+      }
+
+      return WordArray.create(words, nBytes);
+    }
+  })();
+
+  return CryptoJS.enc.Base64url;
+});
+
+},{"./core":184}],187:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -40435,7 +44050,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.enc.Utf16;
 });
 
-},{"./core":183}],186:[function(require,module,exports){
+},{"./core":184}],188:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -40567,7 +44182,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.EvpKDF;
 });
 
-},{"./core":183,"./hmac":188,"./sha1":207}],187:[function(require,module,exports){
+},{"./core":184,"./hmac":190,"./sha1":209}],189:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -40637,7 +44252,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.format.Hex;
 });
 
-},{"./cipher-core":182,"./core":183}],188:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],190:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -40775,7 +44390,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   })();
 });
 
-},{"./core":183}],189:[function(require,module,exports){
+},{"./core":184}],191:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -40785,10 +44400,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 (function (root, factory, undef) {
   if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
     // CommonJS
-    module.exports = exports = factory(require("./core"), require("./x64-core"), require("./lib-typedarrays"), require("./enc-utf16"), require("./enc-base64"), require("./md5"), require("./sha1"), require("./sha256"), require("./sha224"), require("./sha512"), require("./sha384"), require("./sha3"), require("./ripemd160"), require("./hmac"), require("./pbkdf2"), require("./evpkdf"), require("./cipher-core"), require("./mode-cfb"), require("./mode-ctr"), require("./mode-ctr-gladman"), require("./mode-ofb"), require("./mode-ecb"), require("./pad-ansix923"), require("./pad-iso10126"), require("./pad-iso97971"), require("./pad-zeropadding"), require("./pad-nopadding"), require("./format-hex"), require("./aes"), require("./tripledes"), require("./rc4"), require("./rabbit"), require("./rabbit-legacy"));
+    module.exports = exports = factory(require("./core"), require("./x64-core"), require("./lib-typedarrays"), require("./enc-utf16"), require("./enc-base64"), require("./enc-base64url"), require("./md5"), require("./sha1"), require("./sha256"), require("./sha224"), require("./sha512"), require("./sha384"), require("./sha3"), require("./ripemd160"), require("./hmac"), require("./pbkdf2"), require("./evpkdf"), require("./cipher-core"), require("./mode-cfb"), require("./mode-ctr"), require("./mode-ctr-gladman"), require("./mode-ofb"), require("./mode-ecb"), require("./pad-ansix923"), require("./pad-iso10126"), require("./pad-iso97971"), require("./pad-zeropadding"), require("./pad-nopadding"), require("./format-hex"), require("./aes"), require("./tripledes"), require("./rc4"), require("./rabbit"), require("./rabbit-legacy"));
   } else if (typeof define === "function" && define.amd) {
     // AMD
-    define(["./core", "./x64-core", "./lib-typedarrays", "./enc-utf16", "./enc-base64", "./md5", "./sha1", "./sha256", "./sha224", "./sha512", "./sha384", "./sha3", "./ripemd160", "./hmac", "./pbkdf2", "./evpkdf", "./cipher-core", "./mode-cfb", "./mode-ctr", "./mode-ctr-gladman", "./mode-ofb", "./mode-ecb", "./pad-ansix923", "./pad-iso10126", "./pad-iso97971", "./pad-zeropadding", "./pad-nopadding", "./format-hex", "./aes", "./tripledes", "./rc4", "./rabbit", "./rabbit-legacy"], factory);
+    define(["./core", "./x64-core", "./lib-typedarrays", "./enc-utf16", "./enc-base64", "./enc-base64url", "./md5", "./sha1", "./sha256", "./sha224", "./sha512", "./sha384", "./sha3", "./ripemd160", "./hmac", "./pbkdf2", "./evpkdf", "./cipher-core", "./mode-cfb", "./mode-ctr", "./mode-ctr-gladman", "./mode-ofb", "./mode-ecb", "./pad-ansix923", "./pad-iso10126", "./pad-iso97971", "./pad-zeropadding", "./pad-nopadding", "./format-hex", "./aes", "./tripledes", "./rc4", "./rabbit", "./rabbit-legacy"], factory);
   } else {
     // Global (browser)
     root.CryptoJS = factory(root.CryptoJS);
@@ -40797,7 +44412,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS;
 });
 
-},{"./aes":181,"./cipher-core":182,"./core":183,"./enc-base64":184,"./enc-utf16":185,"./evpkdf":186,"./format-hex":187,"./hmac":188,"./lib-typedarrays":190,"./md5":191,"./mode-cfb":192,"./mode-ctr":194,"./mode-ctr-gladman":193,"./mode-ecb":195,"./mode-ofb":196,"./pad-ansix923":197,"./pad-iso10126":198,"./pad-iso97971":199,"./pad-nopadding":200,"./pad-zeropadding":201,"./pbkdf2":202,"./rabbit":204,"./rabbit-legacy":203,"./rc4":205,"./ripemd160":206,"./sha1":207,"./sha224":208,"./sha256":209,"./sha3":210,"./sha384":211,"./sha512":212,"./tripledes":213,"./x64-core":214}],190:[function(require,module,exports){
+},{"./aes":182,"./cipher-core":183,"./core":184,"./enc-base64":185,"./enc-base64url":186,"./enc-utf16":187,"./evpkdf":188,"./format-hex":189,"./hmac":190,"./lib-typedarrays":192,"./md5":193,"./mode-cfb":194,"./mode-ctr":196,"./mode-ctr-gladman":195,"./mode-ecb":197,"./mode-ofb":198,"./pad-ansix923":199,"./pad-iso10126":200,"./pad-iso97971":201,"./pad-nopadding":202,"./pad-zeropadding":203,"./pbkdf2":204,"./rabbit":206,"./rabbit-legacy":205,"./rc4":207,"./ripemd160":208,"./sha1":209,"./sha224":210,"./sha256":211,"./sha3":212,"./sha384":213,"./sha512":214,"./tripledes":215,"./x64-core":216}],192:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -40865,7 +44480,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.lib.WordArray;
 });
 
-},{"./core":183}],191:[function(require,module,exports){
+},{"./core":184}],193:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41104,7 +44719,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.MD5;
 });
 
-},{"./core":183}],192:[function(require,module,exports){
+},{"./core":184}],194:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41177,7 +44792,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.mode.CFB;
 });
 
-},{"./cipher-core":182,"./core":183}],193:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],195:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41280,7 +44895,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.mode.CTRGladman;
 });
 
-},{"./cipher-core":182,"./core":183}],194:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],196:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41335,7 +44950,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.mode.CTR;
 });
 
-},{"./cipher-core":182,"./core":183}],195:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],197:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41375,7 +44990,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.mode.ECB;
 });
 
-},{"./cipher-core":182,"./core":183}],196:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],198:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41427,7 +45042,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.mode.OFB;
 });
 
-},{"./cipher-core":182,"./core":183}],197:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],199:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41473,7 +45088,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.pad.Ansix923;
 });
 
-},{"./cipher-core":182,"./core":183}],198:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],200:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41514,7 +45129,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.pad.Iso10126;
 });
 
-},{"./cipher-core":182,"./core":183}],199:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],201:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41553,7 +45168,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.pad.Iso97971;
 });
 
-},{"./cipher-core":182,"./core":183}],200:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],202:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41582,7 +45197,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.pad.NoPadding;
 });
 
-},{"./cipher-core":182,"./core":183}],201:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],203:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41629,7 +45244,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.pad.ZeroPadding;
 });
 
-},{"./cipher-core":182,"./core":183}],202:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184}],204:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41770,7 +45385,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.PBKDF2;
 });
 
-},{"./core":183,"./hmac":188,"./sha1":207}],203:[function(require,module,exports){
+},{"./core":184,"./hmac":190,"./sha1":209}],205:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -41934,7 +45549,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.RabbitLegacy;
 });
 
-},{"./cipher-core":182,"./core":183,"./enc-base64":184,"./evpkdf":186,"./md5":191}],204:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184,"./enc-base64":185,"./evpkdf":188,"./md5":193}],206:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -42099,7 +45714,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.Rabbit;
 });
 
-},{"./cipher-core":182,"./core":183,"./enc-base64":184,"./evpkdf":186,"./md5":191}],205:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184,"./enc-base64":185,"./evpkdf":188,"./md5":193}],207:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -42233,7 +45848,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.RC4;
 });
 
-},{"./cipher-core":182,"./core":183,"./enc-base64":184,"./evpkdf":186,"./md5":191}],206:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184,"./enc-base64":185,"./evpkdf":188,"./md5":193}],208:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -42468,7 +46083,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.RIPEMD160;
 });
 
-},{"./core":183}],207:[function(require,module,exports){
+},{"./core":184}],209:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -42610,7 +46225,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.SHA1;
 });
 
-},{"./core":183}],208:[function(require,module,exports){
+},{"./core":184}],210:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -42688,7 +46303,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.SHA224;
 });
 
-},{"./core":183,"./sha256":209}],209:[function(require,module,exports){
+},{"./core":184,"./sha256":211}],211:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -42872,7 +46487,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.SHA256;
 });
 
-},{"./core":183}],210:[function(require,module,exports){
+},{"./core":184}],212:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -43186,7 +46801,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.SHA3;
 });
 
-},{"./core":183,"./x64-core":214}],211:[function(require,module,exports){
+},{"./core":184,"./x64-core":216}],213:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -43265,7 +46880,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.SHA384;
 });
 
-},{"./core":183,"./sha512":212,"./x64-core":214}],212:[function(require,module,exports){
+},{"./core":184,"./sha512":214,"./x64-core":216}],214:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -43525,7 +47140,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.SHA512;
 });
 
-},{"./core":183,"./x64-core":214}],213:[function(require,module,exports){
+},{"./core":184,"./x64-core":216}],215:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -44263,7 +47878,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS.TripleDES;
 });
 
-},{"./cipher-core":182,"./core":183,"./enc-base64":184,"./evpkdf":186,"./md5":191}],214:[function(require,module,exports){
+},{"./cipher-core":183,"./core":184,"./enc-base64":185,"./evpkdf":188,"./md5":193}],216:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -44562,7 +48177,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return CryptoJS;
 });
 
-},{"./core":183}],215:[function(require,module,exports){
+},{"./core":184}],217:[function(require,module,exports){
 'use strict';
 
 exports.utils = require('./des/utils');
@@ -44571,7 +48186,7 @@ exports.DES = require('./des/des');
 exports.CBC = require('./des/cbc');
 exports.EDE = require('./des/ede');
 
-},{"./des/cbc":216,"./des/cipher":217,"./des/des":218,"./des/ede":219,"./des/utils":220}],216:[function(require,module,exports){
+},{"./des/cbc":218,"./des/cipher":219,"./des/des":220,"./des/ede":221,"./des/utils":222}],218:[function(require,module,exports){
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -44646,7 +48261,7 @@ proto._update = function _update(inp, inOff, out, outOff) {
   }
 };
 
-},{"inherits":315,"minimalistic-assert":328}],217:[function(require,module,exports){
+},{"inherits":317,"minimalistic-assert":330}],219:[function(require,module,exports){
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -44776,7 +48391,7 @@ Cipher.prototype._finalDecrypt = function _finalDecrypt() {
   return this._unpad(out);
 };
 
-},{"minimalistic-assert":328}],218:[function(require,module,exports){
+},{"minimalistic-assert":330}],220:[function(require,module,exports){
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -44904,7 +48519,7 @@ DES.prototype._decrypt = function _decrypt(state, lStart, rStart, out, off) {
   utils.rip(l, r, out, off);
 };
 
-},{"./cipher":217,"./utils":220,"inherits":315,"minimalistic-assert":328}],219:[function(require,module,exports){
+},{"./cipher":219,"./utils":222,"inherits":317,"minimalistic-assert":330}],221:[function(require,module,exports){
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -44972,7 +48587,7 @@ EDE.prototype._update = function _update(inp, inOff, out, outOff) {
 EDE.prototype._pad = DES.prototype._pad;
 EDE.prototype._unpad = DES.prototype._unpad;
 
-},{"./cipher":217,"./des":218,"inherits":315,"minimalistic-assert":328}],220:[function(require,module,exports){
+},{"./cipher":219,"./des":220,"inherits":317,"minimalistic-assert":330}],222:[function(require,module,exports){
 'use strict';
 
 exports.readUInt32BE = function readUInt32BE(bytes, off) {
@@ -45192,7 +48807,7 @@ exports.padSplit = function padSplit(num, size, group) {
   return out.join(' ');
 };
 
-},{}],221:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -45242,7 +48857,7 @@ exports.DiffieHellmanGroup = exports.createDiffieHellmanGroup = exports.getDiffi
 exports.createDiffieHellman = exports.DiffieHellman = createDiffieHellman;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./lib/dh":222,"./lib/generatePrime":223,"./lib/primes.json":224,"buffer":173}],222:[function(require,module,exports){
+},{"./lib/dh":224,"./lib/generatePrime":225,"./lib/primes.json":226,"buffer":174}],224:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -45441,7 +49056,7 @@ function formatReturnValue(bn, enc) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./generatePrime":223,"bn.js":136,"buffer":173,"miller-rabin":327,"randombytes":354}],223:[function(require,module,exports){
+},{"./generatePrime":225,"bn.js":137,"buffer":174,"miller-rabin":329,"randombytes":356}],225:[function(require,module,exports){
 "use strict";
 
 var randomBytes = require('randombytes');
@@ -45558,7 +49173,7 @@ function findPrime(bits, gen) {
   }
 }
 
-},{"bn.js":136,"miller-rabin":327,"randombytes":354}],224:[function(require,module,exports){
+},{"bn.js":137,"miller-rabin":329,"randombytes":356}],226:[function(require,module,exports){
 module.exports={
     "modp1": {
         "gen": "02",
@@ -45593,7 +49208,7 @@ module.exports={
         "prime": "ffffffffffffffffc90fdaa22168c234c4c6628b80dc1cd129024e088a67cc74020bbea63b139b22514a08798e3404ddef9519b3cd3a431b302b0a6df25f14374fe1356d6d51c245e485b576625e7ec6f44c42e9a637ed6b0bff5cb6f406b7edee386bfb5a899fa5ae9f24117c4b1fe649286651ece45b3dc2007cb8a163bf0598da48361c55d39a69163fa8fd24cf5f83655d23dca3ad961c62f356208552bb9ed529077096966d670c354e4abc9804f1746c08ca18217c32905e462e36ce3be39e772c180e86039b2783a2ec07a28fb5c55df06f4c52c9de2bcbf6955817183995497cea956ae515d2261898fa051015728e5a8aaac42dad33170d04507a33a85521abdf1cba64ecfb850458dbef0a8aea71575d060c7db3970f85a6e1e4c7abf5ae8cdb0933d71e8c94e04a25619dcee3d2261ad2ee6bf12ffa06d98a0864d87602733ec86a64521f2b18177b200cbbe117577a615d6c770988c0bad946e208e24fa074e5ab3143db5bfce0fd108e4b82d120a92108011a723c12a787e6d788719a10bdba5b2699c327186af4e23c1a946834b6150bda2583e9ca2ad44ce8dbbbc2db04de8ef92e8efc141fbecaa6287c59474e6bc05d99b2964fa090c3a2233ba186515be7ed1f612970cee2d7afb81bdd762170481cd0069127d5b05aa993b4ea988d8fddc186ffb7dc90a6c08f4df435c93402849236c3fab4d27c7026c1d4dcb2602646dec9751e763dba37bdf8ff9406ad9e530ee5db382f413001aeb06a53ed9027d831179727b0865a8918da3edbebcf9b14ed44ce6cbaced4bb1bdb7f1447e6cc254b332051512bd7af426fb8f401378cd2bf5983ca01c64b92ecf032ea15d1721d03f482d7ce6e74fef6d55e702f46980c82b5a84031900b1c9e59e7c97fbec7e8f323a97a7e36cc88be0f1d45b7ff585ac54bd407b22b4154aacc8f6d7ebf48e1d814cc5ed20f8037e0a79715eef29be32806a1d58bb7c5da76f550aa3d8a1fbff0eb19ccb1a313d55cda56c9ec2ef29632387fe8d76e3c0468043e8f663f4860ee12bf2d5b0b7474d6e694f91e6dbe115974a3926f12fee5e438777cb6a932df8cd8bec4d073b931ba3bc832b68d9dd300741fa7bf8afc47ed2576f6936ba424663aab639c5ae4f5683423b4742bf1c978238f16cbe39d652de3fdb8befc848ad922222e04a4037c0713eb57a81a23f0c73473fc646cea306b4bcbc8862f8385ddfa9d4b7fa2c087e879683303ed5bdd3a062b3cf5b3a278a66d2a13f83f44f82ddf310ee074ab6a364597e899a0255dc164f31cc50846851df9ab48195ded7ea1b1d510bd7ee74d73faf36bc31ecfa268359046f4eb879f924009438b481c6cd7889a002ed5ee382bc9190da6fc026e479558e4475677e9aa9e3050e2765694dfc81f56e880b96e7160c980dd98edd3dfffffffffffffffff"
     }
 }
-},{}],225:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 'use strict';
 
 var elliptic = exports;
@@ -45606,7 +49221,7 @@ elliptic.curves = require('./elliptic/curves'); // Protocols
 elliptic.ec = require('./elliptic/ec');
 elliptic.eddsa = require('./elliptic/eddsa');
 
-},{"../package.json":242,"./elliptic/curve":228,"./elliptic/curves":231,"./elliptic/ec":232,"./elliptic/eddsa":235,"./elliptic/utils":239,"brorand":137}],226:[function(require,module,exports){
+},{"../package.json":244,"./elliptic/curve":230,"./elliptic/curves":233,"./elliptic/ec":234,"./elliptic/eddsa":237,"./elliptic/utils":241,"brorand":138}],228:[function(require,module,exports){
 'use strict';
 
 var BN = require('bn.js');
@@ -45863,9 +49478,7 @@ function BasePoint(curve, type) {
 
 BaseCurve.BasePoint = BasePoint;
 
-BasePoint.prototype.eq = function eq()
-/*other*/
-{
+BasePoint.prototype.eq = function eq() {
   throw new Error('Not implemented');
 };
 
@@ -45973,7 +49586,7 @@ BasePoint.prototype.dblp = function dblp(k) {
   return r;
 };
 
-},{"../utils":239,"bn.js":240}],227:[function(require,module,exports){
+},{"../utils":241,"bn.js":242}],229:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -46351,7 +49964,7 @@ Point.prototype.eqXToP = function eqXToP(x) {
 Point.prototype.toP = Point.prototype.normalize;
 Point.prototype.mixedAdd = Point.prototype.add;
 
-},{"../utils":239,"./base":226,"bn.js":240,"inherits":241}],228:[function(require,module,exports){
+},{"../utils":241,"./base":228,"bn.js":242,"inherits":243}],230:[function(require,module,exports){
 'use strict';
 
 var curve = exports;
@@ -46360,7 +49973,7 @@ curve["short"] = require('./short');
 curve.mont = require('./mont');
 curve.edwards = require('./edwards');
 
-},{"./base":226,"./edwards":227,"./mont":229,"./short":230}],229:[function(require,module,exports){
+},{"./base":228,"./edwards":229,"./mont":231,"./short":232}],231:[function(require,module,exports){
 'use strict';
 
 var BN = require('bn.js');
@@ -46539,7 +50152,7 @@ Point.prototype.getX = function getX() {
   return this.x.fromRed();
 };
 
-},{"../utils":239,"./base":226,"bn.js":240,"inherits":241}],230:[function(require,module,exports){
+},{"../utils":241,"./base":228,"bn.js":242,"inherits":243}],232:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -47378,7 +50991,7 @@ JPoint.prototype.isInfinity = function isInfinity() {
   return this.z.cmpn(0) === 0;
 };
 
-},{"../utils":239,"./base":226,"bn.js":240,"inherits":241}],231:[function(require,module,exports){
+},{"../utils":241,"./base":228,"bn.js":242,"inherits":243}],233:[function(require,module,exports){
 'use strict';
 
 var curves = exports;
@@ -47529,7 +51142,7 @@ defineCurve('secp256k1', {
   g: ['79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798', '483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8', pre]
 });
 
-},{"./curve":228,"./precomputed/secp256k1":238,"./utils":239,"hash.js":300}],232:[function(require,module,exports){
+},{"./curve":230,"./precomputed/secp256k1":240,"./utils":241,"hash.js":302}],234:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -47738,7 +51351,7 @@ EC.prototype.getKeyRecoveryParam = function (e, signature, Q, enc) {
   throw new Error('Unable to find valid recovery factor');
 };
 
-},{"../curves":231,"../utils":239,"./key":233,"./signature":234,"bn.js":240,"brorand":137,"hmac-drbg":313}],233:[function(require,module,exports){
+},{"../curves":233,"../utils":241,"./key":235,"./signature":236,"bn.js":242,"brorand":138,"hmac-drbg":315}],235:[function(require,module,exports){
 'use strict';
 
 var BN = require('bn.js');
@@ -47857,7 +51470,7 @@ KeyPair.prototype.inspect = function inspect() {
   return '<Key priv: ' + (this.priv && this.priv.toString(16, 2)) + ' pub: ' + (this.pub && this.pub.inspect()) + ' >';
 };
 
-},{"../utils":239,"bn.js":240}],234:[function(require,module,exports){
+},{"../utils":241,"bn.js":242}],236:[function(require,module,exports){
 'use strict';
 
 var BN = require('bn.js');
@@ -48039,7 +51652,7 @@ Signature.prototype.toDER = function toDER(enc) {
   return utils.encode(res, enc);
 };
 
-},{"../utils":239,"bn.js":240}],235:[function(require,module,exports){
+},{"../utils":241,"bn.js":242}],237:[function(require,module,exports){
 'use strict';
 
 var hash = require('hash.js');
@@ -48165,7 +51778,7 @@ EDDSA.prototype.isPoint = function isPoint(val) {
   return val instanceof this.pointClass;
 };
 
-},{"../curves":231,"../utils":239,"./key":236,"./signature":237,"hash.js":300}],236:[function(require,module,exports){
+},{"../curves":233,"../utils":241,"./key":238,"./signature":239,"hash.js":302}],238:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -48254,7 +51867,7 @@ KeyPair.prototype.getPublic = function getPublic(enc) {
 
 module.exports = KeyPair;
 
-},{"../utils":239}],237:[function(require,module,exports){
+},{"../utils":241}],239:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -48316,7 +51929,7 @@ Signature.prototype.toHex = function toHex() {
 
 module.exports = Signature;
 
-},{"../utils":239,"bn.js":240}],238:[function(require,module,exports){
+},{"../utils":241,"bn.js":242}],240:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -48330,7 +51943,7 @@ module.exports = {
   }
 };
 
-},{}],239:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 'use strict';
 
 var utils = exports;
@@ -48441,3495 +52054,11 @@ function intFromLE(bytes) {
 
 utils.intFromLE = intFromLE;
 
-},{"bn.js":240,"minimalistic-assert":328,"minimalistic-crypto-utils":329}],240:[function(require,module,exports){
-"use strict";
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-(function (module, exports) {
-  'use strict'; // Utils
-
-  function assert(val, msg) {
-    if (!val) throw new Error(msg || 'Assertion failed');
-  } // Could use `inherits` module, but don't want to move from single file
-  // architecture yet.
-
-
-  function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor;
-
-    var TempCtor = function TempCtor() {};
-
-    TempCtor.prototype = superCtor.prototype;
-    ctor.prototype = new TempCtor();
-    ctor.prototype.constructor = ctor;
-  } // BN
-
-
-  function BN(number, base, endian) {
-    if (BN.isBN(number)) {
-      return number;
-    }
-
-    this.negative = 0;
-    this.words = null;
-    this.length = 0; // Reduction context
-
-    this.red = null;
-
-    if (number !== null) {
-      if (base === 'le' || base === 'be') {
-        endian = base;
-        base = 10;
-      }
-
-      this._init(number || 0, base || 10, endian || 'be');
-    }
-  }
-
-  if (_typeof(module) === 'object') {
-    module.exports = BN;
-  } else {
-    exports.BN = BN;
-  }
-
-  BN.BN = BN;
-  BN.wordSize = 26;
-  var Buffer;
-
-  try {
-    if (typeof window !== 'undefined' && typeof window.Buffer !== 'undefined') {
-      Buffer = window.Buffer;
-    } else {
-      Buffer = require('buffer').Buffer;
-    }
-  } catch (e) {}
-
-  BN.isBN = function isBN(num) {
-    if (num instanceof BN) {
-      return true;
-    }
-
-    return num !== null && _typeof(num) === 'object' && num.constructor.wordSize === BN.wordSize && Array.isArray(num.words);
-  };
-
-  BN.max = function max(left, right) {
-    if (left.cmp(right) > 0) return left;
-    return right;
-  };
-
-  BN.min = function min(left, right) {
-    if (left.cmp(right) < 0) return left;
-    return right;
-  };
-
-  BN.prototype._init = function init(number, base, endian) {
-    if (typeof number === 'number') {
-      return this._initNumber(number, base, endian);
-    }
-
-    if (_typeof(number) === 'object') {
-      return this._initArray(number, base, endian);
-    }
-
-    if (base === 'hex') {
-      base = 16;
-    }
-
-    assert(base === (base | 0) && base >= 2 && base <= 36);
-    number = number.toString().replace(/\s+/g, '');
-    var start = 0;
-
-    if (number[0] === '-') {
-      start++;
-      this.negative = 1;
-    }
-
-    if (start < number.length) {
-      if (base === 16) {
-        this._parseHex(number, start, endian);
-      } else {
-        this._parseBase(number, base, start);
-
-        if (endian === 'le') {
-          this._initArray(this.toArray(), base, endian);
-        }
-      }
-    }
-  };
-
-  BN.prototype._initNumber = function _initNumber(number, base, endian) {
-    if (number < 0) {
-      this.negative = 1;
-      number = -number;
-    }
-
-    if (number < 0x4000000) {
-      this.words = [number & 0x3ffffff];
-      this.length = 1;
-    } else if (number < 0x10000000000000) {
-      this.words = [number & 0x3ffffff, number / 0x4000000 & 0x3ffffff];
-      this.length = 2;
-    } else {
-      assert(number < 0x20000000000000); // 2 ^ 53 (unsafe)
-
-      this.words = [number & 0x3ffffff, number / 0x4000000 & 0x3ffffff, 1];
-      this.length = 3;
-    }
-
-    if (endian !== 'le') return; // Reverse the bytes
-
-    this._initArray(this.toArray(), base, endian);
-  };
-
-  BN.prototype._initArray = function _initArray(number, base, endian) {
-    // Perhaps a Uint8Array
-    assert(typeof number.length === 'number');
-
-    if (number.length <= 0) {
-      this.words = [0];
-      this.length = 1;
-      return this;
-    }
-
-    this.length = Math.ceil(number.length / 3);
-    this.words = new Array(this.length);
-
-    for (var i = 0; i < this.length; i++) {
-      this.words[i] = 0;
-    }
-
-    var j, w;
-    var off = 0;
-
-    if (endian === 'be') {
-      for (i = number.length - 1, j = 0; i >= 0; i -= 3) {
-        w = number[i] | number[i - 1] << 8 | number[i - 2] << 16;
-        this.words[j] |= w << off & 0x3ffffff;
-        this.words[j + 1] = w >>> 26 - off & 0x3ffffff;
-        off += 24;
-
-        if (off >= 26) {
-          off -= 26;
-          j++;
-        }
-      }
-    } else if (endian === 'le') {
-      for (i = 0, j = 0; i < number.length; i += 3) {
-        w = number[i] | number[i + 1] << 8 | number[i + 2] << 16;
-        this.words[j] |= w << off & 0x3ffffff;
-        this.words[j + 1] = w >>> 26 - off & 0x3ffffff;
-        off += 24;
-
-        if (off >= 26) {
-          off -= 26;
-          j++;
-        }
-      }
-    }
-
-    return this.strip();
-  };
-
-  function parseHex4Bits(string, index) {
-    var c = string.charCodeAt(index); // 'A' - 'F'
-
-    if (c >= 65 && c <= 70) {
-      return c - 55; // 'a' - 'f'
-    } else if (c >= 97 && c <= 102) {
-      return c - 87; // '0' - '9'
-    } else {
-      return c - 48 & 0xf;
-    }
-  }
-
-  function parseHexByte(string, lowerBound, index) {
-    var r = parseHex4Bits(string, index);
-
-    if (index - 1 >= lowerBound) {
-      r |= parseHex4Bits(string, index - 1) << 4;
-    }
-
-    return r;
-  }
-
-  BN.prototype._parseHex = function _parseHex(number, start, endian) {
-    // Create possibly bigger array to ensure that it fits the number
-    this.length = Math.ceil((number.length - start) / 6);
-    this.words = new Array(this.length);
-
-    for (var i = 0; i < this.length; i++) {
-      this.words[i] = 0;
-    } // 24-bits chunks
-
-
-    var off = 0;
-    var j = 0;
-    var w;
-
-    if (endian === 'be') {
-      for (i = number.length - 1; i >= start; i -= 2) {
-        w = parseHexByte(number, start, i) << off;
-        this.words[j] |= w & 0x3ffffff;
-
-        if (off >= 18) {
-          off -= 18;
-          j += 1;
-          this.words[j] |= w >>> 26;
-        } else {
-          off += 8;
-        }
-      }
-    } else {
-      var parseLength = number.length - start;
-
-      for (i = parseLength % 2 === 0 ? start + 1 : start; i < number.length; i += 2) {
-        w = parseHexByte(number, start, i) << off;
-        this.words[j] |= w & 0x3ffffff;
-
-        if (off >= 18) {
-          off -= 18;
-          j += 1;
-          this.words[j] |= w >>> 26;
-        } else {
-          off += 8;
-        }
-      }
-    }
-
-    this.strip();
-  };
-
-  function parseBase(str, start, end, mul) {
-    var r = 0;
-    var len = Math.min(str.length, end);
-
-    for (var i = start; i < len; i++) {
-      var c = str.charCodeAt(i) - 48;
-      r *= mul; // 'a'
-
-      if (c >= 49) {
-        r += c - 49 + 0xa; // 'A'
-      } else if (c >= 17) {
-        r += c - 17 + 0xa; // '0' - '9'
-      } else {
-        r += c;
-      }
-    }
-
-    return r;
-  }
-
-  BN.prototype._parseBase = function _parseBase(number, base, start) {
-    // Initialize as zero
-    this.words = [0];
-    this.length = 1; // Find length of limb in base
-
-    for (var limbLen = 0, limbPow = 1; limbPow <= 0x3ffffff; limbPow *= base) {
-      limbLen++;
-    }
-
-    limbLen--;
-    limbPow = limbPow / base | 0;
-    var total = number.length - start;
-    var mod = total % limbLen;
-    var end = Math.min(total, total - mod) + start;
-    var word = 0;
-
-    for (var i = start; i < end; i += limbLen) {
-      word = parseBase(number, i, i + limbLen, base);
-      this.imuln(limbPow);
-
-      if (this.words[0] + word < 0x4000000) {
-        this.words[0] += word;
-      } else {
-        this._iaddn(word);
-      }
-    }
-
-    if (mod !== 0) {
-      var pow = 1;
-      word = parseBase(number, i, number.length, base);
-
-      for (i = 0; i < mod; i++) {
-        pow *= base;
-      }
-
-      this.imuln(pow);
-
-      if (this.words[0] + word < 0x4000000) {
-        this.words[0] += word;
-      } else {
-        this._iaddn(word);
-      }
-    }
-
-    this.strip();
-  };
-
-  BN.prototype.copy = function copy(dest) {
-    dest.words = new Array(this.length);
-
-    for (var i = 0; i < this.length; i++) {
-      dest.words[i] = this.words[i];
-    }
-
-    dest.length = this.length;
-    dest.negative = this.negative;
-    dest.red = this.red;
-  };
-
-  BN.prototype.clone = function clone() {
-    var r = new BN(null);
-    this.copy(r);
-    return r;
-  };
-
-  BN.prototype._expand = function _expand(size) {
-    while (this.length < size) {
-      this.words[this.length++] = 0;
-    }
-
-    return this;
-  }; // Remove leading `0` from `this`
-
-
-  BN.prototype.strip = function strip() {
-    while (this.length > 1 && this.words[this.length - 1] === 0) {
-      this.length--;
-    }
-
-    return this._normSign();
-  };
-
-  BN.prototype._normSign = function _normSign() {
-    // -0 = 0
-    if (this.length === 1 && this.words[0] === 0) {
-      this.negative = 0;
-    }
-
-    return this;
-  };
-
-  BN.prototype.inspect = function inspect() {
-    return (this.red ? '<BN-R: ' : '<BN: ') + this.toString(16) + '>';
-  };
-  /*
-   var zeros = [];
-  var groupSizes = [];
-  var groupBases = [];
-   var s = '';
-  var i = -1;
-  while (++i < BN.wordSize) {
-    zeros[i] = s;
-    s += '0';
-  }
-  groupSizes[0] = 0;
-  groupSizes[1] = 0;
-  groupBases[0] = 0;
-  groupBases[1] = 0;
-  var base = 2 - 1;
-  while (++base < 36 + 1) {
-    var groupSize = 0;
-    var groupBase = 1;
-    while (groupBase < (1 << BN.wordSize) / base) {
-      groupBase *= base;
-      groupSize += 1;
-    }
-    groupSizes[base] = groupSize;
-    groupBases[base] = groupBase;
-  }
-   */
-
-
-  var zeros = ['', '0', '00', '000', '0000', '00000', '000000', '0000000', '00000000', '000000000', '0000000000', '00000000000', '000000000000', '0000000000000', '00000000000000', '000000000000000', '0000000000000000', '00000000000000000', '000000000000000000', '0000000000000000000', '00000000000000000000', '000000000000000000000', '0000000000000000000000', '00000000000000000000000', '000000000000000000000000', '0000000000000000000000000'];
-  var groupSizes = [0, 0, 25, 16, 12, 11, 10, 9, 8, 8, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5];
-  var groupBases = [0, 0, 33554432, 43046721, 16777216, 48828125, 60466176, 40353607, 16777216, 43046721, 10000000, 19487171, 35831808, 62748517, 7529536, 11390625, 16777216, 24137569, 34012224, 47045881, 64000000, 4084101, 5153632, 6436343, 7962624, 9765625, 11881376, 14348907, 17210368, 20511149, 24300000, 28629151, 33554432, 39135393, 45435424, 52521875, 60466176];
-
-  BN.prototype.toString = function toString(base, padding) {
-    base = base || 10;
-    padding = padding | 0 || 1;
-    var out;
-
-    if (base === 16 || base === 'hex') {
-      out = '';
-      var off = 0;
-      var carry = 0;
-
-      for (var i = 0; i < this.length; i++) {
-        var w = this.words[i];
-        var word = ((w << off | carry) & 0xffffff).toString(16);
-        carry = w >>> 24 - off & 0xffffff;
-
-        if (carry !== 0 || i !== this.length - 1) {
-          out = zeros[6 - word.length] + word + out;
-        } else {
-          out = word + out;
-        }
-
-        off += 2;
-
-        if (off >= 26) {
-          off -= 26;
-          i--;
-        }
-      }
-
-      if (carry !== 0) {
-        out = carry.toString(16) + out;
-      }
-
-      while (out.length % padding !== 0) {
-        out = '0' + out;
-      }
-
-      if (this.negative !== 0) {
-        out = '-' + out;
-      }
-
-      return out;
-    }
-
-    if (base === (base | 0) && base >= 2 && base <= 36) {
-      // var groupSize = Math.floor(BN.wordSize * Math.LN2 / Math.log(base));
-      var groupSize = groupSizes[base]; // var groupBase = Math.pow(base, groupSize);
-
-      var groupBase = groupBases[base];
-      out = '';
-      var c = this.clone();
-      c.negative = 0;
-
-      while (!c.isZero()) {
-        var r = c.modn(groupBase).toString(base);
-        c = c.idivn(groupBase);
-
-        if (!c.isZero()) {
-          out = zeros[groupSize - r.length] + r + out;
-        } else {
-          out = r + out;
-        }
-      }
-
-      if (this.isZero()) {
-        out = '0' + out;
-      }
-
-      while (out.length % padding !== 0) {
-        out = '0' + out;
-      }
-
-      if (this.negative !== 0) {
-        out = '-' + out;
-      }
-
-      return out;
-    }
-
-    assert(false, 'Base should be between 2 and 36');
-  };
-
-  BN.prototype.toNumber = function toNumber() {
-    var ret = this.words[0];
-
-    if (this.length === 2) {
-      ret += this.words[1] * 0x4000000;
-    } else if (this.length === 3 && this.words[2] === 0x01) {
-      // NOTE: at this stage it is known that the top bit is set
-      ret += 0x10000000000000 + this.words[1] * 0x4000000;
-    } else if (this.length > 2) {
-      assert(false, 'Number can only safely store up to 53 bits');
-    }
-
-    return this.negative !== 0 ? -ret : ret;
-  };
-
-  BN.prototype.toJSON = function toJSON() {
-    return this.toString(16);
-  };
-
-  BN.prototype.toBuffer = function toBuffer(endian, length) {
-    assert(typeof Buffer !== 'undefined');
-    return this.toArrayLike(Buffer, endian, length);
-  };
-
-  BN.prototype.toArray = function toArray(endian, length) {
-    return this.toArrayLike(Array, endian, length);
-  };
-
-  BN.prototype.toArrayLike = function toArrayLike(ArrayType, endian, length) {
-    var byteLength = this.byteLength();
-    var reqLength = length || Math.max(1, byteLength);
-    assert(byteLength <= reqLength, 'byte array longer than desired length');
-    assert(reqLength > 0, 'Requested array length <= 0');
-    this.strip();
-    var littleEndian = endian === 'le';
-    var res = new ArrayType(reqLength);
-    var b, i;
-    var q = this.clone();
-
-    if (!littleEndian) {
-      // Assume big-endian
-      for (i = 0; i < reqLength - byteLength; i++) {
-        res[i] = 0;
-      }
-
-      for (i = 0; !q.isZero(); i++) {
-        b = q.andln(0xff);
-        q.iushrn(8);
-        res[reqLength - i - 1] = b;
-      }
-    } else {
-      for (i = 0; !q.isZero(); i++) {
-        b = q.andln(0xff);
-        q.iushrn(8);
-        res[i] = b;
-      }
-
-      for (; i < reqLength; i++) {
-        res[i] = 0;
-      }
-    }
-
-    return res;
-  };
-
-  if (Math.clz32) {
-    BN.prototype._countBits = function _countBits(w) {
-      return 32 - Math.clz32(w);
-    };
-  } else {
-    BN.prototype._countBits = function _countBits(w) {
-      var t = w;
-      var r = 0;
-
-      if (t >= 0x1000) {
-        r += 13;
-        t >>>= 13;
-      }
-
-      if (t >= 0x40) {
-        r += 7;
-        t >>>= 7;
-      }
-
-      if (t >= 0x8) {
-        r += 4;
-        t >>>= 4;
-      }
-
-      if (t >= 0x02) {
-        r += 2;
-        t >>>= 2;
-      }
-
-      return r + t;
-    };
-  }
-
-  BN.prototype._zeroBits = function _zeroBits(w) {
-    // Short-cut
-    if (w === 0) return 26;
-    var t = w;
-    var r = 0;
-
-    if ((t & 0x1fff) === 0) {
-      r += 13;
-      t >>>= 13;
-    }
-
-    if ((t & 0x7f) === 0) {
-      r += 7;
-      t >>>= 7;
-    }
-
-    if ((t & 0xf) === 0) {
-      r += 4;
-      t >>>= 4;
-    }
-
-    if ((t & 0x3) === 0) {
-      r += 2;
-      t >>>= 2;
-    }
-
-    if ((t & 0x1) === 0) {
-      r++;
-    }
-
-    return r;
-  }; // Return number of used bits in a BN
-
-
-  BN.prototype.bitLength = function bitLength() {
-    var w = this.words[this.length - 1];
-
-    var hi = this._countBits(w);
-
-    return (this.length - 1) * 26 + hi;
-  };
-
-  function toBitArray(num) {
-    var w = new Array(num.bitLength());
-
-    for (var bit = 0; bit < w.length; bit++) {
-      var off = bit / 26 | 0;
-      var wbit = bit % 26;
-      w[bit] = (num.words[off] & 1 << wbit) >>> wbit;
-    }
-
-    return w;
-  } // Number of trailing zero bits
-
-
-  BN.prototype.zeroBits = function zeroBits() {
-    if (this.isZero()) return 0;
-    var r = 0;
-
-    for (var i = 0; i < this.length; i++) {
-      var b = this._zeroBits(this.words[i]);
-
-      r += b;
-      if (b !== 26) break;
-    }
-
-    return r;
-  };
-
-  BN.prototype.byteLength = function byteLength() {
-    return Math.ceil(this.bitLength() / 8);
-  };
-
-  BN.prototype.toTwos = function toTwos(width) {
-    if (this.negative !== 0) {
-      return this.abs().inotn(width).iaddn(1);
-    }
-
-    return this.clone();
-  };
-
-  BN.prototype.fromTwos = function fromTwos(width) {
-    if (this.testn(width - 1)) {
-      return this.notn(width).iaddn(1).ineg();
-    }
-
-    return this.clone();
-  };
-
-  BN.prototype.isNeg = function isNeg() {
-    return this.negative !== 0;
-  }; // Return negative clone of `this`
-
-
-  BN.prototype.neg = function neg() {
-    return this.clone().ineg();
-  };
-
-  BN.prototype.ineg = function ineg() {
-    if (!this.isZero()) {
-      this.negative ^= 1;
-    }
-
-    return this;
-  }; // Or `num` with `this` in-place
-
-
-  BN.prototype.iuor = function iuor(num) {
-    while (this.length < num.length) {
-      this.words[this.length++] = 0;
-    }
-
-    for (var i = 0; i < num.length; i++) {
-      this.words[i] = this.words[i] | num.words[i];
-    }
-
-    return this.strip();
-  };
-
-  BN.prototype.ior = function ior(num) {
-    assert((this.negative | num.negative) === 0);
-    return this.iuor(num);
-  }; // Or `num` with `this`
-
-
-  BN.prototype.or = function or(num) {
-    if (this.length > num.length) return this.clone().ior(num);
-    return num.clone().ior(this);
-  };
-
-  BN.prototype.uor = function uor(num) {
-    if (this.length > num.length) return this.clone().iuor(num);
-    return num.clone().iuor(this);
-  }; // And `num` with `this` in-place
-
-
-  BN.prototype.iuand = function iuand(num) {
-    // b = min-length(num, this)
-    var b;
-
-    if (this.length > num.length) {
-      b = num;
-    } else {
-      b = this;
-    }
-
-    for (var i = 0; i < b.length; i++) {
-      this.words[i] = this.words[i] & num.words[i];
-    }
-
-    this.length = b.length;
-    return this.strip();
-  };
-
-  BN.prototype.iand = function iand(num) {
-    assert((this.negative | num.negative) === 0);
-    return this.iuand(num);
-  }; // And `num` with `this`
-
-
-  BN.prototype.and = function and(num) {
-    if (this.length > num.length) return this.clone().iand(num);
-    return num.clone().iand(this);
-  };
-
-  BN.prototype.uand = function uand(num) {
-    if (this.length > num.length) return this.clone().iuand(num);
-    return num.clone().iuand(this);
-  }; // Xor `num` with `this` in-place
-
-
-  BN.prototype.iuxor = function iuxor(num) {
-    // a.length > b.length
-    var a;
-    var b;
-
-    if (this.length > num.length) {
-      a = this;
-      b = num;
-    } else {
-      a = num;
-      b = this;
-    }
-
-    for (var i = 0; i < b.length; i++) {
-      this.words[i] = a.words[i] ^ b.words[i];
-    }
-
-    if (this !== a) {
-      for (; i < a.length; i++) {
-        this.words[i] = a.words[i];
-      }
-    }
-
-    this.length = a.length;
-    return this.strip();
-  };
-
-  BN.prototype.ixor = function ixor(num) {
-    assert((this.negative | num.negative) === 0);
-    return this.iuxor(num);
-  }; // Xor `num` with `this`
-
-
-  BN.prototype.xor = function xor(num) {
-    if (this.length > num.length) return this.clone().ixor(num);
-    return num.clone().ixor(this);
-  };
-
-  BN.prototype.uxor = function uxor(num) {
-    if (this.length > num.length) return this.clone().iuxor(num);
-    return num.clone().iuxor(this);
-  }; // Not ``this`` with ``width`` bitwidth
-
-
-  BN.prototype.inotn = function inotn(width) {
-    assert(typeof width === 'number' && width >= 0);
-    var bytesNeeded = Math.ceil(width / 26) | 0;
-    var bitsLeft = width % 26; // Extend the buffer with leading zeroes
-
-    this._expand(bytesNeeded);
-
-    if (bitsLeft > 0) {
-      bytesNeeded--;
-    } // Handle complete words
-
-
-    for (var i = 0; i < bytesNeeded; i++) {
-      this.words[i] = ~this.words[i] & 0x3ffffff;
-    } // Handle the residue
-
-
-    if (bitsLeft > 0) {
-      this.words[i] = ~this.words[i] & 0x3ffffff >> 26 - bitsLeft;
-    } // And remove leading zeroes
-
-
-    return this.strip();
-  };
-
-  BN.prototype.notn = function notn(width) {
-    return this.clone().inotn(width);
-  }; // Set `bit` of `this`
-
-
-  BN.prototype.setn = function setn(bit, val) {
-    assert(typeof bit === 'number' && bit >= 0);
-    var off = bit / 26 | 0;
-    var wbit = bit % 26;
-
-    this._expand(off + 1);
-
-    if (val) {
-      this.words[off] = this.words[off] | 1 << wbit;
-    } else {
-      this.words[off] = this.words[off] & ~(1 << wbit);
-    }
-
-    return this.strip();
-  }; // Add `num` to `this` in-place
-
-
-  BN.prototype.iadd = function iadd(num) {
-    var r; // negative + positive
-
-    if (this.negative !== 0 && num.negative === 0) {
-      this.negative = 0;
-      r = this.isub(num);
-      this.negative ^= 1;
-      return this._normSign(); // positive + negative
-    } else if (this.negative === 0 && num.negative !== 0) {
-      num.negative = 0;
-      r = this.isub(num);
-      num.negative = 1;
-      return r._normSign();
-    } // a.length > b.length
-
-
-    var a, b;
-
-    if (this.length > num.length) {
-      a = this;
-      b = num;
-    } else {
-      a = num;
-      b = this;
-    }
-
-    var carry = 0;
-
-    for (var i = 0; i < b.length; i++) {
-      r = (a.words[i] | 0) + (b.words[i] | 0) + carry;
-      this.words[i] = r & 0x3ffffff;
-      carry = r >>> 26;
-    }
-
-    for (; carry !== 0 && i < a.length; i++) {
-      r = (a.words[i] | 0) + carry;
-      this.words[i] = r & 0x3ffffff;
-      carry = r >>> 26;
-    }
-
-    this.length = a.length;
-
-    if (carry !== 0) {
-      this.words[this.length] = carry;
-      this.length++; // Copy the rest of the words
-    } else if (a !== this) {
-      for (; i < a.length; i++) {
-        this.words[i] = a.words[i];
-      }
-    }
-
-    return this;
-  }; // Add `num` to `this`
-
-
-  BN.prototype.add = function add(num) {
-    var res;
-
-    if (num.negative !== 0 && this.negative === 0) {
-      num.negative = 0;
-      res = this.sub(num);
-      num.negative ^= 1;
-      return res;
-    } else if (num.negative === 0 && this.negative !== 0) {
-      this.negative = 0;
-      res = num.sub(this);
-      this.negative = 1;
-      return res;
-    }
-
-    if (this.length > num.length) return this.clone().iadd(num);
-    return num.clone().iadd(this);
-  }; // Subtract `num` from `this` in-place
-
-
-  BN.prototype.isub = function isub(num) {
-    // this - (-num) = this + num
-    if (num.negative !== 0) {
-      num.negative = 0;
-      var r = this.iadd(num);
-      num.negative = 1;
-      return r._normSign(); // -this - num = -(this + num)
-    } else if (this.negative !== 0) {
-      this.negative = 0;
-      this.iadd(num);
-      this.negative = 1;
-      return this._normSign();
-    } // At this point both numbers are positive
-
-
-    var cmp = this.cmp(num); // Optimization - zeroify
-
-    if (cmp === 0) {
-      this.negative = 0;
-      this.length = 1;
-      this.words[0] = 0;
-      return this;
-    } // a > b
-
-
-    var a, b;
-
-    if (cmp > 0) {
-      a = this;
-      b = num;
-    } else {
-      a = num;
-      b = this;
-    }
-
-    var carry = 0;
-
-    for (var i = 0; i < b.length; i++) {
-      r = (a.words[i] | 0) - (b.words[i] | 0) + carry;
-      carry = r >> 26;
-      this.words[i] = r & 0x3ffffff;
-    }
-
-    for (; carry !== 0 && i < a.length; i++) {
-      r = (a.words[i] | 0) + carry;
-      carry = r >> 26;
-      this.words[i] = r & 0x3ffffff;
-    } // Copy rest of the words
-
-
-    if (carry === 0 && i < a.length && a !== this) {
-      for (; i < a.length; i++) {
-        this.words[i] = a.words[i];
-      }
-    }
-
-    this.length = Math.max(this.length, i);
-
-    if (a !== this) {
-      this.negative = 1;
-    }
-
-    return this.strip();
-  }; // Subtract `num` from `this`
-
-
-  BN.prototype.sub = function sub(num) {
-    return this.clone().isub(num);
-  };
-
-  function smallMulTo(self, num, out) {
-    out.negative = num.negative ^ self.negative;
-    var len = self.length + num.length | 0;
-    out.length = len;
-    len = len - 1 | 0; // Peel one iteration (compiler can't do it, because of code complexity)
-
-    var a = self.words[0] | 0;
-    var b = num.words[0] | 0;
-    var r = a * b;
-    var lo = r & 0x3ffffff;
-    var carry = r / 0x4000000 | 0;
-    out.words[0] = lo;
-
-    for (var k = 1; k < len; k++) {
-      // Sum all words with the same `i + j = k` and accumulate `ncarry`,
-      // note that ncarry could be >= 0x3ffffff
-      var ncarry = carry >>> 26;
-      var rword = carry & 0x3ffffff;
-      var maxJ = Math.min(k, num.length - 1);
-
-      for (var j = Math.max(0, k - self.length + 1); j <= maxJ; j++) {
-        var i = k - j | 0;
-        a = self.words[i] | 0;
-        b = num.words[j] | 0;
-        r = a * b + rword;
-        ncarry += r / 0x4000000 | 0;
-        rword = r & 0x3ffffff;
-      }
-
-      out.words[k] = rword | 0;
-      carry = ncarry | 0;
-    }
-
-    if (carry !== 0) {
-      out.words[k] = carry | 0;
-    } else {
-      out.length--;
-    }
-
-    return out.strip();
-  } // TODO(indutny): it may be reasonable to omit it for users who don't need
-  // to work with 256-bit numbers, otherwise it gives 20% improvement for 256-bit
-  // multiplication (like elliptic secp256k1).
-
-
-  var comb10MulTo = function comb10MulTo(self, num, out) {
-    var a = self.words;
-    var b = num.words;
-    var o = out.words;
-    var c = 0;
-    var lo;
-    var mid;
-    var hi;
-    var a0 = a[0] | 0;
-    var al0 = a0 & 0x1fff;
-    var ah0 = a0 >>> 13;
-    var a1 = a[1] | 0;
-    var al1 = a1 & 0x1fff;
-    var ah1 = a1 >>> 13;
-    var a2 = a[2] | 0;
-    var al2 = a2 & 0x1fff;
-    var ah2 = a2 >>> 13;
-    var a3 = a[3] | 0;
-    var al3 = a3 & 0x1fff;
-    var ah3 = a3 >>> 13;
-    var a4 = a[4] | 0;
-    var al4 = a4 & 0x1fff;
-    var ah4 = a4 >>> 13;
-    var a5 = a[5] | 0;
-    var al5 = a5 & 0x1fff;
-    var ah5 = a5 >>> 13;
-    var a6 = a[6] | 0;
-    var al6 = a6 & 0x1fff;
-    var ah6 = a6 >>> 13;
-    var a7 = a[7] | 0;
-    var al7 = a7 & 0x1fff;
-    var ah7 = a7 >>> 13;
-    var a8 = a[8] | 0;
-    var al8 = a8 & 0x1fff;
-    var ah8 = a8 >>> 13;
-    var a9 = a[9] | 0;
-    var al9 = a9 & 0x1fff;
-    var ah9 = a9 >>> 13;
-    var b0 = b[0] | 0;
-    var bl0 = b0 & 0x1fff;
-    var bh0 = b0 >>> 13;
-    var b1 = b[1] | 0;
-    var bl1 = b1 & 0x1fff;
-    var bh1 = b1 >>> 13;
-    var b2 = b[2] | 0;
-    var bl2 = b2 & 0x1fff;
-    var bh2 = b2 >>> 13;
-    var b3 = b[3] | 0;
-    var bl3 = b3 & 0x1fff;
-    var bh3 = b3 >>> 13;
-    var b4 = b[4] | 0;
-    var bl4 = b4 & 0x1fff;
-    var bh4 = b4 >>> 13;
-    var b5 = b[5] | 0;
-    var bl5 = b5 & 0x1fff;
-    var bh5 = b5 >>> 13;
-    var b6 = b[6] | 0;
-    var bl6 = b6 & 0x1fff;
-    var bh6 = b6 >>> 13;
-    var b7 = b[7] | 0;
-    var bl7 = b7 & 0x1fff;
-    var bh7 = b7 >>> 13;
-    var b8 = b[8] | 0;
-    var bl8 = b8 & 0x1fff;
-    var bh8 = b8 >>> 13;
-    var b9 = b[9] | 0;
-    var bl9 = b9 & 0x1fff;
-    var bh9 = b9 >>> 13;
-    out.negative = self.negative ^ num.negative;
-    out.length = 19;
-    /* k = 0 */
-
-    lo = Math.imul(al0, bl0);
-    mid = Math.imul(al0, bh0);
-    mid = mid + Math.imul(ah0, bl0) | 0;
-    hi = Math.imul(ah0, bh0);
-    var w0 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w0 >>> 26) | 0;
-    w0 &= 0x3ffffff;
-    /* k = 1 */
-
-    lo = Math.imul(al1, bl0);
-    mid = Math.imul(al1, bh0);
-    mid = mid + Math.imul(ah1, bl0) | 0;
-    hi = Math.imul(ah1, bh0);
-    lo = lo + Math.imul(al0, bl1) | 0;
-    mid = mid + Math.imul(al0, bh1) | 0;
-    mid = mid + Math.imul(ah0, bl1) | 0;
-    hi = hi + Math.imul(ah0, bh1) | 0;
-    var w1 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w1 >>> 26) | 0;
-    w1 &= 0x3ffffff;
-    /* k = 2 */
-
-    lo = Math.imul(al2, bl0);
-    mid = Math.imul(al2, bh0);
-    mid = mid + Math.imul(ah2, bl0) | 0;
-    hi = Math.imul(ah2, bh0);
-    lo = lo + Math.imul(al1, bl1) | 0;
-    mid = mid + Math.imul(al1, bh1) | 0;
-    mid = mid + Math.imul(ah1, bl1) | 0;
-    hi = hi + Math.imul(ah1, bh1) | 0;
-    lo = lo + Math.imul(al0, bl2) | 0;
-    mid = mid + Math.imul(al0, bh2) | 0;
-    mid = mid + Math.imul(ah0, bl2) | 0;
-    hi = hi + Math.imul(ah0, bh2) | 0;
-    var w2 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w2 >>> 26) | 0;
-    w2 &= 0x3ffffff;
-    /* k = 3 */
-
-    lo = Math.imul(al3, bl0);
-    mid = Math.imul(al3, bh0);
-    mid = mid + Math.imul(ah3, bl0) | 0;
-    hi = Math.imul(ah3, bh0);
-    lo = lo + Math.imul(al2, bl1) | 0;
-    mid = mid + Math.imul(al2, bh1) | 0;
-    mid = mid + Math.imul(ah2, bl1) | 0;
-    hi = hi + Math.imul(ah2, bh1) | 0;
-    lo = lo + Math.imul(al1, bl2) | 0;
-    mid = mid + Math.imul(al1, bh2) | 0;
-    mid = mid + Math.imul(ah1, bl2) | 0;
-    hi = hi + Math.imul(ah1, bh2) | 0;
-    lo = lo + Math.imul(al0, bl3) | 0;
-    mid = mid + Math.imul(al0, bh3) | 0;
-    mid = mid + Math.imul(ah0, bl3) | 0;
-    hi = hi + Math.imul(ah0, bh3) | 0;
-    var w3 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w3 >>> 26) | 0;
-    w3 &= 0x3ffffff;
-    /* k = 4 */
-
-    lo = Math.imul(al4, bl0);
-    mid = Math.imul(al4, bh0);
-    mid = mid + Math.imul(ah4, bl0) | 0;
-    hi = Math.imul(ah4, bh0);
-    lo = lo + Math.imul(al3, bl1) | 0;
-    mid = mid + Math.imul(al3, bh1) | 0;
-    mid = mid + Math.imul(ah3, bl1) | 0;
-    hi = hi + Math.imul(ah3, bh1) | 0;
-    lo = lo + Math.imul(al2, bl2) | 0;
-    mid = mid + Math.imul(al2, bh2) | 0;
-    mid = mid + Math.imul(ah2, bl2) | 0;
-    hi = hi + Math.imul(ah2, bh2) | 0;
-    lo = lo + Math.imul(al1, bl3) | 0;
-    mid = mid + Math.imul(al1, bh3) | 0;
-    mid = mid + Math.imul(ah1, bl3) | 0;
-    hi = hi + Math.imul(ah1, bh3) | 0;
-    lo = lo + Math.imul(al0, bl4) | 0;
-    mid = mid + Math.imul(al0, bh4) | 0;
-    mid = mid + Math.imul(ah0, bl4) | 0;
-    hi = hi + Math.imul(ah0, bh4) | 0;
-    var w4 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w4 >>> 26) | 0;
-    w4 &= 0x3ffffff;
-    /* k = 5 */
-
-    lo = Math.imul(al5, bl0);
-    mid = Math.imul(al5, bh0);
-    mid = mid + Math.imul(ah5, bl0) | 0;
-    hi = Math.imul(ah5, bh0);
-    lo = lo + Math.imul(al4, bl1) | 0;
-    mid = mid + Math.imul(al4, bh1) | 0;
-    mid = mid + Math.imul(ah4, bl1) | 0;
-    hi = hi + Math.imul(ah4, bh1) | 0;
-    lo = lo + Math.imul(al3, bl2) | 0;
-    mid = mid + Math.imul(al3, bh2) | 0;
-    mid = mid + Math.imul(ah3, bl2) | 0;
-    hi = hi + Math.imul(ah3, bh2) | 0;
-    lo = lo + Math.imul(al2, bl3) | 0;
-    mid = mid + Math.imul(al2, bh3) | 0;
-    mid = mid + Math.imul(ah2, bl3) | 0;
-    hi = hi + Math.imul(ah2, bh3) | 0;
-    lo = lo + Math.imul(al1, bl4) | 0;
-    mid = mid + Math.imul(al1, bh4) | 0;
-    mid = mid + Math.imul(ah1, bl4) | 0;
-    hi = hi + Math.imul(ah1, bh4) | 0;
-    lo = lo + Math.imul(al0, bl5) | 0;
-    mid = mid + Math.imul(al0, bh5) | 0;
-    mid = mid + Math.imul(ah0, bl5) | 0;
-    hi = hi + Math.imul(ah0, bh5) | 0;
-    var w5 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w5 >>> 26) | 0;
-    w5 &= 0x3ffffff;
-    /* k = 6 */
-
-    lo = Math.imul(al6, bl0);
-    mid = Math.imul(al6, bh0);
-    mid = mid + Math.imul(ah6, bl0) | 0;
-    hi = Math.imul(ah6, bh0);
-    lo = lo + Math.imul(al5, bl1) | 0;
-    mid = mid + Math.imul(al5, bh1) | 0;
-    mid = mid + Math.imul(ah5, bl1) | 0;
-    hi = hi + Math.imul(ah5, bh1) | 0;
-    lo = lo + Math.imul(al4, bl2) | 0;
-    mid = mid + Math.imul(al4, bh2) | 0;
-    mid = mid + Math.imul(ah4, bl2) | 0;
-    hi = hi + Math.imul(ah4, bh2) | 0;
-    lo = lo + Math.imul(al3, bl3) | 0;
-    mid = mid + Math.imul(al3, bh3) | 0;
-    mid = mid + Math.imul(ah3, bl3) | 0;
-    hi = hi + Math.imul(ah3, bh3) | 0;
-    lo = lo + Math.imul(al2, bl4) | 0;
-    mid = mid + Math.imul(al2, bh4) | 0;
-    mid = mid + Math.imul(ah2, bl4) | 0;
-    hi = hi + Math.imul(ah2, bh4) | 0;
-    lo = lo + Math.imul(al1, bl5) | 0;
-    mid = mid + Math.imul(al1, bh5) | 0;
-    mid = mid + Math.imul(ah1, bl5) | 0;
-    hi = hi + Math.imul(ah1, bh5) | 0;
-    lo = lo + Math.imul(al0, bl6) | 0;
-    mid = mid + Math.imul(al0, bh6) | 0;
-    mid = mid + Math.imul(ah0, bl6) | 0;
-    hi = hi + Math.imul(ah0, bh6) | 0;
-    var w6 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w6 >>> 26) | 0;
-    w6 &= 0x3ffffff;
-    /* k = 7 */
-
-    lo = Math.imul(al7, bl0);
-    mid = Math.imul(al7, bh0);
-    mid = mid + Math.imul(ah7, bl0) | 0;
-    hi = Math.imul(ah7, bh0);
-    lo = lo + Math.imul(al6, bl1) | 0;
-    mid = mid + Math.imul(al6, bh1) | 0;
-    mid = mid + Math.imul(ah6, bl1) | 0;
-    hi = hi + Math.imul(ah6, bh1) | 0;
-    lo = lo + Math.imul(al5, bl2) | 0;
-    mid = mid + Math.imul(al5, bh2) | 0;
-    mid = mid + Math.imul(ah5, bl2) | 0;
-    hi = hi + Math.imul(ah5, bh2) | 0;
-    lo = lo + Math.imul(al4, bl3) | 0;
-    mid = mid + Math.imul(al4, bh3) | 0;
-    mid = mid + Math.imul(ah4, bl3) | 0;
-    hi = hi + Math.imul(ah4, bh3) | 0;
-    lo = lo + Math.imul(al3, bl4) | 0;
-    mid = mid + Math.imul(al3, bh4) | 0;
-    mid = mid + Math.imul(ah3, bl4) | 0;
-    hi = hi + Math.imul(ah3, bh4) | 0;
-    lo = lo + Math.imul(al2, bl5) | 0;
-    mid = mid + Math.imul(al2, bh5) | 0;
-    mid = mid + Math.imul(ah2, bl5) | 0;
-    hi = hi + Math.imul(ah2, bh5) | 0;
-    lo = lo + Math.imul(al1, bl6) | 0;
-    mid = mid + Math.imul(al1, bh6) | 0;
-    mid = mid + Math.imul(ah1, bl6) | 0;
-    hi = hi + Math.imul(ah1, bh6) | 0;
-    lo = lo + Math.imul(al0, bl7) | 0;
-    mid = mid + Math.imul(al0, bh7) | 0;
-    mid = mid + Math.imul(ah0, bl7) | 0;
-    hi = hi + Math.imul(ah0, bh7) | 0;
-    var w7 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w7 >>> 26) | 0;
-    w7 &= 0x3ffffff;
-    /* k = 8 */
-
-    lo = Math.imul(al8, bl0);
-    mid = Math.imul(al8, bh0);
-    mid = mid + Math.imul(ah8, bl0) | 0;
-    hi = Math.imul(ah8, bh0);
-    lo = lo + Math.imul(al7, bl1) | 0;
-    mid = mid + Math.imul(al7, bh1) | 0;
-    mid = mid + Math.imul(ah7, bl1) | 0;
-    hi = hi + Math.imul(ah7, bh1) | 0;
-    lo = lo + Math.imul(al6, bl2) | 0;
-    mid = mid + Math.imul(al6, bh2) | 0;
-    mid = mid + Math.imul(ah6, bl2) | 0;
-    hi = hi + Math.imul(ah6, bh2) | 0;
-    lo = lo + Math.imul(al5, bl3) | 0;
-    mid = mid + Math.imul(al5, bh3) | 0;
-    mid = mid + Math.imul(ah5, bl3) | 0;
-    hi = hi + Math.imul(ah5, bh3) | 0;
-    lo = lo + Math.imul(al4, bl4) | 0;
-    mid = mid + Math.imul(al4, bh4) | 0;
-    mid = mid + Math.imul(ah4, bl4) | 0;
-    hi = hi + Math.imul(ah4, bh4) | 0;
-    lo = lo + Math.imul(al3, bl5) | 0;
-    mid = mid + Math.imul(al3, bh5) | 0;
-    mid = mid + Math.imul(ah3, bl5) | 0;
-    hi = hi + Math.imul(ah3, bh5) | 0;
-    lo = lo + Math.imul(al2, bl6) | 0;
-    mid = mid + Math.imul(al2, bh6) | 0;
-    mid = mid + Math.imul(ah2, bl6) | 0;
-    hi = hi + Math.imul(ah2, bh6) | 0;
-    lo = lo + Math.imul(al1, bl7) | 0;
-    mid = mid + Math.imul(al1, bh7) | 0;
-    mid = mid + Math.imul(ah1, bl7) | 0;
-    hi = hi + Math.imul(ah1, bh7) | 0;
-    lo = lo + Math.imul(al0, bl8) | 0;
-    mid = mid + Math.imul(al0, bh8) | 0;
-    mid = mid + Math.imul(ah0, bl8) | 0;
-    hi = hi + Math.imul(ah0, bh8) | 0;
-    var w8 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w8 >>> 26) | 0;
-    w8 &= 0x3ffffff;
-    /* k = 9 */
-
-    lo = Math.imul(al9, bl0);
-    mid = Math.imul(al9, bh0);
-    mid = mid + Math.imul(ah9, bl0) | 0;
-    hi = Math.imul(ah9, bh0);
-    lo = lo + Math.imul(al8, bl1) | 0;
-    mid = mid + Math.imul(al8, bh1) | 0;
-    mid = mid + Math.imul(ah8, bl1) | 0;
-    hi = hi + Math.imul(ah8, bh1) | 0;
-    lo = lo + Math.imul(al7, bl2) | 0;
-    mid = mid + Math.imul(al7, bh2) | 0;
-    mid = mid + Math.imul(ah7, bl2) | 0;
-    hi = hi + Math.imul(ah7, bh2) | 0;
-    lo = lo + Math.imul(al6, bl3) | 0;
-    mid = mid + Math.imul(al6, bh3) | 0;
-    mid = mid + Math.imul(ah6, bl3) | 0;
-    hi = hi + Math.imul(ah6, bh3) | 0;
-    lo = lo + Math.imul(al5, bl4) | 0;
-    mid = mid + Math.imul(al5, bh4) | 0;
-    mid = mid + Math.imul(ah5, bl4) | 0;
-    hi = hi + Math.imul(ah5, bh4) | 0;
-    lo = lo + Math.imul(al4, bl5) | 0;
-    mid = mid + Math.imul(al4, bh5) | 0;
-    mid = mid + Math.imul(ah4, bl5) | 0;
-    hi = hi + Math.imul(ah4, bh5) | 0;
-    lo = lo + Math.imul(al3, bl6) | 0;
-    mid = mid + Math.imul(al3, bh6) | 0;
-    mid = mid + Math.imul(ah3, bl6) | 0;
-    hi = hi + Math.imul(ah3, bh6) | 0;
-    lo = lo + Math.imul(al2, bl7) | 0;
-    mid = mid + Math.imul(al2, bh7) | 0;
-    mid = mid + Math.imul(ah2, bl7) | 0;
-    hi = hi + Math.imul(ah2, bh7) | 0;
-    lo = lo + Math.imul(al1, bl8) | 0;
-    mid = mid + Math.imul(al1, bh8) | 0;
-    mid = mid + Math.imul(ah1, bl8) | 0;
-    hi = hi + Math.imul(ah1, bh8) | 0;
-    lo = lo + Math.imul(al0, bl9) | 0;
-    mid = mid + Math.imul(al0, bh9) | 0;
-    mid = mid + Math.imul(ah0, bl9) | 0;
-    hi = hi + Math.imul(ah0, bh9) | 0;
-    var w9 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w9 >>> 26) | 0;
-    w9 &= 0x3ffffff;
-    /* k = 10 */
-
-    lo = Math.imul(al9, bl1);
-    mid = Math.imul(al9, bh1);
-    mid = mid + Math.imul(ah9, bl1) | 0;
-    hi = Math.imul(ah9, bh1);
-    lo = lo + Math.imul(al8, bl2) | 0;
-    mid = mid + Math.imul(al8, bh2) | 0;
-    mid = mid + Math.imul(ah8, bl2) | 0;
-    hi = hi + Math.imul(ah8, bh2) | 0;
-    lo = lo + Math.imul(al7, bl3) | 0;
-    mid = mid + Math.imul(al7, bh3) | 0;
-    mid = mid + Math.imul(ah7, bl3) | 0;
-    hi = hi + Math.imul(ah7, bh3) | 0;
-    lo = lo + Math.imul(al6, bl4) | 0;
-    mid = mid + Math.imul(al6, bh4) | 0;
-    mid = mid + Math.imul(ah6, bl4) | 0;
-    hi = hi + Math.imul(ah6, bh4) | 0;
-    lo = lo + Math.imul(al5, bl5) | 0;
-    mid = mid + Math.imul(al5, bh5) | 0;
-    mid = mid + Math.imul(ah5, bl5) | 0;
-    hi = hi + Math.imul(ah5, bh5) | 0;
-    lo = lo + Math.imul(al4, bl6) | 0;
-    mid = mid + Math.imul(al4, bh6) | 0;
-    mid = mid + Math.imul(ah4, bl6) | 0;
-    hi = hi + Math.imul(ah4, bh6) | 0;
-    lo = lo + Math.imul(al3, bl7) | 0;
-    mid = mid + Math.imul(al3, bh7) | 0;
-    mid = mid + Math.imul(ah3, bl7) | 0;
-    hi = hi + Math.imul(ah3, bh7) | 0;
-    lo = lo + Math.imul(al2, bl8) | 0;
-    mid = mid + Math.imul(al2, bh8) | 0;
-    mid = mid + Math.imul(ah2, bl8) | 0;
-    hi = hi + Math.imul(ah2, bh8) | 0;
-    lo = lo + Math.imul(al1, bl9) | 0;
-    mid = mid + Math.imul(al1, bh9) | 0;
-    mid = mid + Math.imul(ah1, bl9) | 0;
-    hi = hi + Math.imul(ah1, bh9) | 0;
-    var w10 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w10 >>> 26) | 0;
-    w10 &= 0x3ffffff;
-    /* k = 11 */
-
-    lo = Math.imul(al9, bl2);
-    mid = Math.imul(al9, bh2);
-    mid = mid + Math.imul(ah9, bl2) | 0;
-    hi = Math.imul(ah9, bh2);
-    lo = lo + Math.imul(al8, bl3) | 0;
-    mid = mid + Math.imul(al8, bh3) | 0;
-    mid = mid + Math.imul(ah8, bl3) | 0;
-    hi = hi + Math.imul(ah8, bh3) | 0;
-    lo = lo + Math.imul(al7, bl4) | 0;
-    mid = mid + Math.imul(al7, bh4) | 0;
-    mid = mid + Math.imul(ah7, bl4) | 0;
-    hi = hi + Math.imul(ah7, bh4) | 0;
-    lo = lo + Math.imul(al6, bl5) | 0;
-    mid = mid + Math.imul(al6, bh5) | 0;
-    mid = mid + Math.imul(ah6, bl5) | 0;
-    hi = hi + Math.imul(ah6, bh5) | 0;
-    lo = lo + Math.imul(al5, bl6) | 0;
-    mid = mid + Math.imul(al5, bh6) | 0;
-    mid = mid + Math.imul(ah5, bl6) | 0;
-    hi = hi + Math.imul(ah5, bh6) | 0;
-    lo = lo + Math.imul(al4, bl7) | 0;
-    mid = mid + Math.imul(al4, bh7) | 0;
-    mid = mid + Math.imul(ah4, bl7) | 0;
-    hi = hi + Math.imul(ah4, bh7) | 0;
-    lo = lo + Math.imul(al3, bl8) | 0;
-    mid = mid + Math.imul(al3, bh8) | 0;
-    mid = mid + Math.imul(ah3, bl8) | 0;
-    hi = hi + Math.imul(ah3, bh8) | 0;
-    lo = lo + Math.imul(al2, bl9) | 0;
-    mid = mid + Math.imul(al2, bh9) | 0;
-    mid = mid + Math.imul(ah2, bl9) | 0;
-    hi = hi + Math.imul(ah2, bh9) | 0;
-    var w11 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w11 >>> 26) | 0;
-    w11 &= 0x3ffffff;
-    /* k = 12 */
-
-    lo = Math.imul(al9, bl3);
-    mid = Math.imul(al9, bh3);
-    mid = mid + Math.imul(ah9, bl3) | 0;
-    hi = Math.imul(ah9, bh3);
-    lo = lo + Math.imul(al8, bl4) | 0;
-    mid = mid + Math.imul(al8, bh4) | 0;
-    mid = mid + Math.imul(ah8, bl4) | 0;
-    hi = hi + Math.imul(ah8, bh4) | 0;
-    lo = lo + Math.imul(al7, bl5) | 0;
-    mid = mid + Math.imul(al7, bh5) | 0;
-    mid = mid + Math.imul(ah7, bl5) | 0;
-    hi = hi + Math.imul(ah7, bh5) | 0;
-    lo = lo + Math.imul(al6, bl6) | 0;
-    mid = mid + Math.imul(al6, bh6) | 0;
-    mid = mid + Math.imul(ah6, bl6) | 0;
-    hi = hi + Math.imul(ah6, bh6) | 0;
-    lo = lo + Math.imul(al5, bl7) | 0;
-    mid = mid + Math.imul(al5, bh7) | 0;
-    mid = mid + Math.imul(ah5, bl7) | 0;
-    hi = hi + Math.imul(ah5, bh7) | 0;
-    lo = lo + Math.imul(al4, bl8) | 0;
-    mid = mid + Math.imul(al4, bh8) | 0;
-    mid = mid + Math.imul(ah4, bl8) | 0;
-    hi = hi + Math.imul(ah4, bh8) | 0;
-    lo = lo + Math.imul(al3, bl9) | 0;
-    mid = mid + Math.imul(al3, bh9) | 0;
-    mid = mid + Math.imul(ah3, bl9) | 0;
-    hi = hi + Math.imul(ah3, bh9) | 0;
-    var w12 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w12 >>> 26) | 0;
-    w12 &= 0x3ffffff;
-    /* k = 13 */
-
-    lo = Math.imul(al9, bl4);
-    mid = Math.imul(al9, bh4);
-    mid = mid + Math.imul(ah9, bl4) | 0;
-    hi = Math.imul(ah9, bh4);
-    lo = lo + Math.imul(al8, bl5) | 0;
-    mid = mid + Math.imul(al8, bh5) | 0;
-    mid = mid + Math.imul(ah8, bl5) | 0;
-    hi = hi + Math.imul(ah8, bh5) | 0;
-    lo = lo + Math.imul(al7, bl6) | 0;
-    mid = mid + Math.imul(al7, bh6) | 0;
-    mid = mid + Math.imul(ah7, bl6) | 0;
-    hi = hi + Math.imul(ah7, bh6) | 0;
-    lo = lo + Math.imul(al6, bl7) | 0;
-    mid = mid + Math.imul(al6, bh7) | 0;
-    mid = mid + Math.imul(ah6, bl7) | 0;
-    hi = hi + Math.imul(ah6, bh7) | 0;
-    lo = lo + Math.imul(al5, bl8) | 0;
-    mid = mid + Math.imul(al5, bh8) | 0;
-    mid = mid + Math.imul(ah5, bl8) | 0;
-    hi = hi + Math.imul(ah5, bh8) | 0;
-    lo = lo + Math.imul(al4, bl9) | 0;
-    mid = mid + Math.imul(al4, bh9) | 0;
-    mid = mid + Math.imul(ah4, bl9) | 0;
-    hi = hi + Math.imul(ah4, bh9) | 0;
-    var w13 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w13 >>> 26) | 0;
-    w13 &= 0x3ffffff;
-    /* k = 14 */
-
-    lo = Math.imul(al9, bl5);
-    mid = Math.imul(al9, bh5);
-    mid = mid + Math.imul(ah9, bl5) | 0;
-    hi = Math.imul(ah9, bh5);
-    lo = lo + Math.imul(al8, bl6) | 0;
-    mid = mid + Math.imul(al8, bh6) | 0;
-    mid = mid + Math.imul(ah8, bl6) | 0;
-    hi = hi + Math.imul(ah8, bh6) | 0;
-    lo = lo + Math.imul(al7, bl7) | 0;
-    mid = mid + Math.imul(al7, bh7) | 0;
-    mid = mid + Math.imul(ah7, bl7) | 0;
-    hi = hi + Math.imul(ah7, bh7) | 0;
-    lo = lo + Math.imul(al6, bl8) | 0;
-    mid = mid + Math.imul(al6, bh8) | 0;
-    mid = mid + Math.imul(ah6, bl8) | 0;
-    hi = hi + Math.imul(ah6, bh8) | 0;
-    lo = lo + Math.imul(al5, bl9) | 0;
-    mid = mid + Math.imul(al5, bh9) | 0;
-    mid = mid + Math.imul(ah5, bl9) | 0;
-    hi = hi + Math.imul(ah5, bh9) | 0;
-    var w14 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w14 >>> 26) | 0;
-    w14 &= 0x3ffffff;
-    /* k = 15 */
-
-    lo = Math.imul(al9, bl6);
-    mid = Math.imul(al9, bh6);
-    mid = mid + Math.imul(ah9, bl6) | 0;
-    hi = Math.imul(ah9, bh6);
-    lo = lo + Math.imul(al8, bl7) | 0;
-    mid = mid + Math.imul(al8, bh7) | 0;
-    mid = mid + Math.imul(ah8, bl7) | 0;
-    hi = hi + Math.imul(ah8, bh7) | 0;
-    lo = lo + Math.imul(al7, bl8) | 0;
-    mid = mid + Math.imul(al7, bh8) | 0;
-    mid = mid + Math.imul(ah7, bl8) | 0;
-    hi = hi + Math.imul(ah7, bh8) | 0;
-    lo = lo + Math.imul(al6, bl9) | 0;
-    mid = mid + Math.imul(al6, bh9) | 0;
-    mid = mid + Math.imul(ah6, bl9) | 0;
-    hi = hi + Math.imul(ah6, bh9) | 0;
-    var w15 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w15 >>> 26) | 0;
-    w15 &= 0x3ffffff;
-    /* k = 16 */
-
-    lo = Math.imul(al9, bl7);
-    mid = Math.imul(al9, bh7);
-    mid = mid + Math.imul(ah9, bl7) | 0;
-    hi = Math.imul(ah9, bh7);
-    lo = lo + Math.imul(al8, bl8) | 0;
-    mid = mid + Math.imul(al8, bh8) | 0;
-    mid = mid + Math.imul(ah8, bl8) | 0;
-    hi = hi + Math.imul(ah8, bh8) | 0;
-    lo = lo + Math.imul(al7, bl9) | 0;
-    mid = mid + Math.imul(al7, bh9) | 0;
-    mid = mid + Math.imul(ah7, bl9) | 0;
-    hi = hi + Math.imul(ah7, bh9) | 0;
-    var w16 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w16 >>> 26) | 0;
-    w16 &= 0x3ffffff;
-    /* k = 17 */
-
-    lo = Math.imul(al9, bl8);
-    mid = Math.imul(al9, bh8);
-    mid = mid + Math.imul(ah9, bl8) | 0;
-    hi = Math.imul(ah9, bh8);
-    lo = lo + Math.imul(al8, bl9) | 0;
-    mid = mid + Math.imul(al8, bh9) | 0;
-    mid = mid + Math.imul(ah8, bl9) | 0;
-    hi = hi + Math.imul(ah8, bh9) | 0;
-    var w17 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w17 >>> 26) | 0;
-    w17 &= 0x3ffffff;
-    /* k = 18 */
-
-    lo = Math.imul(al9, bl9);
-    mid = Math.imul(al9, bh9);
-    mid = mid + Math.imul(ah9, bl9) | 0;
-    hi = Math.imul(ah9, bh9);
-    var w18 = (c + lo | 0) + ((mid & 0x1fff) << 13) | 0;
-    c = (hi + (mid >>> 13) | 0) + (w18 >>> 26) | 0;
-    w18 &= 0x3ffffff;
-    o[0] = w0;
-    o[1] = w1;
-    o[2] = w2;
-    o[3] = w3;
-    o[4] = w4;
-    o[5] = w5;
-    o[6] = w6;
-    o[7] = w7;
-    o[8] = w8;
-    o[9] = w9;
-    o[10] = w10;
-    o[11] = w11;
-    o[12] = w12;
-    o[13] = w13;
-    o[14] = w14;
-    o[15] = w15;
-    o[16] = w16;
-    o[17] = w17;
-    o[18] = w18;
-
-    if (c !== 0) {
-      o[19] = c;
-      out.length++;
-    }
-
-    return out;
-  }; // Polyfill comb
-
-
-  if (!Math.imul) {
-    comb10MulTo = smallMulTo;
-  }
-
-  function bigMulTo(self, num, out) {
-    out.negative = num.negative ^ self.negative;
-    out.length = self.length + num.length;
-    var carry = 0;
-    var hncarry = 0;
-
-    for (var k = 0; k < out.length - 1; k++) {
-      // Sum all words with the same `i + j = k` and accumulate `ncarry`,
-      // note that ncarry could be >= 0x3ffffff
-      var ncarry = hncarry;
-      hncarry = 0;
-      var rword = carry & 0x3ffffff;
-      var maxJ = Math.min(k, num.length - 1);
-
-      for (var j = Math.max(0, k - self.length + 1); j <= maxJ; j++) {
-        var i = k - j;
-        var a = self.words[i] | 0;
-        var b = num.words[j] | 0;
-        var r = a * b;
-        var lo = r & 0x3ffffff;
-        ncarry = ncarry + (r / 0x4000000 | 0) | 0;
-        lo = lo + rword | 0;
-        rword = lo & 0x3ffffff;
-        ncarry = ncarry + (lo >>> 26) | 0;
-        hncarry += ncarry >>> 26;
-        ncarry &= 0x3ffffff;
-      }
-
-      out.words[k] = rword;
-      carry = ncarry;
-      ncarry = hncarry;
-    }
-
-    if (carry !== 0) {
-      out.words[k] = carry;
-    } else {
-      out.length--;
-    }
-
-    return out.strip();
-  }
-
-  function jumboMulTo(self, num, out) {
-    var fftm = new FFTM();
-    return fftm.mulp(self, num, out);
-  }
-
-  BN.prototype.mulTo = function mulTo(num, out) {
-    var res;
-    var len = this.length + num.length;
-
-    if (this.length === 10 && num.length === 10) {
-      res = comb10MulTo(this, num, out);
-    } else if (len < 63) {
-      res = smallMulTo(this, num, out);
-    } else if (len < 1024) {
-      res = bigMulTo(this, num, out);
-    } else {
-      res = jumboMulTo(this, num, out);
-    }
-
-    return res;
-  }; // Cooley-Tukey algorithm for FFT
-  // slightly revisited to rely on looping instead of recursion
-
-
-  function FFTM(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  FFTM.prototype.makeRBT = function makeRBT(N) {
-    var t = new Array(N);
-    var l = BN.prototype._countBits(N) - 1;
-
-    for (var i = 0; i < N; i++) {
-      t[i] = this.revBin(i, l, N);
-    }
-
-    return t;
-  }; // Returns binary-reversed representation of `x`
-
-
-  FFTM.prototype.revBin = function revBin(x, l, N) {
-    if (x === 0 || x === N - 1) return x;
-    var rb = 0;
-
-    for (var i = 0; i < l; i++) {
-      rb |= (x & 1) << l - i - 1;
-      x >>= 1;
-    }
-
-    return rb;
-  }; // Performs "tweedling" phase, therefore 'emulating'
-  // behaviour of the recursive algorithm
-
-
-  FFTM.prototype.permute = function permute(rbt, rws, iws, rtws, itws, N) {
-    for (var i = 0; i < N; i++) {
-      rtws[i] = rws[rbt[i]];
-      itws[i] = iws[rbt[i]];
-    }
-  };
-
-  FFTM.prototype.transform = function transform(rws, iws, rtws, itws, N, rbt) {
-    this.permute(rbt, rws, iws, rtws, itws, N);
-
-    for (var s = 1; s < N; s <<= 1) {
-      var l = s << 1;
-      var rtwdf = Math.cos(2 * Math.PI / l);
-      var itwdf = Math.sin(2 * Math.PI / l);
-
-      for (var p = 0; p < N; p += l) {
-        var rtwdf_ = rtwdf;
-        var itwdf_ = itwdf;
-
-        for (var j = 0; j < s; j++) {
-          var re = rtws[p + j];
-          var ie = itws[p + j];
-          var ro = rtws[p + j + s];
-          var io = itws[p + j + s];
-          var rx = rtwdf_ * ro - itwdf_ * io;
-          io = rtwdf_ * io + itwdf_ * ro;
-          ro = rx;
-          rtws[p + j] = re + ro;
-          itws[p + j] = ie + io;
-          rtws[p + j + s] = re - ro;
-          itws[p + j + s] = ie - io;
-          /* jshint maxdepth : false */
-
-          if (j !== l) {
-            rx = rtwdf * rtwdf_ - itwdf * itwdf_;
-            itwdf_ = rtwdf * itwdf_ + itwdf * rtwdf_;
-            rtwdf_ = rx;
-          }
-        }
-      }
-    }
-  };
-
-  FFTM.prototype.guessLen13b = function guessLen13b(n, m) {
-    var N = Math.max(m, n) | 1;
-    var odd = N & 1;
-    var i = 0;
-
-    for (N = N / 2 | 0; N; N = N >>> 1) {
-      i++;
-    }
-
-    return 1 << i + 1 + odd;
-  };
-
-  FFTM.prototype.conjugate = function conjugate(rws, iws, N) {
-    if (N <= 1) return;
-
-    for (var i = 0; i < N / 2; i++) {
-      var t = rws[i];
-      rws[i] = rws[N - i - 1];
-      rws[N - i - 1] = t;
-      t = iws[i];
-      iws[i] = -iws[N - i - 1];
-      iws[N - i - 1] = -t;
-    }
-  };
-
-  FFTM.prototype.normalize13b = function normalize13b(ws, N) {
-    var carry = 0;
-
-    for (var i = 0; i < N / 2; i++) {
-      var w = Math.round(ws[2 * i + 1] / N) * 0x2000 + Math.round(ws[2 * i] / N) + carry;
-      ws[i] = w & 0x3ffffff;
-
-      if (w < 0x4000000) {
-        carry = 0;
-      } else {
-        carry = w / 0x4000000 | 0;
-      }
-    }
-
-    return ws;
-  };
-
-  FFTM.prototype.convert13b = function convert13b(ws, len, rws, N) {
-    var carry = 0;
-
-    for (var i = 0; i < len; i++) {
-      carry = carry + (ws[i] | 0);
-      rws[2 * i] = carry & 0x1fff;
-      carry = carry >>> 13;
-      rws[2 * i + 1] = carry & 0x1fff;
-      carry = carry >>> 13;
-    } // Pad with zeroes
-
-
-    for (i = 2 * len; i < N; ++i) {
-      rws[i] = 0;
-    }
-
-    assert(carry === 0);
-    assert((carry & ~0x1fff) === 0);
-  };
-
-  FFTM.prototype.stub = function stub(N) {
-    var ph = new Array(N);
-
-    for (var i = 0; i < N; i++) {
-      ph[i] = 0;
-    }
-
-    return ph;
-  };
-
-  FFTM.prototype.mulp = function mulp(x, y, out) {
-    var N = 2 * this.guessLen13b(x.length, y.length);
-    var rbt = this.makeRBT(N);
-
-    var _ = this.stub(N);
-
-    var rws = new Array(N);
-    var rwst = new Array(N);
-    var iwst = new Array(N);
-    var nrws = new Array(N);
-    var nrwst = new Array(N);
-    var niwst = new Array(N);
-    var rmws = out.words;
-    rmws.length = N;
-    this.convert13b(x.words, x.length, rws, N);
-    this.convert13b(y.words, y.length, nrws, N);
-    this.transform(rws, _, rwst, iwst, N, rbt);
-    this.transform(nrws, _, nrwst, niwst, N, rbt);
-
-    for (var i = 0; i < N; i++) {
-      var rx = rwst[i] * nrwst[i] - iwst[i] * niwst[i];
-      iwst[i] = rwst[i] * niwst[i] + iwst[i] * nrwst[i];
-      rwst[i] = rx;
-    }
-
-    this.conjugate(rwst, iwst, N);
-    this.transform(rwst, iwst, rmws, _, N, rbt);
-    this.conjugate(rmws, _, N);
-    this.normalize13b(rmws, N);
-    out.negative = x.negative ^ y.negative;
-    out.length = x.length + y.length;
-    return out.strip();
-  }; // Multiply `this` by `num`
-
-
-  BN.prototype.mul = function mul(num) {
-    var out = new BN(null);
-    out.words = new Array(this.length + num.length);
-    return this.mulTo(num, out);
-  }; // Multiply employing FFT
-
-
-  BN.prototype.mulf = function mulf(num) {
-    var out = new BN(null);
-    out.words = new Array(this.length + num.length);
-    return jumboMulTo(this, num, out);
-  }; // In-place Multiplication
-
-
-  BN.prototype.imul = function imul(num) {
-    return this.clone().mulTo(num, this);
-  };
-
-  BN.prototype.imuln = function imuln(num) {
-    assert(typeof num === 'number');
-    assert(num < 0x4000000); // Carry
-
-    var carry = 0;
-
-    for (var i = 0; i < this.length; i++) {
-      var w = (this.words[i] | 0) * num;
-      var lo = (w & 0x3ffffff) + (carry & 0x3ffffff);
-      carry >>= 26;
-      carry += w / 0x4000000 | 0; // NOTE: lo is 27bit maximum
-
-      carry += lo >>> 26;
-      this.words[i] = lo & 0x3ffffff;
-    }
-
-    if (carry !== 0) {
-      this.words[i] = carry;
-      this.length++;
-    }
-
-    return this;
-  };
-
-  BN.prototype.muln = function muln(num) {
-    return this.clone().imuln(num);
-  }; // `this` * `this`
-
-
-  BN.prototype.sqr = function sqr() {
-    return this.mul(this);
-  }; // `this` * `this` in-place
-
-
-  BN.prototype.isqr = function isqr() {
-    return this.imul(this.clone());
-  }; // Math.pow(`this`, `num`)
-
-
-  BN.prototype.pow = function pow(num) {
-    var w = toBitArray(num);
-    if (w.length === 0) return new BN(1); // Skip leading zeroes
-
-    var res = this;
-
-    for (var i = 0; i < w.length; i++, res = res.sqr()) {
-      if (w[i] !== 0) break;
-    }
-
-    if (++i < w.length) {
-      for (var q = res.sqr(); i < w.length; i++, q = q.sqr()) {
-        if (w[i] === 0) continue;
-        res = res.mul(q);
-      }
-    }
-
-    return res;
-  }; // Shift-left in-place
-
-
-  BN.prototype.iushln = function iushln(bits) {
-    assert(typeof bits === 'number' && bits >= 0);
-    var r = bits % 26;
-    var s = (bits - r) / 26;
-    var carryMask = 0x3ffffff >>> 26 - r << 26 - r;
-    var i;
-
-    if (r !== 0) {
-      var carry = 0;
-
-      for (i = 0; i < this.length; i++) {
-        var newCarry = this.words[i] & carryMask;
-        var c = (this.words[i] | 0) - newCarry << r;
-        this.words[i] = c | carry;
-        carry = newCarry >>> 26 - r;
-      }
-
-      if (carry) {
-        this.words[i] = carry;
-        this.length++;
-      }
-    }
-
-    if (s !== 0) {
-      for (i = this.length - 1; i >= 0; i--) {
-        this.words[i + s] = this.words[i];
-      }
-
-      for (i = 0; i < s; i++) {
-        this.words[i] = 0;
-      }
-
-      this.length += s;
-    }
-
-    return this.strip();
-  };
-
-  BN.prototype.ishln = function ishln(bits) {
-    // TODO(indutny): implement me
-    assert(this.negative === 0);
-    return this.iushln(bits);
-  }; // Shift-right in-place
-  // NOTE: `hint` is a lowest bit before trailing zeroes
-  // NOTE: if `extended` is present - it will be filled with destroyed bits
-
-
-  BN.prototype.iushrn = function iushrn(bits, hint, extended) {
-    assert(typeof bits === 'number' && bits >= 0);
-    var h;
-
-    if (hint) {
-      h = (hint - hint % 26) / 26;
-    } else {
-      h = 0;
-    }
-
-    var r = bits % 26;
-    var s = Math.min((bits - r) / 26, this.length);
-    var mask = 0x3ffffff ^ 0x3ffffff >>> r << r;
-    var maskedWords = extended;
-    h -= s;
-    h = Math.max(0, h); // Extended mode, copy masked part
-
-    if (maskedWords) {
-      for (var i = 0; i < s; i++) {
-        maskedWords.words[i] = this.words[i];
-      }
-
-      maskedWords.length = s;
-    }
-
-    if (s === 0) {// No-op, we should not move anything at all
-    } else if (this.length > s) {
-      this.length -= s;
-
-      for (i = 0; i < this.length; i++) {
-        this.words[i] = this.words[i + s];
-      }
-    } else {
-      this.words[0] = 0;
-      this.length = 1;
-    }
-
-    var carry = 0;
-
-    for (i = this.length - 1; i >= 0 && (carry !== 0 || i >= h); i--) {
-      var word = this.words[i] | 0;
-      this.words[i] = carry << 26 - r | word >>> r;
-      carry = word & mask;
-    } // Push carried bits as a mask
-
-
-    if (maskedWords && carry !== 0) {
-      maskedWords.words[maskedWords.length++] = carry;
-    }
-
-    if (this.length === 0) {
-      this.words[0] = 0;
-      this.length = 1;
-    }
-
-    return this.strip();
-  };
-
-  BN.prototype.ishrn = function ishrn(bits, hint, extended) {
-    // TODO(indutny): implement me
-    assert(this.negative === 0);
-    return this.iushrn(bits, hint, extended);
-  }; // Shift-left
-
-
-  BN.prototype.shln = function shln(bits) {
-    return this.clone().ishln(bits);
-  };
-
-  BN.prototype.ushln = function ushln(bits) {
-    return this.clone().iushln(bits);
-  }; // Shift-right
-
-
-  BN.prototype.shrn = function shrn(bits) {
-    return this.clone().ishrn(bits);
-  };
-
-  BN.prototype.ushrn = function ushrn(bits) {
-    return this.clone().iushrn(bits);
-  }; // Test if n bit is set
-
-
-  BN.prototype.testn = function testn(bit) {
-    assert(typeof bit === 'number' && bit >= 0);
-    var r = bit % 26;
-    var s = (bit - r) / 26;
-    var q = 1 << r; // Fast case: bit is much higher than all existing words
-
-    if (this.length <= s) return false; // Check bit and return
-
-    var w = this.words[s];
-    return !!(w & q);
-  }; // Return only lowers bits of number (in-place)
-
-
-  BN.prototype.imaskn = function imaskn(bits) {
-    assert(typeof bits === 'number' && bits >= 0);
-    var r = bits % 26;
-    var s = (bits - r) / 26;
-    assert(this.negative === 0, 'imaskn works only with positive numbers');
-
-    if (this.length <= s) {
-      return this;
-    }
-
-    if (r !== 0) {
-      s++;
-    }
-
-    this.length = Math.min(s, this.length);
-
-    if (r !== 0) {
-      var mask = 0x3ffffff ^ 0x3ffffff >>> r << r;
-      this.words[this.length - 1] &= mask;
-    }
-
-    return this.strip();
-  }; // Return only lowers bits of number
-
-
-  BN.prototype.maskn = function maskn(bits) {
-    return this.clone().imaskn(bits);
-  }; // Add plain number `num` to `this`
-
-
-  BN.prototype.iaddn = function iaddn(num) {
-    assert(typeof num === 'number');
-    assert(num < 0x4000000);
-    if (num < 0) return this.isubn(-num); // Possible sign change
-
-    if (this.negative !== 0) {
-      if (this.length === 1 && (this.words[0] | 0) < num) {
-        this.words[0] = num - (this.words[0] | 0);
-        this.negative = 0;
-        return this;
-      }
-
-      this.negative = 0;
-      this.isubn(num);
-      this.negative = 1;
-      return this;
-    } // Add without checks
-
-
-    return this._iaddn(num);
-  };
-
-  BN.prototype._iaddn = function _iaddn(num) {
-    this.words[0] += num; // Carry
-
-    for (var i = 0; i < this.length && this.words[i] >= 0x4000000; i++) {
-      this.words[i] -= 0x4000000;
-
-      if (i === this.length - 1) {
-        this.words[i + 1] = 1;
-      } else {
-        this.words[i + 1]++;
-      }
-    }
-
-    this.length = Math.max(this.length, i + 1);
-    return this;
-  }; // Subtract plain number `num` from `this`
-
-
-  BN.prototype.isubn = function isubn(num) {
-    assert(typeof num === 'number');
-    assert(num < 0x4000000);
-    if (num < 0) return this.iaddn(-num);
-
-    if (this.negative !== 0) {
-      this.negative = 0;
-      this.iaddn(num);
-      this.negative = 1;
-      return this;
-    }
-
-    this.words[0] -= num;
-
-    if (this.length === 1 && this.words[0] < 0) {
-      this.words[0] = -this.words[0];
-      this.negative = 1;
-    } else {
-      // Carry
-      for (var i = 0; i < this.length && this.words[i] < 0; i++) {
-        this.words[i] += 0x4000000;
-        this.words[i + 1] -= 1;
-      }
-    }
-
-    return this.strip();
-  };
-
-  BN.prototype.addn = function addn(num) {
-    return this.clone().iaddn(num);
-  };
-
-  BN.prototype.subn = function subn(num) {
-    return this.clone().isubn(num);
-  };
-
-  BN.prototype.iabs = function iabs() {
-    this.negative = 0;
-    return this;
-  };
-
-  BN.prototype.abs = function abs() {
-    return this.clone().iabs();
-  };
-
-  BN.prototype._ishlnsubmul = function _ishlnsubmul(num, mul, shift) {
-    var len = num.length + shift;
-    var i;
-
-    this._expand(len);
-
-    var w;
-    var carry = 0;
-
-    for (i = 0; i < num.length; i++) {
-      w = (this.words[i + shift] | 0) + carry;
-      var right = (num.words[i] | 0) * mul;
-      w -= right & 0x3ffffff;
-      carry = (w >> 26) - (right / 0x4000000 | 0);
-      this.words[i + shift] = w & 0x3ffffff;
-    }
-
-    for (; i < this.length - shift; i++) {
-      w = (this.words[i + shift] | 0) + carry;
-      carry = w >> 26;
-      this.words[i + shift] = w & 0x3ffffff;
-    }
-
-    if (carry === 0) return this.strip(); // Subtraction overflow
-
-    assert(carry === -1);
-    carry = 0;
-
-    for (i = 0; i < this.length; i++) {
-      w = -(this.words[i] | 0) + carry;
-      carry = w >> 26;
-      this.words[i] = w & 0x3ffffff;
-    }
-
-    this.negative = 1;
-    return this.strip();
-  };
-
-  BN.prototype._wordDiv = function _wordDiv(num, mode) {
-    var shift = this.length - num.length;
-    var a = this.clone();
-    var b = num; // Normalize
-
-    var bhi = b.words[b.length - 1] | 0;
-
-    var bhiBits = this._countBits(bhi);
-
-    shift = 26 - bhiBits;
-
-    if (shift !== 0) {
-      b = b.ushln(shift);
-      a.iushln(shift);
-      bhi = b.words[b.length - 1] | 0;
-    } // Initialize quotient
-
-
-    var m = a.length - b.length;
-    var q;
-
-    if (mode !== 'mod') {
-      q = new BN(null);
-      q.length = m + 1;
-      q.words = new Array(q.length);
-
-      for (var i = 0; i < q.length; i++) {
-        q.words[i] = 0;
-      }
-    }
-
-    var diff = a.clone()._ishlnsubmul(b, 1, m);
-
-    if (diff.negative === 0) {
-      a = diff;
-
-      if (q) {
-        q.words[m] = 1;
-      }
-    }
-
-    for (var j = m - 1; j >= 0; j--) {
-      var qj = (a.words[b.length + j] | 0) * 0x4000000 + (a.words[b.length + j - 1] | 0); // NOTE: (qj / bhi) is (0x3ffffff * 0x4000000 + 0x3ffffff) / 0x2000000 max
-      // (0x7ffffff)
-
-      qj = Math.min(qj / bhi | 0, 0x3ffffff);
-
-      a._ishlnsubmul(b, qj, j);
-
-      while (a.negative !== 0) {
-        qj--;
-        a.negative = 0;
-
-        a._ishlnsubmul(b, 1, j);
-
-        if (!a.isZero()) {
-          a.negative ^= 1;
-        }
-      }
-
-      if (q) {
-        q.words[j] = qj;
-      }
-    }
-
-    if (q) {
-      q.strip();
-    }
-
-    a.strip(); // Denormalize
-
-    if (mode !== 'div' && shift !== 0) {
-      a.iushrn(shift);
-    }
-
-    return {
-      div: q || null,
-      mod: a
-    };
-  }; // NOTE: 1) `mode` can be set to `mod` to request mod only,
-  //       to `div` to request div only, or be absent to
-  //       request both div & mod
-  //       2) `positive` is true if unsigned mod is requested
-
-
-  BN.prototype.divmod = function divmod(num, mode, positive) {
-    assert(!num.isZero());
-
-    if (this.isZero()) {
-      return {
-        div: new BN(0),
-        mod: new BN(0)
-      };
-    }
-
-    var div, mod, res;
-
-    if (this.negative !== 0 && num.negative === 0) {
-      res = this.neg().divmod(num, mode);
-
-      if (mode !== 'mod') {
-        div = res.div.neg();
-      }
-
-      if (mode !== 'div') {
-        mod = res.mod.neg();
-
-        if (positive && mod.negative !== 0) {
-          mod.iadd(num);
-        }
-      }
-
-      return {
-        div: div,
-        mod: mod
-      };
-    }
-
-    if (this.negative === 0 && num.negative !== 0) {
-      res = this.divmod(num.neg(), mode);
-
-      if (mode !== 'mod') {
-        div = res.div.neg();
-      }
-
-      return {
-        div: div,
-        mod: res.mod
-      };
-    }
-
-    if ((this.negative & num.negative) !== 0) {
-      res = this.neg().divmod(num.neg(), mode);
-
-      if (mode !== 'div') {
-        mod = res.mod.neg();
-
-        if (positive && mod.negative !== 0) {
-          mod.isub(num);
-        }
-      }
-
-      return {
-        div: res.div,
-        mod: mod
-      };
-    } // Both numbers are positive at this point
-    // Strip both numbers to approximate shift value
-
-
-    if (num.length > this.length || this.cmp(num) < 0) {
-      return {
-        div: new BN(0),
-        mod: this
-      };
-    } // Very short reduction
-
-
-    if (num.length === 1) {
-      if (mode === 'div') {
-        return {
-          div: this.divn(num.words[0]),
-          mod: null
-        };
-      }
-
-      if (mode === 'mod') {
-        return {
-          div: null,
-          mod: new BN(this.modn(num.words[0]))
-        };
-      }
-
-      return {
-        div: this.divn(num.words[0]),
-        mod: new BN(this.modn(num.words[0]))
-      };
-    }
-
-    return this._wordDiv(num, mode);
-  }; // Find `this` / `num`
-
-
-  BN.prototype.div = function div(num) {
-    return this.divmod(num, 'div', false).div;
-  }; // Find `this` % `num`
-
-
-  BN.prototype.mod = function mod(num) {
-    return this.divmod(num, 'mod', false).mod;
-  };
-
-  BN.prototype.umod = function umod(num) {
-    return this.divmod(num, 'mod', true).mod;
-  }; // Find Round(`this` / `num`)
-
-
-  BN.prototype.divRound = function divRound(num) {
-    var dm = this.divmod(num); // Fast case - exact division
-
-    if (dm.mod.isZero()) return dm.div;
-    var mod = dm.div.negative !== 0 ? dm.mod.isub(num) : dm.mod;
-    var half = num.ushrn(1);
-    var r2 = num.andln(1);
-    var cmp = mod.cmp(half); // Round down
-
-    if (cmp < 0 || r2 === 1 && cmp === 0) return dm.div; // Round up
-
-    return dm.div.negative !== 0 ? dm.div.isubn(1) : dm.div.iaddn(1);
-  };
-
-  BN.prototype.modn = function modn(num) {
-    assert(num <= 0x3ffffff);
-    var p = (1 << 26) % num;
-    var acc = 0;
-
-    for (var i = this.length - 1; i >= 0; i--) {
-      acc = (p * acc + (this.words[i] | 0)) % num;
-    }
-
-    return acc;
-  }; // In-place division by number
-
-
-  BN.prototype.idivn = function idivn(num) {
-    assert(num <= 0x3ffffff);
-    var carry = 0;
-
-    for (var i = this.length - 1; i >= 0; i--) {
-      var w = (this.words[i] | 0) + carry * 0x4000000;
-      this.words[i] = w / num | 0;
-      carry = w % num;
-    }
-
-    return this.strip();
-  };
-
-  BN.prototype.divn = function divn(num) {
-    return this.clone().idivn(num);
-  };
-
-  BN.prototype.egcd = function egcd(p) {
-    assert(p.negative === 0);
-    assert(!p.isZero());
-    var x = this;
-    var y = p.clone();
-
-    if (x.negative !== 0) {
-      x = x.umod(p);
-    } else {
-      x = x.clone();
-    } // A * x + B * y = x
-
-
-    var A = new BN(1);
-    var B = new BN(0); // C * x + D * y = y
-
-    var C = new BN(0);
-    var D = new BN(1);
-    var g = 0;
-
-    while (x.isEven() && y.isEven()) {
-      x.iushrn(1);
-      y.iushrn(1);
-      ++g;
-    }
-
-    var yp = y.clone();
-    var xp = x.clone();
-
-    while (!x.isZero()) {
-      for (var i = 0, im = 1; (x.words[0] & im) === 0 && i < 26; ++i, im <<= 1) {
-        ;
-      }
-
-      if (i > 0) {
-        x.iushrn(i);
-
-        while (i-- > 0) {
-          if (A.isOdd() || B.isOdd()) {
-            A.iadd(yp);
-            B.isub(xp);
-          }
-
-          A.iushrn(1);
-          B.iushrn(1);
-        }
-      }
-
-      for (var j = 0, jm = 1; (y.words[0] & jm) === 0 && j < 26; ++j, jm <<= 1) {
-        ;
-      }
-
-      if (j > 0) {
-        y.iushrn(j);
-
-        while (j-- > 0) {
-          if (C.isOdd() || D.isOdd()) {
-            C.iadd(yp);
-            D.isub(xp);
-          }
-
-          C.iushrn(1);
-          D.iushrn(1);
-        }
-      }
-
-      if (x.cmp(y) >= 0) {
-        x.isub(y);
-        A.isub(C);
-        B.isub(D);
-      } else {
-        y.isub(x);
-        C.isub(A);
-        D.isub(B);
-      }
-    }
-
-    return {
-      a: C,
-      b: D,
-      gcd: y.iushln(g)
-    };
-  }; // This is reduced incarnation of the binary EEA
-  // above, designated to invert members of the
-  // _prime_ fields F(p) at a maximal speed
-
-
-  BN.prototype._invmp = function _invmp(p) {
-    assert(p.negative === 0);
-    assert(!p.isZero());
-    var a = this;
-    var b = p.clone();
-
-    if (a.negative !== 0) {
-      a = a.umod(p);
-    } else {
-      a = a.clone();
-    }
-
-    var x1 = new BN(1);
-    var x2 = new BN(0);
-    var delta = b.clone();
-
-    while (a.cmpn(1) > 0 && b.cmpn(1) > 0) {
-      for (var i = 0, im = 1; (a.words[0] & im) === 0 && i < 26; ++i, im <<= 1) {
-        ;
-      }
-
-      if (i > 0) {
-        a.iushrn(i);
-
-        while (i-- > 0) {
-          if (x1.isOdd()) {
-            x1.iadd(delta);
-          }
-
-          x1.iushrn(1);
-        }
-      }
-
-      for (var j = 0, jm = 1; (b.words[0] & jm) === 0 && j < 26; ++j, jm <<= 1) {
-        ;
-      }
-
-      if (j > 0) {
-        b.iushrn(j);
-
-        while (j-- > 0) {
-          if (x2.isOdd()) {
-            x2.iadd(delta);
-          }
-
-          x2.iushrn(1);
-        }
-      }
-
-      if (a.cmp(b) >= 0) {
-        a.isub(b);
-        x1.isub(x2);
-      } else {
-        b.isub(a);
-        x2.isub(x1);
-      }
-    }
-
-    var res;
-
-    if (a.cmpn(1) === 0) {
-      res = x1;
-    } else {
-      res = x2;
-    }
-
-    if (res.cmpn(0) < 0) {
-      res.iadd(p);
-    }
-
-    return res;
-  };
-
-  BN.prototype.gcd = function gcd(num) {
-    if (this.isZero()) return num.abs();
-    if (num.isZero()) return this.abs();
-    var a = this.clone();
-    var b = num.clone();
-    a.negative = 0;
-    b.negative = 0; // Remove common factor of two
-
-    for (var shift = 0; a.isEven() && b.isEven(); shift++) {
-      a.iushrn(1);
-      b.iushrn(1);
-    }
-
-    do {
-      while (a.isEven()) {
-        a.iushrn(1);
-      }
-
-      while (b.isEven()) {
-        b.iushrn(1);
-      }
-
-      var r = a.cmp(b);
-
-      if (r < 0) {
-        // Swap `a` and `b` to make `a` always bigger than `b`
-        var t = a;
-        a = b;
-        b = t;
-      } else if (r === 0 || b.cmpn(1) === 0) {
-        break;
-      }
-
-      a.isub(b);
-    } while (true);
-
-    return b.iushln(shift);
-  }; // Invert number in the field F(num)
-
-
-  BN.prototype.invm = function invm(num) {
-    return this.egcd(num).a.umod(num);
-  };
-
-  BN.prototype.isEven = function isEven() {
-    return (this.words[0] & 1) === 0;
-  };
-
-  BN.prototype.isOdd = function isOdd() {
-    return (this.words[0] & 1) === 1;
-  }; // And first word and num
-
-
-  BN.prototype.andln = function andln(num) {
-    return this.words[0] & num;
-  }; // Increment at the bit position in-line
-
-
-  BN.prototype.bincn = function bincn(bit) {
-    assert(typeof bit === 'number');
-    var r = bit % 26;
-    var s = (bit - r) / 26;
-    var q = 1 << r; // Fast case: bit is much higher than all existing words
-
-    if (this.length <= s) {
-      this._expand(s + 1);
-
-      this.words[s] |= q;
-      return this;
-    } // Add bit and propagate, if needed
-
-
-    var carry = q;
-
-    for (var i = s; carry !== 0 && i < this.length; i++) {
-      var w = this.words[i] | 0;
-      w += carry;
-      carry = w >>> 26;
-      w &= 0x3ffffff;
-      this.words[i] = w;
-    }
-
-    if (carry !== 0) {
-      this.words[i] = carry;
-      this.length++;
-    }
-
-    return this;
-  };
-
-  BN.prototype.isZero = function isZero() {
-    return this.length === 1 && this.words[0] === 0;
-  };
-
-  BN.prototype.cmpn = function cmpn(num) {
-    var negative = num < 0;
-    if (this.negative !== 0 && !negative) return -1;
-    if (this.negative === 0 && negative) return 1;
-    this.strip();
-    var res;
-
-    if (this.length > 1) {
-      res = 1;
-    } else {
-      if (negative) {
-        num = -num;
-      }
-
-      assert(num <= 0x3ffffff, 'Number is too big');
-      var w = this.words[0] | 0;
-      res = w === num ? 0 : w < num ? -1 : 1;
-    }
-
-    if (this.negative !== 0) return -res | 0;
-    return res;
-  }; // Compare two numbers and return:
-  // 1 - if `this` > `num`
-  // 0 - if `this` == `num`
-  // -1 - if `this` < `num`
-
-
-  BN.prototype.cmp = function cmp(num) {
-    if (this.negative !== 0 && num.negative === 0) return -1;
-    if (this.negative === 0 && num.negative !== 0) return 1;
-    var res = this.ucmp(num);
-    if (this.negative !== 0) return -res | 0;
-    return res;
-  }; // Unsigned comparison
-
-
-  BN.prototype.ucmp = function ucmp(num) {
-    // At this point both numbers have the same sign
-    if (this.length > num.length) return 1;
-    if (this.length < num.length) return -1;
-    var res = 0;
-
-    for (var i = this.length - 1; i >= 0; i--) {
-      var a = this.words[i] | 0;
-      var b = num.words[i] | 0;
-      if (a === b) continue;
-
-      if (a < b) {
-        res = -1;
-      } else if (a > b) {
-        res = 1;
-      }
-
-      break;
-    }
-
-    return res;
-  };
-
-  BN.prototype.gtn = function gtn(num) {
-    return this.cmpn(num) === 1;
-  };
-
-  BN.prototype.gt = function gt(num) {
-    return this.cmp(num) === 1;
-  };
-
-  BN.prototype.gten = function gten(num) {
-    return this.cmpn(num) >= 0;
-  };
-
-  BN.prototype.gte = function gte(num) {
-    return this.cmp(num) >= 0;
-  };
-
-  BN.prototype.ltn = function ltn(num) {
-    return this.cmpn(num) === -1;
-  };
-
-  BN.prototype.lt = function lt(num) {
-    return this.cmp(num) === -1;
-  };
-
-  BN.prototype.lten = function lten(num) {
-    return this.cmpn(num) <= 0;
-  };
-
-  BN.prototype.lte = function lte(num) {
-    return this.cmp(num) <= 0;
-  };
-
-  BN.prototype.eqn = function eqn(num) {
-    return this.cmpn(num) === 0;
-  };
-
-  BN.prototype.eq = function eq(num) {
-    return this.cmp(num) === 0;
-  }; //
-  // A reduce context, could be using montgomery or something better, depending
-  // on the `m` itself.
-  //
-
-
-  BN.red = function red(num) {
-    return new Red(num);
-  };
-
-  BN.prototype.toRed = function toRed(ctx) {
-    assert(!this.red, 'Already a number in reduction context');
-    assert(this.negative === 0, 'red works only with positives');
-    return ctx.convertTo(this)._forceRed(ctx);
-  };
-
-  BN.prototype.fromRed = function fromRed() {
-    assert(this.red, 'fromRed works only with numbers in reduction context');
-    return this.red.convertFrom(this);
-  };
-
-  BN.prototype._forceRed = function _forceRed(ctx) {
-    this.red = ctx;
-    return this;
-  };
-
-  BN.prototype.forceRed = function forceRed(ctx) {
-    assert(!this.red, 'Already a number in reduction context');
-    return this._forceRed(ctx);
-  };
-
-  BN.prototype.redAdd = function redAdd(num) {
-    assert(this.red, 'redAdd works only with red numbers');
-    return this.red.add(this, num);
-  };
-
-  BN.prototype.redIAdd = function redIAdd(num) {
-    assert(this.red, 'redIAdd works only with red numbers');
-    return this.red.iadd(this, num);
-  };
-
-  BN.prototype.redSub = function redSub(num) {
-    assert(this.red, 'redSub works only with red numbers');
-    return this.red.sub(this, num);
-  };
-
-  BN.prototype.redISub = function redISub(num) {
-    assert(this.red, 'redISub works only with red numbers');
-    return this.red.isub(this, num);
-  };
-
-  BN.prototype.redShl = function redShl(num) {
-    assert(this.red, 'redShl works only with red numbers');
-    return this.red.shl(this, num);
-  };
-
-  BN.prototype.redMul = function redMul(num) {
-    assert(this.red, 'redMul works only with red numbers');
-
-    this.red._verify2(this, num);
-
-    return this.red.mul(this, num);
-  };
-
-  BN.prototype.redIMul = function redIMul(num) {
-    assert(this.red, 'redMul works only with red numbers');
-
-    this.red._verify2(this, num);
-
-    return this.red.imul(this, num);
-  };
-
-  BN.prototype.redSqr = function redSqr() {
-    assert(this.red, 'redSqr works only with red numbers');
-
-    this.red._verify1(this);
-
-    return this.red.sqr(this);
-  };
-
-  BN.prototype.redISqr = function redISqr() {
-    assert(this.red, 'redISqr works only with red numbers');
-
-    this.red._verify1(this);
-
-    return this.red.isqr(this);
-  }; // Square root over p
-
-
-  BN.prototype.redSqrt = function redSqrt() {
-    assert(this.red, 'redSqrt works only with red numbers');
-
-    this.red._verify1(this);
-
-    return this.red.sqrt(this);
-  };
-
-  BN.prototype.redInvm = function redInvm() {
-    assert(this.red, 'redInvm works only with red numbers');
-
-    this.red._verify1(this);
-
-    return this.red.invm(this);
-  }; // Return negative clone of `this` % `red modulo`
-
-
-  BN.prototype.redNeg = function redNeg() {
-    assert(this.red, 'redNeg works only with red numbers');
-
-    this.red._verify1(this);
-
-    return this.red.neg(this);
-  };
-
-  BN.prototype.redPow = function redPow(num) {
-    assert(this.red && !num.red, 'redPow(normalNum)');
-
-    this.red._verify1(this);
-
-    return this.red.pow(this, num);
-  }; // Prime numbers with efficient reduction
-
-
-  var primes = {
-    k256: null,
-    p224: null,
-    p192: null,
-    p25519: null
-  }; // Pseudo-Mersenne prime
-
-  function MPrime(name, p) {
-    // P = 2 ^ N - K
-    this.name = name;
-    this.p = new BN(p, 16);
-    this.n = this.p.bitLength();
-    this.k = new BN(1).iushln(this.n).isub(this.p);
-    this.tmp = this._tmp();
-  }
-
-  MPrime.prototype._tmp = function _tmp() {
-    var tmp = new BN(null);
-    tmp.words = new Array(Math.ceil(this.n / 13));
-    return tmp;
-  };
-
-  MPrime.prototype.ireduce = function ireduce(num) {
-    // Assumes that `num` is less than `P^2`
-    // num = HI * (2 ^ N - K) + HI * K + LO = HI * K + LO (mod P)
-    var r = num;
-    var rlen;
-
-    do {
-      this.split(r, this.tmp);
-      r = this.imulK(r);
-      r = r.iadd(this.tmp);
-      rlen = r.bitLength();
-    } while (rlen > this.n);
-
-    var cmp = rlen < this.n ? -1 : r.ucmp(this.p);
-
-    if (cmp === 0) {
-      r.words[0] = 0;
-      r.length = 1;
-    } else if (cmp > 0) {
-      r.isub(this.p);
-    } else {
-      if (r.strip !== undefined) {
-        // r is BN v4 instance
-        r.strip();
-      } else {
-        // r is BN v5 instance
-        r._strip();
-      }
-    }
-
-    return r;
-  };
-
-  MPrime.prototype.split = function split(input, out) {
-    input.iushrn(this.n, 0, out);
-  };
-
-  MPrime.prototype.imulK = function imulK(num) {
-    return num.imul(this.k);
-  };
-
-  function K256() {
-    MPrime.call(this, 'k256', 'ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff fffffffe fffffc2f');
-  }
-
-  inherits(K256, MPrime);
-
-  K256.prototype.split = function split(input, output) {
-    // 256 = 9 * 26 + 22
-    var mask = 0x3fffff;
-    var outLen = Math.min(input.length, 9);
-
-    for (var i = 0; i < outLen; i++) {
-      output.words[i] = input.words[i];
-    }
-
-    output.length = outLen;
-
-    if (input.length <= 9) {
-      input.words[0] = 0;
-      input.length = 1;
-      return;
-    } // Shift by 9 limbs
-
-
-    var prev = input.words[9];
-    output.words[output.length++] = prev & mask;
-
-    for (i = 10; i < input.length; i++) {
-      var next = input.words[i] | 0;
-      input.words[i - 10] = (next & mask) << 4 | prev >>> 22;
-      prev = next;
-    }
-
-    prev >>>= 22;
-    input.words[i - 10] = prev;
-
-    if (prev === 0 && input.length > 10) {
-      input.length -= 10;
-    } else {
-      input.length -= 9;
-    }
-  };
-
-  K256.prototype.imulK = function imulK(num) {
-    // K = 0x1000003d1 = [ 0x40, 0x3d1 ]
-    num.words[num.length] = 0;
-    num.words[num.length + 1] = 0;
-    num.length += 2; // bounded at: 0x40 * 0x3ffffff + 0x3d0 = 0x100000390
-
-    var lo = 0;
-
-    for (var i = 0; i < num.length; i++) {
-      var w = num.words[i] | 0;
-      lo += w * 0x3d1;
-      num.words[i] = lo & 0x3ffffff;
-      lo = w * 0x40 + (lo / 0x4000000 | 0);
-    } // Fast length reduction
-
-
-    if (num.words[num.length - 1] === 0) {
-      num.length--;
-
-      if (num.words[num.length - 1] === 0) {
-        num.length--;
-      }
-    }
-
-    return num;
-  };
-
-  function P224() {
-    MPrime.call(this, 'p224', 'ffffffff ffffffff ffffffff ffffffff 00000000 00000000 00000001');
-  }
-
-  inherits(P224, MPrime);
-
-  function P192() {
-    MPrime.call(this, 'p192', 'ffffffff ffffffff ffffffff fffffffe ffffffff ffffffff');
-  }
-
-  inherits(P192, MPrime);
-
-  function P25519() {
-    // 2 ^ 255 - 19
-    MPrime.call(this, '25519', '7fffffffffffffff ffffffffffffffff ffffffffffffffff ffffffffffffffed');
-  }
-
-  inherits(P25519, MPrime);
-
-  P25519.prototype.imulK = function imulK(num) {
-    // K = 0x13
-    var carry = 0;
-
-    for (var i = 0; i < num.length; i++) {
-      var hi = (num.words[i] | 0) * 0x13 + carry;
-      var lo = hi & 0x3ffffff;
-      hi >>>= 26;
-      num.words[i] = lo;
-      carry = hi;
-    }
-
-    if (carry !== 0) {
-      num.words[num.length++] = carry;
-    }
-
-    return num;
-  }; // Exported mostly for testing purposes, use plain name instead
-
-
-  BN._prime = function prime(name) {
-    // Cached version of prime
-    if (primes[name]) return primes[name];
-    var prime;
-
-    if (name === 'k256') {
-      prime = new K256();
-    } else if (name === 'p224') {
-      prime = new P224();
-    } else if (name === 'p192') {
-      prime = new P192();
-    } else if (name === 'p25519') {
-      prime = new P25519();
-    } else {
-      throw new Error('Unknown prime ' + name);
-    }
-
-    primes[name] = prime;
-    return prime;
-  }; //
-  // Base reduction engine
-  //
-
-
-  function Red(m) {
-    if (typeof m === 'string') {
-      var prime = BN._prime(m);
-
-      this.m = prime.p;
-      this.prime = prime;
-    } else {
-      assert(m.gtn(1), 'modulus must be greater than 1');
-      this.m = m;
-      this.prime = null;
-    }
-  }
-
-  Red.prototype._verify1 = function _verify1(a) {
-    assert(a.negative === 0, 'red works only with positives');
-    assert(a.red, 'red works only with red numbers');
-  };
-
-  Red.prototype._verify2 = function _verify2(a, b) {
-    assert((a.negative | b.negative) === 0, 'red works only with positives');
-    assert(a.red && a.red === b.red, 'red works only with red numbers');
-  };
-
-  Red.prototype.imod = function imod(a) {
-    if (this.prime) return this.prime.ireduce(a)._forceRed(this);
-    return a.umod(this.m)._forceRed(this);
-  };
-
-  Red.prototype.neg = function neg(a) {
-    if (a.isZero()) {
-      return a.clone();
-    }
-
-    return this.m.sub(a)._forceRed(this);
-  };
-
-  Red.prototype.add = function add(a, b) {
-    this._verify2(a, b);
-
-    var res = a.add(b);
-
-    if (res.cmp(this.m) >= 0) {
-      res.isub(this.m);
-    }
-
-    return res._forceRed(this);
-  };
-
-  Red.prototype.iadd = function iadd(a, b) {
-    this._verify2(a, b);
-
-    var res = a.iadd(b);
-
-    if (res.cmp(this.m) >= 0) {
-      res.isub(this.m);
-    }
-
-    return res;
-  };
-
-  Red.prototype.sub = function sub(a, b) {
-    this._verify2(a, b);
-
-    var res = a.sub(b);
-
-    if (res.cmpn(0) < 0) {
-      res.iadd(this.m);
-    }
-
-    return res._forceRed(this);
-  };
-
-  Red.prototype.isub = function isub(a, b) {
-    this._verify2(a, b);
-
-    var res = a.isub(b);
-
-    if (res.cmpn(0) < 0) {
-      res.iadd(this.m);
-    }
-
-    return res;
-  };
-
-  Red.prototype.shl = function shl(a, num) {
-    this._verify1(a);
-
-    return this.imod(a.ushln(num));
-  };
-
-  Red.prototype.imul = function imul(a, b) {
-    this._verify2(a, b);
-
-    return this.imod(a.imul(b));
-  };
-
-  Red.prototype.mul = function mul(a, b) {
-    this._verify2(a, b);
-
-    return this.imod(a.mul(b));
-  };
-
-  Red.prototype.isqr = function isqr(a) {
-    return this.imul(a, a.clone());
-  };
-
-  Red.prototype.sqr = function sqr(a) {
-    return this.mul(a, a);
-  };
-
-  Red.prototype.sqrt = function sqrt(a) {
-    if (a.isZero()) return a.clone();
-    var mod3 = this.m.andln(3);
-    assert(mod3 % 2 === 1); // Fast case
-
-    if (mod3 === 3) {
-      var pow = this.m.add(new BN(1)).iushrn(2);
-      return this.pow(a, pow);
-    } // Tonelli-Shanks algorithm (Totally unoptimized and slow)
-    //
-    // Find Q and S, that Q * 2 ^ S = (P - 1)
-
-
-    var q = this.m.subn(1);
-    var s = 0;
-
-    while (!q.isZero() && q.andln(1) === 0) {
-      s++;
-      q.iushrn(1);
-    }
-
-    assert(!q.isZero());
-    var one = new BN(1).toRed(this);
-    var nOne = one.redNeg(); // Find quadratic non-residue
-    // NOTE: Max is such because of generalized Riemann hypothesis.
-
-    var lpow = this.m.subn(1).iushrn(1);
-    var z = this.m.bitLength();
-    z = new BN(2 * z * z).toRed(this);
-
-    while (this.pow(z, lpow).cmp(nOne) !== 0) {
-      z.redIAdd(nOne);
-    }
-
-    var c = this.pow(z, q);
-    var r = this.pow(a, q.addn(1).iushrn(1));
-    var t = this.pow(a, q);
-    var m = s;
-
-    while (t.cmp(one) !== 0) {
-      var tmp = t;
-
-      for (var i = 0; tmp.cmp(one) !== 0; i++) {
-        tmp = tmp.redSqr();
-      }
-
-      assert(i < m);
-      var b = this.pow(c, new BN(1).iushln(m - i - 1));
-      r = r.redMul(b);
-      c = b.redSqr();
-      t = t.redMul(c);
-      m = i;
-    }
-
-    return r;
-  };
-
-  Red.prototype.invm = function invm(a) {
-    var inv = a._invmp(this.m);
-
-    if (inv.negative !== 0) {
-      inv.negative = 0;
-      return this.imod(inv).redNeg();
-    } else {
-      return this.imod(inv);
-    }
-  };
-
-  Red.prototype.pow = function pow(a, num) {
-    if (num.isZero()) return new BN(1).toRed(this);
-    if (num.cmpn(1) === 0) return a.clone();
-    var windowSize = 4;
-    var wnd = new Array(1 << windowSize);
-    wnd[0] = new BN(1).toRed(this);
-    wnd[1] = a;
-
-    for (var i = 2; i < wnd.length; i++) {
-      wnd[i] = this.mul(wnd[i - 1], a);
-    }
-
-    var res = wnd[0];
-    var current = 0;
-    var currentLen = 0;
-    var start = num.bitLength() % 26;
-
-    if (start === 0) {
-      start = 26;
-    }
-
-    for (i = num.length - 1; i >= 0; i--) {
-      var word = num.words[i];
-
-      for (var j = start - 1; j >= 0; j--) {
-        var bit = word >> j & 1;
-
-        if (res !== wnd[0]) {
-          res = this.sqr(res);
-        }
-
-        if (bit === 0 && current === 0) {
-          currentLen = 0;
-          continue;
-        }
-
-        current <<= 1;
-        current |= bit;
-        currentLen++;
-        if (currentLen !== windowSize && (i !== 0 || j !== 0)) continue;
-        res = this.mul(res, wnd[current]);
-        currentLen = 0;
-        current = 0;
-      }
-
-      start = 26;
-    }
-
-    return res;
-  };
-
-  Red.prototype.convertTo = function convertTo(num) {
-    var r = num.umod(this.m);
-    return r === num ? r.clone() : r;
-  };
-
-  Red.prototype.convertFrom = function convertFrom(num) {
-    var res = num.clone();
-    res.red = null;
-    return res;
-  }; //
-  // Montgomery method engine
-  //
-
-
-  BN.mont = function mont(num) {
-    return new Mont(num);
-  };
-
-  function Mont(m) {
-    Red.call(this, m);
-    this.shift = this.m.bitLength();
-
-    if (this.shift % 26 !== 0) {
-      this.shift += 26 - this.shift % 26;
-    }
-
-    this.r = new BN(1).iushln(this.shift);
-    this.r2 = this.imod(this.r.sqr());
-    this.rinv = this.r._invmp(this.m);
-    this.minv = this.rinv.mul(this.r).isubn(1).div(this.m);
-    this.minv = this.minv.umod(this.r);
-    this.minv = this.r.sub(this.minv);
-  }
-
-  inherits(Mont, Red);
-
-  Mont.prototype.convertTo = function convertTo(num) {
-    return this.imod(num.ushln(this.shift));
-  };
-
-  Mont.prototype.convertFrom = function convertFrom(num) {
-    var r = this.imod(num.mul(this.rinv));
-    r.red = null;
-    return r;
-  };
-
-  Mont.prototype.imul = function imul(a, b) {
-    if (a.isZero() || b.isZero()) {
-      a.words[0] = 0;
-      a.length = 1;
-      return a;
-    }
-
-    var t = a.imul(b);
-    var c = t.maskn(this.shift).mul(this.minv).imaskn(this.shift).mul(this.m);
-    var u = t.isub(c).iushrn(this.shift);
-    var res = u;
-
-    if (u.cmp(this.m) >= 0) {
-      res = u.isub(this.m);
-    } else if (u.cmpn(0) < 0) {
-      res = u.iadd(this.m);
-    }
-
-    return res._forceRed(this);
-  };
-
-  Mont.prototype.mul = function mul(a, b) {
-    if (a.isZero() || b.isZero()) return new BN(0)._forceRed(this);
-    var t = a.mul(b);
-    var c = t.maskn(this.shift).mul(this.minv).imaskn(this.shift).mul(this.m);
-    var u = t.isub(c).iushrn(this.shift);
-    var res = u;
-
-    if (u.cmp(this.m) >= 0) {
-      res = u.isub(this.m);
-    } else if (u.cmpn(0) < 0) {
-      res = u.iadd(this.m);
-    }
-
-    return res._forceRed(this);
-  };
-
-  Mont.prototype.invm = function invm(a) {
-    // (AR)^-1 * R^2 = (A^-1 * R^-1) * R^2 = A^-1 * R
-    var res = this.imod(a._invmp(this.m).mul(this.r2));
-    return res._forceRed(this);
-  };
-})(typeof module === 'undefined' || module, void 0);
-
-},{"buffer":138}],241:[function(require,module,exports){
-arguments[4][168][0].apply(exports,arguments)
-},{"dup":168}],242:[function(require,module,exports){
+},{"bn.js":242,"minimalistic-assert":330,"minimalistic-crypto-utils":331}],242:[function(require,module,exports){
+arguments[4][30][0].apply(exports,arguments)
+},{"buffer":139,"dup":30}],243:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],244:[function(require,module,exports){
 module.exports={
   "_from": "elliptic@6.5.4",
   "_id": "elliptic@6.5.4",
@@ -52024,7 +52153,7 @@ module.exports={
   "version": "6.5.4"
 }
 
-},{}],243:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -52221,7 +52350,7 @@ function isAddress(address) {
 
 exports.isAddress = isAddress;
 
-},{"./utils":244}],244:[function(require,module,exports){
+},{"./utils":246}],246:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52356,7 +52485,7 @@ function addSlice(array) {
   return array;
 }
 
-},{"js-sha3":245}],245:[function(require,module,exports){
+},{"js-sha3":247}],247:[function(require,module,exports){
 (function (process,global){(function (){
 "use strict";
 
@@ -53119,7 +53248,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 })();
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":344}],246:[function(require,module,exports){
+},{"_process":346}],248:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -53138,7 +53267,7 @@ function createHashFunction(hashConstructor) {
 exports.createHashFunction = createHashFunction;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":173}],247:[function(require,module,exports){
+},{"buffer":174}],249:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53162,7 +53291,7 @@ exports.keccak512 = hash_utils_1.createHashFunction(function () {
   return createKeccakHash("keccak512");
 });
 
-},{"./hash-utils":246,"keccak":319}],248:[function(require,module,exports){
+},{"./hash-utils":248,"keccak":321}],250:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53192,7 +53321,7 @@ function getRandomBytesSync(bytes) {
 
 exports.getRandomBytesSync = getRandomBytesSync;
 
-},{"randombytes":354}],249:[function(require,module,exports){
+},{"randombytes":356}],251:[function(require,module,exports){
 "use strict";
 
 var __awaiter = void 0 && (void 0).__awaiter || function (thisArg, _arguments, P, generator) {
@@ -53405,7 +53534,7 @@ exports.createPrivateKeySync = createPrivateKeySync;
 
 __export(require("secp256k1"));
 
-},{"./random":248,"secp256k1":377}],250:[function(require,module,exports){
+},{"./random":250,"secp256k1":379}],252:[function(require,module,exports){
 module.exports={
     "name": "goerli",
     "chainId": 5,
@@ -53523,7 +53652,7 @@ module.exports={
     ]
 }
 
-},{}],251:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53545,7 +53674,7 @@ exports.chains = {
   goerli: require('./goerli.json')
 };
 
-},{"./goerli.json":250,"./kovan.json":252,"./mainnet.json":253,"./rinkeby.json":254,"./ropsten.json":255}],252:[function(require,module,exports){
+},{"./goerli.json":252,"./kovan.json":254,"./mainnet.json":255,"./rinkeby.json":256,"./ropsten.json":257}],254:[function(require,module,exports){
 module.exports={
     "name": "kovan",
     "chainId": 42,
@@ -53649,7 +53778,7 @@ module.exports={
     ]
 }
 
-},{}],253:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 module.exports={
     "name": "mainnet",
     "chainId": 1,
@@ -53787,7 +53916,7 @@ module.exports={
     ]
 }
 
-},{}],254:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 module.exports={
     "name": "rinkeby",
     "chainId": 4,
@@ -53884,7 +54013,7 @@ module.exports={
     ]
 }
 
-},{}],255:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 module.exports={
     "name": "ropsten",
     "chainId": 3,
@@ -53994,7 +54123,7 @@ module.exports={
     ]
 }
 
-},{}],256:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 module.exports={
     "name": "byzantium",
     "comment": "Hardfork with new precompiles, instructions and other protocol changes",
@@ -54036,7 +54165,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],257:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 module.exports={
     "name": "chainstart",
     "comment": "Start of the Ethereum main chain",
@@ -54241,7 +54370,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],258:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 module.exports={
     "name": "constantinople",
     "comment": "Postponed hardfork including EIP-1283 (SSTORE gas metering changes)",
@@ -54291,7 +54420,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],259:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 module.exports={
     "name": "dao",
     "comment": "DAO rescue hardfork",
@@ -54307,7 +54436,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],260:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 module.exports={
     "name": "homestead",
     "comment": "Homestead hardfork with protocol and network changes",
@@ -54323,7 +54452,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],261:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54332,7 +54461,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.hardforks = void 0;
 exports.hardforks = [['chainstart', require('./chainstart.json')], ['homestead', require('./homestead.json')], ['dao', require('./dao.json')], ['tangerineWhistle', require('./tangerineWhistle.json')], ['spuriousDragon', require('./spuriousDragon.json')], ['byzantium', require('./byzantium.json')], ['constantinople', require('./constantinople.json')], ['petersburg', require('./petersburg.json')], ['istanbul', require('./istanbul.json')], ['muirGlacier', require('./muirGlacier.json')]];
 
-},{"./byzantium.json":256,"./chainstart.json":257,"./constantinople.json":258,"./dao.json":259,"./homestead.json":260,"./istanbul.json":262,"./muirGlacier.json":263,"./petersburg.json":264,"./spuriousDragon.json":265,"./tangerineWhistle.json":266}],262:[function(require,module,exports){
+},{"./byzantium.json":258,"./chainstart.json":259,"./constantinople.json":260,"./dao.json":261,"./homestead.json":262,"./istanbul.json":264,"./muirGlacier.json":265,"./petersburg.json":266,"./spuriousDragon.json":267,"./tangerineWhistle.json":268}],264:[function(require,module,exports){
 module.exports={
     "name": "istanbul",
     "comment": "HF targeted for December 2019 following the Constantinople/Petersburg HF",
@@ -54405,7 +54534,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],263:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 module.exports={
     "name": "muirGlacier",
     "comment": "HF to delay the difficulty bomb",
@@ -54421,7 +54550,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],264:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 module.exports={
     "name": "petersburg",
     "comment": "Aka constantinopleFix, removes EIP-1283, activate together with or after constantinople",
@@ -54466,7 +54595,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],265:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 module.exports={
     "name": "spuriousDragon",
     "comment": "HF with EIPs for simple replay attack protection, EXP cost increase, state trie clearing, contract code size limit",
@@ -54492,7 +54621,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],266:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 module.exports={
     "name": "tangerineWhistle",
     "comment": "Hardfork with gas cost changes for IO-heavy operations",
@@ -54517,7 +54646,7 @@ module.exports={
     "sharding": {}
 }
 
-},{}],267:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -54550,9 +54679,7 @@ var hardforks_1 = require("./hardforks");
  */
 
 
-var Common =
-/** @class */
-function () {
+var Common = function () {
   /**
    * @constructor
    * @param chain String ('mainnet') or Number (1) chain
@@ -55012,7 +55139,7 @@ function () {
 
 exports["default"] = Common;
 
-},{"./chains":251,"./hardforks":261}],268:[function(require,module,exports){
+},{"./chains":253,"./hardforks":263}],270:[function(require,module,exports){
 "use strict";
 
 var __extends = void 0 && (void 0).__extends || function () {
@@ -55063,9 +55190,7 @@ var transaction_1 = require("./transaction");
  */
 
 
-var FakeTransaction =
-/** @class */
-function (_super) {
+var FakeTransaction = function (_super) {
   __extends(FakeTransaction, _super);
 
   function FakeTransaction(data, opts) {
@@ -55126,7 +55251,7 @@ function (_super) {
 
 exports["default"] = FakeTransaction;
 
-},{"./transaction":270,"buffer":173,"ethereumjs-util":275}],269:[function(require,module,exports){
+},{"./transaction":272,"buffer":174,"ethereumjs-util":277}],271:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55141,7 +55266,7 @@ var fake_1 = require("./fake");
 
 exports.FakeTransaction = fake_1["default"];
 
-},{"./fake":268,"./transaction":270}],270:[function(require,module,exports){
+},{"./fake":270,"./transaction":272}],272:[function(require,module,exports){
 "use strict";
 
 var __assign = void 0 && (void 0).__assign || function () {
@@ -55176,9 +55301,7 @@ var N_DIV_2 = new ethereumjs_util_1.BN('7fffffffffffffffffffffffffffffff5d576e73
  * An Ethereum transaction.
  */
 
-var Transaction =
-/** @class */
-function () {
+var Transaction = function () {
   /**
    * Creates a new transaction from an object with its fields' values.
    *
@@ -55559,7 +55682,7 @@ function () {
 
 exports["default"] = Transaction;
 
-},{"buffer":173,"ethereumjs-common":267,"ethereumjs-util":275}],271:[function(require,module,exports){
+},{"buffer":174,"ethereumjs-common":269,"ethereumjs-util":277}],273:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -55782,7 +55905,7 @@ exports.importPublic = function (publicKey) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./bytes":272,"./hash":274,"./secp256k1v3-adapter":277,"assert":69,"bn.js":136,"buffer":173,"ethjs-util":295}],272:[function(require,module,exports){
+},{"./bytes":274,"./hash":276,"./secp256k1v3-adapter":279,"assert":70,"bn.js":137,"buffer":174,"ethjs-util":297}],274:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -55973,7 +56096,7 @@ exports.baToJSON = function (ba) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"bn.js":136,"buffer":173,"ethjs-util":295}],273:[function(require,module,exports){
+},{"bn.js":137,"buffer":174,"ethjs-util":297}],275:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -56026,7 +56149,7 @@ exports.KECCAK256_RLP_S = '56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622
 exports.KECCAK256_RLP = Buffer.from(exports.KECCAK256_RLP_S, 'hex');
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"bn.js":136,"buffer":173}],274:[function(require,module,exports){
+},{"bn.js":137,"buffer":174}],276:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -56143,7 +56266,7 @@ exports.rlphash = function (a) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./bytes":272,"buffer":173,"create-hash":176,"ethereum-cryptography/keccak":247,"ethjs-util":295,"rlp":373}],275:[function(require,module,exports){
+},{"./bytes":274,"buffer":174,"create-hash":177,"ethereum-cryptography/keccak":249,"ethjs-util":297,"rlp":375}],277:[function(require,module,exports){
 "use strict";
 
 var __createBinding = void 0 && (void 0).__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -56220,7 +56343,7 @@ __exportStar(require("./bytes"), exports);
 
 __exportStar(require("./object"), exports);
 
-},{"./account":271,"./bytes":272,"./constants":273,"./hash":274,"./object":276,"./secp256k1v3-adapter":277,"./signature":280,"bn.js":136,"ethjs-util":295,"rlp":373}],276:[function(require,module,exports){
+},{"./account":273,"./bytes":274,"./constants":275,"./hash":276,"./object":278,"./secp256k1v3-adapter":279,"./signature":282,"bn.js":137,"ethjs-util":297,"rlp":375}],278:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -56354,7 +56477,7 @@ exports.defineProperties = function (self, fields, data) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./bytes":272,"assert":69,"buffer":173,"ethjs-util":295,"rlp":373}],277:[function(require,module,exports){
+},{"./bytes":274,"assert":70,"buffer":174,"ethjs-util":297,"rlp":375}],279:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -56727,7 +56850,7 @@ exports.ecdhUnsafe = function (publicKey, privateKey, compressed) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./secp256k1v3-lib/der":278,"./secp256k1v3-lib/index":279,"buffer":173,"ethereum-cryptography/secp256k1":249}],278:[function(require,module,exports){
+},{"./secp256k1v3-lib/der":280,"./secp256k1v3-lib/index":281,"buffer":174,"ethereum-cryptography/secp256k1":251}],280:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict"; // This file is imported from secp256k1 v3
 // https://github.com/cryptocoinjs/secp256k1-node/blob/master/LICENSE
@@ -56899,7 +57022,7 @@ exports.signatureImportLax = function (signature) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":173}],279:[function(require,module,exports){
+},{"buffer":174}],281:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict"; // This file is imported from secp256k1 v3
 // https://github.com/cryptocoinjs/secp256k1-node/blob/master/LICENSE
@@ -56990,7 +57113,7 @@ var toPublicKey = function toPublicKey(x, y, compressed) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"bn.js":136,"buffer":173,"elliptic":225}],280:[function(require,module,exports){
+},{"bn.js":137,"buffer":174,"elliptic":227}],282:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -57136,27 +57259,9 @@ function isValidSigRecovery(recovery) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./bytes":272,"./hash":274,"./secp256k1v3-adapter":277,"bn.js":136,"buffer":173}],281:[function(require,module,exports){
+},{"./bytes":274,"./hash":276,"./secp256k1v3-adapter":279,"bn.js":137,"buffer":174}],283:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var __createBinding = void 0 && (void 0).__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
@@ -57192,6 +57297,33 @@ var __importStar = void 0 && (void 0).__importStar || function (mod) {
   return result;
 };
 
+var __read = void 0 && (void 0).__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -57223,18 +57355,27 @@ var helpers_1 = require("./helpers");
 
 var types_1 = require("./types");
 
-var Account = /*#__PURE__*/function () {
+var Account = function () {
   /**
    * This constructor assigns and validates the values.
    * Use the static factory methods to assist in creating an Account from varying data types.
    */
-  function Account() {
-    var nonce = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new bn_js_1["default"](0);
-    var balance = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new bn_js_1["default"](0);
-    var stateRoot = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : constants_1.KECCAK256_RLP;
-    var codeHash = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : constants_1.KECCAK256_NULL;
+  function Account(nonce, balance, stateRoot, codeHash) {
+    if (nonce === void 0) {
+      nonce = new bn_js_1["default"](0);
+    }
 
-    _classCallCheck(this, Account);
+    if (balance === void 0) {
+      balance = new bn_js_1["default"](0);
+    }
+
+    if (stateRoot === void 0) {
+      stateRoot = constants_1.KECCAK256_RLP;
+    }
+
+    if (codeHash === void 0) {
+      codeHash = constants_1.KECCAK256_NULL;
+    }
 
     this.nonce = nonce;
     this.balance = balance;
@@ -57244,95 +57385,85 @@ var Account = /*#__PURE__*/function () {
     this._validate();
   }
 
-  _createClass(Account, [{
-    key: "_validate",
-    value: function _validate() {
-      if (this.nonce.lt(new bn_js_1["default"](0))) {
-        throw new Error('nonce must be greater than zero');
-      }
+  Account.fromAccountData = function (accountData) {
+    var nonce = accountData.nonce,
+        balance = accountData.balance,
+        stateRoot = accountData.stateRoot,
+        codeHash = accountData.codeHash;
+    return new Account(nonce ? new bn_js_1["default"](bytes_1.toBuffer(nonce)) : undefined, balance ? new bn_js_1["default"](bytes_1.toBuffer(balance)) : undefined, stateRoot ? bytes_1.toBuffer(stateRoot) : undefined, codeHash ? bytes_1.toBuffer(codeHash) : undefined);
+  };
 
-      if (this.balance.lt(new bn_js_1["default"](0))) {
-        throw new Error('balance must be greater than zero');
-      }
+  Account.fromRlpSerializedAccount = function (serialized) {
+    var values = rlp.decode(serialized);
 
-      if (this.stateRoot.length !== 32) {
-        throw new Error('stateRoot must have a length of 32');
-      }
-
-      if (this.codeHash.length !== 32) {
-        throw new Error('codeHash must have a length of 32');
-      }
+    if (!Array.isArray(values)) {
+      throw new Error('Invalid serialized account input. Must be array');
     }
-    /**
-     * Returns a Buffer Array of the raw Buffers for the account, in order.
-     */
 
-  }, {
-    key: "raw",
-    value: function raw() {
-      return [types_1.bnToRlp(this.nonce), types_1.bnToRlp(this.balance), this.stateRoot, this.codeHash];
-    }
-    /**
-     * Returns the RLP serialization of the account as a `Buffer`.
-     */
+    return this.fromValuesArray(values);
+  };
 
-  }, {
-    key: "serialize",
-    value: function serialize() {
-      return rlp.encode(this.raw());
-    }
-    /**
-     * Returns a `Boolean` determining if the account is a contract.
-     */
+  Account.fromValuesArray = function (values) {
+    var _a = __read(values, 4),
+        nonce = _a[0],
+        balance = _a[1],
+        stateRoot = _a[2],
+        codeHash = _a[3];
 
-  }, {
-    key: "isContract",
-    value: function isContract() {
-      return !this.codeHash.equals(constants_1.KECCAK256_NULL);
-    }
-    /**
-     * Returns a `Boolean` determining if the account is empty complying to the definition of
-     * account emptiness in [EIP-161](https://eips.ethereum.org/EIPS/eip-161):
-     * "An account is considered empty when it has no code and zero nonce and zero balance."
-     */
+    return new Account(new bn_js_1["default"](nonce), new bn_js_1["default"](balance), stateRoot, codeHash);
+  };
 
-  }, {
-    key: "isEmpty",
-    value: function isEmpty() {
-      return this.balance.isZero() && this.nonce.isZero() && this.codeHash.equals(constants_1.KECCAK256_NULL);
+  Account.prototype._validate = function () {
+    if (this.nonce.lt(new bn_js_1["default"](0))) {
+      throw new Error('nonce must be greater than zero');
     }
-  }], [{
-    key: "fromAccountData",
-    value: function fromAccountData(accountData) {
-      var nonce = accountData.nonce,
-          balance = accountData.balance,
-          stateRoot = accountData.stateRoot,
-          codeHash = accountData.codeHash;
-      return new Account(nonce ? new bn_js_1["default"](bytes_1.toBuffer(nonce)) : undefined, balance ? new bn_js_1["default"](bytes_1.toBuffer(balance)) : undefined, stateRoot ? bytes_1.toBuffer(stateRoot) : undefined, codeHash ? bytes_1.toBuffer(codeHash) : undefined);
-    }
-  }, {
-    key: "fromRlpSerializedAccount",
-    value: function fromRlpSerializedAccount(serialized) {
-      var values = rlp.decode(serialized);
 
-      if (!Array.isArray(values)) {
-        throw new Error('Invalid serialized account input. Must be array');
-      }
-
-      return this.fromValuesArray(values);
+    if (this.balance.lt(new bn_js_1["default"](0))) {
+      throw new Error('balance must be greater than zero');
     }
-  }, {
-    key: "fromValuesArray",
-    value: function fromValuesArray(values) {
-      var _values = _slicedToArray(values, 4),
-          nonce = _values[0],
-          balance = _values[1],
-          stateRoot = _values[2],
-          codeHash = _values[3];
 
-      return new Account(new bn_js_1["default"](nonce), new bn_js_1["default"](balance), stateRoot, codeHash);
+    if (this.stateRoot.length !== 32) {
+      throw new Error('stateRoot must have a length of 32');
     }
-  }]);
+
+    if (this.codeHash.length !== 32) {
+      throw new Error('codeHash must have a length of 32');
+    }
+  };
+  /**
+   * Returns a Buffer Array of the raw Buffers for the account, in order.
+   */
+
+
+  Account.prototype.raw = function () {
+    return [types_1.bnToUnpaddedBuffer(this.nonce), types_1.bnToUnpaddedBuffer(this.balance), this.stateRoot, this.codeHash];
+  };
+  /**
+   * Returns the RLP serialization of the account as a `Buffer`.
+   */
+
+
+  Account.prototype.serialize = function () {
+    return rlp.encode(this.raw());
+  };
+  /**
+   * Returns a `Boolean` determining if the account is a contract.
+   */
+
+
+  Account.prototype.isContract = function () {
+    return !this.codeHash.equals(constants_1.KECCAK256_NULL);
+  };
+  /**
+   * Returns a `Boolean` determining if the account is empty complying to the definition of
+   * account emptiness in [EIP-161](https://eips.ethereum.org/EIPS/eip-161):
+   * "An account is considered empty when it has no code and zero nonce and zero balance."
+   */
+
+
+  Account.prototype.isEmpty = function () {
+    return this.balance.isZero() && this.nonce.isZero() && this.codeHash.equals(constants_1.KECCAK256_NULL);
+  };
 
   return Account;
 }();
@@ -57450,8 +57581,11 @@ exports.isValidPrivate = function (privateKey) {
  */
 
 
-exports.isValidPublic = function (publicKey) {
-  var sanitize = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+exports.isValidPublic = function (publicKey, sanitize) {
+  if (sanitize === void 0) {
+    sanitize = false;
+  }
+
   helpers_1.assertIsBuffer(publicKey);
 
   if (publicKey.length === 64) {
@@ -57473,8 +57607,11 @@ exports.isValidPublic = function (publicKey) {
  */
 
 
-exports.pubToAddress = function (pubKey) {
-  var sanitize = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+exports.pubToAddress = function (pubKey, sanitize) {
+  if (sanitize === void 0) {
+    sanitize = false;
+  }
+
   helpers_1.assertIsBuffer(pubKey);
 
   if (sanitize && pubKey.length !== 64) {
@@ -57547,15 +57684,9 @@ exports.isZeroAddress = function (hexAddress) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./bytes":283,"./constants":284,"./hash":286,"./helpers":287,"./types":291,"assert":69,"bn.js":292,"buffer":173,"ethereum-cryptography/secp256k1":249,"ethjs-util":295,"rlp":373}],282:[function(require,module,exports){
+},{"./bytes":285,"./constants":286,"./hash":288,"./helpers":289,"./types":293,"assert":70,"bn.js":294,"buffer":174,"ethereum-cryptography/secp256k1":251,"ethjs-util":297,"rlp":375}],284:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
@@ -57576,10 +57707,8 @@ var bytes_1 = require("./bytes");
 
 var account_1 = require("./account");
 
-var Address = /*#__PURE__*/function () {
+var Address = function () {
   function Address(buf) {
-    _classCallCheck(this, Address);
-
     assert_1["default"](buf.length === 20, 'Invalid address length');
     this.buf = buf;
   }
@@ -57588,122 +57717,109 @@ var Address = /*#__PURE__*/function () {
    */
 
 
-  _createClass(Address, [{
-    key: "equals",
-    value:
-    /**
-     * Is address equal to another.
-     */
-    function equals(address) {
-      return this.buf.equals(address.buf);
-    }
-    /**
-     * Is address zero.
-     */
+  Address.zero = function () {
+    return new Address(bytes_1.zeros(20));
+  };
+  /**
+   * Returns an Address object from a hex-encoded string.
+   * @param str - Hex-encoded address
+   */
 
-  }, {
-    key: "isZero",
-    value: function isZero() {
-      return this.equals(Address.zero());
-    }
-    /**
-     * True if address is in the address range defined
-     * by EIP-1352
-     */
 
-  }, {
-    key: "isPrecompileOrSystemAddress",
-    value: function isPrecompileOrSystemAddress() {
-      var addressBN = new bn_js_1["default"](this.buf);
-      var rangeMin = new bn_js_1["default"](0);
-      var rangeMax = new bn_js_1["default"]('ffff', 'hex');
-      return addressBN.gte(rangeMin) && addressBN.lte(rangeMax);
-    }
-    /**
-     * Returns hex encoding of address.
-     */
+  Address.fromString = function (str) {
+    assert_1["default"](account_1.isValidAddress(str), 'Invalid address');
+    return new Address(bytes_1.toBuffer(str));
+  };
+  /**
+   * Returns an address for a given public key.
+   * @param pubKey The two points of an uncompressed key
+   */
 
-  }, {
-    key: "toString",
-    value: function toString() {
-      return '0x' + this.buf.toString('hex');
-    }
-    /**
-     * Returns Buffer representation of address.
-     */
 
-  }, {
-    key: "toBuffer",
-    value: function toBuffer() {
-      return Buffer.from(this.buf);
-    }
-  }], [{
-    key: "zero",
-    value: function zero() {
-      return new Address(bytes_1.zeros(20));
-    }
-    /**
-     * Returns an Address object from a hex-encoded string.
-     * @param str - Hex-encoded address
-     */
+  Address.fromPublicKey = function (pubKey) {
+    assert_1["default"](Buffer.isBuffer(pubKey), 'Public key should be Buffer');
+    var buf = account_1.pubToAddress(pubKey);
+    return new Address(buf);
+  };
+  /**
+   * Returns an address for a given private key.
+   * @param privateKey A private key must be 256 bits wide
+   */
 
-  }, {
-    key: "fromString",
-    value: function fromString(str) {
-      assert_1["default"](account_1.isValidAddress(str), 'Invalid address');
-      return new Address(bytes_1.toBuffer(str));
-    }
-    /**
-     * Returns an address for a given public key.
-     * @param pubKey The two points of an uncompressed key
-     */
 
-  }, {
-    key: "fromPublicKey",
-    value: function fromPublicKey(pubKey) {
-      assert_1["default"](Buffer.isBuffer(pubKey), 'Public key should be Buffer');
-      var buf = account_1.pubToAddress(pubKey);
-      return new Address(buf);
-    }
-    /**
-     * Returns an address for a given private key.
-     * @param privateKey A private key must be 256 bits wide
-     */
+  Address.fromPrivateKey = function (privateKey) {
+    assert_1["default"](Buffer.isBuffer(privateKey), 'Private key should be Buffer');
+    var buf = account_1.privateToAddress(privateKey);
+    return new Address(buf);
+  };
+  /**
+   * Generates an address for a newly created contract.
+   * @param from The address which is creating this new address
+   * @param nonce The nonce of the from account
+   */
 
-  }, {
-    key: "fromPrivateKey",
-    value: function fromPrivateKey(privateKey) {
-      assert_1["default"](Buffer.isBuffer(privateKey), 'Private key should be Buffer');
-      var buf = account_1.privateToAddress(privateKey);
-      return new Address(buf);
-    }
-    /**
-     * Generates an address for a newly created contract.
-     * @param from The address which is creating this new address
-     * @param nonce The nonce of the from account
-     */
 
-  }, {
-    key: "generate",
-    value: function generate(from, nonce) {
-      assert_1["default"](bn_js_1["default"].isBN(nonce));
-      return new Address(account_1.generateAddress(from.buf, nonce.toArrayLike(Buffer)));
-    }
-    /**
-     * Generates an address for a contract created using CREATE2.
-     * @param from The address which is creating this new address
-     * @param salt A salt
-     * @param initCode The init code of the contract being created
-     */
+  Address.generate = function (from, nonce) {
+    assert_1["default"](bn_js_1["default"].isBN(nonce));
+    return new Address(account_1.generateAddress(from.buf, nonce.toArrayLike(Buffer)));
+  };
+  /**
+   * Generates an address for a contract created using CREATE2.
+   * @param from The address which is creating this new address
+   * @param salt A salt
+   * @param initCode The init code of the contract being created
+   */
 
-  }, {
-    key: "generate2",
-    value: function generate2(from, salt, initCode) {
-      assert_1["default"](Buffer.isBuffer(salt));
-      assert_1["default"](Buffer.isBuffer(initCode));
-      return new Address(account_1.generateAddress2(from.buf, salt, initCode));
-    }
-  }]);
+
+  Address.generate2 = function (from, salt, initCode) {
+    assert_1["default"](Buffer.isBuffer(salt));
+    assert_1["default"](Buffer.isBuffer(initCode));
+    return new Address(account_1.generateAddress2(from.buf, salt, initCode));
+  };
+  /**
+   * Is address equal to another.
+   */
+
+
+  Address.prototype.equals = function (address) {
+    return this.buf.equals(address.buf);
+  };
+  /**
+   * Is address zero.
+   */
+
+
+  Address.prototype.isZero = function () {
+    return this.equals(Address.zero());
+  };
+  /**
+   * True if address is in the address range defined
+   * by EIP-1352
+   */
+
+
+  Address.prototype.isPrecompileOrSystemAddress = function () {
+    var addressBN = new bn_js_1["default"](this.buf);
+    var rangeMin = new bn_js_1["default"](0);
+    var rangeMax = new bn_js_1["default"]('ffff', 'hex');
+    return addressBN.gte(rangeMin) && addressBN.lte(rangeMax);
+  };
+  /**
+   * Returns hex encoding of address.
+   */
+
+
+  Address.prototype.toString = function () {
+    return '0x' + this.buf.toString('hex');
+  };
+  /**
+   * Returns Buffer representation of address.
+   */
+
+
+  Address.prototype.toBuffer = function () {
+    return Buffer.from(this.buf);
+  };
 
   return Address;
 }();
@@ -57711,7 +57827,7 @@ var Address = /*#__PURE__*/function () {
 exports.Address = Address;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./account":281,"./bytes":283,"assert":69,"bn.js":292,"buffer":173}],283:[function(require,module,exports){
+},{"./account":283,"./bytes":285,"assert":70,"bn.js":294,"buffer":174}],285:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -57869,7 +57985,7 @@ exports.toBuffer = function (v) {
 
   if (typeof v === 'string') {
     if (!ethjs_util_1.isHexString(v)) {
-      throw new Error("Cannot convert string to buffer. toBuffer only supports 0x-prefixed hex strings and this string was given: ".concat(v));
+      throw new Error("Cannot convert string to buffer. toBuffer only supports 0x-prefixed hex strings and this string was given: " + v);
     }
 
     return Buffer.from(ethjs_util_1.padToEven(ethjs_util_1.stripHexPrefix(v)), 'hex');
@@ -57953,7 +58069,7 @@ exports.addHexPrefix = function (str) {
 
 exports.baToJSON = function (ba) {
   if (Buffer.isBuffer(ba)) {
-    return "0x".concat(ba.toString('hex'));
+    return "0x" + ba.toString('hex');
   } else if (ba instanceof Array) {
     var array = [];
 
@@ -57966,7 +58082,7 @@ exports.baToJSON = function (ba) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./helpers":287,"bn.js":292,"buffer":173,"ethjs-util":295}],284:[function(require,module,exports){
+},{"./helpers":289,"bn.js":294,"buffer":174,"ethjs-util":297}],286:[function(require,module,exports){
 "use strict";
 
 var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
@@ -58025,7 +58141,7 @@ exports.KECCAK256_RLP_S = '56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622
 
 exports.KECCAK256_RLP = Buffer.from(exports.KECCAK256_RLP_S, 'hex');
 
-},{"bn.js":292,"buffer":173}],285:[function(require,module,exports){
+},{"bn.js":294,"buffer":174}],287:[function(require,module,exports){
 "use strict";
 /**
  * Re-exports commonly used modules:
@@ -58086,7 +58202,7 @@ var rlp = __importStar(require("rlp"));
 
 exports.rlp = rlp;
 
-},{"bn.js":292,"rlp":373}],286:[function(require,module,exports){
+},{"bn.js":294,"rlp":375}],288:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -58145,8 +58261,11 @@ var helpers_1 = require("./helpers");
  */
 
 
-exports.keccak = function (a) {
-  var bits = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 256;
+exports.keccak = function (a, bits) {
+  if (bits === void 0) {
+    bits = 256;
+  }
+
   helpers_1.assertIsBuffer(a);
 
   switch (bits) {
@@ -58172,7 +58291,7 @@ exports.keccak = function (a) {
 
     default:
       {
-        throw new Error("Invald algorithm: keccak".concat(bits));
+        throw new Error("Invald algorithm: keccak" + bits);
       }
   }
 };
@@ -58192,8 +58311,11 @@ exports.keccak256 = function (a) {
  */
 
 
-exports.keccakFromString = function (a) {
-  var bits = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 256;
+exports.keccakFromString = function (a, bits) {
+  if (bits === void 0) {
+    bits = 256;
+  }
+
   helpers_1.assertIsString(a);
   var buf = Buffer.from(a, 'utf8');
   return exports.keccak(buf, bits);
@@ -58205,8 +58327,11 @@ exports.keccakFromString = function (a) {
  */
 
 
-exports.keccakFromHexString = function (a) {
-  var bits = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 256;
+exports.keccakFromHexString = function (a, bits) {
+  if (bits === void 0) {
+    bits = 256;
+  }
+
   helpers_1.assertIsHexString(a);
   return exports.keccak(bytes_1.toBuffer(a), bits);
 };
@@ -58217,8 +58342,11 @@ exports.keccakFromHexString = function (a) {
  */
 
 
-exports.keccakFromArray = function (a) {
-  var bits = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 256;
+exports.keccakFromArray = function (a, bits) {
+  if (bits === void 0) {
+    bits = 256;
+  }
+
   helpers_1.assertIsArray(a);
   return exports.keccak(bytes_1.toBuffer(a), bits);
 };
@@ -58323,7 +58451,7 @@ exports.rlphash = function (a) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./bytes":283,"./helpers":287,"buffer":173,"create-hash":176,"ethereum-cryptography/keccak":247,"rlp":373}],287:[function(require,module,exports){
+},{"./bytes":285,"./helpers":289,"buffer":174,"create-hash":177,"ethereum-cryptography/keccak":249,"rlp":375}],289:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -58341,7 +58469,7 @@ var ethjs_util_1 = require("ethjs-util");
 
 exports.assertIsHexString = function (input) {
   if (!ethjs_util_1.isHexString(input)) {
-    var msg = "This method only supports 0x-prefixed hex strings but input was: ".concat(input);
+    var msg = "This method only supports 0x-prefixed hex strings but input was: " + input;
     throw new Error(msg);
   }
 };
@@ -58353,7 +58481,7 @@ exports.assertIsHexString = function (input) {
 
 exports.assertIsBuffer = function (input) {
   if (!Buffer.isBuffer(input)) {
-    var msg = "This method only supports Buffer but input was: ".concat(input);
+    var msg = "This method only supports Buffer but input was: " + input;
     throw new Error(msg);
   }
 };
@@ -58365,7 +58493,7 @@ exports.assertIsBuffer = function (input) {
 
 exports.assertIsArray = function (input) {
   if (!Array.isArray(input)) {
-    var msg = "This method only supports number arrays but input was: ".concat(input);
+    var msg = "This method only supports number arrays but input was: " + input;
     throw new Error(msg);
   }
 };
@@ -58377,13 +58505,13 @@ exports.assertIsArray = function (input) {
 
 exports.assertIsString = function (input) {
   if (typeof input !== 'string') {
-    var msg = "This method only supports strings but input was: ".concat(input);
+    var msg = "This method only supports strings but input was: " + input;
     throw new Error(msg);
   }
 };
 
 }).call(this)}).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":316,"ethjs-util":295}],288:[function(require,module,exports){
+},{"../../is-buffer/index.js":318,"ethjs-util":297}],290:[function(require,module,exports){
 "use strict";
 
 var __createBinding = void 0 && (void 0).__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -58469,7 +58597,7 @@ __exportStar(require("./types"), exports);
 
 __exportStar(require("ethjs-util"), exports);
 
-},{"./account":281,"./address":282,"./bytes":283,"./constants":284,"./externals":285,"./hash":286,"./object":289,"./signature":290,"./types":291,"ethjs-util":295}],289:[function(require,module,exports){
+},{"./account":283,"./address":284,"./bytes":285,"./constants":286,"./externals":287,"./hash":288,"./object":291,"./signature":292,"./types":293,"ethjs-util":297}],291:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -58544,17 +58672,19 @@ exports.defineProperties = function (self, fields, data) {
   self.raw = [];
   self._fields = []; // attach the `toJSON`
 
-  self.toJSON = function () {
-    var label = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  self.toJSON = function (label) {
+    if (label === void 0) {
+      label = false;
+    }
 
     if (label) {
-      var obj = {};
+      var obj_1 = {};
 
       self._fields.forEach(function (field) {
-        obj[field] = "0x".concat(self[field].toString('hex'));
+        obj_1[field] = "0x" + self[field].toString('hex');
       });
 
-      return obj;
+      return obj_1;
     }
 
     return bytes_1.baToJSON(self.raw);
@@ -58580,9 +58710,9 @@ exports.defineProperties = function (self, fields, data) {
 
       if (field.allowLess && field.length) {
         v = bytes_1.unpadBuffer(v);
-        assert_1["default"](field.length >= v.length, "The field ".concat(field.name, " must not have more ").concat(field.length, " bytes"));
+        assert_1["default"](field.length >= v.length, "The field " + field.name + " must not have more " + field.length + " bytes");
       } else if (!(field.allowZero && v.length === 0) && field.length) {
-        assert_1["default"](field.length === v.length, "The field ".concat(field.name, " must have byte length of ").concat(field.length));
+        assert_1["default"](field.length === v.length, "The field " + field.name + " must have byte length of " + field.length);
       }
 
       self.raw[i] = v;
@@ -58629,10 +58759,10 @@ exports.defineProperties = function (self, fields, data) {
         self[self._fields[i]] = bytes_1.toBuffer(d);
       });
     } else if (_typeof(data) === 'object') {
-      var keys = Object.keys(data);
+      var keys_1 = Object.keys(data);
       fields.forEach(function (field) {
-        if (keys.indexOf(field.name) !== -1) self[field.name] = data[field.name];
-        if (keys.indexOf(field.alias) !== -1) self[field.alias] = data[field.alias];
+        if (keys_1.indexOf(field.name) !== -1) self[field.name] = data[field.name];
+        if (keys_1.indexOf(field.alias) !== -1) self[field.alias] = data[field.alias];
       });
     } else {
       throw new Error('invalid data');
@@ -58641,7 +58771,7 @@ exports.defineProperties = function (self, fields, data) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./bytes":283,"assert":69,"buffer":173,"ethjs-util":295,"rlp":373}],290:[function(require,module,exports){
+},{"./bytes":285,"assert":70,"buffer":174,"ethjs-util":297,"rlp":375}],292:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -58654,7 +58784,7 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hashPersonalMessage = exports.isValidSignature = exports.fromRpcSig = exports.toRpcSig = exports.ecrecover = exports.ecsign = void 0;
+exports.hashPersonalMessage = exports.isValidSignature = exports.fromRpcSig = exports.toCompactSig = exports.toRpcSig = exports.ecrecover = exports.ecsign = void 0;
 
 var secp256k1_1 = require("ethereum-cryptography/secp256k1");
 
@@ -58669,9 +58799,9 @@ var helpers_1 = require("./helpers");
 var types_1 = require("./types");
 
 function ecsign(msgHash, privateKey, chainId) {
-  var _secp256k1_1$ecdsaSig = secp256k1_1.ecdsaSign(msgHash, privateKey),
-      signature = _secp256k1_1$ecdsaSig.signature,
-      recovery = _secp256k1_1$ecdsaSig.recid;
+  var _a = secp256k1_1.ecdsaSign(msgHash, privateKey),
+      signature = _a.signature,
+      recovery = _a.recid;
 
   var r = Buffer.from(signature.slice(0, 32));
   var s = Buffer.from(signature.slice(32, 64));
@@ -58682,12 +58812,11 @@ function ecsign(msgHash, privateKey, chainId) {
       throw new Error('The provided number is greater than MAX_SAFE_INTEGER (please use an alternative input type)');
     }
 
-    var _v = chainId ? recovery + (chainId * 2 + 35) : recovery + 27;
-
+    var v_1 = chainId ? recovery + (chainId * 2 + 35) : recovery + 27;
     return {
       r: r,
       s: s,
-      v: _v
+      v: v_1
     };
   }
 
@@ -58751,6 +58880,29 @@ exports.toRpcSig = function (v, r, s, chainId) {
   return bytes_1.bufferToHex(Buffer.concat([bytes_1.setLengthLeft(r, 32), bytes_1.setLengthLeft(s, 32), bytes_1.toBuffer(v)]));
 };
 /**
+ * Convert signature parameters into the format of Compact Signature Representation (EIP-2098).
+ * @returns Signature
+ */
+
+
+exports.toCompactSig = function (v, r, s, chainId) {
+  var recovery = calculateSigRecovery(v, chainId);
+
+  if (!isValidSigRecovery(recovery)) {
+    throw new Error('Invalid signature v value');
+  }
+
+  var vn = types_1.toType(v, types_1.TypeOutput.Number);
+  var ss = s;
+
+  if (vn > 28 && vn % 2 === 1 || vn === 1 || vn === 28) {
+    ss = Buffer.from(s);
+    ss[0] |= 0x80;
+  }
+
+  return bytes_1.bufferToHex(Buffer.concat([bytes_1.setLengthLeft(r, 32), bytes_1.setLengthLeft(ss, 32)]));
+};
+/**
  * Convert signature format of the `eth_sign` RPC method to signature parameters
  * NOTE: all because of a bug in geth: https://github.com/ethereum/go-ethereum/issues/2053
  */
@@ -58758,12 +58910,24 @@ exports.toRpcSig = function (v, r, s, chainId) {
 
 exports.fromRpcSig = function (sig) {
   var buf = bytes_1.toBuffer(sig);
+  var r;
+  var s;
+  var v;
 
-  if (buf.length < 65) {
+  if (buf.length >= 65) {
+    r = buf.slice(0, 32);
+    s = buf.slice(32, 64);
+    v = bytes_1.bufferToInt(buf.slice(64));
+  } else if (buf.length === 64) {
+    // Compact Signature Representation (https://eips.ethereum.org/EIPS/eip-2098)
+    r = buf.slice(0, 32);
+    s = buf.slice(32, 64);
+    v = bytes_1.bufferToInt(buf.slice(32, 33)) >> 7;
+    s[0] &= 0x7f;
+  } else {
     throw new Error('Invalid signature length');
-  }
+  } // support both versions of `eth_sign` responses
 
-  var v = bytes_1.bufferToInt(buf.slice(64)); // support both versions of `eth_sign` responses
 
   if (v < 27) {
     v += 27;
@@ -58771,8 +58935,8 @@ exports.fromRpcSig = function (sig) {
 
   return {
     v: v,
-    r: buf.slice(0, 32),
-    s: buf.slice(32, 64)
+    r: r,
+    s: s
   };
 };
 /**
@@ -58781,9 +58945,11 @@ exports.fromRpcSig = function (sig) {
  */
 
 
-exports.isValidSignature = function (v, r, s) {
-  var homesteadOrLater = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
-  var chainId = arguments.length > 4 ? arguments[4] : undefined;
+exports.isValidSignature = function (v, r, s, homesteadOrLater, chainId) {
+  if (homesteadOrLater === void 0) {
+    homesteadOrLater = true;
+  }
+
   var SECP256K1_N_DIV_2 = new bn_js_1["default"]('7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0', 16);
   var SECP256K1_N = new bn_js_1["default"]('fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141', 16);
 
@@ -58818,12 +58984,12 @@ exports.isValidSignature = function (v, r, s) {
 
 exports.hashPersonalMessage = function (message) {
   helpers_1.assertIsBuffer(message);
-  var prefix = Buffer.from("\x19Ethereum Signed Message:\n".concat(message.length.toString()), 'utf-8');
+  var prefix = Buffer.from("\x19Ethereum Signed Message:\n" + message.length.toString(), 'utf-8');
   return hash_1.keccak(Buffer.concat([prefix, message]));
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./bytes":283,"./hash":286,"./helpers":287,"./types":291,"bn.js":292,"buffer":173,"ethereum-cryptography/secp256k1":249}],291:[function(require,module,exports){
+},{"./bytes":285,"./hash":288,"./helpers":289,"./types":293,"bn.js":294,"buffer":174,"ethereum-cryptography/secp256k1":251}],293:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -58836,7 +59002,7 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.toType = exports.TypeOutput = exports.bnToRlp = exports.bnToHex = void 0;
+exports.toType = exports.TypeOutput = exports.bnToRlp = exports.bnToUnpaddedBuffer = exports.bnToHex = void 0;
 
 var bn_js_1 = __importDefault(require("bn.js"));
 
@@ -58849,19 +59015,30 @@ var bytes_1 = require("./bytes");
 
 
 function bnToHex(value) {
-  return "0x".concat(value.toString(16));
+  return "0x" + value.toString(16);
 }
 
 exports.bnToHex = bnToHex;
 /**
- * Convert value from BN to RLP (unpadded buffer)
+ * Convert value from BN to an unpadded Buffer
+ * (useful for RLP transport)
  * @param value value to convert
  */
 
-function bnToRlp(value) {
+function bnToUnpaddedBuffer(value) {
   // Using `bn.toArrayLike(Buffer)` instead of `bn.toBuffer()`
   // for compatibility with browserify and similar tools
   return bytes_1.unpadBuffer(value.toArrayLike(Buffer));
+}
+
+exports.bnToUnpaddedBuffer = bnToUnpaddedBuffer;
+/**
+ * Deprecated alias for {@link bnToUnpaddedBuffer}
+ * @deprecated
+ */
+
+function bnToRlp(value) {
+  return bnToUnpaddedBuffer(value);
 }
 
 exports.bnToRlp = bnToRlp;
@@ -58886,7 +59063,7 @@ var TypeOutput;
 
 function toType(input, outputType) {
   if (typeof input === 'string' && !ethjs_util_1.isHexString(input)) {
-    throw new Error("A string must be provided with a 0x-prefix, given: ".concat(input));
+    throw new Error("A string must be provided with a 0x-prefix, given: " + input);
   } else if (typeof input === 'number' && !Number.isSafeInteger(input)) {
     throw new Error('The provided number is greater than MAX_SAFE_INTEGER (please use an alternative input type)');
   }
@@ -58908,16 +59085,16 @@ function toType(input, outputType) {
     return bn.toNumber();
   } else {
     // outputType === TypeOutput.PrefixedHexString
-    return "0x".concat(input.toString('hex'));
+    return "0x" + input.toString('hex');
   }
 }
 
 exports.toType = toType;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./bytes":283,"bn.js":292,"buffer":173,"ethjs-util":295}],292:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"buffer":138,"dup":160}],293:[function(require,module,exports){
+},{"./bytes":285,"bn.js":294,"buffer":174,"ethjs-util":297}],294:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"buffer":139,"dup":161}],295:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -59124,7 +59301,7 @@ module.exports = {
   toWei: toWei
 };
 
-},{"bn.js":294,"number-to-bn":331}],294:[function(require,module,exports){
+},{"bn.js":296,"number-to-bn":333}],296:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -62586,7 +62763,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   };
 })(typeof module === 'undefined' || module, void 0);
 
-},{}],295:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 (function (Buffer){(function (){
 'use strict';
 
@@ -62827,7 +63004,7 @@ module.exports = {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":173,"is-hex-prefixed":317,"strip-hex-prefix":391}],296:[function(require,module,exports){
+},{"buffer":174,"is-hex-prefixed":319,"strip-hex-prefix":393}],298:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -63305,7 +63482,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],297:[function(require,module,exports){
+},{}],299:[function(require,module,exports){
 "use strict";
 
 var Buffer = require('safe-buffer').Buffer;
@@ -63359,7 +63536,7 @@ function EVP_BytesToKey(password, salt, keyBits, ivLen) {
 
 module.exports = EVP_BytesToKey;
 
-},{"md5.js":326,"safe-buffer":374}],298:[function(require,module,exports){
+},{"md5.js":328,"safe-buffer":376}],300:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -63470,9 +63647,9 @@ HashBase.prototype._digest = function () {
 
 module.exports = HashBase;
 
-},{"inherits":299,"readable-stream":371,"safe-buffer":374}],299:[function(require,module,exports){
-arguments[4][168][0].apply(exports,arguments)
-},{"dup":168}],300:[function(require,module,exports){
+},{"inherits":301,"readable-stream":373,"safe-buffer":376}],301:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],302:[function(require,module,exports){
 "use strict";
 
 var hash = exports;
@@ -63489,7 +63666,7 @@ hash.sha384 = hash.sha.sha384;
 hash.sha512 = hash.sha.sha512;
 hash.ripemd160 = hash.ripemd.ripemd160;
 
-},{"./hash/common":301,"./hash/hmac":302,"./hash/ripemd":303,"./hash/sha":304,"./hash/utils":311}],301:[function(require,module,exports){
+},{"./hash/common":303,"./hash/hmac":304,"./hash/ripemd":305,"./hash/sha":306,"./hash/utils":313}],303:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -63583,7 +63760,7 @@ BlockHash.prototype._pad = function pad() {
   return res;
 };
 
-},{"./utils":311,"minimalistic-assert":328}],302:[function(require,module,exports){
+},{"./utils":313,"minimalistic-assert":330}],304:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -63635,7 +63812,7 @@ Hmac.prototype.digest = function digest(enc) {
   return this.outer.digest(enc);
 };
 
-},{"./utils":311,"minimalistic-assert":328}],303:[function(require,module,exports){
+},{"./utils":313,"minimalistic-assert":330}],305:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -63718,7 +63895,7 @@ var rh = [5, 14, 7, 0, 9, 2, 11, 4, 13, 6, 15, 8, 1, 10, 3, 12, 6, 11, 3, 7, 0, 
 var s = [11, 14, 15, 12, 5, 8, 7, 9, 11, 13, 14, 15, 6, 7, 9, 8, 7, 6, 8, 13, 11, 9, 7, 15, 7, 12, 15, 9, 11, 7, 13, 12, 11, 13, 6, 7, 14, 9, 13, 15, 14, 8, 13, 6, 5, 12, 7, 5, 11, 12, 14, 15, 14, 15, 9, 8, 9, 14, 5, 6, 8, 6, 5, 12, 9, 15, 5, 11, 6, 8, 13, 12, 5, 12, 13, 14, 11, 8, 5, 6];
 var sh = [8, 9, 9, 11, 13, 15, 15, 5, 7, 7, 8, 11, 14, 14, 12, 6, 9, 13, 15, 7, 12, 8, 9, 11, 7, 7, 12, 7, 6, 15, 13, 11, 9, 7, 15, 11, 8, 6, 6, 14, 12, 13, 5, 14, 13, 13, 7, 5, 15, 5, 8, 11, 14, 14, 6, 14, 6, 9, 12, 9, 12, 5, 15, 8, 8, 5, 12, 9, 12, 5, 14, 6, 8, 13, 6, 5, 15, 13, 11, 11];
 
-},{"./common":301,"./utils":311}],304:[function(require,module,exports){
+},{"./common":303,"./utils":313}],306:[function(require,module,exports){
 'use strict';
 
 exports.sha1 = require('./sha/1');
@@ -63727,7 +63904,7 @@ exports.sha256 = require('./sha/256');
 exports.sha384 = require('./sha/384');
 exports.sha512 = require('./sha/512');
 
-},{"./sha/1":305,"./sha/224":306,"./sha/256":307,"./sha/384":308,"./sha/512":309}],305:[function(require,module,exports){
+},{"./sha/1":307,"./sha/224":308,"./sha/256":309,"./sha/384":310,"./sha/512":311}],307:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -63795,7 +63972,7 @@ SHA1.prototype._digest = function digest(enc) {
   if (enc === 'hex') return utils.toHex32(this.h, 'big');else return utils.split32(this.h, 'big');
 };
 
-},{"../common":301,"../utils":311,"./common":310}],306:[function(require,module,exports){
+},{"../common":303,"../utils":313,"./common":312}],308:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -63820,7 +63997,7 @@ SHA224.prototype._digest = function digest(enc) {
   if (enc === 'hex') return utils.toHex32(this.h.slice(0, 7), 'big');else return utils.split32(this.h.slice(0, 7), 'big');
 };
 
-},{"../utils":311,"./256":307}],307:[function(require,module,exports){
+},{"../utils":313,"./256":309}],309:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -63906,7 +64083,7 @@ SHA256.prototype._digest = function digest(enc) {
   if (enc === 'hex') return utils.toHex32(this.h, 'big');else return utils.split32(this.h, 'big');
 };
 
-},{"../common":301,"../utils":311,"./common":310,"minimalistic-assert":328}],308:[function(require,module,exports){
+},{"../common":303,"../utils":313,"./common":312,"minimalistic-assert":330}],310:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -63930,7 +64107,7 @@ SHA384.prototype._digest = function digest(enc) {
   if (enc === 'hex') return utils.toHex32(this.h.slice(0, 12), 'big');else return utils.split32(this.h.slice(0, 12), 'big');
 };
 
-},{"../utils":311,"./512":309}],309:[function(require,module,exports){
+},{"../utils":313,"./512":311}],311:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -64170,7 +64347,7 @@ function g1_512_lo(xh, xl) {
   return r;
 }
 
-},{"../common":301,"../utils":311,"minimalistic-assert":328}],310:[function(require,module,exports){
+},{"../common":303,"../utils":313,"minimalistic-assert":330}],312:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -64227,7 +64404,7 @@ function g1_256(x) {
 
 exports.g1_256 = g1_256;
 
-},{"../utils":311}],311:[function(require,module,exports){
+},{"../utils":313}],313:[function(require,module,exports){
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -64520,9 +64697,9 @@ function shr64_lo(ah, al, num) {
 
 exports.shr64_lo = shr64_lo;
 
-},{"inherits":312,"minimalistic-assert":328}],312:[function(require,module,exports){
-arguments[4][168][0].apply(exports,arguments)
-},{"dup":168}],313:[function(require,module,exports){
+},{"inherits":314,"minimalistic-assert":330}],314:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],315:[function(require,module,exports){
 'use strict';
 
 var hash = require('hash.js');
@@ -64630,7 +64807,7 @@ HmacDRBG.prototype.generate = function generate(len, enc, add, addEnc) {
   return utils.encode(res, enc);
 };
 
-},{"hash.js":300,"minimalistic-assert":328,"minimalistic-crypto-utils":329}],314:[function(require,module,exports){
+},{"hash.js":302,"minimalistic-assert":330,"minimalistic-crypto-utils":331}],316:[function(require,module,exports){
 "use strict";
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
@@ -64723,7 +64900,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],315:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 "use strict";
 
 if (typeof Object.create === 'function') {
@@ -64752,7 +64929,7 @@ if (typeof Object.create === 'function') {
   };
 }
 
-},{}],316:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 "use strict";
 
 /*!
@@ -64776,7 +64953,7 @@ function isSlowBuffer(obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0));
 }
 
-},{}],317:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -64795,7 +64972,7 @@ module.exports = function isHexPrefixed(str) {
   return str.slice(0, 2) === '0x';
 };
 
-},{}],318:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 (function (process,global){(function (){
 "use strict";
 
@@ -65344,12 +65521,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 })();
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":344}],319:[function(require,module,exports){
+},{"_process":346}],321:[function(require,module,exports){
 "use strict";
 
 module.exports = require('./lib/api')(require('./lib/keccak'));
 
-},{"./lib/api":320,"./lib/keccak":324}],320:[function(require,module,exports){
+},{"./lib/api":322,"./lib/keccak":326}],322:[function(require,module,exports){
 "use strict";
 
 var createKeccak = require('./keccak');
@@ -65399,7 +65576,7 @@ module.exports = function (KeccakState) {
   };
 };
 
-},{"./keccak":321,"./shake":322}],321:[function(require,module,exports){
+},{"./keccak":323,"./shake":324}],323:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -65417,7 +65594,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
@@ -65531,7 +65708,7 @@ module.exports = function (KeccakState) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":173,"stream":388}],322:[function(require,module,exports){
+},{"buffer":174,"stream":390}],324:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -65549,7 +65726,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
@@ -65654,7 +65831,7 @@ module.exports = function (KeccakState) {
 };
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":173,"stream":388}],323:[function(require,module,exports){
+},{"buffer":174,"stream":390}],325:[function(require,module,exports){
 "use strict";
 
 var P1600_ROUND_CONSTANTS = [1, 0, 32898, 0, 32906, 2147483648, 2147516416, 2147483648, 32907, 0, 2147483649, 0, 2147516545, 2147483648, 32777, 2147483648, 138, 0, 136, 0, 2147516425, 0, 2147483658, 0, 2147516555, 0, 139, 2147483648, 32905, 2147483648, 32771, 2147483648, 32770, 2147483648, 128, 2147483648, 32778, 0, 2147483658, 2147483648, 2147516545, 2147483648, 32896, 2147483648, 2147483649, 0, 2147516424, 2147483648];
@@ -65840,7 +66017,7 @@ exports.p1600 = function (s) {
   }
 };
 
-},{}],324:[function(require,module,exports){
+},{}],326:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -65915,7 +66092,7 @@ Keccak.prototype.copy = function (dest) {
 module.exports = Keccak;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"./keccak-state-unroll":323,"buffer":173}],325:[function(require,module,exports){
+},{"./keccak-state-unroll":325,"buffer":174}],327:[function(require,module,exports){
 (function (global){(function (){
 "use strict";function _typeof(obj){"@babel/helpers - typeof";if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}/**
  * @license
@@ -66825,9 +67002,7 @@ Stack.prototype.clear=stackClear;Stack.prototype['delete']=stackDelete;Stack.pro
      * @param {boolean} inherited Specify returning inherited property names.
      * @returns {Array} Returns the array of property names.
      */function arrayLikeKeys(value,inherited){var isArr=isArray(value),isArg=!isArr&&isArguments(value),isBuff=!isArr&&!isArg&&isBuffer(value),isType=!isArr&&!isArg&&!isBuff&&isTypedArray(value),skipIndexes=isArr||isArg||isBuff||isType,result=skipIndexes?baseTimes(value.length,String):[],length=result.length;for(var key in value){if((inherited||hasOwnProperty.call(value,key))&&!(skipIndexes&&(// Safari 9 has enumerable `arguments.length` in strict mode.
-key=='length'||// Node.js 0.10 has enumerable non-index properties on buffers.
-isBuff&&(key=='offset'||key=='parent')||// PhantomJS 2 has enumerable non-index properties on typed arrays.
-isType&&(key=='buffer'||key=='byteLength'||key=='byteOffset')||// Skip index properties.
+key=='length'||isBuff&&(key=='offset'||key=='parent')||isType&&(key=='buffer'||key=='byteLength'||key=='byteOffset')||// Skip index properties.
 isIndex(key,length)))){result.push(key);}}return result;}/**
      * A specialized version of `_.sample` for arrays.
      *
@@ -75396,7 +75571,7 @@ freeExports._=_;}else{// Export to the global object.
 root._=_;}}).call(void 0);
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],326:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -75550,7 +75725,7 @@ function fnI(a, b, c, d, m, k, s) {
 
 module.exports = MD5;
 
-},{"hash-base":298,"inherits":315,"safe-buffer":374}],327:[function(require,module,exports){
+},{"hash-base":300,"inherits":317,"safe-buffer":376}],329:[function(require,module,exports){
 "use strict";
 
 var bn = require('bn.js');
@@ -75654,7 +75829,7 @@ MillerRabin.prototype.getDivisor = function getDivisor(n, k) {
   return false;
 };
 
-},{"bn.js":136,"brorand":137}],328:[function(require,module,exports){
+},{"bn.js":137,"brorand":138}],330:[function(require,module,exports){
 "use strict";
 
 module.exports = assert;
@@ -75667,7 +75842,7 @@ assert.equal = function assertEqual(l, r, msg) {
   if (l != r) throw new Error(msg || 'Assertion failed: ' + l + ' != ' + r);
 };
 
-},{}],329:[function(require,module,exports){
+},{}],331:[function(require,module,exports){
 'use strict';
 
 var utils = exports;
@@ -75728,9 +75903,9 @@ utils.encode = function encode(arr, enc) {
   if (enc === 'hex') return toHex(arr);else return arr;
 };
 
-},{}],330:[function(require,module,exports){
-arguments[4][294][0].apply(exports,arguments)
-},{"dup":294}],331:[function(require,module,exports){
+},{}],332:[function(require,module,exports){
+arguments[4][296][0].apply(exports,arguments)
+},{"dup":296}],333:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -75777,7 +75952,7 @@ module.exports = function numberToBN(arg) {
   throw new Error('[number-to-bn] while converting number ' + JSON.stringify(arg) + ' to BN.js instance, error: invalid number value. Value must be an integer, hex string, BN or BigNumber instance. Note, decimals are not supported.');
 };
 
-},{"bn.js":330,"strip-hex-prefix":391}],332:[function(require,module,exports){
+},{"bn.js":332,"strip-hex-prefix":393}],334:[function(require,module,exports){
 /*
 object-assign
 (c) Sindre Sorhus
@@ -75874,7 +76049,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
   return to;
 };
 
-},{}],333:[function(require,module,exports){
+},{}],335:[function(require,module,exports){
 module.exports={"2.16.840.1.101.3.4.1.1": "aes-128-ecb",
 "2.16.840.1.101.3.4.1.2": "aes-128-cbc",
 "2.16.840.1.101.3.4.1.3": "aes-128-ofb",
@@ -75888,7 +76063,7 @@ module.exports={"2.16.840.1.101.3.4.1.1": "aes-128-ecb",
 "2.16.840.1.101.3.4.1.43": "aes-256-ofb",
 "2.16.840.1.101.3.4.1.44": "aes-256-cfb"
 }
-},{}],334:[function(require,module,exports){
+},{}],336:[function(require,module,exports){
 // from https://github.com/indutny/self-signed/blob/gh-pages/lib/asn1.js
 // Fedor, you are amazing.
 'use strict';
@@ -75939,7 +76114,7 @@ exports.signature = asn1.define('signature', function () {
   this.seq().obj(this.key('r')["int"](), this.key('s')["int"]());
 });
 
-},{"./certificate":335,"asn1.js":55}],335:[function(require,module,exports){
+},{"./certificate":337,"asn1.js":56}],337:[function(require,module,exports){
 // from https://github.com/Rantanen/node-dtls/blob/25a7dc861bda38cfeac93a723500eea4f0ac2e86/Certificate.js
 // thanks to @Rantanen
 'use strict';
@@ -75986,7 +76161,7 @@ var X509Certificate = asn.define('X509Certificate', function () {
 });
 module.exports = X509Certificate;
 
-},{"asn1.js":55}],336:[function(require,module,exports){
+},{"asn1.js":56}],338:[function(require,module,exports){
 "use strict";
 
 // adapted from https://github.com/apatil/pemstrip
@@ -76027,7 +76202,7 @@ module.exports = function (okey, password) {
   };
 };
 
-},{"browserify-aes":141,"evp_bytestokey":297,"safe-buffer":374}],337:[function(require,module,exports){
+},{"browserify-aes":142,"evp_bytestokey":299,"safe-buffer":376}],339:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -76172,13 +76347,13 @@ function decrypt(data, password) {
   return Buffer.concat(out);
 }
 
-},{"./aesid.json":333,"./asn1":334,"./fixProc":336,"browserify-aes":141,"pbkdf2":338,"safe-buffer":374}],338:[function(require,module,exports){
+},{"./aesid.json":335,"./asn1":336,"./fixProc":338,"browserify-aes":142,"pbkdf2":340,"safe-buffer":376}],340:[function(require,module,exports){
 "use strict";
 
 exports.pbkdf2 = require('./lib/async');
 exports.pbkdf2Sync = require('./lib/sync');
 
-},{"./lib/async":339,"./lib/sync":342}],339:[function(require,module,exports){
+},{"./lib/async":341,"./lib/sync":344}],341:[function(require,module,exports){
 (function (global){(function (){
 "use strict";
 
@@ -76314,7 +76489,7 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
 };
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./default-encoding":340,"./precondition":341,"./sync":342,"./to-buffer":343,"safe-buffer":374}],340:[function(require,module,exports){
+},{"./default-encoding":342,"./precondition":343,"./sync":344,"./to-buffer":345,"safe-buffer":376}],342:[function(require,module,exports){
 (function (process,global){(function (){
 "use strict";
 
@@ -76333,7 +76508,7 @@ if (global.process && global.process.browser) {
 module.exports = defaultEncoding;
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":344}],341:[function(require,module,exports){
+},{"_process":346}],343:[function(require,module,exports){
 "use strict";
 
 var MAX_ALLOC = Math.pow(2, 30) - 1; // default in iojs
@@ -76357,7 +76532,7 @@ module.exports = function (iterations, keylen) {
   }
 };
 
-},{}],342:[function(require,module,exports){
+},{}],344:[function(require,module,exports){
 "use strict";
 
 var md5 = require('create-hash/md5');
@@ -76471,7 +76646,7 @@ function pbkdf2(password, salt, iterations, keylen, digest) {
 
 module.exports = pbkdf2;
 
-},{"./default-encoding":340,"./precondition":341,"./to-buffer":343,"create-hash/md5":177,"ripemd160":372,"safe-buffer":374,"sha.js":381}],343:[function(require,module,exports){
+},{"./default-encoding":342,"./precondition":343,"./to-buffer":345,"create-hash/md5":178,"ripemd160":374,"safe-buffer":376,"sha.js":383}],345:[function(require,module,exports){
 "use strict";
 
 var Buffer = require('safe-buffer').Buffer;
@@ -76488,7 +76663,7 @@ module.exports = function (thing, encoding, name) {
   }
 };
 
-},{"safe-buffer":374}],344:[function(require,module,exports){
+},{"safe-buffer":376}],346:[function(require,module,exports){
 "use strict";
 
 // shim for using process in browser
@@ -76700,7 +76875,7 @@ process.umask = function () {
   return 0;
 };
 
-},{}],345:[function(require,module,exports){
+},{}],347:[function(require,module,exports){
 "use strict";
 
 exports.publicEncrypt = require('./publicEncrypt');
@@ -76714,7 +76889,7 @@ exports.publicDecrypt = function publicDecrypt(key, buf) {
   return exports.privateDecrypt(key, buf, true);
 };
 
-},{"./privateDecrypt":347,"./publicEncrypt":348}],346:[function(require,module,exports){
+},{"./privateDecrypt":349,"./publicEncrypt":350}],348:[function(require,module,exports){
 "use strict";
 
 var createHash = require('create-hash');
@@ -76740,7 +76915,7 @@ function i2ops(c) {
   return out;
 }
 
-},{"create-hash":176,"safe-buffer":374}],347:[function(require,module,exports){
+},{"create-hash":177,"safe-buffer":376}],349:[function(require,module,exports){
 "use strict";
 
 var parseKeys = require('parse-asn1');
@@ -76879,7 +77054,7 @@ function compare(a, b) {
   return dif;
 }
 
-},{"./mgf":346,"./withPublic":349,"./xor":350,"bn.js":136,"browserify-rsa":159,"create-hash":176,"parse-asn1":337,"safe-buffer":374}],348:[function(require,module,exports){
+},{"./mgf":348,"./withPublic":351,"./xor":352,"bn.js":137,"browserify-rsa":160,"create-hash":177,"parse-asn1":339,"safe-buffer":376}],350:[function(require,module,exports){
 "use strict";
 
 var parseKeys = require('parse-asn1');
@@ -76996,7 +77171,7 @@ function nonZero(len) {
   return out;
 }
 
-},{"./mgf":346,"./withPublic":349,"./xor":350,"bn.js":136,"browserify-rsa":159,"create-hash":176,"parse-asn1":337,"randombytes":354,"safe-buffer":374}],349:[function(require,module,exports){
+},{"./mgf":348,"./withPublic":351,"./xor":352,"bn.js":137,"browserify-rsa":160,"create-hash":177,"parse-asn1":339,"randombytes":356,"safe-buffer":376}],351:[function(require,module,exports){
 "use strict";
 
 var BN = require('bn.js');
@@ -77009,7 +77184,7 @@ function withPublic(paddedMsg, key) {
 
 module.exports = withPublic;
 
-},{"bn.js":136,"safe-buffer":374}],350:[function(require,module,exports){
+},{"bn.js":137,"safe-buffer":376}],352:[function(require,module,exports){
 "use strict";
 
 module.exports = function xor(a, b) {
@@ -77023,7 +77198,7 @@ module.exports = function xor(a, b) {
   return a;
 };
 
-},{}],351:[function(require,module,exports){
+},{}],353:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -77110,7 +77285,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],352:[function(require,module,exports){
+},{}],354:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -77202,13 +77377,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],353:[function(require,module,exports){
+},{}],355:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":351,"./encode":352}],354:[function(require,module,exports){
+},{"./decode":353,"./encode":354}],356:[function(require,module,exports){
 (function (process,global){(function (){
 'use strict'; // limit of Crypto.getRandomValues()
 // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues
@@ -77262,7 +77437,7 @@ function randomBytes(size, cb) {
 }
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":344,"safe-buffer":374}],355:[function(require,module,exports){
+},{"_process":346,"safe-buffer":376}],357:[function(require,module,exports){
 (function (process,global){(function (){
 'use strict';
 
@@ -77387,7 +77562,7 @@ function randomFillSync(buf, offset, size) {
 }
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":344,"randombytes":354,"safe-buffer":374}],356:[function(require,module,exports){
+},{"_process":346,"randombytes":356,"safe-buffer":376}],358:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -77520,7 +77695,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],357:[function(require,module,exports){
+},{}],359:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -77663,7 +77838,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
 });
 
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":359,"./_stream_writable":361,"_process":344,"inherits":370}],358:[function(require,module,exports){
+},{"./_stream_readable":361,"./_stream_writable":363,"_process":346,"inherits":372}],360:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -77704,7 +77879,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":360,"inherits":370}],359:[function(require,module,exports){
+},{"./_stream_transform":362,"inherits":372}],361:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -78832,7 +79007,7 @@ function indexOf(xs, x) {
 }
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":356,"./_stream_duplex":357,"./internal/streams/async_iterator":362,"./internal/streams/buffer_list":363,"./internal/streams/destroy":364,"./internal/streams/from":366,"./internal/streams/state":368,"./internal/streams/stream":369,"_process":344,"buffer":173,"events":296,"inherits":370,"string_decoder/":390,"util":138}],360:[function(require,module,exports){
+},{"../errors":358,"./_stream_duplex":359,"./internal/streams/async_iterator":364,"./internal/streams/buffer_list":365,"./internal/streams/destroy":366,"./internal/streams/from":368,"./internal/streams/state":370,"./internal/streams/stream":371,"_process":346,"buffer":174,"events":298,"inherits":372,"string_decoder/":392,"util":139}],362:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -79035,7 +79210,7 @@ function done(stream, er, data) {
   return stream.push(null);
 }
 
-},{"../errors":356,"./_stream_duplex":357,"inherits":370}],361:[function(require,module,exports){
+},{"../errors":358,"./_stream_duplex":359,"inherits":372}],363:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -79736,7 +79911,7 @@ Writable.prototype._destroy = function (err, cb) {
 };
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":356,"./_stream_duplex":357,"./internal/streams/destroy":364,"./internal/streams/state":368,"./internal/streams/stream":369,"_process":344,"buffer":173,"inherits":370,"util-deprecate":400}],362:[function(require,module,exports){
+},{"../errors":358,"./_stream_duplex":359,"./internal/streams/destroy":366,"./internal/streams/state":370,"./internal/streams/stream":371,"_process":346,"buffer":174,"inherits":372,"util-deprecate":401}],364:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -79960,7 +80135,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 module.exports = createReadableStreamAsyncIterator;
 
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":365,"_process":344}],363:[function(require,module,exports){
+},{"./end-of-stream":367,"_process":346}],365:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) {
@@ -80229,7 +80404,7 @@ module.exports = /*#__PURE__*/function () {
   return BufferList;
 }();
 
-},{"buffer":173,"util":138}],364:[function(require,module,exports){
+},{"buffer":174,"util":139}],366:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -80338,7 +80513,7 @@ module.exports = {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":344}],365:[function(require,module,exports){
+},{"_process":346}],367:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -80444,14 +80619,14 @@ function eos(stream, opts, callback) {
 
 module.exports = eos;
 
-},{"../../../errors":356}],366:[function(require,module,exports){
+},{"../../../errors":358}],368:[function(require,module,exports){
 "use strict";
 
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser');
 };
 
-},{}],367:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -80550,7 +80725,7 @@ function pipeline() {
 
 module.exports = pipeline;
 
-},{"../../../errors":356,"./end-of-stream":365}],368:[function(require,module,exports){
+},{"../../../errors":358,"./end-of-stream":367}],370:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -80579,14 +80754,14 @@ module.exports = {
   getHighWaterMark: getHighWaterMark
 };
 
-},{"../../../errors":356}],369:[function(require,module,exports){
+},{"../../../errors":358}],371:[function(require,module,exports){
 "use strict";
 
 module.exports = require('events').EventEmitter;
 
-},{"events":296}],370:[function(require,module,exports){
-arguments[4][168][0].apply(exports,arguments)
-},{"dup":168}],371:[function(require,module,exports){
+},{"events":298}],372:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],373:[function(require,module,exports){
 "use strict";
 
 exports = module.exports = require('./lib/_stream_readable.js');
@@ -80599,7 +80774,7 @@ exports.PassThrough = require('./lib/_stream_passthrough.js');
 exports.finished = require('./lib/internal/streams/end-of-stream.js');
 exports.pipeline = require('./lib/internal/streams/pipeline.js');
 
-},{"./lib/_stream_duplex.js":357,"./lib/_stream_passthrough.js":358,"./lib/_stream_readable.js":359,"./lib/_stream_transform.js":360,"./lib/_stream_writable.js":361,"./lib/internal/streams/end-of-stream.js":365,"./lib/internal/streams/pipeline.js":367}],372:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":359,"./lib/_stream_passthrough.js":360,"./lib/_stream_readable.js":361,"./lib/_stream_transform.js":362,"./lib/_stream_writable.js":363,"./lib/internal/streams/end-of-stream.js":367,"./lib/internal/streams/pipeline.js":369}],374:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('buffer').Buffer;
@@ -80745,7 +80920,7 @@ function fn5(a, b, c, d, e, m, k, s) {
 
 module.exports = RIPEMD160;
 
-},{"buffer":173,"hash-base":298,"inherits":315}],373:[function(require,module,exports){
+},{"buffer":174,"hash-base":300,"inherits":317}],375:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -81035,7 +81210,7 @@ function toBuffer(v) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"bn.js":136,"buffer":173}],374:[function(require,module,exports){
+},{"bn.js":137,"buffer":174}],376:[function(require,module,exports){
 "use strict";
 
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
@@ -81111,7 +81286,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size);
 };
 
-},{"buffer":173}],375:[function(require,module,exports){
+},{"buffer":174}],377:[function(require,module,exports){
 (function (process){(function (){
 /* eslint-disable node/no-deprecated-api */
 'use strict';
@@ -81199,7 +81374,7 @@ if (!safer.constants) {
 module.exports = safer;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":344,"buffer":173}],376:[function(require,module,exports){
+},{"_process":346,"buffer":174}],378:[function(require,module,exports){
 (function (setImmediate){(function (){
 "use strict";
 
@@ -81800,12 +81975,12 @@ function scrypt(password, salt, logN, r, dkLen, interruptStep, callback, encodin
 if (typeof module !== 'undefined') module.exports = scrypt;
 
 }).call(this)}).call(this,require("timers").setImmediate)
-},{"timers":392}],377:[function(require,module,exports){
+},{"timers":394}],379:[function(require,module,exports){
 "use strict";
 
 module.exports = require('./lib')(require('./lib/elliptic'));
 
-},{"./lib":379,"./lib/elliptic":378}],378:[function(require,module,exports){
+},{"./lib":381,"./lib/elliptic":380}],380:[function(require,module,exports){
 "use strict";
 
 var EC = require('elliptic').ec;
@@ -82180,7 +82355,7 @@ module.exports = {
   }
 };
 
-},{"elliptic":225}],379:[function(require,module,exports){
+},{"elliptic":227}],381:[function(require,module,exports){
 "use strict";
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -82571,7 +82746,7 @@ module.exports = function (secp256k1) {
   };
 };
 
-},{}],380:[function(require,module,exports){
+},{}],382:[function(require,module,exports){
 "use strict";
 
 var Buffer = require('safe-buffer').Buffer; // prototype class for hash functions
@@ -82655,7 +82830,7 @@ Hash.prototype._update = function () {
 
 module.exports = Hash;
 
-},{"safe-buffer":374}],381:[function(require,module,exports){
+},{"safe-buffer":376}],383:[function(require,module,exports){
 "use strict";
 
 var _exports = module.exports = function SHA(algorithm) {
@@ -82672,7 +82847,7 @@ _exports.sha256 = require('./sha256');
 _exports.sha384 = require('./sha384');
 _exports.sha512 = require('./sha512');
 
-},{"./sha":382,"./sha1":383,"./sha224":384,"./sha256":385,"./sha384":386,"./sha512":387}],382:[function(require,module,exports){
+},{"./sha":384,"./sha1":385,"./sha224":386,"./sha256":387,"./sha384":388,"./sha512":389}],384:[function(require,module,exports){
 "use strict";
 
 /*
@@ -82767,7 +82942,7 @@ Sha.prototype._hash = function () {
 
 module.exports = Sha;
 
-},{"./hash":380,"inherits":315,"safe-buffer":374}],383:[function(require,module,exports){
+},{"./hash":382,"inherits":317,"safe-buffer":376}],385:[function(require,module,exports){
 "use strict";
 
 /*
@@ -82867,7 +83042,7 @@ Sha1.prototype._hash = function () {
 
 module.exports = Sha1;
 
-},{"./hash":380,"inherits":315,"safe-buffer":374}],384:[function(require,module,exports){
+},{"./hash":382,"inherits":317,"safe-buffer":376}],386:[function(require,module,exports){
 "use strict";
 
 /**
@@ -82922,7 +83097,7 @@ Sha224.prototype._hash = function () {
 
 module.exports = Sha224;
 
-},{"./hash":380,"./sha256":385,"inherits":315,"safe-buffer":374}],385:[function(require,module,exports){
+},{"./hash":382,"./sha256":387,"inherits":317,"safe-buffer":376}],387:[function(require,module,exports){
 "use strict";
 
 /**
@@ -83043,7 +83218,7 @@ Sha256.prototype._hash = function () {
 
 module.exports = Sha256;
 
-},{"./hash":380,"inherits":315,"safe-buffer":374}],386:[function(require,module,exports){
+},{"./hash":382,"inherits":317,"safe-buffer":376}],388:[function(require,module,exports){
 "use strict";
 
 var inherits = require('inherits');
@@ -83103,7 +83278,7 @@ Sha384.prototype._hash = function () {
 
 module.exports = Sha384;
 
-},{"./hash":380,"./sha512":387,"inherits":315,"safe-buffer":374}],387:[function(require,module,exports){
+},{"./hash":382,"./sha512":389,"inherits":317,"safe-buffer":376}],389:[function(require,module,exports){
 "use strict";
 
 var inherits = require('inherits');
@@ -83309,7 +83484,7 @@ Sha512.prototype._hash = function () {
 
 module.exports = Sha512;
 
-},{"./hash":380,"inherits":315,"safe-buffer":374}],388:[function(require,module,exports){
+},{"./hash":382,"inherits":317,"safe-buffer":376}],390:[function(require,module,exports){
 "use strict";
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -83427,9 +83602,9 @@ Stream.prototype.pipe = function (dest, options) {
   return dest;
 };
 
-},{"events":296,"inherits":389,"readable-stream/lib/_stream_duplex.js":357,"readable-stream/lib/_stream_passthrough.js":358,"readable-stream/lib/_stream_readable.js":359,"readable-stream/lib/_stream_transform.js":360,"readable-stream/lib/_stream_writable.js":361,"readable-stream/lib/internal/streams/end-of-stream.js":365,"readable-stream/lib/internal/streams/pipeline.js":367}],389:[function(require,module,exports){
-arguments[4][168][0].apply(exports,arguments)
-},{"dup":168}],390:[function(require,module,exports){
+},{"events":298,"inherits":391,"readable-stream/lib/_stream_duplex.js":359,"readable-stream/lib/_stream_passthrough.js":360,"readable-stream/lib/_stream_readable.js":361,"readable-stream/lib/_stream_transform.js":362,"readable-stream/lib/_stream_writable.js":363,"readable-stream/lib/internal/streams/end-of-stream.js":367,"readable-stream/lib/internal/streams/pipeline.js":369}],391:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],392:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -83772,7 +83947,7 @@ function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
 
-},{"safe-buffer":374}],391:[function(require,module,exports){
+},{"safe-buffer":376}],393:[function(require,module,exports){
 "use strict";
 
 var isHexPrefixed = require('is-hex-prefixed');
@@ -83791,7 +83966,7 @@ module.exports = function stripHexPrefix(str) {
   return isHexPrefixed(str) ? str.slice(2) : str;
 };
 
-},{"is-hex-prefixed":317}],392:[function(require,module,exports){
+},{"is-hex-prefixed":319}],394:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 "use strict";
 
@@ -83873,7 +84048,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 };
 
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":344,"timers":392}],393:[function(require,module,exports){
+},{"process/browser.js":346,"timers":394}],395:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
 
@@ -83978,7 +84153,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 });
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":138}],394:[function(require,module,exports){
+},{"buffer":139}],396:[function(require,module,exports){
 "use strict";
 
 (function (nacl) {
@@ -83998,9 +84173,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   }; //  Pluggable, initialized in high-level API below.
 
 
-  var randombytes = function randombytes()
-  /* x, n */
-  {
+  var randombytes = function randombytes() {
     throw new Error('no PRNG');
   };
 
@@ -86662,1847 +86835,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   })();
 })(typeof module !== 'undefined' && module.exports ? module.exports : self.nacl = self.nacl || {});
 
-},{"crypto":138}],395:[function(require,module,exports){
-(function (global){(function (){
-"use strict";
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-//     Underscore.js 1.9.1
-//     http://underscorejs.org
-//     (c) 2009-2018 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-//     Underscore may be freely distributed under the MIT license.
-(function () {
-  // Baseline setup
-  // --------------
-  // Establish the root object, `window` (`self`) in the browser, `global`
-  // on the server, or `this` in some virtual machines. We use `self`
-  // instead of `window` for `WebWorker` support.
-  var root = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'object' && self.self === self && self || (typeof global === "undefined" ? "undefined" : _typeof(global)) == 'object' && global.global === global && global || this || {}; // Save the previous value of the `_` variable.
-
-  var previousUnderscore = root._; // Save bytes in the minified (but not gzipped) version:
-
-  var ArrayProto = Array.prototype,
-      ObjProto = Object.prototype;
-  var SymbolProto = typeof Symbol !== 'undefined' ? Symbol.prototype : null; // Create quick reference variables for speed access to core prototypes.
-
-  var push = ArrayProto.push,
-      slice = ArrayProto.slice,
-      toString = ObjProto.toString,
-      hasOwnProperty = ObjProto.hasOwnProperty; // All **ECMAScript 5** native function implementations that we hope to use
-  // are declared here.
-
-  var nativeIsArray = Array.isArray,
-      nativeKeys = Object.keys,
-      nativeCreate = Object.create; // Naked function reference for surrogate-prototype-swapping.
-
-  var Ctor = function Ctor() {}; // Create a safe reference to the Underscore object for use below.
-
-
-  var _ = function _(obj) {
-    if (obj instanceof _) return obj;
-    if (!(this instanceof _)) return new _(obj);
-    this._wrapped = obj;
-  }; // Export the Underscore object for **Node.js**, with
-  // backwards-compatibility for their old module API. If we're in
-  // the browser, add `_` as a global object.
-  // (`nodeType` is checked to ensure that `module`
-  // and `exports` are not HTML elements.)
-
-
-  if (typeof exports != 'undefined' && !exports.nodeType) {
-    if (typeof module != 'undefined' && !module.nodeType && module.exports) {
-      exports = module.exports = _;
-    }
-
-    exports._ = _;
-  } else {
-    root._ = _;
-  } // Current version.
-
-
-  _.VERSION = '1.9.1'; // Internal function that returns an efficient (for current engines) version
-  // of the passed-in callback, to be repeatedly applied in other Underscore
-  // functions.
-
-  var optimizeCb = function optimizeCb(func, context, argCount) {
-    if (context === void 0) return func;
-
-    switch (argCount == null ? 3 : argCount) {
-      case 1:
-        return function (value) {
-          return func.call(context, value);
-        };
-      // The 2-argument case is omitted because we’re not using it.
-
-      case 3:
-        return function (value, index, collection) {
-          return func.call(context, value, index, collection);
-        };
-
-      case 4:
-        return function (accumulator, value, index, collection) {
-          return func.call(context, accumulator, value, index, collection);
-        };
-    }
-
-    return function () {
-      return func.apply(context, arguments);
-    };
-  };
-
-  var builtinIteratee; // An internal function to generate callbacks that can be applied to each
-  // element in a collection, returning the desired result — either `identity`,
-  // an arbitrary callback, a property matcher, or a property accessor.
-
-  var cb = function cb(value, context, argCount) {
-    if (_.iteratee !== builtinIteratee) return _.iteratee(value, context);
-    if (value == null) return _.identity;
-    if (_.isFunction(value)) return optimizeCb(value, context, argCount);
-    if (_.isObject(value) && !_.isArray(value)) return _.matcher(value);
-    return _.property(value);
-  }; // External wrapper for our callback generator. Users may customize
-  // `_.iteratee` if they want additional predicate/iteratee shorthand styles.
-  // This abstraction hides the internal-only argCount argument.
-
-
-  _.iteratee = builtinIteratee = function builtinIteratee(value, context) {
-    return cb(value, context, Infinity);
-  }; // Some functions take a variable number of arguments, or a few expected
-  // arguments at the beginning and then a variable number of values to operate
-  // on. This helper accumulates all remaining arguments past the function’s
-  // argument length (or an explicit `startIndex`), into an array that becomes
-  // the last argument. Similar to ES6’s "rest parameter".
-
-
-  var restArguments = function restArguments(func, startIndex) {
-    startIndex = startIndex == null ? func.length - 1 : +startIndex;
-    return function () {
-      var length = Math.max(arguments.length - startIndex, 0),
-          rest = Array(length),
-          index = 0;
-
-      for (; index < length; index++) {
-        rest[index] = arguments[index + startIndex];
-      }
-
-      switch (startIndex) {
-        case 0:
-          return func.call(this, rest);
-
-        case 1:
-          return func.call(this, arguments[0], rest);
-
-        case 2:
-          return func.call(this, arguments[0], arguments[1], rest);
-      }
-
-      var args = Array(startIndex + 1);
-
-      for (index = 0; index < startIndex; index++) {
-        args[index] = arguments[index];
-      }
-
-      args[startIndex] = rest;
-      return func.apply(this, args);
-    };
-  }; // An internal function for creating a new object that inherits from another.
-
-
-  var baseCreate = function baseCreate(prototype) {
-    if (!_.isObject(prototype)) return {};
-    if (nativeCreate) return nativeCreate(prototype);
-    Ctor.prototype = prototype;
-    var result = new Ctor();
-    Ctor.prototype = null;
-    return result;
-  };
-
-  var shallowProperty = function shallowProperty(key) {
-    return function (obj) {
-      return obj == null ? void 0 : obj[key];
-    };
-  };
-
-  var has = function has(obj, path) {
-    return obj != null && hasOwnProperty.call(obj, path);
-  };
-
-  var deepGet = function deepGet(obj, path) {
-    var length = path.length;
-
-    for (var i = 0; i < length; i++) {
-      if (obj == null) return void 0;
-      obj = obj[path[i]];
-    }
-
-    return length ? obj : void 0;
-  }; // Helper for collection methods to determine whether a collection
-  // should be iterated as an array or as an object.
-  // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
-  // Avoids a very nasty iOS 8 JIT bug on ARM-64. #2094
-
-
-  var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
-  var getLength = shallowProperty('length');
-
-  var isArrayLike = function isArrayLike(collection) {
-    var length = getLength(collection);
-    return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
-  }; // Collection Functions
-  // --------------------
-  // The cornerstone, an `each` implementation, aka `forEach`.
-  // Handles raw objects in addition to array-likes. Treats all
-  // sparse array-likes as if they were dense.
-
-
-  _.each = _.forEach = function (obj, iteratee, context) {
-    iteratee = optimizeCb(iteratee, context);
-    var i, length;
-
-    if (isArrayLike(obj)) {
-      for (i = 0, length = obj.length; i < length; i++) {
-        iteratee(obj[i], i, obj);
-      }
-    } else {
-      var keys = _.keys(obj);
-
-      for (i = 0, length = keys.length; i < length; i++) {
-        iteratee(obj[keys[i]], keys[i], obj);
-      }
-    }
-
-    return obj;
-  }; // Return the results of applying the iteratee to each element.
-
-
-  _.map = _.collect = function (obj, iteratee, context) {
-    iteratee = cb(iteratee, context);
-
-    var keys = !isArrayLike(obj) && _.keys(obj),
-        length = (keys || obj).length,
-        results = Array(length);
-
-    for (var index = 0; index < length; index++) {
-      var currentKey = keys ? keys[index] : index;
-      results[index] = iteratee(obj[currentKey], currentKey, obj);
-    }
-
-    return results;
-  }; // Create a reducing function iterating left or right.
-
-
-  var createReduce = function createReduce(dir) {
-    // Wrap code that reassigns argument variables in a separate function than
-    // the one that accesses `arguments.length` to avoid a perf hit. (#1991)
-    var reducer = function reducer(obj, iteratee, memo, initial) {
-      var keys = !isArrayLike(obj) && _.keys(obj),
-          length = (keys || obj).length,
-          index = dir > 0 ? 0 : length - 1;
-
-      if (!initial) {
-        memo = obj[keys ? keys[index] : index];
-        index += dir;
-      }
-
-      for (; index >= 0 && index < length; index += dir) {
-        var currentKey = keys ? keys[index] : index;
-        memo = iteratee(memo, obj[currentKey], currentKey, obj);
-      }
-
-      return memo;
-    };
-
-    return function (obj, iteratee, memo, context) {
-      var initial = arguments.length >= 3;
-      return reducer(obj, optimizeCb(iteratee, context, 4), memo, initial);
-    };
-  }; // **Reduce** builds up a single result from a list of values, aka `inject`,
-  // or `foldl`.
-
-
-  _.reduce = _.foldl = _.inject = createReduce(1); // The right-associative version of reduce, also known as `foldr`.
-
-  _.reduceRight = _.foldr = createReduce(-1); // Return the first value which passes a truth test. Aliased as `detect`.
-
-  _.find = _.detect = function (obj, predicate, context) {
-    var keyFinder = isArrayLike(obj) ? _.findIndex : _.findKey;
-    var key = keyFinder(obj, predicate, context);
-    if (key !== void 0 && key !== -1) return obj[key];
-  }; // Return all the elements that pass a truth test.
-  // Aliased as `select`.
-
-
-  _.filter = _.select = function (obj, predicate, context) {
-    var results = [];
-    predicate = cb(predicate, context);
-
-    _.each(obj, function (value, index, list) {
-      if (predicate(value, index, list)) results.push(value);
-    });
-
-    return results;
-  }; // Return all the elements for which a truth test fails.
-
-
-  _.reject = function (obj, predicate, context) {
-    return _.filter(obj, _.negate(cb(predicate)), context);
-  }; // Determine whether all of the elements match a truth test.
-  // Aliased as `all`.
-
-
-  _.every = _.all = function (obj, predicate, context) {
-    predicate = cb(predicate, context);
-
-    var keys = !isArrayLike(obj) && _.keys(obj),
-        length = (keys || obj).length;
-
-    for (var index = 0; index < length; index++) {
-      var currentKey = keys ? keys[index] : index;
-      if (!predicate(obj[currentKey], currentKey, obj)) return false;
-    }
-
-    return true;
-  }; // Determine if at least one element in the object matches a truth test.
-  // Aliased as `any`.
-
-
-  _.some = _.any = function (obj, predicate, context) {
-    predicate = cb(predicate, context);
-
-    var keys = !isArrayLike(obj) && _.keys(obj),
-        length = (keys || obj).length;
-
-    for (var index = 0; index < length; index++) {
-      var currentKey = keys ? keys[index] : index;
-      if (predicate(obj[currentKey], currentKey, obj)) return true;
-    }
-
-    return false;
-  }; // Determine if the array or object contains a given item (using `===`).
-  // Aliased as `includes` and `include`.
-
-
-  _.contains = _.includes = _.include = function (obj, item, fromIndex, guard) {
-    if (!isArrayLike(obj)) obj = _.values(obj);
-    if (typeof fromIndex != 'number' || guard) fromIndex = 0;
-    return _.indexOf(obj, item, fromIndex) >= 0;
-  }; // Invoke a method (with arguments) on every item in a collection.
-
-
-  _.invoke = restArguments(function (obj, path, args) {
-    var contextPath, func;
-
-    if (_.isFunction(path)) {
-      func = path;
-    } else if (_.isArray(path)) {
-      contextPath = path.slice(0, -1);
-      path = path[path.length - 1];
-    }
-
-    return _.map(obj, function (context) {
-      var method = func;
-
-      if (!method) {
-        if (contextPath && contextPath.length) {
-          context = deepGet(context, contextPath);
-        }
-
-        if (context == null) return void 0;
-        method = context[path];
-      }
-
-      return method == null ? method : method.apply(context, args);
-    });
-  }); // Convenience version of a common use case of `map`: fetching a property.
-
-  _.pluck = function (obj, key) {
-    return _.map(obj, _.property(key));
-  }; // Convenience version of a common use case of `filter`: selecting only objects
-  // containing specific `key:value` pairs.
-
-
-  _.where = function (obj, attrs) {
-    return _.filter(obj, _.matcher(attrs));
-  }; // Convenience version of a common use case of `find`: getting the first object
-  // containing specific `key:value` pairs.
-
-
-  _.findWhere = function (obj, attrs) {
-    return _.find(obj, _.matcher(attrs));
-  }; // Return the maximum element (or element-based computation).
-
-
-  _.max = function (obj, iteratee, context) {
-    var result = -Infinity,
-        lastComputed = -Infinity,
-        value,
-        computed;
-
-    if (iteratee == null || typeof iteratee == 'number' && _typeof(obj[0]) != 'object' && obj != null) {
-      obj = isArrayLike(obj) ? obj : _.values(obj);
-
-      for (var i = 0, length = obj.length; i < length; i++) {
-        value = obj[i];
-
-        if (value != null && value > result) {
-          result = value;
-        }
-      }
-    } else {
-      iteratee = cb(iteratee, context);
-
-      _.each(obj, function (v, index, list) {
-        computed = iteratee(v, index, list);
-
-        if (computed > lastComputed || computed === -Infinity && result === -Infinity) {
-          result = v;
-          lastComputed = computed;
-        }
-      });
-    }
-
-    return result;
-  }; // Return the minimum element (or element-based computation).
-
-
-  _.min = function (obj, iteratee, context) {
-    var result = Infinity,
-        lastComputed = Infinity,
-        value,
-        computed;
-
-    if (iteratee == null || typeof iteratee == 'number' && _typeof(obj[0]) != 'object' && obj != null) {
-      obj = isArrayLike(obj) ? obj : _.values(obj);
-
-      for (var i = 0, length = obj.length; i < length; i++) {
-        value = obj[i];
-
-        if (value != null && value < result) {
-          result = value;
-        }
-      }
-    } else {
-      iteratee = cb(iteratee, context);
-
-      _.each(obj, function (v, index, list) {
-        computed = iteratee(v, index, list);
-
-        if (computed < lastComputed || computed === Infinity && result === Infinity) {
-          result = v;
-          lastComputed = computed;
-        }
-      });
-    }
-
-    return result;
-  }; // Shuffle a collection.
-
-
-  _.shuffle = function (obj) {
-    return _.sample(obj, Infinity);
-  }; // Sample **n** random values from a collection using the modern version of the
-  // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
-  // If **n** is not specified, returns a single random element.
-  // The internal `guard` argument allows it to work with `map`.
-
-
-  _.sample = function (obj, n, guard) {
-    if (n == null || guard) {
-      if (!isArrayLike(obj)) obj = _.values(obj);
-      return obj[_.random(obj.length - 1)];
-    }
-
-    var sample = isArrayLike(obj) ? _.clone(obj) : _.values(obj);
-    var length = getLength(sample);
-    n = Math.max(Math.min(n, length), 0);
-    var last = length - 1;
-
-    for (var index = 0; index < n; index++) {
-      var rand = _.random(index, last);
-
-      var temp = sample[index];
-      sample[index] = sample[rand];
-      sample[rand] = temp;
-    }
-
-    return sample.slice(0, n);
-  }; // Sort the object's values by a criterion produced by an iteratee.
-
-
-  _.sortBy = function (obj, iteratee, context) {
-    var index = 0;
-    iteratee = cb(iteratee, context);
-    return _.pluck(_.map(obj, function (value, key, list) {
-      return {
-        value: value,
-        index: index++,
-        criteria: iteratee(value, key, list)
-      };
-    }).sort(function (left, right) {
-      var a = left.criteria;
-      var b = right.criteria;
-
-      if (a !== b) {
-        if (a > b || a === void 0) return 1;
-        if (a < b || b === void 0) return -1;
-      }
-
-      return left.index - right.index;
-    }), 'value');
-  }; // An internal function used for aggregate "group by" operations.
-
-
-  var group = function group(behavior, partition) {
-    return function (obj, iteratee, context) {
-      var result = partition ? [[], []] : {};
-      iteratee = cb(iteratee, context);
-
-      _.each(obj, function (value, index) {
-        var key = iteratee(value, index, obj);
-        behavior(result, value, key);
-      });
-
-      return result;
-    };
-  }; // Groups the object's values by a criterion. Pass either a string attribute
-  // to group by, or a function that returns the criterion.
-
-
-  _.groupBy = group(function (result, value, key) {
-    if (has(result, key)) result[key].push(value);else result[key] = [value];
-  }); // Indexes the object's values by a criterion, similar to `groupBy`, but for
-  // when you know that your index values will be unique.
-
-  _.indexBy = group(function (result, value, key) {
-    result[key] = value;
-  }); // Counts instances of an object that group by a certain criterion. Pass
-  // either a string attribute to count by, or a function that returns the
-  // criterion.
-
-  _.countBy = group(function (result, value, key) {
-    if (has(result, key)) result[key]++;else result[key] = 1;
-  });
-  var reStrSymbol = /[^\ud800-\udfff]|[\ud800-\udbff][\udc00-\udfff]|[\ud800-\udfff]/g; // Safely create a real, live array from anything iterable.
-
-  _.toArray = function (obj) {
-    if (!obj) return [];
-    if (_.isArray(obj)) return slice.call(obj);
-
-    if (_.isString(obj)) {
-      // Keep surrogate pair characters together
-      return obj.match(reStrSymbol);
-    }
-
-    if (isArrayLike(obj)) return _.map(obj, _.identity);
-    return _.values(obj);
-  }; // Return the number of elements in an object.
-
-
-  _.size = function (obj) {
-    if (obj == null) return 0;
-    return isArrayLike(obj) ? obj.length : _.keys(obj).length;
-  }; // Split a collection into two arrays: one whose elements all satisfy the given
-  // predicate, and one whose elements all do not satisfy the predicate.
-
-
-  _.partition = group(function (result, value, pass) {
-    result[pass ? 0 : 1].push(value);
-  }, true); // Array Functions
-  // ---------------
-  // Get the first element of an array. Passing **n** will return the first N
-  // values in the array. Aliased as `head` and `take`. The **guard** check
-  // allows it to work with `_.map`.
-
-  _.first = _.head = _.take = function (array, n, guard) {
-    if (array == null || array.length < 1) return n == null ? void 0 : [];
-    if (n == null || guard) return array[0];
-    return _.initial(array, array.length - n);
-  }; // Returns everything but the last entry of the array. Especially useful on
-  // the arguments object. Passing **n** will return all the values in
-  // the array, excluding the last N.
-
-
-  _.initial = function (array, n, guard) {
-    return slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
-  }; // Get the last element of an array. Passing **n** will return the last N
-  // values in the array.
-
-
-  _.last = function (array, n, guard) {
-    if (array == null || array.length < 1) return n == null ? void 0 : [];
-    if (n == null || guard) return array[array.length - 1];
-    return _.rest(array, Math.max(0, array.length - n));
-  }; // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
-  // Especially useful on the arguments object. Passing an **n** will return
-  // the rest N values in the array.
-
-
-  _.rest = _.tail = _.drop = function (array, n, guard) {
-    return slice.call(array, n == null || guard ? 1 : n);
-  }; // Trim out all falsy values from an array.
-
-
-  _.compact = function (array) {
-    return _.filter(array, Boolean);
-  }; // Internal implementation of a recursive `flatten` function.
-
-
-  var flatten = function flatten(input, shallow, strict, output) {
-    output = output || [];
-    var idx = output.length;
-
-    for (var i = 0, length = getLength(input); i < length; i++) {
-      var value = input[i];
-
-      if (isArrayLike(value) && (_.isArray(value) || _.isArguments(value))) {
-        // Flatten current level of array or arguments object.
-        if (shallow) {
-          var j = 0,
-              len = value.length;
-
-          while (j < len) {
-            output[idx++] = value[j++];
-          }
-        } else {
-          flatten(value, shallow, strict, output);
-          idx = output.length;
-        }
-      } else if (!strict) {
-        output[idx++] = value;
-      }
-    }
-
-    return output;
-  }; // Flatten out an array, either recursively (by default), or just one level.
-
-
-  _.flatten = function (array, shallow) {
-    return flatten(array, shallow, false);
-  }; // Return a version of the array that does not contain the specified value(s).
-
-
-  _.without = restArguments(function (array, otherArrays) {
-    return _.difference(array, otherArrays);
-  }); // Produce a duplicate-free version of the array. If the array has already
-  // been sorted, you have the option of using a faster algorithm.
-  // The faster algorithm will not work with an iteratee if the iteratee
-  // is not a one-to-one function, so providing an iteratee will disable
-  // the faster algorithm.
-  // Aliased as `unique`.
-
-  _.uniq = _.unique = function (array, isSorted, iteratee, context) {
-    if (!_.isBoolean(isSorted)) {
-      context = iteratee;
-      iteratee = isSorted;
-      isSorted = false;
-    }
-
-    if (iteratee != null) iteratee = cb(iteratee, context);
-    var result = [];
-    var seen = [];
-
-    for (var i = 0, length = getLength(array); i < length; i++) {
-      var value = array[i],
-          computed = iteratee ? iteratee(value, i, array) : value;
-
-      if (isSorted && !iteratee) {
-        if (!i || seen !== computed) result.push(value);
-        seen = computed;
-      } else if (iteratee) {
-        if (!_.contains(seen, computed)) {
-          seen.push(computed);
-          result.push(value);
-        }
-      } else if (!_.contains(result, value)) {
-        result.push(value);
-      }
-    }
-
-    return result;
-  }; // Produce an array that contains the union: each distinct element from all of
-  // the passed-in arrays.
-
-
-  _.union = restArguments(function (arrays) {
-    return _.uniq(flatten(arrays, true, true));
-  }); // Produce an array that contains every item shared between all the
-  // passed-in arrays.
-
-  _.intersection = function (array) {
-    var result = [];
-    var argsLength = arguments.length;
-
-    for (var i = 0, length = getLength(array); i < length; i++) {
-      var item = array[i];
-      if (_.contains(result, item)) continue;
-      var j;
-
-      for (j = 1; j < argsLength; j++) {
-        if (!_.contains(arguments[j], item)) break;
-      }
-
-      if (j === argsLength) result.push(item);
-    }
-
-    return result;
-  }; // Take the difference between one array and a number of other arrays.
-  // Only the elements present in just the first array will remain.
-
-
-  _.difference = restArguments(function (array, rest) {
-    rest = flatten(rest, true, true);
-    return _.filter(array, function (value) {
-      return !_.contains(rest, value);
-    });
-  }); // Complement of _.zip. Unzip accepts an array of arrays and groups
-  // each array's elements on shared indices.
-
-  _.unzip = function (array) {
-    var length = array && _.max(array, getLength).length || 0;
-    var result = Array(length);
-
-    for (var index = 0; index < length; index++) {
-      result[index] = _.pluck(array, index);
-    }
-
-    return result;
-  }; // Zip together multiple lists into a single array -- elements that share
-  // an index go together.
-
-
-  _.zip = restArguments(_.unzip); // Converts lists into objects. Pass either a single array of `[key, value]`
-  // pairs, or two parallel arrays of the same length -- one of keys, and one of
-  // the corresponding values. Passing by pairs is the reverse of _.pairs.
-
-  _.object = function (list, values) {
-    var result = {};
-
-    for (var i = 0, length = getLength(list); i < length; i++) {
-      if (values) {
-        result[list[i]] = values[i];
-      } else {
-        result[list[i][0]] = list[i][1];
-      }
-    }
-
-    return result;
-  }; // Generator function to create the findIndex and findLastIndex functions.
-
-
-  var createPredicateIndexFinder = function createPredicateIndexFinder(dir) {
-    return function (array, predicate, context) {
-      predicate = cb(predicate, context);
-      var length = getLength(array);
-      var index = dir > 0 ? 0 : length - 1;
-
-      for (; index >= 0 && index < length; index += dir) {
-        if (predicate(array[index], index, array)) return index;
-      }
-
-      return -1;
-    };
-  }; // Returns the first index on an array-like that passes a predicate test.
-
-
-  _.findIndex = createPredicateIndexFinder(1);
-  _.findLastIndex = createPredicateIndexFinder(-1); // Use a comparator function to figure out the smallest index at which
-  // an object should be inserted so as to maintain order. Uses binary search.
-
-  _.sortedIndex = function (array, obj, iteratee, context) {
-    iteratee = cb(iteratee, context, 1);
-    var value = iteratee(obj);
-    var low = 0,
-        high = getLength(array);
-
-    while (low < high) {
-      var mid = Math.floor((low + high) / 2);
-      if (iteratee(array[mid]) < value) low = mid + 1;else high = mid;
-    }
-
-    return low;
-  }; // Generator function to create the indexOf and lastIndexOf functions.
-
-
-  var createIndexFinder = function createIndexFinder(dir, predicateFind, sortedIndex) {
-    return function (array, item, idx) {
-      var i = 0,
-          length = getLength(array);
-
-      if (typeof idx == 'number') {
-        if (dir > 0) {
-          i = idx >= 0 ? idx : Math.max(idx + length, i);
-        } else {
-          length = idx >= 0 ? Math.min(idx + 1, length) : idx + length + 1;
-        }
-      } else if (sortedIndex && idx && length) {
-        idx = sortedIndex(array, item);
-        return array[idx] === item ? idx : -1;
-      }
-
-      if (item !== item) {
-        idx = predicateFind(slice.call(array, i, length), _.isNaN);
-        return idx >= 0 ? idx + i : -1;
-      }
-
-      for (idx = dir > 0 ? i : length - 1; idx >= 0 && idx < length; idx += dir) {
-        if (array[idx] === item) return idx;
-      }
-
-      return -1;
-    };
-  }; // Return the position of the first occurrence of an item in an array,
-  // or -1 if the item is not included in the array.
-  // If the array is large and already in sort order, pass `true`
-  // for **isSorted** to use binary search.
-
-
-  _.indexOf = createIndexFinder(1, _.findIndex, _.sortedIndex);
-  _.lastIndexOf = createIndexFinder(-1, _.findLastIndex); // Generate an integer Array containing an arithmetic progression. A port of
-  // the native Python `range()` function. See
-  // [the Python documentation](http://docs.python.org/library/functions.html#range).
-
-  _.range = function (start, stop, step) {
-    if (stop == null) {
-      stop = start || 0;
-      start = 0;
-    }
-
-    if (!step) {
-      step = stop < start ? -1 : 1;
-    }
-
-    var length = Math.max(Math.ceil((stop - start) / step), 0);
-    var range = Array(length);
-
-    for (var idx = 0; idx < length; idx++, start += step) {
-      range[idx] = start;
-    }
-
-    return range;
-  }; // Chunk a single array into multiple arrays, each containing `count` or fewer
-  // items.
-
-
-  _.chunk = function (array, count) {
-    if (count == null || count < 1) return [];
-    var result = [];
-    var i = 0,
-        length = array.length;
-
-    while (i < length) {
-      result.push(slice.call(array, i, i += count));
-    }
-
-    return result;
-  }; // Function (ahem) Functions
-  // ------------------
-  // Determines whether to execute a function as a constructor
-  // or a normal function with the provided arguments.
-
-
-  var executeBound = function executeBound(sourceFunc, boundFunc, context, callingContext, args) {
-    if (!(callingContext instanceof boundFunc)) return sourceFunc.apply(context, args);
-    var self = baseCreate(sourceFunc.prototype);
-    var result = sourceFunc.apply(self, args);
-    if (_.isObject(result)) return result;
-    return self;
-  }; // Create a function bound to a given object (assigning `this`, and arguments,
-  // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
-  // available.
-
-
-  _.bind = restArguments(function (func, context, args) {
-    if (!_.isFunction(func)) throw new TypeError('Bind must be called on a function');
-    var bound = restArguments(function (callArgs) {
-      return executeBound(func, bound, context, this, args.concat(callArgs));
-    });
-    return bound;
-  }); // Partially apply a function by creating a version that has had some of its
-  // arguments pre-filled, without changing its dynamic `this` context. _ acts
-  // as a placeholder by default, allowing any combination of arguments to be
-  // pre-filled. Set `_.partial.placeholder` for a custom placeholder argument.
-
-  _.partial = restArguments(function (func, boundArgs) {
-    var placeholder = _.partial.placeholder;
-
-    var bound = function bound() {
-      var position = 0,
-          length = boundArgs.length;
-      var args = Array(length);
-
-      for (var i = 0; i < length; i++) {
-        args[i] = boundArgs[i] === placeholder ? arguments[position++] : boundArgs[i];
-      }
-
-      while (position < arguments.length) {
-        args.push(arguments[position++]);
-      }
-
-      return executeBound(func, bound, this, this, args);
-    };
-
-    return bound;
-  });
-  _.partial.placeholder = _; // Bind a number of an object's methods to that object. Remaining arguments
-  // are the method names to be bound. Useful for ensuring that all callbacks
-  // defined on an object belong to it.
-
-  _.bindAll = restArguments(function (obj, keys) {
-    keys = flatten(keys, false, false);
-    var index = keys.length;
-    if (index < 1) throw new Error('bindAll must be passed function names');
-
-    while (index--) {
-      var key = keys[index];
-      obj[key] = _.bind(obj[key], obj);
-    }
-  }); // Memoize an expensive function by storing its results.
-
-  _.memoize = function (func, hasher) {
-    var memoize = function memoize(key) {
-      var cache = memoize.cache;
-      var address = '' + (hasher ? hasher.apply(this, arguments) : key);
-      if (!has(cache, address)) cache[address] = func.apply(this, arguments);
-      return cache[address];
-    };
-
-    memoize.cache = {};
-    return memoize;
-  }; // Delays a function for the given number of milliseconds, and then calls
-  // it with the arguments supplied.
-
-
-  _.delay = restArguments(function (func, wait, args) {
-    return setTimeout(function () {
-      return func.apply(null, args);
-    }, wait);
-  }); // Defers a function, scheduling it to run after the current call stack has
-  // cleared.
-
-  _.defer = _.partial(_.delay, _, 1); // Returns a function, that, when invoked, will only be triggered at most once
-  // during a given window of time. Normally, the throttled function will run
-  // as much as it can, without ever going more than once per `wait` duration;
-  // but if you'd like to disable the execution on the leading edge, pass
-  // `{leading: false}`. To disable execution on the trailing edge, ditto.
-
-  _.throttle = function (func, wait, options) {
-    var timeout, context, args, result;
-    var previous = 0;
-    if (!options) options = {};
-
-    var later = function later() {
-      previous = options.leading === false ? 0 : _.now();
-      timeout = null;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
-    };
-
-    var throttled = function throttled() {
-      var now = _.now();
-
-      if (!previous && options.leading === false) previous = now;
-      var remaining = wait - (now - previous);
-      context = this;
-      args = arguments;
-
-      if (remaining <= 0 || remaining > wait) {
-        if (timeout) {
-          clearTimeout(timeout);
-          timeout = null;
-        }
-
-        previous = now;
-        result = func.apply(context, args);
-        if (!timeout) context = args = null;
-      } else if (!timeout && options.trailing !== false) {
-        timeout = setTimeout(later, remaining);
-      }
-
-      return result;
-    };
-
-    throttled.cancel = function () {
-      clearTimeout(timeout);
-      previous = 0;
-      timeout = context = args = null;
-    };
-
-    return throttled;
-  }; // Returns a function, that, as long as it continues to be invoked, will not
-  // be triggered. The function will be called after it stops being called for
-  // N milliseconds. If `immediate` is passed, trigger the function on the
-  // leading edge, instead of the trailing.
-
-
-  _.debounce = function (func, wait, immediate) {
-    var timeout, result;
-
-    var later = function later(context, args) {
-      timeout = null;
-      if (args) result = func.apply(context, args);
-    };
-
-    var debounced = restArguments(function (args) {
-      if (timeout) clearTimeout(timeout);
-
-      if (immediate) {
-        var callNow = !timeout;
-        timeout = setTimeout(later, wait);
-        if (callNow) result = func.apply(this, args);
-      } else {
-        timeout = _.delay(later, wait, this, args);
-      }
-
-      return result;
-    });
-
-    debounced.cancel = function () {
-      clearTimeout(timeout);
-      timeout = null;
-    };
-
-    return debounced;
-  }; // Returns the first function passed as an argument to the second,
-  // allowing you to adjust arguments, run code before and after, and
-  // conditionally execute the original function.
-
-
-  _.wrap = function (func, wrapper) {
-    return _.partial(wrapper, func);
-  }; // Returns a negated version of the passed-in predicate.
-
-
-  _.negate = function (predicate) {
-    return function () {
-      return !predicate.apply(this, arguments);
-    };
-  }; // Returns a function that is the composition of a list of functions, each
-  // consuming the return value of the function that follows.
-
-
-  _.compose = function () {
-    var args = arguments;
-    var start = args.length - 1;
-    return function () {
-      var i = start;
-      var result = args[start].apply(this, arguments);
-
-      while (i--) {
-        result = args[i].call(this, result);
-      }
-
-      return result;
-    };
-  }; // Returns a function that will only be executed on and after the Nth call.
-
-
-  _.after = function (times, func) {
-    return function () {
-      if (--times < 1) {
-        return func.apply(this, arguments);
-      }
-    };
-  }; // Returns a function that will only be executed up to (but not including) the Nth call.
-
-
-  _.before = function (times, func) {
-    var memo;
-    return function () {
-      if (--times > 0) {
-        memo = func.apply(this, arguments);
-      }
-
-      if (times <= 1) func = null;
-      return memo;
-    };
-  }; // Returns a function that will be executed at most one time, no matter how
-  // often you call it. Useful for lazy initialization.
-
-
-  _.once = _.partial(_.before, 2);
-  _.restArguments = restArguments; // Object Functions
-  // ----------------
-  // Keys in IE < 9 that won't be iterated by `for key in ...` and thus missed.
-
-  var hasEnumBug = !{
-    toString: null
-  }.propertyIsEnumerable('toString');
-  var nonEnumerableProps = ['valueOf', 'isPrototypeOf', 'toString', 'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString'];
-
-  var collectNonEnumProps = function collectNonEnumProps(obj, keys) {
-    var nonEnumIdx = nonEnumerableProps.length;
-    var constructor = obj.constructor;
-    var proto = _.isFunction(constructor) && constructor.prototype || ObjProto; // Constructor is a special case.
-
-    var prop = 'constructor';
-    if (has(obj, prop) && !_.contains(keys, prop)) keys.push(prop);
-
-    while (nonEnumIdx--) {
-      prop = nonEnumerableProps[nonEnumIdx];
-
-      if (prop in obj && obj[prop] !== proto[prop] && !_.contains(keys, prop)) {
-        keys.push(prop);
-      }
-    }
-  }; // Retrieve the names of an object's own properties.
-  // Delegates to **ECMAScript 5**'s native `Object.keys`.
-
-
-  _.keys = function (obj) {
-    if (!_.isObject(obj)) return [];
-    if (nativeKeys) return nativeKeys(obj);
-    var keys = [];
-
-    for (var key in obj) {
-      if (has(obj, key)) keys.push(key);
-    } // Ahem, IE < 9.
-
-
-    if (hasEnumBug) collectNonEnumProps(obj, keys);
-    return keys;
-  }; // Retrieve all the property names of an object.
-
-
-  _.allKeys = function (obj) {
-    if (!_.isObject(obj)) return [];
-    var keys = [];
-
-    for (var key in obj) {
-      keys.push(key);
-    } // Ahem, IE < 9.
-
-
-    if (hasEnumBug) collectNonEnumProps(obj, keys);
-    return keys;
-  }; // Retrieve the values of an object's properties.
-
-
-  _.values = function (obj) {
-    var keys = _.keys(obj);
-
-    var length = keys.length;
-    var values = Array(length);
-
-    for (var i = 0; i < length; i++) {
-      values[i] = obj[keys[i]];
-    }
-
-    return values;
-  }; // Returns the results of applying the iteratee to each element of the object.
-  // In contrast to _.map it returns an object.
-
-
-  _.mapObject = function (obj, iteratee, context) {
-    iteratee = cb(iteratee, context);
-
-    var keys = _.keys(obj),
-        length = keys.length,
-        results = {};
-
-    for (var index = 0; index < length; index++) {
-      var currentKey = keys[index];
-      results[currentKey] = iteratee(obj[currentKey], currentKey, obj);
-    }
-
-    return results;
-  }; // Convert an object into a list of `[key, value]` pairs.
-  // The opposite of _.object.
-
-
-  _.pairs = function (obj) {
-    var keys = _.keys(obj);
-
-    var length = keys.length;
-    var pairs = Array(length);
-
-    for (var i = 0; i < length; i++) {
-      pairs[i] = [keys[i], obj[keys[i]]];
-    }
-
-    return pairs;
-  }; // Invert the keys and values of an object. The values must be serializable.
-
-
-  _.invert = function (obj) {
-    var result = {};
-
-    var keys = _.keys(obj);
-
-    for (var i = 0, length = keys.length; i < length; i++) {
-      result[obj[keys[i]]] = keys[i];
-    }
-
-    return result;
-  }; // Return a sorted list of the function names available on the object.
-  // Aliased as `methods`.
-
-
-  _.functions = _.methods = function (obj) {
-    var names = [];
-
-    for (var key in obj) {
-      if (_.isFunction(obj[key])) names.push(key);
-    }
-
-    return names.sort();
-  }; // An internal function for creating assigner functions.
-
-
-  var createAssigner = function createAssigner(keysFunc, defaults) {
-    return function (obj) {
-      var length = arguments.length;
-      if (defaults) obj = Object(obj);
-      if (length < 2 || obj == null) return obj;
-
-      for (var index = 1; index < length; index++) {
-        var source = arguments[index],
-            keys = keysFunc(source),
-            l = keys.length;
-
-        for (var i = 0; i < l; i++) {
-          var key = keys[i];
-          if (!defaults || obj[key] === void 0) obj[key] = source[key];
-        }
-      }
-
-      return obj;
-    };
-  }; // Extend a given object with all the properties in passed-in object(s).
-
-
-  _.extend = createAssigner(_.allKeys); // Assigns a given object with all the own properties in the passed-in object(s).
-  // (https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
-
-  _.extendOwn = _.assign = createAssigner(_.keys); // Returns the first key on an object that passes a predicate test.
-
-  _.findKey = function (obj, predicate, context) {
-    predicate = cb(predicate, context);
-
-    var keys = _.keys(obj),
-        key;
-
-    for (var i = 0, length = keys.length; i < length; i++) {
-      key = keys[i];
-      if (predicate(obj[key], key, obj)) return key;
-    }
-  }; // Internal pick helper function to determine if `obj` has key `key`.
-
-
-  var keyInObj = function keyInObj(value, key, obj) {
-    return key in obj;
-  }; // Return a copy of the object only containing the whitelisted properties.
-
-
-  _.pick = restArguments(function (obj, keys) {
-    var result = {},
-        iteratee = keys[0];
-    if (obj == null) return result;
-
-    if (_.isFunction(iteratee)) {
-      if (keys.length > 1) iteratee = optimizeCb(iteratee, keys[1]);
-      keys = _.allKeys(obj);
-    } else {
-      iteratee = keyInObj;
-      keys = flatten(keys, false, false);
-      obj = Object(obj);
-    }
-
-    for (var i = 0, length = keys.length; i < length; i++) {
-      var key = keys[i];
-      var value = obj[key];
-      if (iteratee(value, key, obj)) result[key] = value;
-    }
-
-    return result;
-  }); // Return a copy of the object without the blacklisted properties.
-
-  _.omit = restArguments(function (obj, keys) {
-    var iteratee = keys[0],
-        context;
-
-    if (_.isFunction(iteratee)) {
-      iteratee = _.negate(iteratee);
-      if (keys.length > 1) context = keys[1];
-    } else {
-      keys = _.map(flatten(keys, false, false), String);
-
-      iteratee = function iteratee(value, key) {
-        return !_.contains(keys, key);
-      };
-    }
-
-    return _.pick(obj, iteratee, context);
-  }); // Fill in a given object with default properties.
-
-  _.defaults = createAssigner(_.allKeys, true); // Creates an object that inherits from the given prototype object.
-  // If additional properties are provided then they will be added to the
-  // created object.
-
-  _.create = function (prototype, props) {
-    var result = baseCreate(prototype);
-    if (props) _.extendOwn(result, props);
-    return result;
-  }; // Create a (shallow-cloned) duplicate of an object.
-
-
-  _.clone = function (obj) {
-    if (!_.isObject(obj)) return obj;
-    return _.isArray(obj) ? obj.slice() : _.extend({}, obj);
-  }; // Invokes interceptor with the obj, and then returns obj.
-  // The primary purpose of this method is to "tap into" a method chain, in
-  // order to perform operations on intermediate results within the chain.
-
-
-  _.tap = function (obj, interceptor) {
-    interceptor(obj);
-    return obj;
-  }; // Returns whether an object has a given set of `key:value` pairs.
-
-
-  _.isMatch = function (object, attrs) {
-    var keys = _.keys(attrs),
-        length = keys.length;
-
-    if (object == null) return !length;
-    var obj = Object(object);
-
-    for (var i = 0; i < length; i++) {
-      var key = keys[i];
-      if (attrs[key] !== obj[key] || !(key in obj)) return false;
-    }
-
-    return true;
-  }; // Internal recursive comparison function for `isEqual`.
-
-
-  var eq, deepEq;
-
-  eq = function eq(a, b, aStack, bStack) {
-    // Identical objects are equal. `0 === -0`, but they aren't identical.
-    // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
-    if (a === b) return a !== 0 || 1 / a === 1 / b; // `null` or `undefined` only equal to itself (strict comparison).
-
-    if (a == null || b == null) return false; // `NaN`s are equivalent, but non-reflexive.
-
-    if (a !== a) return b !== b; // Exhaust primitive checks
-
-    var type = _typeof(a);
-
-    if (type !== 'function' && type !== 'object' && _typeof(b) != 'object') return false;
-    return deepEq(a, b, aStack, bStack);
-  }; // Internal recursive comparison function for `isEqual`.
-
-
-  deepEq = function deepEq(a, b, aStack, bStack) {
-    // Unwrap any wrapped objects.
-    if (a instanceof _) a = a._wrapped;
-    if (b instanceof _) b = b._wrapped; // Compare `[[Class]]` names.
-
-    var className = toString.call(a);
-    if (className !== toString.call(b)) return false;
-
-    switch (className) {
-      // Strings, numbers, regular expressions, dates, and booleans are compared by value.
-      case '[object RegExp]': // RegExps are coerced to strings for comparison (Note: '' + /a/i === '/a/i')
-
-      case '[object String]':
-        // Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is
-        // equivalent to `new String("5")`.
-        return '' + a === '' + b;
-
-      case '[object Number]':
-        // `NaN`s are equivalent, but non-reflexive.
-        // Object(NaN) is equivalent to NaN.
-        if (+a !== +a) return +b !== +b; // An `egal` comparison is performed for other numeric values.
-
-        return +a === 0 ? 1 / +a === 1 / b : +a === +b;
-
-      case '[object Date]':
-      case '[object Boolean]':
-        // Coerce dates and booleans to numeric primitive values. Dates are compared by their
-        // millisecond representations. Note that invalid dates with millisecond representations
-        // of `NaN` are not equivalent.
-        return +a === +b;
-
-      case '[object Symbol]':
-        return SymbolProto.valueOf.call(a) === SymbolProto.valueOf.call(b);
-    }
-
-    var areArrays = className === '[object Array]';
-
-    if (!areArrays) {
-      if (_typeof(a) != 'object' || _typeof(b) != 'object') return false; // Objects with different constructors are not equivalent, but `Object`s or `Array`s
-      // from different frames are.
-
-      var aCtor = a.constructor,
-          bCtor = b.constructor;
-
-      if (aCtor !== bCtor && !(_.isFunction(aCtor) && aCtor instanceof aCtor && _.isFunction(bCtor) && bCtor instanceof bCtor) && 'constructor' in a && 'constructor' in b) {
-        return false;
-      }
-    } // Assume equality for cyclic structures. The algorithm for detecting cyclic
-    // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
-    // Initializing stack of traversed objects.
-    // It's done here since we only need them for objects and arrays comparison.
-
-
-    aStack = aStack || [];
-    bStack = bStack || [];
-    var length = aStack.length;
-
-    while (length--) {
-      // Linear search. Performance is inversely proportional to the number of
-      // unique nested structures.
-      if (aStack[length] === a) return bStack[length] === b;
-    } // Add the first object to the stack of traversed objects.
-
-
-    aStack.push(a);
-    bStack.push(b); // Recursively compare objects and arrays.
-
-    if (areArrays) {
-      // Compare array lengths to determine if a deep comparison is necessary.
-      length = a.length;
-      if (length !== b.length) return false; // Deep compare the contents, ignoring non-numeric properties.
-
-      while (length--) {
-        if (!eq(a[length], b[length], aStack, bStack)) return false;
-      }
-    } else {
-      // Deep compare objects.
-      var keys = _.keys(a),
-          key;
-
-      length = keys.length; // Ensure that both objects contain the same number of properties before comparing deep equality.
-
-      if (_.keys(b).length !== length) return false;
-
-      while (length--) {
-        // Deep compare each member
-        key = keys[length];
-        if (!(has(b, key) && eq(a[key], b[key], aStack, bStack))) return false;
-      }
-    } // Remove the first object from the stack of traversed objects.
-
-
-    aStack.pop();
-    bStack.pop();
-    return true;
-  }; // Perform a deep comparison to check if two objects are equal.
-
-
-  _.isEqual = function (a, b) {
-    return eq(a, b);
-  }; // Is a given array, string, or object empty?
-  // An "empty" object has no enumerable own-properties.
-
-
-  _.isEmpty = function (obj) {
-    if (obj == null) return true;
-    if (isArrayLike(obj) && (_.isArray(obj) || _.isString(obj) || _.isArguments(obj))) return obj.length === 0;
-    return _.keys(obj).length === 0;
-  }; // Is a given value a DOM element?
-
-
-  _.isElement = function (obj) {
-    return !!(obj && obj.nodeType === 1);
-  }; // Is a given value an array?
-  // Delegates to ECMA5's native Array.isArray
-
-
-  _.isArray = nativeIsArray || function (obj) {
-    return toString.call(obj) === '[object Array]';
-  }; // Is a given variable an object?
-
-
-  _.isObject = function (obj) {
-    var type = _typeof(obj);
-
-    return type === 'function' || type === 'object' && !!obj;
-  }; // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp, isError, isMap, isWeakMap, isSet, isWeakSet.
-
-
-  _.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Error', 'Symbol', 'Map', 'WeakMap', 'Set', 'WeakSet'], function (name) {
-    _['is' + name] = function (obj) {
-      return toString.call(obj) === '[object ' + name + ']';
-    };
-  }); // Define a fallback version of the method in browsers (ahem, IE < 9), where
-  // there isn't any inspectable "Arguments" type.
-
-
-  if (!_.isArguments(arguments)) {
-    _.isArguments = function (obj) {
-      return has(obj, 'callee');
-    };
-  } // Optimize `isFunction` if appropriate. Work around some typeof bugs in old v8,
-  // IE 11 (#1621), Safari 8 (#1929), and PhantomJS (#2236).
-
-
-  var nodelist = root.document && root.document.childNodes;
-
-  if (typeof /./ != 'function' && (typeof Int8Array === "undefined" ? "undefined" : _typeof(Int8Array)) != 'object' && typeof nodelist != 'function') {
-    _.isFunction = function (obj) {
-      return typeof obj == 'function' || false;
-    };
-  } // Is a given object a finite number?
-
-
-  _.isFinite = function (obj) {
-    return !_.isSymbol(obj) && isFinite(obj) && !isNaN(parseFloat(obj));
-  }; // Is the given value `NaN`?
-
-
-  _.isNaN = function (obj) {
-    return _.isNumber(obj) && isNaN(obj);
-  }; // Is a given value a boolean?
-
-
-  _.isBoolean = function (obj) {
-    return obj === true || obj === false || toString.call(obj) === '[object Boolean]';
-  }; // Is a given value equal to null?
-
-
-  _.isNull = function (obj) {
-    return obj === null;
-  }; // Is a given variable undefined?
-
-
-  _.isUndefined = function (obj) {
-    return obj === void 0;
-  }; // Shortcut function for checking if an object has a given property directly
-  // on itself (in other words, not on a prototype).
-
-
-  _.has = function (obj, path) {
-    if (!_.isArray(path)) {
-      return has(obj, path);
-    }
-
-    var length = path.length;
-
-    for (var i = 0; i < length; i++) {
-      var key = path[i];
-
-      if (obj == null || !hasOwnProperty.call(obj, key)) {
-        return false;
-      }
-
-      obj = obj[key];
-    }
-
-    return !!length;
-  }; // Utility Functions
-  // -----------------
-  // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
-  // previous owner. Returns a reference to the Underscore object.
-
-
-  _.noConflict = function () {
-    root._ = previousUnderscore;
-    return this;
-  }; // Keep the identity function around for default iteratees.
-
-
-  _.identity = function (value) {
-    return value;
-  }; // Predicate-generating functions. Often useful outside of Underscore.
-
-
-  _.constant = function (value) {
-    return function () {
-      return value;
-    };
-  };
-
-  _.noop = function () {}; // Creates a function that, when passed an object, will traverse that object’s
-  // properties down the given `path`, specified as an array of keys or indexes.
-
-
-  _.property = function (path) {
-    if (!_.isArray(path)) {
-      return shallowProperty(path);
-    }
-
-    return function (obj) {
-      return deepGet(obj, path);
-    };
-  }; // Generates a function for a given object that returns a given property.
-
-
-  _.propertyOf = function (obj) {
-    if (obj == null) {
-      return function () {};
-    }
-
-    return function (path) {
-      return !_.isArray(path) ? obj[path] : deepGet(obj, path);
-    };
-  }; // Returns a predicate for checking whether an object has a given set of
-  // `key:value` pairs.
-
-
-  _.matcher = _.matches = function (attrs) {
-    attrs = _.extendOwn({}, attrs);
-    return function (obj) {
-      return _.isMatch(obj, attrs);
-    };
-  }; // Run a function **n** times.
-
-
-  _.times = function (n, iteratee, context) {
-    var accum = Array(Math.max(0, n));
-    iteratee = optimizeCb(iteratee, context, 1);
-
-    for (var i = 0; i < n; i++) {
-      accum[i] = iteratee(i);
-    }
-
-    return accum;
-  }; // Return a random integer between min and max (inclusive).
-
-
-  _.random = function (min, max) {
-    if (max == null) {
-      max = min;
-      min = 0;
-    }
-
-    return min + Math.floor(Math.random() * (max - min + 1));
-  }; // A (possibly faster) way to get the current timestamp as an integer.
-
-
-  _.now = Date.now || function () {
-    return new Date().getTime();
-  }; // List of HTML entities for escaping.
-
-
-  var escapeMap = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#x27;',
-    '`': '&#x60;'
-  };
-
-  var unescapeMap = _.invert(escapeMap); // Functions for escaping and unescaping strings to/from HTML interpolation.
-
-
-  var createEscaper = function createEscaper(map) {
-    var escaper = function escaper(match) {
-      return map[match];
-    }; // Regexes for identifying a key that needs to be escaped.
-
-
-    var source = '(?:' + _.keys(map).join('|') + ')';
-    var testRegexp = RegExp(source);
-    var replaceRegexp = RegExp(source, 'g');
-    return function (string) {
-      string = string == null ? '' : '' + string;
-      return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
-    };
-  };
-
-  _.escape = createEscaper(escapeMap);
-  _.unescape = createEscaper(unescapeMap); // Traverses the children of `obj` along `path`. If a child is a function, it
-  // is invoked with its parent as context. Returns the value of the final
-  // child, or `fallback` if any child is undefined.
-
-  _.result = function (obj, path, fallback) {
-    if (!_.isArray(path)) path = [path];
-    var length = path.length;
-
-    if (!length) {
-      return _.isFunction(fallback) ? fallback.call(obj) : fallback;
-    }
-
-    for (var i = 0; i < length; i++) {
-      var prop = obj == null ? void 0 : obj[path[i]];
-
-      if (prop === void 0) {
-        prop = fallback;
-        i = length; // Ensure we don't continue iterating.
-      }
-
-      obj = _.isFunction(prop) ? prop.call(obj) : prop;
-    }
-
-    return obj;
-  }; // Generate a unique integer id (unique within the entire client session).
-  // Useful for temporary DOM ids.
-
-
-  var idCounter = 0;
-
-  _.uniqueId = function (prefix) {
-    var id = ++idCounter + '';
-    return prefix ? prefix + id : id;
-  }; // By default, Underscore uses ERB-style template delimiters, change the
-  // following template settings to use alternative delimiters.
-
-
-  _.templateSettings = {
-    evaluate: /<%([\s\S]+?)%>/g,
-    interpolate: /<%=([\s\S]+?)%>/g,
-    escape: /<%-([\s\S]+?)%>/g
-  }; // When customizing `templateSettings`, if you don't want to define an
-  // interpolation, evaluation or escaping regex, we need one that is
-  // guaranteed not to match.
-
-  var noMatch = /(.)^/; // Certain characters need to be escaped so that they can be put into a
-  // string literal.
-
-  var escapes = {
-    "'": "'",
-    '\\': '\\',
-    '\r': 'r',
-    '\n': 'n',
-    "\u2028": 'u2028',
-    "\u2029": 'u2029'
-  };
-  var escapeRegExp = /\\|'|\r|\n|\u2028|\u2029/g;
-
-  var escapeChar = function escapeChar(match) {
-    return '\\' + escapes[match];
-  }; // JavaScript micro-templating, similar to John Resig's implementation.
-  // Underscore templating handles arbitrary delimiters, preserves whitespace,
-  // and correctly escapes quotes within interpolated code.
-  // NB: `oldSettings` only exists for backwards compatibility.
-
-
-  _.template = function (text, settings, oldSettings) {
-    if (!settings && oldSettings) settings = oldSettings;
-    settings = _.defaults({}, settings, _.templateSettings); // Combine delimiters into one regular expression via alternation.
-
-    var matcher = RegExp([(settings.escape || noMatch).source, (settings.interpolate || noMatch).source, (settings.evaluate || noMatch).source].join('|') + '|$', 'g'); // Compile the template source, escaping string literals appropriately.
-
-    var index = 0;
-    var source = "__p+='";
-    text.replace(matcher, function (match, escape, interpolate, evaluate, offset) {
-      source += text.slice(index, offset).replace(escapeRegExp, escapeChar);
-      index = offset + match.length;
-
-      if (escape) {
-        source += "'+\n((__t=(" + escape + "))==null?'':_.escape(__t))+\n'";
-      } else if (interpolate) {
-        source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";
-      } else if (evaluate) {
-        source += "';\n" + evaluate + "\n__p+='";
-      } // Adobe VMs need the match returned to produce the correct offset.
-
-
-      return match;
-    });
-    source += "';\n"; // If a variable is not specified, place data values in local scope.
-
-    if (!settings.variable) source = 'with(obj||{}){\n' + source + '}\n';
-    source = "var __t,__p='',__j=Array.prototype.join," + "print=function(){__p+=__j.call(arguments,'');};\n" + source + 'return __p;\n';
-    var render;
-
-    try {
-      render = new Function(settings.variable || 'obj', '_', source);
-    } catch (e) {
-      e.source = source;
-      throw e;
-    }
-
-    var template = function template(data) {
-      return render.call(this, data, _);
-    }; // Provide the compiled source as a convenience for precompilation.
-
-
-    var argument = settings.variable || 'obj';
-    template.source = 'function(' + argument + '){\n' + source + '}';
-    return template;
-  }; // Add a "chain" function. Start chaining a wrapped Underscore object.
-
-
-  _.chain = function (obj) {
-    var instance = _(obj);
-
-    instance._chain = true;
-    return instance;
-  }; // OOP
-  // ---------------
-  // If Underscore is called as a function, it returns a wrapped object that
-  // can be used OO-style. This wrapper holds altered versions of all the
-  // underscore functions. Wrapped objects may be chained.
-  // Helper function to continue chaining intermediate results.
-
-
-  var chainResult = function chainResult(instance, obj) {
-    return instance._chain ? _(obj).chain() : obj;
-  }; // Add your own custom functions to the Underscore object.
-
-
-  _.mixin = function (obj) {
-    _.each(_.functions(obj), function (name) {
-      var func = _[name] = obj[name];
-
-      _.prototype[name] = function () {
-        var args = [this._wrapped];
-        push.apply(args, arguments);
-        return chainResult(this, func.apply(_, args));
-      };
-    });
-
-    return _;
-  }; // Add all of the Underscore functions to the wrapper object.
-
-
-  _.mixin(_); // Add all mutator Array functions to the wrapper.
-
-
-  _.each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift'], function (name) {
-    var method = ArrayProto[name];
-
-    _.prototype[name] = function () {
-      var obj = this._wrapped;
-      method.apply(obj, arguments);
-      if ((name === 'shift' || name === 'splice') && obj.length === 0) delete obj[0];
-      return chainResult(this, obj);
-    };
-  }); // Add all accessor Array functions to the wrapper.
-
-
-  _.each(['concat', 'join', 'slice'], function (name) {
-    var method = ArrayProto[name];
-
-    _.prototype[name] = function () {
-      return chainResult(this, method.apply(this._wrapped, arguments));
-    };
-  }); // Extracts the result from a wrapped and chained object.
-
-
-  _.prototype.value = function () {
-    return this._wrapped;
-  }; // Provide unwrapping proxy for some methods used in engine operations
-  // such as arithmetic and JSON stringification.
-
-
-  _.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
-
-  _.prototype.toString = function () {
-    return String(this._wrapped);
-  }; // AMD registration happens at the end for compatibility with AMD loaders
-  // that may not enforce next-turn semantics on modules. Even though general
-  // practice for AMD registration is to be anonymous, underscore registers
-  // as a named module because, like jQuery, it is a base library that is
-  // popular enough to be bundled in a third party lib, but not be part of
-  // an AMD load request. Those cases could generate an error when an
-  // anonymous define() is called outside of a loader request.
-
-
-  if (typeof define == 'function' && define.amd) {
-    define('underscore', [], function () {
-      return _;
-    });
-  }
-})();
-
-}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],396:[function(require,module,exports){
+},{"crypto":139}],397:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -97071,9 +95404,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       enumerable: false,
       configurable: true,
       writable: true,
-      value: function normalize()
-      /*form*/
-      {
+      value: function normalize() {
         var str = "" + this;
         var form = arguments[0] === undefined ? "NFC" : arguments[0];
 
@@ -97098,7 +95429,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   }
 })(void 0);
 
-},{}],397:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -97831,7 +96162,7 @@ Url.prototype.parseHost = function () {
   if (host) this.hostname = host;
 };
 
-},{"./util":398,"punycode":169,"querystring":353}],398:[function(require,module,exports){
+},{"./util":399,"punycode":170,"querystring":355}],399:[function(require,module,exports){
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -97851,7 +96182,7 @@ module.exports = {
   }
 };
 
-},{}],399:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 "use strict";
 
 /*! https://mths.be/utf8js v3.0.0 by @mathias */
@@ -98074,7 +96405,7 @@ module.exports = {
   root.decode = utf8decode;
 })(typeof exports === 'undefined' ? (void 0).utf8 = {} : exports);
 
-},{}],400:[function(require,module,exports){
+},{}],401:[function(require,module,exports){
 (function (global){(function (){
 "use strict";
 
@@ -98148,7 +96479,7 @@ function config(name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],401:[function(require,module,exports){
+},{}],402:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -98178,8 +96509,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
  */
 var Buffer = require('buffer').Buffer;
 
-var _ = require('underscore');
-
 var utils = require('web3-utils');
 
 var EthersAbiCoder = require('@ethersproject/abi').AbiCoder;
@@ -98187,7 +96516,7 @@ var EthersAbiCoder = require('@ethersproject/abi').AbiCoder;
 var ParamType = require('@ethersproject/abi').ParamType;
 
 var ethersAbiCoder = new EthersAbiCoder(function (type, value) {
-  if (type.match(/^u?int/) && !_.isArray(value) && (!_.isObject(value) || value.constructor.name !== 'BN')) {
+  if (type.match(/^u?int/) && !Array.isArray(value) && (!(!!value && _typeof(value) === 'object') || value.constructor.name !== 'BN')) {
     return value.toString();
   }
 
@@ -98211,7 +96540,7 @@ var ABICoder = function ABICoder() {};
 
 
 ABICoder.prototype.encodeFunctionSignature = function (functionName) {
-  if (_.isObject(functionName)) {
+  if (typeof functionName === 'function' || _typeof(functionName) === 'object' && functionName) {
     functionName = utils._jsonInterfaceMethodToString(functionName);
   }
 
@@ -98227,7 +96556,7 @@ ABICoder.prototype.encodeFunctionSignature = function (functionName) {
 
 
 ABICoder.prototype.encodeEventSignature = function (functionName) {
-  if (_.isObject(functionName)) {
+  if (typeof functionName === 'function' || _typeof(functionName) === 'object' && functionName) {
     functionName = utils._jsonInterfaceMethodToString(functionName);
   }
 
@@ -98529,7 +96858,7 @@ ABICoder.prototype.decodeParametersWith = function (outputs, bytes, loose) {
     decodedValue = decodedValue === '0x' ? null : decodedValue;
     returnValue[i] = decodedValue;
 
-    if (_.isObject(output) && output.name) {
+    if ((typeof output === 'function' || !!output && _typeof(output) === 'object') && output.name) {
       returnValue[output.name] = decodedValue;
     }
 
@@ -98551,7 +96880,7 @@ ABICoder.prototype.decodeParametersWith = function (outputs, bytes, loose) {
 ABICoder.prototype.decodeLog = function (inputs, data, topics) {
   var _this = this;
 
-  topics = _.isArray(topics) ? topics : [topics];
+  topics = Array.isArray(topics) ? topics : [topics];
   data = data || '';
   var notIndexedInputs = [];
   var indexedParams = [];
@@ -98594,7 +96923,7 @@ ABICoder.prototype.decodeLog = function (inputs, data, topics) {
 var coder = new ABICoder();
 module.exports = coder;
 
-},{"@ethersproject/abi":22,"buffer":173,"underscore":395,"web3-utils":402}],402:[function(require,module,exports){
+},{"@ethersproject/abi":22,"buffer":174,"web3-utils":403}],403:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -98622,8 +96951,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
  * @author Fabian Vogelsteller <fabian@ethereum.org>
  * @date 2017
  */
-var _ = require('underscore');
-
 var ethjsUnit = require('ethjs-unit');
 
 var utils = require('./utils.js');
@@ -98649,26 +96976,26 @@ var BN = require('bn.js');
 var _fireError = function _fireError(error, emitter, reject, callback, optionalData) {
   /*jshint maxcomplexity: 10 */
   // add data if given
-  if (_.isObject(error) && !(error instanceof Error) && error.data) {
-    if (_.isObject(error.data) || _.isArray(error.data)) {
+  if (!!error && _typeof(error) === 'object' && !(error instanceof Error) && error.data) {
+    if (!!error.data && _typeof(error.data) === 'object' || Array.isArray(error.data)) {
       error.data = JSON.stringify(error.data, null, 2);
     }
 
     error = error.message + "\n" + error.data;
   }
 
-  if (_.isString(error)) {
+  if (typeof error === 'string') {
     error = new Error(error);
   }
 
-  if (_.isFunction(callback)) {
+  if (typeof callback === 'function') {
     callback(error, optionalData);
   }
 
-  if (_.isFunction(reject)) {
+  if (typeof reject === 'function') {
     // suppress uncatched error if an error listener is present
     // OR suppress uncatched error if an callback listener is present
-    if (emitter && _.isFunction(emitter.listeners) && emitter.listeners('error').length || _.isFunction(callback)) {
+    if (emitter && typeof emitter.listeners === 'function' && emitter.listeners('error').length || typeof callback === 'function') {
       emitter["catch"](function () {});
     } // reject later, to be able to return emitter
 
@@ -98678,7 +97005,7 @@ var _fireError = function _fireError(error, emitter, reject, callback, optionalD
     }, 1);
   }
 
-  if (emitter && _.isFunction(emitter.emit)) {
+  if (emitter && typeof emitter.emit === 'function') {
     // emit later, to be able to return emitter
     setTimeout(function () {
       emitter.emit('error', error, optionalData);
@@ -98698,7 +97025,7 @@ var _fireError = function _fireError(error, emitter, reject, callback, optionalD
 
 
 var _jsonInterfaceMethodToString = function _jsonInterfaceMethodToString(json) {
-  if (_.isObject(json) && json.name && json.name.indexOf('(') !== -1) {
+  if (!!json && _typeof(json) === 'object' && json.name && json.name.indexOf('(') !== -1) {
     return json.name;
   }
 
@@ -98733,7 +97060,7 @@ var _flattenTypes = function _flattenTypes(includeTuple, puts) {
       var result = _flattenTypes(includeTuple, param.components); // console.log("result should have things: " + result)
 
 
-      if (_.isArray(result) && includeTuple) {
+      if (Array.isArray(result) && includeTuple) {
         // console.log("include tuple word, and its an array. joining...: " + result.types)
         types.push('tuple(' + result.join(',') + ')' + suffix);
       } else if (!includeTuple) {
@@ -98853,7 +97180,7 @@ var getUnitValue = function getUnitValue(unit) {
 var fromWei = function fromWei(number, unit) {
   unit = getUnitValue(unit);
 
-  if (!utils.isBN(number) && !_.isString(number)) {
+  if (!utils.isBN(number) && !(typeof number === 'string')) {
     throw new Error('Please pass numbers as strings or BN objects to avoid precision errors.');
   }
 
@@ -98886,7 +97213,7 @@ var fromWei = function fromWei(number, unit) {
 var toWei = function toWei(number, unit) {
   unit = getUnitValue(unit);
 
-  if (!utils.isBN(number) && !_.isString(number)) {
+  if (!utils.isBN(number) && !(typeof number === 'string')) {
     throw new Error('Please pass numbers as strings or BN objects to avoid precision errors.');
   }
 
@@ -98985,7 +97312,6 @@ module.exports = {
   // extractDisplayName: extractDisplayName,
   // extractTypeName: extractTypeName,
   randomHex: randomHex,
-  _: _,
   BN: utils.BN,
   isBN: utils.isBN,
   isBigNumber: utils.isBigNumber,
@@ -99034,10 +97360,11 @@ module.exports = {
   isTopic: utils.isTopic,
   isTopicInBloom: utils.isTopicInBloom,
   isInBloom: utils.isInBloom,
-  compareBlockNumbers: compareBlockNumbers
+  compareBlockNumbers: compareBlockNumbers,
+  toNumber: utils.toNumber
 };
 
-},{"./soliditySha3.js":403,"./utils.js":404,"bn.js":405,"ethjs-unit":293,"randombytes":354,"underscore":395}],403:[function(require,module,exports){
+},{"./soliditySha3.js":404,"./utils.js":405,"bn.js":406,"ethjs-unit":295,"randombytes":356}],404:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -99064,8 +97391,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
  * @author Fabian Vogelsteller <fabian@ethereum.org>
  * @date 2017
  */
-var _ = require('underscore');
-
 var BN = require('bn.js');
 
 var utils = require('./utils.js');
@@ -99211,7 +97536,7 @@ var _solidityPack = function _solidityPack(type, value, arraySize) {
 
 var _processSolidityEncodePackedArgs = function _processSolidityEncodePackedArgs(arg) {
   /*jshint maxcomplexity:false */
-  if (_.isArray(arg)) {
+  if (Array.isArray(arg)) {
     throw new Error('Autodetection of array types is not supported.');
   }
 
@@ -99219,7 +97544,7 @@ var _processSolidityEncodePackedArgs = function _processSolidityEncodePackedArgs
       value = '';
   var hexArg, arraySize; // if type is given
 
-  if (_.isObject(arg) && (arg.hasOwnProperty('v') || arg.hasOwnProperty('t') || arg.hasOwnProperty('value') || arg.hasOwnProperty('type'))) {
+  if (!!arg && _typeof(arg) === 'object' && (arg.hasOwnProperty('v') || arg.hasOwnProperty('t') || arg.hasOwnProperty('value') || arg.hasOwnProperty('type'))) {
     type = arg.hasOwnProperty('t') ? arg.t : arg.type;
     value = arg.hasOwnProperty('v') ? arg.v : arg.value; // otherwise try to guess the type
   } else {
@@ -99236,7 +97561,7 @@ var _processSolidityEncodePackedArgs = function _processSolidityEncodePackedArgs
   } // get the array size
 
 
-  if (_.isArray(value)) {
+  if (Array.isArray(value)) {
     arraySize = _parseTypeNArray(type);
 
     if (arraySize && value.length !== arraySize) {
@@ -99246,7 +97571,7 @@ var _processSolidityEncodePackedArgs = function _processSolidityEncodePackedArgs
     }
   }
 
-  if (_.isArray(value)) {
+  if (Array.isArray(value)) {
     hexArg = value.map(function (val) {
       return _solidityPack(type, val, arraySize).toString('hex').replace('0x', '');
     });
@@ -99267,10 +97592,8 @@ var _processSolidityEncodePackedArgs = function _processSolidityEncodePackedArgs
 var soliditySha3 = function soliditySha3() {
   /*jshint maxcomplexity:false */
   var args = Array.prototype.slice.call(arguments);
-
-  var hexArgs = _.map(args, _processSolidityEncodePackedArgs); // console.log(args, hexArgs);
+  var hexArgs = args.map(_processSolidityEncodePackedArgs); // console.log(args, hexArgs);
   // console.log('0x'+ hexArgs.join(''));
-
 
   return utils.sha3('0x' + hexArgs.join(''));
 };
@@ -99283,7 +97606,7 @@ var soliditySha3 = function soliditySha3() {
 
 
 var soliditySha3Raw = function soliditySha3Raw() {
-  return utils.sha3Raw('0x' + _.map(Array.prototype.slice.call(arguments), _processSolidityEncodePackedArgs).join(''));
+  return utils.sha3Raw('0x' + Array.prototype.slice.call(arguments).map(_processSolidityEncodePackedArgs).join(''));
 };
 /**
  * Encode packed args to hex
@@ -99296,9 +97619,7 @@ var soliditySha3Raw = function soliditySha3Raw() {
 var encodePacked = function encodePacked() {
   /*jshint maxcomplexity:false */
   var args = Array.prototype.slice.call(arguments);
-
-  var hexArgs = _.map(args, _processSolidityEncodePackedArgs);
-
+  var hexArgs = args.map(_processSolidityEncodePackedArgs);
   return '0x' + hexArgs.join('').toLowerCase();
 };
 
@@ -99308,9 +97629,11 @@ module.exports = {
   encodePacked: encodePacked
 };
 
-},{"./utils.js":404,"bn.js":405,"underscore":395}],404:[function(require,module,exports){
+},{"./utils.js":405,"bn.js":406}],405:[function(require,module,exports){
 (function (Buffer){(function (){
 "use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /*
  This file is part of web3.js.
@@ -99334,8 +97657,6 @@ module.exports = {
  * @author Fabian Vogelsteller <fabian@ethereum.org>
  * @date 2017
  */
-var _ = require('underscore');
-
 var BN = require('bn.js');
 
 var numberToBN = require('number-to-bn');
@@ -99543,7 +97864,7 @@ var hexToNumber = function hexToNumber(value) {
     return value;
   }
 
-  if (_.isString(value) && !isHexStrict(value)) {
+  if (typeof value === 'string' && !isHexStrict(value)) {
     throw new Error('Given value "' + value + '" is not a valid hex string.');
   }
 
@@ -99561,7 +97882,7 @@ var hexToNumber = function hexToNumber(value) {
 var hexToNumberString = function hexToNumberString(value) {
   if (!value) return value;
 
-  if (_.isString(value) && !isHexStrict(value)) {
+  if (typeof value === 'string' && !isHexStrict(value)) {
     throw new Error('Given value "' + value + '" is not a valid hex string.');
   }
 
@@ -99577,7 +97898,7 @@ var hexToNumberString = function hexToNumberString(value) {
 
 
 var numberToHex = function numberToHex(value) {
-  if (_.isNull(value) || _.isUndefined(value)) {
+  if (value === null || value === undefined) {
     return value;
   }
 
@@ -99654,7 +97975,7 @@ var toHex = function toHex(value, returnType) {
     return returnType ? 'address' : '0x' + value.toLowerCase().replace(/^0x/i, '');
   }
 
-  if (_.isBoolean(value)) {
+  if (typeof value === 'boolean') {
     return returnType ? 'bool' : value ? '0x01' : '0x00';
   }
 
@@ -99662,12 +97983,12 @@ var toHex = function toHex(value, returnType) {
     return '0x' + value.toString('hex');
   }
 
-  if (_.isObject(value) && !isBigNumber(value) && !isBN(value)) {
+  if (_typeof(value) === 'object' && !!value && !isBigNumber(value) && !isBN(value)) {
     return returnType ? 'string' : utf8ToHex(JSON.stringify(value));
   } // if its a negative number, pass it through numberToHex
 
 
-  if (_.isString(value)) {
+  if (typeof value === 'string') {
     if (value.indexOf('-0x') === 0 || value.indexOf('-0X') === 0) {
       return returnType ? 'int256' : numberToHex(value);
     } else if (value.indexOf('0x') === 0 || value.indexOf('0X') === 0) {
@@ -99689,7 +98010,7 @@ var toHex = function toHex(value, returnType) {
 
 
 var isHexStrict = function isHexStrict(hex) {
-  return (_.isString(hex) || _.isNumber(hex)) && /^(-)?0x[0-9a-f]*$/i.test(hex);
+  return (typeof hex === 'string' || typeof hex === 'number') && /^(-)?0x[0-9a-f]*$/i.test(hex);
 };
 /**
  * Check if string is HEX
@@ -99701,7 +98022,7 @@ var isHexStrict = function isHexStrict(hex) {
 
 
 var isHex = function isHex(hex) {
-  return (_.isString(hex) || _.isNumber(hex)) && /^(-0x|0x)?[0-9a-f]*$/i.test(hex);
+  return (typeof hex === 'string' || typeof hex === 'number') && /^(-0x|0x)?[0-9a-f]*$/i.test(hex);
 };
 /**
  * Remove 0x prefix from string
@@ -99845,6 +98166,19 @@ var sha3Raw = function sha3Raw(value) {
 
   return value;
 };
+/**
+ * Auto converts any given value into it's hex representation,
+ * then converts hex to number.
+ *
+ * @method toNumber
+ * @param {String|Number|BN} value
+ * @return {Number}
+ */
+
+
+var toNumber = function toNumber(value) {
+  return typeof value === 'number' ? value : hexToNumber(toHex(value));
+};
 
 module.exports = {
   BN: BN,
@@ -99874,13 +98208,14 @@ module.exports = {
   rightPad: rightPad,
   toTwosComplement: toTwosComplement,
   sha3: sha3,
-  sha3Raw: sha3Raw
+  sha3Raw: sha3Raw,
+  toNumber: toNumber
 };
 
 }).call(this)}).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":316,"bn.js":405,"eth-lib/lib/hash":406,"ethereum-bloom-filters":243,"number-to-bn":331,"underscore":395,"utf8":399}],405:[function(require,module,exports){
-arguments[4][240][0].apply(exports,arguments)
-},{"buffer":138,"dup":240}],406:[function(require,module,exports){
+},{"../../is-buffer/index.js":318,"bn.js":406,"eth-lib/lib/hash":407,"ethereum-bloom-filters":245,"number-to-bn":333,"utf8":400}],406:[function(require,module,exports){
+arguments[4][30][0].apply(exports,arguments)
+},{"buffer":139,"dup":30}],407:[function(require,module,exports){
 "use strict";
 
 // This was ported from https://github.com/emn178/js-sha3, with some minor

@@ -68,30 +68,30 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "bitcore-lib": "8.25.8",
-    "bitcore-mnemonic": "8.25.8",
-    "crypto-js": "4.0.0",
+    "bitcore-lib": "8.25.10",
+    "bitcore-mnemonic": "8.25.10",
+    "crypto-js": "4.1.1",
     "elliptic": "6.5.4",
     "ethereumjs-tx": "2.1.2",
-    "ethereumjs-util": "7.0.10",
+    "ethereumjs-util": "7.1.0",
     "rlp": "2.2.6",
     "scrypt-async": "2.0.1",
     "tweetnacl": "1.0.3",
     "tweetnacl-util": "0.15.1",
-    "web3": "1.3.5"
+    "web3": "1.5.1"
   },
   "devDependencies": {
-    "@babel/core": "7.14.0",
-    "@babel/preset-env": "7.14.0",
-    "@babel/preset-react": "7.13.13",
-    "async": "3.2.0",
+    "@babel/core": "7.15.0",
+    "@babel/preset-env": "7.15.0",
+    "@babel/preset-react": "7.14.5",
+    "async": "3.2.1",
     "babelify": "10.0.0",
     "bluebird": "3.7.2",
     "browserify": "17.0.0",
     "chai": "4.3.4",
     "hooked-web3-provider": "christianlundkvist/hooked-web3-provider#d5ed993b",
     "istanbul": "0.4.5",
-    "mocha": "^8.3.2",
-    "uglify-js": "3.13.5"
+    "mocha": "^9.0.3",
+    "uglify-js": "3.14.1"
   }
 }
