@@ -1,0 +1,151 @@
+name: Build & deploy Eth-lightwallet
+
+on:
+  push:
+    branches: 
+      - main
+    tags: 
+      - '*'
+
+    pull_request:
+      types: [opened, synchronize]
+    
+
+env:
+  NODE_VERSION: 14.x
+  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  
+jobs:
+  dependencies: 
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        registry-url: https://npm.pkg.github.com
+        scope: '@ownesthq'
+
+    - name: Install dependencies
+      env:
+        SSH_KEY: ${{ secrets.SSH_KEY }}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$SSH_KEY" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        npm ci
+
+    - name: 'Tar files'
+      run: tar -cvf node_modules.tar node_modules/
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: node_modules
+        path: node_modules.tar
+        retention-days: 1
+
+  security:   
+    needs: dependencies 
+    runs-on: ubuntu-latest
+    continue-on-error: true #retrocompatibility
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+          path: .
+
+      - name: 'Untar node_modules'
+        run: tar -xvf node_modules.tar
+
+      - name: 'Audit'
+        run: npm audit --production
+
+  tests:   
+    needs: security 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+          path: .
+
+      - name: 'Untar node_modules'
+        run: tar -xvf node_modules.tar
+
+      - name: 'Unit tests'
+        run: echo 'npm run tests'
+
+  build:   
+    needs: tests 
+    runs-on: ubuntu-latest    
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - uses: actions/download-artifact@v2
+        with:
+          name: node_modules
+          path: .
+
+      - name: 'Untar node_modules'
+        run: tar -xvf node_modules.tar
+
+      - name: Build
+        run: npm run build-js
+
+      - uses: geekyeggo/delete-artifact@v1
+        name: Remove node_modules artifact
+        with:
+          name: node_modules
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
+          retention-days: 1
+
+  deploy:
+    if: startsWith( github.ref, 'refs/tags/')
+    needs: build    
+    runs-on: ubuntu-latest
+       
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: ./dist
+          
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          always-auth: true
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://npm.pkg.github.com
+          scope: '@ownesthq'
+
+      - name: Publish package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
